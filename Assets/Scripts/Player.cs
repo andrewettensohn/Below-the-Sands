@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public Movement movement { get; private set; }
 
     public AudioClip runningAudioClip;
-    public AudioClip missedWithSwordAudioClip;
+    public AudioClip swingWithSwordAudioClip;
     public AudioClip hitWithSwordAudioClip;
     public AudioClip blockedAudioClip;
 
@@ -58,10 +58,6 @@ public class Player : MonoBehaviour
         PlaySound();
         HandleShieldEquipped();
         HandleHealthPotionUsed();
-    }
-
-    private void FixedUpdate()
-    {
         HandleCombat();
     }
 
@@ -71,8 +67,7 @@ public class Player : MonoBehaviour
 
         if (isBlocking)
         {
-            movement.SetDirection(Vector2.zero);
-
+            movement.rigidbody.velocity = Vector2.zero;
         }
 
         isAttacking = Input.GetKeyDown(KeyCode.Mouse0);
@@ -98,39 +93,29 @@ public class Player : MonoBehaviour
 
     private void HandleCombat()
     {
-        if (!isBlocking)
-        {
-            blockedDamage = 0;
-            ResetBlockIcons();
-        }
+        if (isBlocking) return;
+
+        blockedDamage = 0;
+        ResetBlockIcons();
 
         if (!isAttacking || !canAttack) return;
 
-        RaycastHit2D hit = GetEnemyHit(attackRange);
-
-        Skeleton skeleton = hit.collider?.GetComponent<Skeleton>();
-        if (skeleton != null)
-        {
-            canAttack = false;
-            isAttacking = true;
-            StartCoroutine(HandleAttackDelayTimer(skeleton));
-        }
-        else
-        {
-            isAttacking = false;
-            audioSource.PlayOneShot(missedWithSwordAudioClip);
-        }
+        canAttack = false;
+        audioSource.PlayOneShot(swingWithSwordAudioClip);
+        StartCoroutine(HandleAttackDelayTimer());
     }
 
-    private IEnumerator HandleAttackDelayTimer(Skeleton skeleton)
+    private IEnumerator HandleAttackDelayTimer()
     {
         if (!canAttack)
         {
             yield return new WaitForSeconds(attackDelay);
+
             RaycastHit2D hit = GetEnemyHit(attackRange);
             if (hit.collider != null)
             {
                 audioSource.PlayOneShot(hitWithSwordAudioClip);
+                Skeleton skeleton = hit.collider.GetComponent<Skeleton>();
                 skeleton.OnDeltDamage(1);
             }
             canAttack = true;
@@ -233,11 +218,6 @@ public class Player : MonoBehaviour
 
     public void PlaySound()
     {
-        // if (isAttacking && canAttack)
-        // {
-        //     audioSource.PlayOneShot(attackingAudioClip);
-        // }
-
         if (movement.rigidbody.velocity.x != 0 && movement.isGrounded && !audioSource.isPlaying)
         {
             audioSource.PlayOneShot(runningAudioClip);

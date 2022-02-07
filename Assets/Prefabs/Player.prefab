@@ -110,7 +110,7 @@ MonoBehaviour:
     m_Bits: 128
   PlayerUICanvas: {fileID: 0}
   runningAudioClip: {fileID: 8300000, guid: fba95cafa5bba8649a7d269656e7317b, type: 3}
-  missedWithSwordAudioClip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
+  swingWithSwordAudioClip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
   hitWithSwordAudioClip: {fileID: 8300000, guid: d64e91cef03af304fa237225b23c5707, type: 3}
   blockedAudioClip: {fileID: 8300000, guid: 67dd73a8fb8b99e4d8c8d793c86c4324, type: 3}
 --- !u!114 &906428597906432331
@@ -214,7 +214,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

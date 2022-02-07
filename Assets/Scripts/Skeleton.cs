@@ -16,8 +16,10 @@ public class Skeleton : MonoBehaviour
 
     public LayerMask playerLayer;
     public Transform target;
+    public bool isStaggered;
     public bool playerDetected;
     protected Animator animator;
+
 
     private void Start()
     {
@@ -37,6 +39,7 @@ public class Skeleton : MonoBehaviour
 
     private void Update()
     {
+        combatBehavior.HandleCombat();
         Animate();
     }
 
@@ -50,8 +53,6 @@ public class Skeleton : MonoBehaviour
         {
             ToggleBehaviors(false);
         }
-
-        combatBehavior.HandleCombat();
     }
 
     private void ToggleBehaviors(bool isChaseEnabled)
@@ -75,15 +76,7 @@ public class Skeleton : MonoBehaviour
             return;
         }
 
-        if (combatBehavior.isAttacking)
-        {
-            animator.SetTrigger("Attack");
-        }
-        else
-        {
-            animator.ResetTrigger("Attack");
-        }
-
+        animator.SetBool("Attacking", combatBehavior.isAttacking && !isStaggered);
         animator.SetBool("Block", combatBehavior.isBlocking);
 
         animator.SetFloat("Speed", movement.rigidbody.velocity.sqrMagnitude);
@@ -105,6 +98,7 @@ public class Skeleton : MonoBehaviour
         else
         {
             animator.SetTrigger("Hit");
+            isStaggered = true;
         }
     }
 

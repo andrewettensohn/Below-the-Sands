@@ -81,11 +81,12 @@ public class SkeletonCombatBehavior : SkeletonBehavior
         yield return new WaitForSeconds(dealDamageDelay);
 
         RaycastHit2D hit = skeleton.GetPlayerHit(attackRange);
-        if (skeleton.health > 0 && hit.collider != null)
+        if (skeleton.health > 0 && hit.collider != null && !skeleton.isStaggered)
         {
             player.OnDeltDamage(1);
         }
 
+        skeleton.isStaggered = false;
         isAttacking = false;
         canBlock = true;
     }
