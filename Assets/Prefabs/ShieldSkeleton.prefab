@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 3996655520473858990}
   - component: {fileID: 3996655520473858985}
   - component: {fileID: 3996655520473858989}
-  - component: {fileID: 3996655520473858988}
   - component: {fileID: 3996655520473858991}
   - component: {fileID: 5858542218755263068}
   - component: {fileID: 4189297802800080596}
   - component: {fileID: 100935562109323503}
   - component: {fileID: 2337217915481010148}
   - component: {fileID: 8205345886296940466}
+  - component: {fileID: 7415832357251986540}
   m_Layer: 7
   m_Name: ShieldSkeleton
   m_TagString: Untagged
@@ -113,32 +113,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &3996655520473858988
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3996655520473858984}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.17080975, y: -0.23851138}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 0.96}
-    newSize: {x: 1.28, y: 0.96}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.26021767, y: 0.48297715}
-  m_EdgeRadius: 0
 --- !u!95 &3996655520473858991
 Animator:
   serializedVersion: 4
@@ -176,6 +150,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   target: {fileID: 0}
+  isStaggered: 0
   playerDetected: 0
 --- !u!114 &4189297802800080596
 MonoBehaviour:
@@ -215,7 +190,7 @@ MonoBehaviour:
   dealDamageDelay: 0.3
   attackRange: 0.5
   blockTime: 2
-  leaveOpeningTime: 1
+  leaveOpeningTime: 0.5
   willBlock: 1
 --- !u!114 &2337217915481010148
 MonoBehaviour:
@@ -243,3 +218,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
+--- !u!58 &7415832357251986540
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996655520473858984}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.12}
+  serializedVersion: 2
+  m_Radius: 0.35

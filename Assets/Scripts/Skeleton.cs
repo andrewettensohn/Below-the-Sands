@@ -12,7 +12,7 @@ public class Skeleton : MonoBehaviour
     public SkeletonChaseBehavior chase { get; private set; }
     public SkeletonSentryBehavior sentry { get; private set; }
     public SkeletonCombatBehavior combatBehavior { get; private set; }
-    public new BoxCollider2D collider { get; private set; }
+    public new CircleCollider2D collider { get; private set; }
 
     public LayerMask playerLayer;
     public Transform target;
@@ -29,7 +29,7 @@ public class Skeleton : MonoBehaviour
 
     private void Awake()
     {
-        collider = GetComponent<BoxCollider2D>();
+        collider = GetComponent<CircleCollider2D>();
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
         chase = GetComponent<SkeletonChaseBehavior>();

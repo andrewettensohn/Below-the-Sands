@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     private AudioSource audioSource;
     private bool isBlocking;
     private int blockedDamage;
+    private bool isStaggered;
 
     private void Awake()
     {
@@ -67,12 +68,11 @@ public class Player : MonoBehaviour
 
         if (isBlocking)
         {
-            movement.rigidbody.velocity = Vector2.zero;
+            movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
         }
 
-        isAttacking = Input.GetKeyDown(KeyCode.Mouse0);
         movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), 0f));
-        movement.isJumping = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space);
+        movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && !isBlocking;
     }
 
     private void HandleShieldEquipped()
@@ -98,8 +98,9 @@ public class Player : MonoBehaviour
         blockedDamage = 0;
         ResetBlockIcons();
 
-        if (!isAttacking || !canAttack) return;
+        if (!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) return;
 
+        isAttacking = true;
         canAttack = false;
         audioSource.PlayOneShot(swingWithSwordAudioClip);
         StartCoroutine(HandleAttackDelayTimer());
@@ -112,12 +113,15 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
 
             RaycastHit2D hit = GetEnemyHit(attackRange);
-            if (hit.collider != null)
+            if (hit.collider != null && !isStaggered)
             {
                 audioSource.PlayOneShot(hitWithSwordAudioClip);
                 Skeleton skeleton = hit.collider.GetComponent<Skeleton>();
                 skeleton.OnDeltDamage(1);
             }
+
+            isAttacking = false;
+            isStaggered = false;
             canAttack = true;
         }
     }
@@ -213,6 +217,7 @@ public class Player : MonoBehaviour
         else if (!isAttacking)
         {
             animator.SetTrigger("Hit");
+            isStaggered = true;
         }
     }
 
@@ -226,12 +231,12 @@ public class Player : MonoBehaviour
 
     public void AnimateMovement()
     {
+        animator.SetBool("Attacking", isAttacking && !isStaggered);
         animator.SetFloat("Speed", movement.rigidbody.velocity.sqrMagnitude);
         animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
         animator.SetFloat("Look X", movement.lookDirection.x);
         animator.SetBool("Is Grounded", movement.isGrounded);
         animator.SetBool("Blocking", isBlocking);
-        animator.SetBool("Attacking", isAttacking);
     }
 
 

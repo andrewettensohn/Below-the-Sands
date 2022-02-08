@@ -33619,6 +33619,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6550622505460024976, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.7000122
+      objectReference: {fileID: 0}
     - target: {fileID: 8877785971117118101, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
       propertyPath: m_Name
       value: PlayerUICanvas
