@@ -10,4 +10,6 @@ public class MainMenuController : MonoBehaviour
         PlayerInfo.instance.nextPlayerPositionOnLoad = new Vector2(-10.5f, 0.6f);
         SceneManager.LoadScene("CatacombEntrance");
     }
+
+    public void ExitGame() => Application.Quit();
 }

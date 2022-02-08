@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 8206952045015469774}
   - component: {fileID: 5886285886026939121}
   - component: {fileID: 370821799}
-  - component: {fileID: 1597981466397461207}
   - component: {fileID: 8813084059490127463}
   m_Layer: 7
   m_Name: Skeleton
@@ -219,18 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
---- !u!114 &1597981466397461207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5091820314847450813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecbc445ea4de79444b77d677caad32e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &8813084059490127463
 CircleCollider2D:
   m_ObjectHideFlags: 0

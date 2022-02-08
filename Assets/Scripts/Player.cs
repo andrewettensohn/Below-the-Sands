@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private List<HealthHeart> hearts;
     private List<BlockIcon> blockIcons;
     private AudioSource audioSource;
+
     private bool isBlocking;
     private int blockedDamage;
     private bool isStaggered;
@@ -54,6 +55,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.isGamePaused) return;
+
         GetUserInput();
         AnimateMovement();
         PlaySound();

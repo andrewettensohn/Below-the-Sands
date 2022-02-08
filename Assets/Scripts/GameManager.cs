@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
+    public bool isGamePaused;
+
     public Dictionary<string, bool> healthPotionAvailbility = new Dictionary<string, bool>
     {
         { "FirstLevelTreasureRoom1", true },
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        Time.timeScale = 1;
         PlayerInfo.instance.ResetPlayerInfo();
         SceneManager.LoadScene("MainMenu");
     }
