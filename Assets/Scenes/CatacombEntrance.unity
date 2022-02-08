@@ -30702,13 +30702,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1596213496874101858, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.70007324
+      objectReference: {fileID: 0}
+    - target: {fileID: 1596213496874101858, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.2144165
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550622505460024976, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.6999512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550622505460024976, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7569391067162640192, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8877785971117118101, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
       propertyPath: m_Name
       value: PlayerUICanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877785971117118104, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8877785971117118105, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
       propertyPath: m_Pivot.x
@@ -30793,10 +30809,6 @@ PrefabInstance:
     - target: {fileID: 8877785971117118105, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877785971451638722, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -4.000122
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
@@ -32800,7 +32812,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6800001, y: 1}
+    m_SensorSize: {x: 1.6794055, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -35089,7 +35101,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041657699}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -35299,10 +35311,6 @@ PrefabInstance:
     - target: {fileID: 7786782222920997853, guid: 9a2c123409f35c34b95bf68dec156c0a, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7786782222920997854, guid: 9a2c123409f35c34b95bf68dec156c0a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a2c123409f35c34b95bf68dec156c0a, type: 3}
