@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private List<HealthHeart> hearts;
     private List<BlockIcon> blockIcons;
+    private List<HealthPotSlot> healthPotSlots;
     private AudioSource audioSource;
 
     private bool isBlocking;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         hearts = PlayerUICanvas.GetComponentsInChildren<HealthHeart>().ToList();
         blockIcons = PlayerUICanvas.GetComponentsInChildren<BlockIcon>().ToList();
+        healthPotSlots = PlayerUICanvas.GetComponentsInChildren<HealthPotSlot>().ToList();
     }
 
     private void Start()
@@ -51,6 +54,7 @@ public class Player : MonoBehaviour
         }
 
         SyncHearts();
+        SyncHealthPotions();
     }
 
     private void Update()
@@ -134,6 +138,40 @@ public class Player : MonoBehaviour
         return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, enemyLayer);
     }
 
+    private void SyncHealthPotions()
+    {
+        int healthPotionsNeededToDisable = 3 - PlayerInfo.instance.healthPotions;
+        DisableHealthPotionSlots(healthPotionsNeededToDisable);
+    }
+
+    private void DisableHealthPotionSlots(int healthPotionsNeededToDisable)
+    {
+        int healthPotionsChanged = 0;
+
+        for (int i = healthPotSlots.Count - 1; i > -1; i--)
+        {
+            if (healthPotSlots[i].isActiveAndEnabled && healthPotionsChanged < healthPotionsNeededToDisable)
+            {
+                healthPotSlots[i].gameObject.SetActive(false);
+                healthPotionsChanged++;
+            }
+        }
+    }
+
+    private void EnableHealthPotionSlots(int healthPotionsNeededToEnable)
+    {
+        int healthPotionsChanged = 0;
+
+        for (int i = 0; i < healthPotSlots.Count; i++)
+        {
+            if (!healthPotSlots[i].isActiveAndEnabled && healthPotionsChanged < healthPotionsNeededToEnable)
+            {
+                healthPotSlots[i].gameObject.SetActive(true);
+                healthPotionsChanged++;
+            }
+        }
+    }
+
     private void SyncHearts()
     {
         int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
@@ -174,6 +212,8 @@ public class Player : MonoBehaviour
         {
             heart.SetHealthy();
         }
+
+        DisableHealthPotionSlots(1);
     }
 
     private void ResetBlockIcons()
@@ -224,7 +264,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlaySound()
+    private void PlaySound()
     {
         if (movement.rigidbody.velocity.x != 0 && movement.isGrounded && !audioSource.isPlaying)
         {
@@ -232,7 +272,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AnimateMovement()
+    private void AnimateMovement()
     {
         animator.SetBool("Attacking", isAttacking && !isStaggered);
         animator.SetFloat("Speed", movement.rigidbody.velocity.sqrMagnitude);
@@ -240,6 +280,12 @@ public class Player : MonoBehaviour
         animator.SetFloat("Look X", movement.lookDirection.x);
         animator.SetBool("Is Grounded", movement.isGrounded);
         animator.SetBool("Blocking", isBlocking);
+    }
+
+    public void OnHealthPotionPickedUp()
+    {
+        PlayerInfo.instance.healthPotions += 1;
+        EnableHealthPotionSlots(1);
     }
 
 

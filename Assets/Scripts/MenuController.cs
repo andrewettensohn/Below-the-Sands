@@ -43,6 +43,7 @@ public class MenuController : MonoBehaviour
 
     public void ResumeGame()
     {
+        Debug.Log("On");
         GameManager.instance.isGamePaused = false;
         Time.timeScale = 1;
         canvas.enabled = false;

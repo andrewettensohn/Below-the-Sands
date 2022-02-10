@@ -19,8 +19,8 @@ public class HealthPotion : MonoBehaviour
     {
         if (collision.collider.name == "Player")
         {
-            PlayerInfo.instance.healthPotions += 1;
             GameManager.instance.healthPotionAvailbility[potionName] = false;
+            collision.collider.GetComponent<Player>().OnHealthPotionPickedUp();
             gameObject.SetActive(false);
         }
     }
