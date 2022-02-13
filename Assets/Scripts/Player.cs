@@ -123,8 +123,8 @@ public class Player : MonoBehaviour
             if (hit.collider != null && !isStaggered)
             {
                 audioSource.PlayOneShot(hitWithSwordAudioClip);
-                Skeleton skeleton = hit.collider.GetComponent<Skeleton>();
-                skeleton.OnDeltDamage(1);
+                DamageableEnemy enemy = hit.collider.GetComponent<DamageableEnemy>();
+                enemy.OnDeltDamage(1);
             }
 
             isAttacking = false;
