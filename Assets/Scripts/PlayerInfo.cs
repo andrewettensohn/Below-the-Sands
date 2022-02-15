@@ -36,7 +36,7 @@ public class PlayerInfo : MonoBehaviour
     public void ResetPlayerInfo()
     {
         hasShield = false;
-        healthPotions = 5;
+        healthPotions = 0;
         health = fullHealth;
     }
 }

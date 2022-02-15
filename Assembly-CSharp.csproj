@@ -36,9 +36,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\EnemyEyeCombatBehavior.cs" />
      <Compile Include="Assets\Scripts\HealthPotion.cs" />
      <Compile Include="Assets\Scripts\EnemyCombatBehavior.cs" />
      <Compile Include="Assets\Scripts\Node.cs" />
+     <Compile Include="Assets\Scripts\DamageableEnemy.cs" />
      <Compile Include="Assets\Scripts\BlockIcon.cs" />
      <Compile Include="Assets\Scripts\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\HealthHeart.cs" />
@@ -48,6 +50,7 @@
      <Compile Include="Assets\Scripts\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\EnemyChaseBehavior.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\EnemyEye.cs" />
      <Compile Include="Assets\Scripts\PressurePlate.cs" />
      <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
      <Compile Include="Assets\Scripts\Arrow.cs" />
@@ -56,9 +59,7 @@
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
-     <Compile Include="Assets\Scripts\EnemyEye.cs" />
-     <Compile Include="Assets\Scripts\DamageableEnemy.cs" />
-     <Compile Include="Assets\Scripts\EnemyEyeCombatBehavior.cs" />
+     <Compile Include="Assets\Scripts\MusicTracks.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -333,6 +334,9 @@
     <Reference Include="Unity.Burst.Cecil.Mdb">
         <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Assets\AstarPathfindingProject\Plugins\DotNetZip\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil.Pdb">
         <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
     </Reference>
@@ -347,9 +351,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
         <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Assets\AstarPathfindingProject\Plugins\DotNetZip\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.8f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -824,17 +825,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
-      <Project>{028b754a-422d-fa8c-eb7f-9d4bd696c5e0}</Project>
-      <Name>AstarPathfindingProjectEditor</Name>
+    <ProjectReference Include="PackageToolsEditor.csproj">
+      <Project>{bf33893b-e494-d161-c862-0e465319d992}</Project>
+      <Name>PackageToolsEditor</Name>
     </ProjectReference>
     <ProjectReference Include="AstarPathfindingProject.csproj">
       <Project>{66344f31-d4d3-1a2b-4f24-889636346d9c}</Project>
       <Name>AstarPathfindingProject</Name>
     </ProjectReference>
-    <ProjectReference Include="PackageToolsEditor.csproj">
-      <Project>{bf33893b-e494-d161-c862-0e465319d992}</Project>
-      <Name>PackageToolsEditor</Name>
+    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
+      <Project>{028b754a-422d-fa8c-eb7f-9d4bd696c5e0}</Project>
+      <Name>AstarPathfindingProjectEditor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2903227523324345165}
   - component: {fileID: 2903227523324345164}
+  - component: {fileID: 4824659691480458942}
+  - component: {fileID: 5444481627793312585}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,3 +46,122 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69165a2014c9484e99c6285b988649f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamePaused: 0
+--- !u!114 &4824659691480458942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2903227523324345011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abae1481615e0bb4f860a37bd602b58a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NightsRespite: {fileID: 8300000, guid: 245654c35edb355448f38b50501b1b48, type: 3}
+  BehindWalls: {fileID: 8300000, guid: 52b08b5907ae4b14787a1bf50e3d09d2, type: 3}
+  FirstFrost: {fileID: 8300000, guid: ac19cb220891ac646b0ae754b9d36185, type: 3}
+  HemlockCliffs: {fileID: 8300000, guid: 8cb9ed3fdb1b3a142bc4ea2b29b485a0, type: 3}
+  HookAndCrookInn: {fileID: 8300000, guid: dc741fdd51e53534f99015a7c88a8428, type: 3}
+  RoundRobinInn: {fileID: 8300000, guid: d591cfee056524b4594f5f4f3f139015, type: 3}
+  ScentOfScarlet: {fileID: 8300000, guid: a4a3d79abc68fd64a86e7a2f7f111f09, type: 3}
+  StreetsofScholars: {fileID: 8300000, guid: 979cea3f7d0a60e4b99468da709b76fd, type: 3}
+  TheSaltCrags: {fileID: 8300000, guid: 98186a99c7a98cf4a96ecc36389b5908, type: 3}
+  UnderTheIronGates: {fileID: 8300000, guid: a3ca344a2ea1b7a4f898adb99100e239, type: 3}
+--- !u!82 &5444481627793312585
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2903227523324345011}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
