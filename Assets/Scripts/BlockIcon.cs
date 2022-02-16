@@ -10,6 +10,7 @@ public class BlockIcon : MonoBehaviour
     private Color originalColor;
 
     public bool isBlocking { get; private set; } = true;
+    public bool isBlockIconActive { get; private set; } = true;
 
     private void Awake()
     {
@@ -31,5 +32,11 @@ public class BlockIcon : MonoBehaviour
     {
         image.color = originalColor;
         isBlocking = true;
+    }
+
+    public void ToggleActive(bool isActive)
+    {
+        isBlockIconActive = isActive;
+        gameObject.SetActive(isActive);
     }
 }

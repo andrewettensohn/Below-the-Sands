@@ -17,7 +17,7 @@ public class PlayerInfo : MonoBehaviour
 
     public bool isShieldEquipped { get; set; }
 
-    public bool hasShield { get; private set; } = true;
+    public bool hasShield { get; set; }
 
     private void Awake()
     {

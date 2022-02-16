@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private bool isBlocking;
     private int blockedDamage;
     private bool isStaggered;
+    private int numberOfSwordBlockIcons = 2;
 
     private void Awake()
     {
@@ -48,6 +49,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        PlayerInfo.instance.hasShield = true;
+
         if (PlayerInfo.instance.nextPlayerPositionOnLoad != Vector2.zero)
         {
             movement.rigidbody.MovePosition(PlayerInfo.instance.nextPlayerPositionOnLoad);
@@ -55,6 +58,16 @@ public class Player : MonoBehaviour
 
         SyncHearts();
         SyncHealthPotions();
+
+        if (!PlayerInfo.instance.isShieldEquipped)
+        {
+            ToggleBlockIconsActive(numberOfSwordBlockIcons, false);
+        }
+        else
+        {
+            animator.SetBool("Using Shield", true);
+            ToggleBlockIconsActive(numberOfSwordBlockIcons, true);
+        }
     }
 
     private void Update()
@@ -90,11 +103,13 @@ public class Player : MonoBehaviour
         {
             PlayerInfo.instance.isShieldEquipped = false;
             animator.SetBool("Using Shield", false);
+            ToggleBlockIconsActive(numberOfSwordBlockIcons, false);
         }
         else
         {
             PlayerInfo.instance.isShieldEquipped = true;
             animator.SetBool("Using Shield", true);
+            ToggleBlockIconsActive(numberOfSwordBlockIcons, true);
         }
     }
 
@@ -229,9 +244,23 @@ public class Player : MonoBehaviour
         int blockIconsChanged = 0;
         for (int i = blockIcons.Count - 1; i > -1; i--)
         {
-            if (blockIcons[i].isBlocking && blockIconsChanged < blockIconsToChange)
+            if (blockIcons[i].isBlockIconActive && blockIcons[i].isBlocking && blockIconsChanged < blockIconsToChange)
             {
                 blockIcons[i].SetBroken();
+                blockIconsChanged++;
+            }
+        }
+    }
+
+    private void ToggleBlockIconsActive(int blockIconsToChange, bool isActive)
+    {
+        int blockIconsChanged = 0;
+        for (int i = blockIcons.Count - 1; i > -1; i--)
+        {
+            if (blockIcons[i].isBlockIconActive != isActive && blockIconsChanged < blockIconsToChange)
+            {
+                Debug.Log($"Setting block icon to {isActive}");
+                blockIcons[i].ToggleActive(isActive);
                 blockIconsChanged++;
             }
         }
