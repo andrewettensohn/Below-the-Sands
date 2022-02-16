@@ -11,13 +11,9 @@ GameObject:
   - component: {fileID: 8691850715657894945}
   - component: {fileID: 8691850715657894950}
   - component: {fileID: 8691850715657894946}
-  - component: {fileID: 4482893304924987601}
-  - component: {fileID: 8487650383979125083}
-  - component: {fileID: 5751832104137319508}
-  - component: {fileID: 8036152806733582443}
-  - component: {fileID: 4482893306484793405}
   - component: {fileID: 4933749431587300605}
-  - component: {fileID: 7889928469413676265}
+  - component: {fileID: 4915697934130904296}
+  - component: {fileID: 5613310594766418123}
   m_Layer: 7
   m_Name: SkeletonArcher
   m_TagString: Untagged
@@ -113,91 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4482893304924987601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8691850715657894951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1351c046ca389048ab90149b86a21e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  target: {fileID: 0}
-  isStaggered: 0
-  playerDetected: 0
---- !u!114 &8487650383979125083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8691850715657894951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 657f8aec34c9f544a95454485e90a78f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  fallingMultiplier: 1
-  jumpVelocity: 0
-  lookDirection: {x: 1, y: 0}
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  isJumping: 0
-  isGrounded: 0
-  fallenIntoAbyss: 0
---- !u!114 &5751832104137319508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8691850715657894951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54b2aaec70344eb478c9e59a7e5950aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBehaviorEnabled: 0
-  dealDamageDelay: 0.5
-  attackRange: 1
-  blockTime: 0
-  leaveOpeningTime: 1
-  willBlock: 0
---- !u!114 &8036152806733582443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8691850715657894951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a0e97392704784cba8c5fe5ff89526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBehaviorEnabled: 0
---- !u!114 &4482893306484793405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8691850715657894951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c2f30e7f14e35c4f943eff44f2c3c1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBehaviorEnabled: 0
 --- !u!58 &4933749431587300605
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -211,10 +122,30 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.08}
+  m_Offset: {x: 0.0029586405, y: 0.022556439}
   serializedVersion: 2
-  m_Radius: 0.39
---- !u!95 &7889928469413676265
+  m_Radius: 0.23123442
+--- !u!114 &4915697934130904296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691850715657894951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30427905ba74d7a4eaca17462394212f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  detectionRange: 20
+  shootDelayTime: 2
+  arrowLaunchForce: 1500
+  arrowPrefab: {fileID: 4355225305427646132, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!95 &5613310594766418123
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0

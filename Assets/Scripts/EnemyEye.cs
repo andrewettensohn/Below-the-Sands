@@ -53,11 +53,6 @@ public class EnemyEye : DamageableEnemy
         Invoke(nameof(OnDisable), 1.0f);
     }
 
-    public RaycastHit2D GetPlayerHit(float distance)
-    {
-        return Physics2D.CircleCast(transform.position, enemyEyeCombatBehavior.attackRange, aiPath.desiredVelocity, distance, playerLayer);
-    }
-
     public override void OnDeltDamage(float damage)
     {
         damage = Mathf.Abs(damage);

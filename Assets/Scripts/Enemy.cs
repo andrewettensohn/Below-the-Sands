@@ -102,11 +102,6 @@ public class Enemy : DamageableEnemy
         }
     }
 
-    public RaycastHit2D GetPlayerHit(float distance)
-    {
-        return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, playerLayer);
-    }
-
     public void OnDisable()
     {
         gameObject.SetActive(false);

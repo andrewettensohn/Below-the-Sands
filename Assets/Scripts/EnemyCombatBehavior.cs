@@ -29,7 +29,7 @@ public class EnemyCombatBehavior : EnemyBehavior
 
     public virtual void HandleCombat()
     {
-        RaycastHit2D hit = enemy.GetPlayerHit(attackRange);
+        RaycastHit2D hit = GetPlayerHit(attackRange);
         Player player = hit.collider?.GetComponent<Player>();
 
         if (hit.collider == null)
@@ -56,6 +56,11 @@ public class EnemyCombatBehavior : EnemyBehavior
         }
     }
 
+    protected virtual RaycastHit2D GetPlayerHit(float distance)
+    {
+        return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, enemy.movement.lookDirection, distance, enemy.playerLayer);
+    }
+
     protected virtual void OnAttack(Player player)
     {
         canAttack = false;
@@ -80,7 +85,7 @@ public class EnemyCombatBehavior : EnemyBehavior
     {
         yield return new WaitForSeconds(dealDamageDelay);
 
-        RaycastHit2D hit = enemy.GetPlayerHit(attackRange);
+        RaycastHit2D hit = GetPlayerHit(attackRange);
         if (enemy.health > 0 && hit.collider != null && !enemy.isStaggered)
         {
             player.OnDeltDamage(1);

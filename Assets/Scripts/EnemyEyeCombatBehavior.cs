@@ -14,7 +14,7 @@ public class EnemyEyeCombatBehavior : EnemyCombatBehavior
 
     public override void HandleCombat()
     {
-        RaycastHit2D hit = enemyEye.GetPlayerHit(attackRange);
+        RaycastHit2D hit = GetPlayerHit(attackRange);
         Player player = hit.collider?.GetComponent<Player>();
 
         if (hit.collider == null)
@@ -41,31 +41,16 @@ public class EnemyEyeCombatBehavior : EnemyCombatBehavior
         }
     }
 
-    protected override void OnAttack(Player player)
+    protected override RaycastHit2D GetPlayerHit(float distance)
     {
-        canAttack = false;
-        isAttacking = true;
-        StartCoroutine(HandleDealDamageDelayTimer(player));
-    }
-
-    protected override void OnBlock()
-    {
-        canBlock = false;
-        isBlocking = willBlock;
-        StartCoroutine(HandleBlockTimer());
-    }
-
-    protected override void OnLeaveOpening()
-    {
-        canLeaveOpening = false;
-        StartCoroutine(HandleLeaveOpeningTimer());
+        return Physics2D.CircleCast(transform.position, attackRange, enemyEye.aiPath.desiredVelocity, distance, enemyEye.playerLayer);
     }
 
     protected override IEnumerator HandleDealDamageDelayTimer(Player player)
     {
         yield return new WaitForSeconds(dealDamageDelay);
 
-        RaycastHit2D hit = enemyEye.GetPlayerHit(attackRange);
+        RaycastHit2D hit = GetPlayerHit(attackRange);
         if (enemyEye.health > 0 && hit.collider != null && !enemyEye.isStaggered)
         {
             player.OnDeltDamage(1);
@@ -73,20 +58,5 @@ public class EnemyEyeCombatBehavior : EnemyCombatBehavior
 
         isAttacking = false;
         canBlock = true;
-    }
-
-    protected override IEnumerator HandleBlockTimer()
-    {
-        yield return new WaitForSeconds(blockTime);
-
-        isBlocking = false;
-        canLeaveOpening = true;
-    }
-
-    protected override IEnumerator HandleLeaveOpeningTimer()
-    {
-        yield return new WaitForSeconds(leaveOpeningTime);
-
-        canAttack = true;
     }
 }
