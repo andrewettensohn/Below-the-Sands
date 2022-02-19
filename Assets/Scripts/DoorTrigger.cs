@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
-    public string sceneName;
+    public LevelName levelName;
     public float horizontalPositionAfterLoad;
     public float verticalPositionAfterLoad;
 
@@ -22,8 +22,7 @@ public class DoorTrigger : MonoBehaviour
     {
         if (collider.name == "Player" && Input.GetKeyDown(KeyCode.E))
         {
-            GameManager.instance.LoadScene(sceneName, new Vector2(horizontalPositionAfterLoad, verticalPositionAfterLoad));
+            GameManager.instance.LoadScene(levelName.ToString(), new Vector2(horizontalPositionAfterLoad, verticalPositionAfterLoad));
         }
     }
-
 }

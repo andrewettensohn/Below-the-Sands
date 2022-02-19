@@ -27,9 +27,8 @@ public class Player : MonoBehaviour
     private bool isAttacking;
     private bool canAttack = true;
     private Animator animator;
-    private List<HealthHeart> hearts;
-    private List<BlockIcon> blockIcons;
-    private List<HealthPotSlot> healthPotSlots;
+    private PlayerUI playerUI;
+
     private AudioSource audioSource;
 
     private bool isBlocking;
@@ -42,9 +41,7 @@ public class Player : MonoBehaviour
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        hearts = PlayerUICanvas.GetComponentsInChildren<HealthHeart>().ToList();
-        blockIcons = PlayerUICanvas.GetComponentsInChildren<BlockIcon>().ToList();
-        healthPotSlots = PlayerUICanvas.GetComponentsInChildren<HealthPotSlot>().ToList();
+        playerUI = PlayerUICanvas.GetComponent<PlayerUI>();
     }
 
     private void Start()
@@ -56,17 +53,19 @@ public class Player : MonoBehaviour
             movement.rigidbody.MovePosition(PlayerInfo.instance.nextPlayerPositionOnLoad);
         }
 
-        SyncHearts();
-        SyncHealthPotions();
+        playerUI.SyncHearts();
+        playerUI.SyncHealthPotions();
+        playerUI.SyncRelicSlots();
+        playerUI.SyncPrayerSlots();
 
         if (!PlayerInfo.instance.isShieldEquipped)
         {
-            ToggleBlockIconsActive(numberOfSwordBlockIcons, false);
+            playerUI.ToggleBlockIconsActive(numberOfSwordBlockIcons, false);
         }
         else
         {
             animator.SetBool("Using Shield", true);
-            ToggleBlockIconsActive(numberOfSwordBlockIcons, true);
+            playerUI.ToggleBlockIconsActive(numberOfSwordBlockIcons, true);
         }
     }
 
@@ -103,13 +102,13 @@ public class Player : MonoBehaviour
         {
             PlayerInfo.instance.isShieldEquipped = false;
             animator.SetBool("Using Shield", false);
-            ToggleBlockIconsActive(numberOfSwordBlockIcons, false);
+            playerUI.ToggleBlockIconsActive(numberOfSwordBlockIcons, false);
         }
         else
         {
             PlayerInfo.instance.isShieldEquipped = true;
             animator.SetBool("Using Shield", true);
-            ToggleBlockIconsActive(numberOfSwordBlockIcons, true);
+            playerUI.ToggleBlockIconsActive(numberOfSwordBlockIcons, true);
         }
     }
 
@@ -118,7 +117,7 @@ public class Player : MonoBehaviour
         if (isBlocking) return;
 
         blockedDamage = 0;
-        ResetBlockIcons();
+        playerUI.ResetBlockIcons();
 
         if (!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) return;
 
@@ -148,133 +147,41 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void HandleHealthPotionUsed()
+    {
+        if (PlayerInfo.instance.healthPotionCount <= 0 || !Input.GetKeyDown(KeyCode.Alpha2)) return;
+
+        PlayerInfo.instance.healthPotionCount -= 1;
+        PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
+
+        playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
+        playerUI.ChangeHealthPotionSlots(1, false);
+    }
+
     private RaycastHit2D GetEnemyHit(float distance)
     {
         return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, enemyLayer);
     }
 
-    private void SyncHealthPotions()
-    {
-        int healthPotionsNeededToDisable = 3 - PlayerInfo.instance.healthPotions;
-        DisableHealthPotionSlots(healthPotionsNeededToDisable);
-    }
-
-    private void DisableHealthPotionSlots(int healthPotionsNeededToDisable)
-    {
-        int healthPotionsChanged = 0;
-
-        for (int i = healthPotSlots.Count - 1; i > -1; i--)
-        {
-            if (healthPotSlots[i].isActiveAndEnabled && healthPotionsChanged < healthPotionsNeededToDisable)
-            {
-                healthPotSlots[i].gameObject.SetActive(false);
-                healthPotionsChanged++;
-            }
-        }
-    }
-
-    private void EnableHealthPotionSlots(int healthPotionsNeededToEnable)
-    {
-        int healthPotionsChanged = 0;
-
-        for (int i = 0; i < healthPotSlots.Count; i++)
-        {
-            if (!healthPotSlots[i].isActiveAndEnabled && healthPotionsChanged < healthPotionsNeededToEnable)
-            {
-                healthPotSlots[i].gameObject.SetActive(true);
-                healthPotionsChanged++;
-            }
-        }
-    }
-
-    private void SyncHearts()
-    {
-        int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
-
-        SetHeartsUnhealthy(heartsNeededToChange);
-    }
-
     private void OnPlayerDamaged(int damage)
     {
+        damage = Mathf.Abs(damage);
         PlayerInfo.instance.health -= damage;
 
         if (damage <= 0) return;
 
-        SetHeartsUnhealthy(damage);
-    }
-
-    private void SetHeartsUnhealthy(int heartsNeededToChange)
-    {
-        int heartsChanged = 0;
-        for (int i = hearts.Count - 1; i > -1; i--)
-        {
-            if (hearts[i].isHealthy && heartsChanged < heartsNeededToChange)
-            {
-                hearts[i].SetUnhealthy();
-                heartsChanged++;
-            }
-        }
-    }
-
-    private void HandleHealthPotionUsed()
-    {
-        if (PlayerInfo.instance.healthPotions <= 0 || !Input.GetKeyDown(KeyCode.Alpha1)) return;
-
-        PlayerInfo.instance.healthPotions -= 1;
-        PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
-
-        foreach (HealthHeart heart in hearts)
-        {
-            heart.SetHealthy();
-        }
-
-        DisableHealthPotionSlots(1);
-    }
-
-    private void ResetBlockIcons()
-    {
-        foreach (BlockIcon blockIcon in blockIcons)
-        {
-            blockIcon.SetBlocking();
-        }
-    }
-
-    private void SetBlockIconsToBroken(int blockIconsToChange)
-    {
-        int blockIconsChanged = 0;
-        for (int i = blockIcons.Count - 1; i > -1; i--)
-        {
-            if (blockIcons[i].isBlockIconActive && blockIcons[i].isBlocking && blockIconsChanged < blockIconsToChange)
-            {
-                blockIcons[i].SetBroken();
-                blockIconsChanged++;
-            }
-        }
-    }
-
-    private void ToggleBlockIconsActive(int blockIconsToChange, bool isActive)
-    {
-        int blockIconsChanged = 0;
-        for (int i = blockIcons.Count - 1; i > -1; i--)
-        {
-            if (blockIcons[i].isBlockIconActive != isActive && blockIconsChanged < blockIconsToChange)
-            {
-                Debug.Log($"Setting block icon to {isActive}");
-                blockIcons[i].ToggleActive(isActive);
-                blockIconsChanged++;
-            }
-        }
+        playerUI.ChangeHealthHearts(damage, false);
     }
 
     public void OnDeltDamage(int damage)
     {
         damage = Mathf.Abs(damage);
 
-        if (isBlocking && blockedDamage < blockIcons.Count)
+        if (isBlocking && blockedDamage < playerUI.blockIcons.Count)
         {
             audioSource.PlayOneShot(blockedAudioClip);
             blockedDamage += damage;
-            SetBlockIconsToBroken(damage);
+            playerUI.SetBlockIconsToBroken(damage);
             return;
         }
 
@@ -313,10 +220,21 @@ public class Player : MonoBehaviour
 
     public void OnHealthPotionPickedUp()
     {
-        PlayerInfo.instance.healthPotions += 1;
-        EnableHealthPotionSlots(1);
+        PlayerInfo.instance.healthPotionCount += 1;
+        playerUI.ChangeHealthPotionSlots(1, true);
     }
 
+    public void OnRelicPickedUp()
+    {
+        PlayerInfo.instance.relicCount += 1;
+        playerUI.ChangeRelicSlots(1, true);
+    }
+
+    public void OnPrayerPickedUp()
+    {
+        PlayerInfo.instance.prayerCount += 1;
+        playerUI.ChangePrayerSlots(1, true);
+    }
 
     public void OnDisable()
     {

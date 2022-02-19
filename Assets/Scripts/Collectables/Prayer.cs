@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class HealthPotion : MonoBehaviour
+public class Prayer : MonoBehaviour
 {
-    public string potionName;
+    public LevelName levelName;
 
     private void Start()
     {
-        if (GameManager.instance.healthPotionAvailbility[potionName] == false)
+        if (GameManager.instance.prayerAvailbility[levelName] == false)
         {
             gameObject.SetActive(false);
         }
@@ -19,8 +18,8 @@ public class HealthPotion : MonoBehaviour
     {
         if (collision.collider.name == "Player")
         {
-            GameManager.instance.healthPotionAvailbility[potionName] = false;
-            collision.collider.GetComponent<Player>().OnHealthPotionPickedUp();
+            GameManager.instance.prayerAvailbility[levelName] = false;
+            collision.collider.GetComponent<Player>().OnPrayerPickedUp();
             gameObject.SetActive(false);
         }
     }

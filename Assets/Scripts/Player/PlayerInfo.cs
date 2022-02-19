@@ -9,7 +9,11 @@ public class PlayerInfo : MonoBehaviour
 
     public Vector2 nextPlayerPositionOnLoad { get; set; }
 
-    public int healthPotions { get; set; }
+    public int healthPotionCount { get; set; }
+
+    public int relicCount { get; set; }
+
+    public int prayerCount { get; set; }
 
     public int health { get; set; }
 
@@ -36,7 +40,9 @@ public class PlayerInfo : MonoBehaviour
     public void ResetPlayerInfo()
     {
         hasShield = false;
-        healthPotions = 0;
+        healthPotionCount = 0;
+        relicCount = 0;
+        prayerCount = 0;
         health = fullHealth;
     }
 }

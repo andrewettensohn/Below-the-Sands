@@ -61893,6 +61893,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3217089570240990960, guid: 0336b45e928b3f0418834f937517a989, type: 3}
+      propertyPath: levelName
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217089570240990960, guid: 0336b45e928b3f0418834f937517a989, type: 3}
       propertyPath: sceneName
       value: FirstLevelPlatformer
       objectReference: {fileID: 0}

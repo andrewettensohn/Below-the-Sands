@@ -9,11 +9,20 @@ public class GameManager : MonoBehaviour
 
     public bool isGamePaused;
 
-    public Dictionary<string, bool> healthPotionAvailbility = new Dictionary<string, bool>
+    public Dictionary<LevelName, bool> healthPotionAvailbility = new Dictionary<LevelName, bool>
     {
-        { "FirstLevelTreasureRoom1", true },
-        { "FirstLevelTreasureRoom2", true },
-        { "FirstLevelTrapRoom", true },
+        { LevelName.FirstLevelTreasureRoom, true },
+        { LevelName.FirstLevelTrapRoom, true },
+    };
+
+    public Dictionary<LevelName, bool> relicAvailbility = new Dictionary<LevelName, bool>
+    {
+        { LevelName.FirstLevelTreasureRoom, true },
+    };
+
+    public Dictionary<LevelName, bool> prayerAvailbility = new Dictionary<LevelName, bool>
+    {
+        { LevelName.FirstLevelTreasureRoom, true },
     };
 
     private AudioSource audioSource;
