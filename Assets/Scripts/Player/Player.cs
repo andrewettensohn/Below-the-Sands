@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public float blessedTime;
 
     public LayerMask enemyLayer;
+    public LayerMask npcLayer;
     public GameObject PlayerUICanvas;
     public Movement movement { get; private set; }
 
@@ -77,8 +78,15 @@ public class Player : MonoBehaviour
     {
         if (GameManager.instance.isGamePaused) return;
 
-        GetUserInput();
+        if (GameManager.instance.isPlayerControlRestricted)
+        {
+            movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
+            AnimateMovement();
+            return;
+        }
+
         AnimateMovement();
+        GetUserInput();
         PlaySound();
         HandleCombat();
     }
@@ -113,6 +121,11 @@ public class Player : MonoBehaviour
             HandleHealthPotionUsed();
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            HandleInteractAction();
+        }
+
         if (isBlocking)
         {
             movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
@@ -120,6 +133,18 @@ public class Player : MonoBehaviour
 
         movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), 0f));
         movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && !isBlocking;
+    }
+
+    private void HandleInteractAction()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, movement.lookDirection, 5.0f, npcLayer);
+
+        if (hit.collider != null)
+        {
+            Azkul azkul = hit.collider.GetComponent<Azkul>();
+            azkul.OpenDialog();
+            GameManager.instance.isPlayerControlRestricted = true;
+        }
     }
 
     private void HandleShieldEquipped()
@@ -180,8 +205,6 @@ public class Player : MonoBehaviour
 
         isBlessed = true;
         blessedEffect.Play();
-        // ParticleSystem.EmissionModule em = blessedEffect.emission;
-        // em.enabled = true;
         StartCoroutine(HandleBlessedTimer());
     }
 

@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
 
     public bool isGamePaused;
 
+    public bool isPlayerControlRestricted;
+
+    public AzkulDialogStatus azkulDialogStatus = new AzkulDialogStatus { IsNewGame = true };
+
     public Dictionary<LevelName, bool> healthPotionAvailbility = new Dictionary<LevelName, bool>
     {
         { LevelName.FirstLevelTreasureRoom, true },
@@ -37,6 +41,7 @@ public class GameManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
+
             HandleMusic("MainMenu");
         }
         else if (instance != this)
@@ -57,7 +62,6 @@ public class GameManager : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
-        PlayerInfo.instance.ResetPlayerInfo();
         SceneManager.LoadScene("MainMenu");
         HandleMusic("MainMenu");
     }

@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,10 +66,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1157,11 +1157,11 @@ TextureImporter:
       Skeleton_Archer_9: -565855574
       Skeleton_Archer_23: 520567597
       Skeleton_Archer_43: 1307681876
-      Skeleton_Archer_20: -304824095
       Skeleton_Archer_33: -710400300
+      Skeleton_Archer_20: -304824095
       Skeleton_Archer_24: -1861412776
-      Skeleton_Archer_25: 705099619
       Skeleton_Archer_40: -1865238299
+      Skeleton_Archer_25: 705099619
       Skeleton_Archer_4: -33971020
       Skeleton_Archer_39: 484700713
       Skeleton_Archer_19: 495878632
