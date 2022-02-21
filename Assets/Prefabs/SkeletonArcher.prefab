@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   detectionRange: 20
-  shootDelayTime: 2
+  shootDelayTime: 2.3
   arrowLaunchForce: 1500
   arrowPrefab: {fileID: 4355225305427646132, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
   playerLayer:

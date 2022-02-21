@@ -65,19 +65,6 @@ public class PlayerUI : MonoBehaviour
         ChangeRelicSlots(relicsNeededToChange, false);
     }
 
-    // public void SetHeartsUnhealthy(int heartsNeededToChange)
-    // {
-    //     int heartsChanged = 0;
-    //     for (int i = hearts.Count - 1; i > -1; i--)
-    //     {
-    //         if (hearts[i].isHealthy && heartsChanged < heartsNeededToChange)
-    //         {
-    //             hearts[i].SetUnhealthy();
-    //             heartsChanged++;
-    //         }
-    //     }
-    // }
-
     public void ChangeHealthHearts(int heartsNeededToChange, bool isActive)
     {
         int heartsChanged = 0;
@@ -85,16 +72,16 @@ public class PlayerUI : MonoBehaviour
         {
             if (heartsChanged >= heartsNeededToChange) break;
 
-            if (hearts[i].isHealthy && isActive == true)
+            if (hearts[i].isHealthy == true && isActive == false)
             {
                 hearts[i].SetUnhealthy();
+                heartsChanged++;
             }
-            else if (hearts[i].isHealthy && isActive == false)
+            else if (hearts[i].isHealthy == false && isActive == true)
             {
                 hearts[i].SetHealthy();
+                heartsChanged++;
             }
-
-            heartsChanged++;
         }
     }
 

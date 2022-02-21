@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -15,9 +13,14 @@ public class Player : MonoBehaviour
     [Range(1, 10)]
     public int maxSwordBlockedDamage;
 
+    [Range(1, 10)]
+    public float blessedTime;
+
     public LayerMask enemyLayer;
     public GameObject PlayerUICanvas;
     public Movement movement { get; private set; }
+
+    public ParticleSystem blessedEffect;
 
     public AudioClip runningAudioClip;
     public AudioClip swingWithSwordAudioClip;
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour
 
     private AudioSource audioSource;
 
+    private bool isBlessed;
     private bool isBlocking;
     private int blockedDamage;
     private bool isStaggered;
@@ -76,14 +80,38 @@ public class Player : MonoBehaviour
         GetUserInput();
         AnimateMovement();
         PlaySound();
-        HandleShieldEquipped();
-        HandleHealthPotionUsed();
         HandleCombat();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isBlessed)
+        {
+            DamageableEnemy enemy = collision.collider.GetComponent<DamageableEnemy>();
+            if (enemy == null) return;
+
+            enemy.OnDeltDamage(5);
+        }
     }
 
     private void GetUserInput()
     {
         isBlocking = Input.GetKey(KeyCode.Mouse1);
+
+        if (Input.GetKeyDown(KeyCode.Z) && PlayerInfo.instance.hasShield)
+        {
+            HandleShieldEquipped();
+        }
+
+        if (PlayerInfo.instance.prayerCount > 0 && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            HandlePrayerUsed();
+        }
+
+        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            HandleHealthPotionUsed();
+        }
 
         if (isBlocking)
         {
@@ -96,8 +124,6 @@ public class Player : MonoBehaviour
 
     private void HandleShieldEquipped()
     {
-        if (!Input.GetKeyDown(KeyCode.Z) || !PlayerInfo.instance.hasShield) return;
-
         if (PlayerInfo.instance.isShieldEquipped)
         {
             PlayerInfo.instance.isShieldEquipped = false;
@@ -147,10 +173,27 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void HandlePrayerUsed()
+    {
+        PlayerInfo.instance.prayerCount -= 1;
+        playerUI.ChangePrayerSlots(1, false);
+
+        isBlessed = true;
+        blessedEffect.Play();
+        // ParticleSystem.EmissionModule em = blessedEffect.emission;
+        // em.enabled = true;
+        StartCoroutine(HandleBlessedTimer());
+    }
+
+    private IEnumerator HandleBlessedTimer()
+    {
+        yield return new WaitForSeconds(blessedTime);
+        blessedEffect.Stop();
+        isBlessed = false;
+    }
+
     private void HandleHealthPotionUsed()
     {
-        if (PlayerInfo.instance.healthPotionCount <= 0 || !Input.GetKeyDown(KeyCode.Alpha2)) return;
-
         PlayerInfo.instance.healthPotionCount -= 1;
         PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
 
@@ -163,19 +206,11 @@ public class Player : MonoBehaviour
         return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, enemyLayer);
     }
 
-    private void OnPlayerDamaged(int damage)
-    {
-        damage = Mathf.Abs(damage);
-        PlayerInfo.instance.health -= damage;
-
-        if (damage <= 0) return;
-
-        playerUI.ChangeHealthHearts(damage, false);
-    }
-
     public void OnDeltDamage(int damage)
     {
         damage = Mathf.Abs(damage);
+
+        if (isBlessed || damage <= 0) return;
 
         if (isBlocking && blockedDamage < playerUI.blockIcons.Count)
         {
@@ -185,7 +220,8 @@ public class Player : MonoBehaviour
             return;
         }
 
-        OnPlayerDamaged(damage);
+        PlayerInfo.instance.health -= damage;
+        playerUI.ChangeHealthHearts(damage, false);
 
         if (PlayerInfo.instance.health <= 0)
         {
