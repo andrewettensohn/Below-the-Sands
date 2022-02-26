@@ -7,8 +7,8 @@ public class MainMenuController : MonoBehaviour
 {
     public void StartGame()
     {
-        GameManager.instance.azkulDialogStatus = new AzkulDialogStatus();
-        GameManager.instance.azkulDialogStatus.IsNewGame = true;
+        GameManager.instance.milestones = new Milestones();
+        GameManager.instance.milestones.IsFistVisitToCatacomb = true;
 
         PlayerInfo.instance.ResetPlayerInfo();
 

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public bool isPlayerControlRestricted;
 
-    public AzkulDialogStatus azkulDialogStatus = new AzkulDialogStatus { IsNewGame = true };
+    public Milestones milestones = new Milestones { IsFistVisitToCatacomb = true };
 
     public Dictionary<LevelName, bool> healthPotionAvailbility = new Dictionary<LevelName, bool>
     {

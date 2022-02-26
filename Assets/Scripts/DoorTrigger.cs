@@ -7,6 +7,7 @@ public class DoorTrigger : MonoBehaviour
     public LevelName levelName;
     public float horizontalPositionAfterLoad;
     public float verticalPositionAfterLoad;
+    public bool isLocked;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -20,6 +21,8 @@ public class DoorTrigger : MonoBehaviour
 
     private void TransportPlayer(Collider2D collider)
     {
+        if (isLocked) return;
+
         if (collider.name == "Player" && Input.GetKeyDown(KeyCode.E))
         {
             GameManager.instance.LoadScene(levelName.ToString(), new Vector2(horizontalPositionAfterLoad, verticalPositionAfterLoad));

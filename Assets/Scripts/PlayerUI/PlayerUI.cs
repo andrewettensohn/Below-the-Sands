@@ -2,67 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class PlayerUI : MonoBehaviour
 {
     public List<BlockIcon> blockIcons { get; private set; }
+    public GameObject healthPotObject;
+    public GameObject relicObject;
+    public GameObject prayerObject;
+    private TMP_Text healthPotCount;
+    private TMP_Text relicCount;
+    private TMP_Text prayerCount;
     private List<HealthHeart> hearts;
-    private List<HealthPotSlot> healthPotSlots;
-    private List<RelicSlot> relicSlots;
-    private List<PrayerSlot> prayerSlots;
 
     private void Awake()
     {
         hearts = GetComponentsInChildren<HealthHeart>().ToList();
         blockIcons = GetComponentsInChildren<BlockIcon>().ToList();
-        healthPotSlots = GetComponentsInChildren<HealthPotSlot>().ToList();
-        relicSlots = GetComponentsInChildren<RelicSlot>().ToList();
-        prayerSlots = GetComponentsInChildren<PrayerSlot>().ToList();
+        healthPotCount = healthPotObject.GetComponent<TMP_Text>();
+        relicCount = relicObject.GetComponent<TMP_Text>();
+        prayerCount = prayerObject.GetComponent<TMP_Text>();
     }
 
-    public void SyncHealthPotions()
+    private void Start()
     {
-        int healthPotionsNeededToDisable = healthPotSlots.Count - PlayerInfo.instance.healthPotionCount;
-        ChangeHealthPotionSlots(healthPotionsNeededToDisable, false);
+        SyncHealthPotCount();
+        SyncRelicCount();
+        SyncPrayerCount();
     }
 
-    public void ChangeHealthPotionSlots(int healthPotionSlotsNeededToChange, bool isActive)
-    {
-        int healthPotionSlotsChanged = 0;
-        for (int i = 0; i < healthPotSlots.Count; i++)
-        {
-            if (healthPotSlots[i].isHealthPotSlotActive != isActive && healthPotionSlotsChanged < healthPotionSlotsNeededToChange)
-            {
-                healthPotSlots[i].ToggleActive(isActive);
-                healthPotionSlotsChanged++;
-            }
-        }
-    }
+    public void SyncHealthPotCount() => healthPotCount.text = PlayerInfo.instance.healthPotionCount.ToString();
+
+    public void SyncRelicCount() => relicCount.text = PlayerInfo.instance.relicCount.ToString();
+    public void SyncPrayerCount() => prayerCount.text = PlayerInfo.instance.prayerCount.ToString();
 
     public void SyncHearts()
     {
         int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
 
         ChangeHealthHearts(heartsNeededToChange, false);
-    }
-
-    public void ChangeRelicSlots(int relicSlotsNeededToChange, bool isActive)
-    {
-        int relicSlotsChanged = 0;
-        for (int i = 0; i < relicSlots.Count; i++)
-        {
-            if (relicSlots[i].isRelicSlotActive != isActive && relicSlotsChanged < relicSlotsNeededToChange)
-            {
-                relicSlots[i].ToggleActive(isActive);
-                relicSlotsChanged++;
-            }
-        }
-    }
-
-    public void SyncRelicSlots()
-    {
-        int relicsNeededToChange = relicSlots.Count - PlayerInfo.instance.relicCount;
-        ChangeRelicSlots(relicsNeededToChange, false);
     }
 
     public void ChangeHealthHearts(int heartsNeededToChange, bool isActive)
@@ -117,24 +95,5 @@ public class PlayerUI : MonoBehaviour
                 blockIconsChanged++;
             }
         }
-    }
-
-    public void ChangePrayerSlots(int prayerSlotsToChange, bool isActive)
-    {
-        int prayerIconsChanged = 0;
-        for (int i = prayerSlots.Count - 1; i > -1; i--)
-        {
-            if (prayerSlots[i].isPrayerSlotActive != isActive && prayerIconsChanged < prayerSlotsToChange)
-            {
-                prayerSlots[i].ToggleActive(isActive);
-                prayerIconsChanged++;
-            }
-        }
-    }
-
-    public void SyncPrayerSlots()
-    {
-        int prayerSlotsNeededToChange = prayerSlots.Count - PlayerInfo.instance.prayerCount;
-        ChangePrayerSlots(prayerSlotsNeededToChange, false);
     }
 }

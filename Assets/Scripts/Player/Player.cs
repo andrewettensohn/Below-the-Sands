@@ -59,9 +59,9 @@ public class Player : MonoBehaviour
         }
 
         playerUI.SyncHearts();
-        playerUI.SyncHealthPotions();
-        playerUI.SyncRelicSlots();
-        playerUI.SyncPrayerSlots();
+        // playerUI.SyncHealthPotions();
+        // playerUI.SyncRelicSlots();
+        // playerUI.SyncPrayerSlots();
 
         if (!PlayerInfo.instance.isShieldEquipped)
         {
@@ -201,7 +201,7 @@ public class Player : MonoBehaviour
     private void HandlePrayerUsed()
     {
         PlayerInfo.instance.prayerCount -= 1;
-        playerUI.ChangePrayerSlots(1, false);
+        playerUI.SyncPrayerCount();
 
         isBlessed = true;
         blessedEffect.Play();
@@ -221,7 +221,7 @@ public class Player : MonoBehaviour
         PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
 
         playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
-        playerUI.ChangeHealthPotionSlots(1, false);
+        playerUI.SyncHealthPotCount();
     }
 
     private RaycastHit2D GetEnemyHit(float distance)
@@ -280,19 +280,19 @@ public class Player : MonoBehaviour
     public void OnHealthPotionPickedUp()
     {
         PlayerInfo.instance.healthPotionCount += 1;
-        playerUI.ChangeHealthPotionSlots(1, true);
+        playerUI.SyncHealthPotCount();
     }
 
     public void OnRelicPickedUp()
     {
         PlayerInfo.instance.relicCount += 1;
-        playerUI.ChangeRelicSlots(1, true);
+        playerUI.SyncRelicCount();
     }
 
     public void OnPrayerPickedUp()
     {
         PlayerInfo.instance.prayerCount += 1;
-        playerUI.ChangePrayerSlots(1, true);
+        playerUI.SyncPrayerCount();
     }
 
     public void OnDisable()

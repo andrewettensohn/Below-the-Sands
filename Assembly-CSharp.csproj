@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\PlayerUI\RelicSlot.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyEyeCombatBehavior.cs" />
+     <Compile Include="Assets\Scripts\Dialog\DialogPack.cs" />
      <Compile Include="Assets\Scripts\Collectables\HealthPotion.cs" />
      <Compile Include="Assets\Scripts\Collectables\Relic.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyCombatBehavior.cs" />
@@ -46,6 +47,7 @@
      <Compile Include="Assets\Scripts\Enemy\DamageableEnemy.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\BlockIcon.cs" />
      <Compile Include="Assets\Scripts\Enums\LevelName.cs" />
+     <Compile Include="Assets\Scripts\Dialog\DialogResponse.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\HealthHeart.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\PrayerSlot.cs" />
@@ -53,6 +55,7 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemySentryBehavior.cs" />
      <Compile Include="Assets\Scripts\MainMenuController.cs" />
+     <Compile Include="Assets\Scripts\Dialog\DialogBranch.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyChaseBehavior.cs" />
      <Compile Include="Assets\Scripts\Dialog\Azkul.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\PlayerUI.cs" />
@@ -71,10 +74,9 @@
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\MusicTracks.cs" />
-     <Compile Include="Assets\Scripts\Dialog\AzkulDialogStatus.cs" />
-     <Compile Include="Assets\Scripts\Dialog\DialogBranch.cs" />
-     <Compile Include="Assets\Scripts\Dialog\DialogResponse.cs" />
-     <Compile Include="Assets\Scripts\Dialog\DialogPack.cs" />
+     <Compile Include="Assets\Scripts\Traps\Web.cs" />
+     <Compile Include="Assets\Scripts\Milestones.cs" />
+     <Compile Include="Assets\Scripts\CatacombLayerDoor.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

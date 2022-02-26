@@ -20,10 +20,10 @@ public class Azkul : MonoBehaviour
 
     private void SetDialogValues()
     {
-        if (GameManager.instance.azkulDialogStatus.IsNewGame)
+        if (GameManager.instance.milestones.IsFistVisitToCatacomb)
         {
             LoadDialogBranch(dialogBranches.FirstOrDefault(x => x.BranchID == 100));
-            GameManager.instance.azkulDialogStatus.IsNewGame = false;
+            GameManager.instance.milestones.IsFistVisitToCatacomb = false;
         }
     }
 

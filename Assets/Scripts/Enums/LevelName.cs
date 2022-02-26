@@ -5,11 +5,16 @@ using UnityEngine;
 public enum LevelName
 {
     CatacombEntrance,
+
     FirstLevelEntrance,
     FirstLevelExit,
     FirstLevelPlatformer,
     FirstLevelShieldRoom,
     FirstLevelSkeletonAlley,
     FirstLevelTrapRoom,
-    FirstLevelTreasureRoom
+    FirstLevelTreasureRoom,
+
+    SecondLevelEntrance
+
+
 }
