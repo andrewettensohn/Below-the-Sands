@@ -33531,6 +33531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 5475355408251122625, guid: b1ed531b50e6e4b468dbaaa691b75b8f, type: 3}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ed531b50e6e4b468dbaaa691b75b8f, type: 3}
 --- !u!1 &2051770855
@@ -33579,7 +33583,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6020236, y: 1}
+    m_SensorSize: {x: 1.6459877, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

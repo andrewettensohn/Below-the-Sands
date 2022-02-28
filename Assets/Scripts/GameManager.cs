@@ -13,20 +13,22 @@ public class GameManager : MonoBehaviour
 
     public Milestones milestones = new Milestones { IsFistVisitToCatacomb = true };
 
-    public Dictionary<LevelName, bool> healthPotionAvailbility = new Dictionary<LevelName, bool>
+    public Dictionary<HealthPotionName, bool> healthPotionAvailbility = new Dictionary<HealthPotionName, bool>
     {
-        { LevelName.FirstLevelTreasureRoom, true },
-        { LevelName.FirstLevelTrapRoom, true },
+        { HealthPotionName.FirstLevelTreasureRoom1, true },
+        { HealthPotionName.FirstLevelTrapRoom1, true },
     };
 
-    public Dictionary<LevelName, bool> relicAvailbility = new Dictionary<LevelName, bool>
+    public Dictionary<RelicName, bool> relicAvailbility = new Dictionary<RelicName, bool>
     {
-        { LevelName.FirstLevelTreasureRoom, true },
+        { RelicName.FirstLevelTreasureRoom1, true },
+        { RelicName.FirstLevelRelicRoom1, true },
+        { RelicName.FirstLevelRelicRoom2, true },
     };
 
-    public Dictionary<LevelName, bool> prayerAvailbility = new Dictionary<LevelName, bool>
+    public Dictionary<PrayerName, bool> prayerAvailbility = new Dictionary<PrayerName, bool>
     {
-        { LevelName.FirstLevelTreasureRoom, true },
+
     };
 
     private AudioSource audioSource;

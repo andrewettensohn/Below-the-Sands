@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: potionName
       value: FirstLevelTrapRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 2127189441766967537, guid: 56bf18fc0aefc0d41831a54578a2c9ef, type: 3}
+      propertyPath: healthPotionName
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2127189441766967549, guid: 56bf18fc0aefc0d41831a54578a2c9ef, type: 3}
       propertyPath: m_Name
       value: HealthPotion

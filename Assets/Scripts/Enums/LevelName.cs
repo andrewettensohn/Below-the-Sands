@@ -8,8 +8,9 @@ public enum LevelName
 
     FirstLevelEntrance,
     FirstLevelExit,
+    FirstLevelStairs,
     FirstLevelPlatformer,
-    FirstLevelShieldRoom,
+    FirstLevelRelicRoom,
     FirstLevelSkeletonAlley,
     FirstLevelTrapRoom,
     FirstLevelTreasureRoom,

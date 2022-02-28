@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Prayer : MonoBehaviour
 {
-    public LevelName levelName;
+    public PrayerName prayerName;
 
     private void Start()
     {
-        if (GameManager.instance.prayerAvailbility[levelName] == false)
+        if (GameManager.instance.prayerAvailbility[prayerName] == false)
         {
             gameObject.SetActive(false);
         }
@@ -18,7 +18,7 @@ public class Prayer : MonoBehaviour
     {
         if (collision.collider.name == "Player")
         {
-            GameManager.instance.prayerAvailbility[levelName] = false;
+            GameManager.instance.prayerAvailbility[prayerName] = false;
             collision.collider.GetComponent<Player>().OnPrayerPickedUp();
             gameObject.SetActive(false);
         }

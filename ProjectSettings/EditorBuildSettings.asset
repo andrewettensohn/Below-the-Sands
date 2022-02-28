@@ -27,6 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/FirstLevelTrapRoom.unity
     guid: 16f6a7ee64674ce4094cb411fb4b8fa5
   - enabled: 1
-    path: Assets/Scenes/FirstLevelExit.unity
+    path: Assets/Scenes/FirstLevelStairs.unity
     guid: 226fcb3e5022b254fb0d85abc6ab60ed
   m_configObjects: {}

@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
     public Vector2 lookDirection = new Vector2(1, 0);
     public LayerMask obstacleLayer;
 
+    public bool canMove = true;
     public bool isJumping;
     public bool isGrounded;
     public bool fallenIntoAbyss;
@@ -52,6 +53,8 @@ public class Movement : MonoBehaviour
             lookDirection.Set(direction.x, 0.0f);
             lookDirection.Normalize();
         }
+
+        if (!canMove) return;
 
         // If the object is falling
         if (rigidbody.velocity.y < 0)

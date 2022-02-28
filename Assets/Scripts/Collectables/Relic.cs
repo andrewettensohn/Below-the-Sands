@@ -5,11 +5,11 @@ using UnityEngine;
 public class Relic : MonoBehaviour
 {
 
-    public LevelName levelName;
+    public RelicName relicName;
 
     private void Start()
     {
-        if (GameManager.instance.relicAvailbility[levelName] == false)
+        if (GameManager.instance.relicAvailbility[relicName] == false)
         {
             gameObject.SetActive(false);
         }
@@ -19,7 +19,7 @@ public class Relic : MonoBehaviour
     {
         if (collision.collider.name == "Player")
         {
-            GameManager.instance.relicAvailbility[levelName] = false;
+            GameManager.instance.relicAvailbility[relicName] = false;
             collision.collider.GetComponent<Player>().OnRelicPickedUp();
             gameObject.SetActive(false);
         }

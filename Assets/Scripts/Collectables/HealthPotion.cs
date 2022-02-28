@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class HealthPotion : MonoBehaviour
 {
-    public LevelName levelName;
+    public HealthPotionName healthPotionName;
 
     private void Start()
     {
-        if (GameManager.instance.healthPotionAvailbility[levelName] == false)
+        if (GameManager.instance.healthPotionAvailbility[healthPotionName] == false)
         {
             gameObject.SetActive(false);
         }
@@ -19,7 +19,7 @@ public class HealthPotion : MonoBehaviour
     {
         if (collision.collider.name == "Player")
         {
-            GameManager.instance.healthPotionAvailbility[levelName] = false;
+            GameManager.instance.healthPotionAvailbility[healthPotionName] = false;
             collision.collider.GetComponent<Player>().OnHealthPotionPickedUp();
             gameObject.SetActive(false);
         }
