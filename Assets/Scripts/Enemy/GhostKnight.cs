@@ -21,6 +21,7 @@ public class GhostKnight : DamageableEnemy
     private Animator animator;
     private new CapsuleCollider2D collider;
     private bool isGrounded;
+    private bool isPlayerDetected;
 
     private void Start()
     {
@@ -28,13 +29,36 @@ public class GhostKnight : DamageableEnemy
         combatBehavior = GetComponent<GhostKnightCombatBehavior>();
         animator = GetComponent<Animator>();
         collider = GetComponent<CapsuleCollider2D>();
+        aiPath.isStopped = true;
     }
 
     private void Update()
     {
+        if (!isPlayerDetected)
+        {
+            Sentry();
+        }
+
         CheckIfGrounded();
         combatBehavior.HandleCombat();
         AnimateMovement();
+    }
+
+    private void Sentry()
+    {
+        HandleSentryForDirection(0.1f);
+        HandleSentryForDirection(-0.1f);
+    }
+
+    private void HandleSentryForDirection(float direction)
+    {
+        RaycastHit2D hit = GetPlayerHit(direction);
+
+        if (hit.collider != null)
+        {
+            isPlayerDetected = true;
+            aiPath.isStopped = false;
+        }
     }
 
     private RaycastHit2D GetPlayerHit(float direction)
