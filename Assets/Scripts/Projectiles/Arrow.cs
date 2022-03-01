@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    public LayerMask obstacleLayer;
     private Rigidbody2D rigidbody2d;
     private SpriteRenderer spriteRenderer;
 
@@ -33,7 +34,7 @@ public class Arrow : MonoBehaviour
             player.OnDeltDamage(-1);
             Destroy(gameObject);
         }
-        else if (other.collider.name == "Platform")
+        else if (other.collider.IsTouchingLayers(obstacleLayer))
         {
             Destroy(gameObject);
         }
