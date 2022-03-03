@@ -69,7 +69,7 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyEye.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogUI.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogField.cs" />
-     <Compile Include="Assets\Scripts\Traps\PressurePlate.cs" />
+     <Compile Include="Assets\Scripts\Traps\ArrowPressurePlate.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyBehavior.cs" />
      <Compile Include="Assets\Scripts\Enemy\GhostKnight.cs" />
      <Compile Include="Assets\Scripts\Milestones.cs" />
@@ -82,6 +82,7 @@
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\Enums\HealthPotionName.cs" />
      <Compile Include="Assets\Scripts\MusicTracks.cs" />
+     <Compile Include="Assets\Scripts\Traps\ExplosivePressurePlate.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

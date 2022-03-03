@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [Range(1, 10)]
     public int maxSwordBlockedDamage;
 
-    [Range(1, 10)]
+    [Range(1, 60)]
     public float blessedTime;
 
     public LayerMask enemyLayer;
@@ -59,18 +59,15 @@ public class Player : MonoBehaviour
         }
 
         playerUI.SyncHearts();
-        // playerUI.SyncHealthPotions();
-        // playerUI.SyncRelicSlots();
-        // playerUI.SyncPrayerSlots();
 
         if (!PlayerInfo.instance.isShieldEquipped)
         {
-            playerUI.ToggleBlockIconsActive(numberOfSwordBlockIcons, false);
+            playerUI.ToggleBlockIconsActive(4, false);
         }
         else
         {
             animator.SetBool("Using Shield", true);
-            playerUI.ToggleBlockIconsActive(numberOfSwordBlockIcons, true);
+            playerUI.ToggleBlockIconsActive(5, true);
         }
     }
 
@@ -111,12 +108,12 @@ public class Player : MonoBehaviour
             HandleShieldEquipped();
         }
 
-        if (PlayerInfo.instance.prayerCount > 0 && Input.GetKeyDown(KeyCode.Alpha1))
+        if (PlayerInfo.instance.prayerCount > 0 && Input.GetKeyDown(KeyCode.Alpha2))
         {
             HandlePrayerUsed();
         }
 
-        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.Alpha2))
+        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.Alpha1))
         {
             HandleHealthPotionUsed();
         }
@@ -205,6 +202,7 @@ public class Player : MonoBehaviour
 
         isBlessed = true;
         blessedEffect.Play();
+        Debug.Log($"Blessed {blessedEffect.name}");
         StartCoroutine(HandleBlessedTimer());
     }
 

@@ -3814,13 +3814,13 @@ TextureImporter:
       Treasure+_172: -1688654059
       Treasure+_71: -882191576
       Treasure+_17: -1850290659
-      Treasure+_32: 1421378389
       Treasure+_100: 1827583729
-      Treasure+_111: 1034947415
       Treasure+_81: -2038750393
+      Treasure+_32: 1421378389
+      Treasure+_111: 1034947415
+      Treasure+_127: 292626913
       Treasure+_72: -579740876
       Treasure+_105: 996076894
-      Treasure+_127: 292626913
       Treasure+_70: 236198657
       Treasure+_2: 114605769
       Treasure+_5: 2019361550
@@ -3863,8 +3863,8 @@ TextureImporter:
       Treasure+_28: 1645884506
       Treasure+_86: -1667481683
       Treasure+_6: -1120846426
-      Treasure+_59: 1149205361
       Treasure+_156: -2135930043
+      Treasure+_59: 1149205361
       Treasure+_134: 1148723053
       Treasure+_155: 1374122824
       Treasure+_122: 206392065
@@ -3886,9 +3886,9 @@ TextureImporter:
       Treasure+_49: -1467061221
       Treasure+_14: -840185878
       Treasure+_42: 351693423
+      Treasure+_128: -107576063
       Treasure+_47: -1486154568
       Treasure+_76: 181169156
-      Treasure+_128: -107576063
       Treasure+_36: -1778149165
       Treasure+_160: -1602994590
       Treasure+_103: -42434900
@@ -3902,10 +3902,10 @@ TextureImporter:
       Treasure+_21: -62208920
       Treasure+_39: -1830802470
       Treasure+_8: 1447162645
-      Treasure+_61: 2032083964
       Treasure+_22: 1504925804
-      Treasure+_107: 1135693923
+      Treasure+_61: 2032083964
       Treasure+_131: 1170202965
+      Treasure+_107: 1135693923
       Treasure+_115: -672871961
       Treasure+_119: 1520616347
       Treasure+_56: -2069352344
@@ -3926,8 +3926,8 @@ TextureImporter:
       Treasure+_38: -1309439148
       Treasure+_46: 46050163
       Treasure+_104: -392965912
-      Treasure+_118: 1965922261
       Treasure+_171: 275440034
+      Treasure+_118: 1965922261
       Treasure+_64: 920488258
       Treasure+_74: 456453043
       Treasure+_84: 1331305280

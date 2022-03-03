@@ -23,8 +23,9 @@ public class Enemy : DamageableEnemy
 
     private void Start()
     {
-        ToggleBehaviors(false);
-        combatBehavior.enabled = true;
+        sentry.isBehaviorEnabled = true;
+        chase.isBehaviorEnabled = false;
+        combatBehavior.isBehaviorEnabled = true;
     }
 
     private void Awake()
@@ -39,26 +40,18 @@ public class Enemy : DamageableEnemy
 
     private void Update()
     {
-        combatBehavior.HandleCombat();
+        if (playerDetected)
+        {
+            combatBehavior.HandleCombat();
+            chase.isBehaviorEnabled = true;
+        }
+        else
+        {
+            chase.isBehaviorEnabled = false;
+            movement.SetDirection(Vector2.zero);
+        }
+
         Animate();
-    }
-
-    private void FixedUpdate()
-    {
-        if (playerDetected && !chase.isBehaviorEnabled)
-        {
-            ToggleBehaviors(true);
-        }
-        else if (!playerDetected && !sentry.isBehaviorEnabled)
-        {
-            ToggleBehaviors(false);
-        }
-    }
-
-    private void ToggleBehaviors(bool isChaseEnabled)
-    {
-        sentry.isBehaviorEnabled = !isChaseEnabled;
-        chase.isBehaviorEnabled = isChaseEnabled;
     }
 
     private void OnDeath()

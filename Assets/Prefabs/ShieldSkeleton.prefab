@@ -171,6 +171,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 256
+  canMove: 1
   isJumping: 0
   isGrounded: 0
   fallenIntoAbyss: 0
@@ -188,8 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
   dealDamageDelay: 0.3
-  attackRange: 0.5
-  blockTime: 2
+  attackRange: 0.6
+  blockTime: 1
   leaveOpeningTime: 0.5
   willBlock: 1
 --- !u!114 &2337217915481010148

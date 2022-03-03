@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<PrayerName, bool> prayerAvailbility = new Dictionary<PrayerName, bool>
     {
-
+        { PrayerName.FirstLevelTrapRoom, true },
     };
 
     private AudioSource audioSource;

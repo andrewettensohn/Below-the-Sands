@@ -6,19 +6,16 @@ public class EnemySentryBehavior : EnemyBehavior
 {
     public void FixedUpdate()
     {
-        TryDetectPlayer(enemy.movement.lookDirection);
-        TryDetectPlayer(-enemy.movement.lookDirection);
+        if (isBehaviorEnabled == false) return;
+
+        enemy.playerDetected = IsPlayerDetected(enemy.movement.lookDirection) || IsPlayerDetected(-enemy.movement.lookDirection);
     }
 
-    private void TryDetectPlayer(Vector2 direction)
+    private bool IsPlayerDetected(Vector2 direction)
     {
-        if (!isBehaviorEnabled) return;
 
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 10.0f, direction, 0.0f, enemy.playerLayer);
+        RaycastHit2D playerHit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direction, 10.0f, enemy.playerLayer);
 
-        if (hit.collider != null)
-        {
-            enemy.playerDetected = true;
-        }
+        return playerHit.collider != null;
     }
 }

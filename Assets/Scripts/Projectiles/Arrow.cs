@@ -7,11 +7,13 @@ public class Arrow : MonoBehaviour
     public LayerMask obstacleLayer;
     private Rigidbody2D rigidbody2d;
     private SpriteRenderer spriteRenderer;
+    private new BoxCollider2D collider;
 
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -24,7 +26,6 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-
         if (other.collider.name == "Player")
         {
             Player player = other.collider.GetComponent<Player>();
@@ -34,7 +35,7 @@ public class Arrow : MonoBehaviour
             player.OnDeltDamage(-1);
             Destroy(gameObject);
         }
-        else if (other.collider.IsTouchingLayers(obstacleLayer))
+        else
         {
             Destroy(gameObject);
         }
