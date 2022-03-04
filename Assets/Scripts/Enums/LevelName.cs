@@ -15,7 +15,15 @@ public enum LevelName
     FirstLevelTrapRoom,
     FirstLevelTreasureRoom,
 
-    SecondLevelEntrance
+    SecondLevelEntrance,
+    SecondLevelArmoredCompany,
+    SecondLevelExit,
+    SecondLevelGreatHall,
+    SecondLevelPlatformer,
+    SecondLevelPrayerRoom,
+    SecondLevelRelicRoom,
+    SecondLevelShieldRoom,
+    SecondLevelTreasureRoom
 
 
 }

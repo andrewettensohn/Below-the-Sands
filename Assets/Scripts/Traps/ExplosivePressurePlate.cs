@@ -13,7 +13,7 @@ public class ExplosivePressurePlate : MonoBehaviour
         if (collision.name == "Player")
         {
             Player player = collision.GetComponent<Player>();
-            player.OnDeltDamage(-1);
+            player.OnDeltDamage(-1, true);
 
             explosiveEffect.Play();
             StartCoroutine(nameof(HandleBlessedTimer));

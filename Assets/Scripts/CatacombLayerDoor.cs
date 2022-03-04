@@ -6,7 +6,6 @@ public class CatacombLayerDoor : MonoBehaviour
 {
     public Sprite LockedSprite;
     public Sprite UnlockedSprite;
-    public LevelName levelName;
     private SpriteRenderer spriteRenderer;
     private DoorTrigger doorTrigger;
 
@@ -19,8 +18,8 @@ public class CatacombLayerDoor : MonoBehaviour
     private void Start()
     {
         bool isUnlocked =
-            levelName == LevelName.FirstLevelEntrance ||
-            (levelName == LevelName.SecondLevelEntrance && GameManager.instance.milestones.HasOpenedSecondLayerToEntranceRoute);
+            doorTrigger.levelName == LevelName.FirstLevelEntrance ||
+            (doorTrigger.levelName == LevelName.SecondLevelGreatHall && GameManager.instance.milestones.HasOpenedSecondLayerToEntranceRoute);
 
         doorTrigger.isLocked = !isUnlocked;
 

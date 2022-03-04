@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,23 +15,11 @@ public class GameManager : MonoBehaviour
 
     public Milestones milestones = new Milestones { IsFistVisitToCatacomb = true };
 
-    public Dictionary<HealthPotionName, bool> healthPotionAvailbility = new Dictionary<HealthPotionName, bool>
-    {
-        { HealthPotionName.FirstLevelTreasureRoom1, true },
-        { HealthPotionName.FirstLevelTrapRoom1, true },
-    };
+    public Dictionary<HealthPotionName, bool> healthPotionAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<HealthPotionName>();
 
-    public Dictionary<RelicName, bool> relicAvailbility = new Dictionary<RelicName, bool>
-    {
-        { RelicName.FirstLevelTreasureRoom1, true },
-        { RelicName.FirstLevelRelicRoom1, true },
-        { RelicName.FirstLevelRelicRoom2, true },
-    };
+    public Dictionary<RelicName, bool> relicAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<RelicName>();
 
-    public Dictionary<PrayerName, bool> prayerAvailbility = new Dictionary<PrayerName, bool>
-    {
-        { PrayerName.FirstLevelTrapRoom, true },
-    };
+    public Dictionary<PrayerName, bool> prayerAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<PrayerName>();
 
     private AudioSource audioSource;
     private MusicTracks musicTracks;

@@ -39,7 +39,6 @@ public class Player : MonoBehaviour
     private bool isBlocking;
     private int blockedDamage;
     private bool isStaggered;
-    private int numberOfSwordBlockIcons = 2;
 
     private void Awake()
     {
@@ -150,13 +149,13 @@ public class Player : MonoBehaviour
         {
             PlayerInfo.instance.isShieldEquipped = false;
             animator.SetBool("Using Shield", false);
-            playerUI.ToggleBlockIconsActive(numberOfSwordBlockIcons, false);
+            playerUI.ToggleBlockIconsActive(4, false);
         }
         else
         {
             PlayerInfo.instance.isShieldEquipped = true;
             animator.SetBool("Using Shield", true);
-            playerUI.ToggleBlockIconsActive(numberOfSwordBlockIcons, true);
+            playerUI.ToggleBlockIconsActive(5, true);
         }
     }
 
@@ -203,7 +202,7 @@ public class Player : MonoBehaviour
         isBlessed = true;
         blessedEffect.Play();
         Debug.Log($"Blessed {blessedEffect.name}");
-        StartCoroutine(HandleBlessedTimer());
+        StartCoroutine(nameof(HandleBlessedTimer));
     }
 
     private IEnumerator HandleBlessedTimer()
@@ -227,13 +226,13 @@ public class Player : MonoBehaviour
         return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, enemyLayer);
     }
 
-    public void OnDeltDamage(int damage)
+    public void OnDeltDamage(int damage, bool overrideBlocking = false)
     {
         damage = Mathf.Abs(damage);
 
         if (isBlessed || damage <= 0) return;
 
-        if (isBlocking && blockedDamage < playerUI.blockIcons.Count)
+        if (isBlocking && !overrideBlocking && blockedDamage < playerUI.blockIcons.Count)
         {
             audioSource.PlayOneShot(blockedAudioClip);
             blockedDamage += damage;

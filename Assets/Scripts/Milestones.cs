@@ -10,4 +10,5 @@ public class Milestones
     public bool HasFinishedAzkulQuest { get; set; }
 
     public bool HasOpenedSecondLayerToEntranceRoute { get; set; }
+    public bool HasOpenedThirdLayerToEntranceRoute { get; set; }
 }

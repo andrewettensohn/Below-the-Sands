@@ -6,4 +6,7 @@ public enum HealthPotionName
 {
     FirstLevelTreasureRoom1,
     FirstLevelTrapRoom1,
+    SecondLevelRelicRoom1,
+    SecondLevelTreasureRoom1,
+    SecondLevelTreasureRoom2,
 }

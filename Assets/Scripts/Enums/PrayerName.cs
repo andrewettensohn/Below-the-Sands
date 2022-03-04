@@ -4,5 +4,6 @@ using UnityEngine;
 
 public enum PrayerName
 {
-    FirstLevelTrapRoom
+    FirstLevelTrapRoom,
+    SecondLevelPrayerRoom
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressurePlate : MonoBehaviour
+public class ArrowPressurePlate : MonoBehaviour
 {
     public GameObject arrowPrefab;
     public float arrowSpawnX;
@@ -16,7 +16,7 @@ public class PressurePlate : MonoBehaviour
             GameObject arrowGameObject = Instantiate(arrowPrefab, new Vector3(arrowSpawnX, arrowSpawnY, 0), Quaternion.identity);
 
             Arrow arrow = arrowGameObject.GetComponent<Arrow>();
-            arrow.Launch(new Vector2(arrowXFlightDirection, 0), 300);
+            arrow.Launch(new Vector2(arrowXFlightDirection, 0), 1000);
         }
     }
 }

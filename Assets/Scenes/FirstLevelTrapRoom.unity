@@ -299,7 +299,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3882126, y: 1}
+    m_SensorSize: {x: 1.3046356, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -322,7 +322,7 @@ Transform:
   m_Children:
   - {fileID: 912054513}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311225015
 GameObject:
@@ -2508,6 +2508,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &937146319
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646130, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355225305427646132, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+      propertyPath: m_Name
+      value: Arrow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
 --- !u!1001 &990747245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2574,6 +2631,18 @@ PrefabInstance:
     - target: {fileID: 1034452634552727337, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
       propertyPath: m_Name
       value: PressurePlate
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869698488885343086, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
+      propertyPath: arrowSpawnX
+      value: 6.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869698488885343086, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
+      propertyPath: arrowSpawnY
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869698488885343086, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
+      propertyPath: arrowXFlightDirection
+      value: -0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
@@ -33449,7 +33518,7 @@ Transform:
   - {fileID: 510687055}
   - {fileID: 1099642944}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1528847339
 PrefabInstance:
@@ -33517,6 +33586,18 @@ PrefabInstance:
     - target: {fileID: 1034452634552727337, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
       propertyPath: m_Name
       value: PressurePlate (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869698488885343086, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
+      propertyPath: arrowSpawnX
+      value: 6.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869698488885343086, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
+      propertyPath: arrowSpawnY
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869698488885343086, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
+      propertyPath: arrowXFlightDirection
+      value: -0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d686786b34beaf438a0f7b3387ff8de, type: 3}
@@ -33792,7 +33873,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2042295676
 PrefabInstance:
