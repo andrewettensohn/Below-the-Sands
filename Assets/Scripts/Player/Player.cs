@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Player : MonoBehaviour
 {
@@ -201,7 +202,6 @@ public class Player : MonoBehaviour
 
         isBlessed = true;
         blessedEffect.Play();
-        Debug.Log($"Blessed {blessedEffect.name}");
         StartCoroutine(nameof(HandleBlessedTimer));
     }
 
@@ -232,7 +232,7 @@ public class Player : MonoBehaviour
 
         if (isBlessed || damage <= 0) return;
 
-        if (isBlocking && !overrideBlocking && blockedDamage < playerUI.blockIcons.Count)
+        if (isBlocking && !overrideBlocking && blockedDamage <= playerUI.blockIcons.Count(x => x.isBlockIconActive))
         {
             audioSource.PlayOneShot(blockedAudioClip);
             blockedDamage += damage;

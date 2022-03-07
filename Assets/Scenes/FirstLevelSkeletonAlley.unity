@@ -193,7 +193,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3217089570240990960, guid: 0336b45e928b3f0418834f937517a989, type: 3}
       propertyPath: levelName
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3217089570240990960, guid: 0336b45e928b3f0418834f937517a989, type: 3}
       propertyPath: sceneName
@@ -1174,7 +1174,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6020236, y: 1}
+    m_SensorSize: {x: 1.3057228, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1267,6 +1267,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6196080038182231841, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5000305
+      objectReference: {fileID: 0}
     - target: {fileID: 6550622505460024976, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.7000122

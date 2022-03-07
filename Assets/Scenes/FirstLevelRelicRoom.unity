@@ -3612,6 +3612,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6196080038182231841, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5000305
+      objectReference: {fileID: 0}
     - target: {fileID: 8877785971117118101, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
       propertyPath: m_Name
       value: PlayerUICanvas
@@ -3908,7 +3912,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3217089570240990960, guid: 0336b45e928b3f0418834f937517a989, type: 3}
       propertyPath: levelName
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3217089570240990960, guid: 0336b45e928b3f0418834f937517a989, type: 3}
       propertyPath: verticalPositionAfterLoad
@@ -35331,9 +35335,9 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 21300492, guid: 3a42cd8a7d582c242b3448c5834f1adc, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 21300026, guid: 3a42cd8a7d582c242b3448c5834f1adc, type: 3}
+    m_Data: {fileID: 718029067, guid: 2ea956eda35b470459b94905e0606c2e, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 21300024, guid: 3a42cd8a7d582c242b3448c5834f1adc, type: 3}
+    m_Data: {fileID: -781412668, guid: 2ea956eda35b470459b94905e0606c2e, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300510, guid: 40f539b353576a2448588d9417312eed, type: 3}
   - m_RefCount: 1
@@ -35710,7 +35714,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6459877, y: 1}
+    m_SensorSize: {x: 1.3057228, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

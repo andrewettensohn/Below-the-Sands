@@ -171,6 +171,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 256
+  canMove: 1
   isJumping: 0
   isGrounded: 0
   fallenIntoAbyss: 0

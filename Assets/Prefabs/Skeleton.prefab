@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1351c046ca389048ab90149b86a21e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -165,12 +165,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  fallingMultiplier: 1
+  fallingMultiplier: 0
   jumpVelocity: 0
   lookDirection: {x: 1, y: 0}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 256
+  canMove: 1
   isJumping: 0
   isGrounded: 0
   fallenIntoAbyss: 0
@@ -187,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  dealDamageDelay: 0.5
+  dealDamageDelay: 0.6
   attackRange: 1
   blockTime: 0
   leaveOpeningTime: 1
