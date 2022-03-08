@@ -1,0 +1,276 @@
+{
+    "DialogBranches": [
+        {
+            "BranchID": 100,
+            "Prompt": "This is it, the catacomb of Saint Rachel and the Third Ajaxian Legion. This treasure that you are looking for, is it a weapon of some kind?",
+            "Responses": [
+                {
+                    "Response": "No, it\u0027s scripture, valuable to my people.",
+                    "NextBranchID": 110
+                },
+                {
+                    "Response": "Don\u0027t worry about it.",
+                    "NextBranchID": 120
+                },
+                {
+                    "Response": "Keep to yourself.",
+                    "NextBranchID": 130
+                },
+                {
+                    "Response": "I have work to do [Leave]",
+                    "NextBranchID": 140
+                }
+            ]
+        },
+        {
+            "BranchID": 130,
+            "Prompt": "Very well, we don't need to speak. Although do well to remember the pact you made with me. Bring me back three relics from below and we'll be even.",
+            "Responses": [
+                {
+                    "Response": "Goodbye [Leave]",
+                    "NextBranchID": 0
+                }
+            ]
+        },
+        {
+            "BranchID": 120,
+            "Prompt": "I will remain worried about it. When I saw you dying in the sands I wondered if I was saving a monster.",
+            "Responses": [
+                {
+                    "Response": "I mean no offense friend, but you look like a monster too.",
+                    "NextBranchID": 121
+                },
+                {
+                    "Response": "Being called a monster is a compliment coming from your people.",
+                    "NextBranchID": 130
+                },
+                {
+                    "Response": "I have work to do [Leave]",
+                    "NextBranchID": 140
+                }
+            ]
+        },
+        {
+            "BranchID": 121,
+            "Prompt": "You're wearing Ajaxian armor, the armor of slavers. You must understand my apprehensions.",
+            "Responses": [
+                {
+                    "Response": "This is the armor of a paladin of Saint Landis for which I am.",
+                    "NextBranchID": 1211
+                },
+                {
+                    "Response": "This armor is a beacon of justice in these lands. How dare you insult it.",
+                    "NextBranchID": 1212
+                },
+                {
+                    "Response": "I have work to do [Leave]",
+                    "NextBranchID": 140
+                }
+            ]
+        },
+        {
+            "BranchID": 1211,
+            "Prompt": "I know of Saint Landis. The warrior of the lost citadel, butcher of Kalix.",
+            "Responses": [
+                {
+                    "Response": "What else do you know about Alnorian culture?",
+                    "NextBranchID": 113
+                },
+                {
+                    "Response": "Do not speak of Landis as a butcher.",
+                    "NextBranchID": 130
+                },
+                {
+                    "Response": "I have work to do [Leave]",
+                    "NextBranchID": 140
+                }
+            ]
+        },
+        {
+            "BranchID": 110,
+            "Prompt": "A journey through the sands isn\u0027t worth a piece of paper, it isn\u0027t worth your life.",
+            "Responses": [
+                {
+                    "Response": "This one is.",
+                    "NextBranchID": 111
+                },
+                {
+                    "Response": "Maybe you\u0027re right, but I won\u0027t know until I see it.",
+                    "NextBranchID": 112
+                },
+                {
+                    "Response": "You don\u0027t know anything about Alnorian culture or my religion.",
+                    "NextBranchID": 113
+                },
+                {
+                    "Response": "I have work to do [Leave]",
+                    "NextBranchID": 140
+                }
+            ]
+        },
+        {
+            "BranchID": 111,
+            "Prompt": "We will see how you feel after your first descent.  Remember our bargain, bring me back three relics from below. Do that and I will share some supplies with you for every new relic you bring me.",
+            "Responses": [
+                {
+                    "Response": "Goodbye [Leave]",
+                    "NextBranchID": 0
+                }
+            ]
+        },
+        {
+            "BranchID": 112,
+            "Prompt": "Fair enough. Don't forget you owe me three relics for my part in saving your life. Do that and I'll share some supplies with you for every new relic you bring me.",
+            "Responses": [
+                {
+                    "Response": "Goodbye [Leave]",
+                    "NextBranchID": 0
+                }
+            ]
+        },
+        {
+            "BranchID": 113,
+            "Prompt": "I know more than you would think. My people have been enslaved or culled by followers of Ajax for hundreds of years. Plenty of time to learn your reasonings.",
+            "Responses": [
+                {
+                    "Response": "I did not mean offense friend. The crusades of the past do not reflect our entire culture.",
+                    "NextBranchID": 1131
+                },
+                {
+                    "Response": "But not enough time to learn to hold your tounge.",
+                    "NextBranchID": 1132
+                },
+                {
+                    "Response": "I don't have time for this [Leave]",
+                    "NextBranchID": 0
+                }
+            ]
+        },
+        {
+            "BranchID": 1131,
+            "Prompt": "Even your armor is an offense to me. It was hard to fight against my instincts when I saw you dying in the desert.",
+            "Responses": [
+                {
+                    "Response": "The texts I am searching for may further change our people for the better. I must begin my search.",
+                    "NextBranchID": 112
+                },
+                {
+                    "Response": "Careful, this armor is blessed by the Saint Landis. I must begin my search now.",
+                    "NextBranchID": 112
+                }
+            ]
+        },
+        {
+            "BranchID": 1132,
+            "Prompt": "Let us stop this line of dialouge for the sake of business Bring me back the three relics that we agreed upon and try not to die.",
+            "Responses": [
+                {
+                    "Response": "Goodbye [Leave]",
+                    "NextBranchID": 0
+                }
+            ]
+        },
+        {
+            "BranchID": 200,
+            "Prompt": "What is it outlander?",
+            "Responses": [
+                {
+                    "Response": "I\u0027ve fulfilled my oath, I have the three relics for you.",
+                    "NextBranchID": 210
+                },
+                {
+                    "Response": "Do you have any supplies you can spare?",
+                    "NextBranchID": 220
+                },
+                {
+                    "Response": "I have relics for trade.",
+                    "NextBranchID": 230
+                },
+                {
+                    "Response": "What lies below?",
+                    "NextBranchID": 240
+                },
+                {
+                    "Response": "The first layer is finished. What lies below?",
+                    "NextBranchID": 250
+                },
+                {
+                    "Response": "How many more layers must I persist through?",
+                    "NextBranchID": 260
+                },
+                {
+                    "Response": "I have work to do [Leave]",
+                    "NextBranchID": 0
+                }
+            ]
+        },
+        {
+            "BranchID": 240,
+            "Prompt": "Excellent! Consider our bargain fulfilled.",
+            "Responses": [
+                {
+                    "Response": "What do you plan to do with the relics?",
+                    "NextBranchID": 211
+                },
+                {
+                    "Response": "Good.",
+                    "NextBranchID": 200
+                }
+            ]
+        },
+        {
+            "BranchID": 210,
+            "Prompt": "Excellent! Consider our bargain fulfilled.",
+            "Responses": [
+                {
+                    "Response": "What do you plan to do with the relics?",
+                    "NextBranchID": 211
+                },
+                {
+                    "Response": "Good.",
+                    "NextBranchID": 200
+                }
+            ]
+        },
+        {
+            "BranchID": 211,
+            "Prompt": "Take them to Gosoram, the lords there will pay a high price for these trinkets.",
+            "Responses": [
+                {
+                    "Response": "As long as it ends up back in beliver hands, I suppose it should be fine.",
+                    "NextBranchID": 200
+                }
+            ]
+        },
+        {
+            "BranchID": 220,
+            "Prompt": "I do, but they will not come without cost. For every relic you bring me, I will give you a potion.",
+            "Responses": [
+                {
+                    "Response": "Fair enough.",
+                    "NextBranchID": 200
+                }
+            ]
+        },
+        {
+            "BranchID": 230,
+            "Prompt": "Here is your reward as promised.",
+            "Responses": [
+                {
+                    "Response": "Thank you.",
+                    "NextBranchID": 200
+                }
+            ]
+        },
+        {
+            "BranchID": 240,
+            "Prompt": "Fufill our bargin first. Bring me three relics and then I might be willing to part with supplies.",
+            "Responses": [
+                {
+                    "Response": "Very well.",
+                    "NextBranchID": 200
+                }
+            ]
+        }
+    ]
+}
