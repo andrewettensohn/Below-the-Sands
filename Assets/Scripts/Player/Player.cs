@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public LayerMask npcLayer;
     public GameObject PlayerUICanvas;
     public Movement movement { get; private set; }
+    public PlayerUI playerUI { get; private set; }
 
     public ParticleSystem blessedEffect;
 
@@ -32,7 +33,6 @@ public class Player : MonoBehaviour
     private bool isAttacking;
     private bool canAttack = true;
     private Animator animator;
-    private PlayerUI playerUI;
 
     private AudioSource audioSource;
 
