@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-
             HandleMusic("MainMenu");
         }
         else if (instance != this)

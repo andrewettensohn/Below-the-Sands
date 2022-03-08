@@ -10,6 +10,8 @@ public class DoorTrigger : MonoBehaviour
     public bool isLocked;
     public bool isSecondLevelToCatacombEntrance;
     public bool isThirdLevelToCatacombEntrance;
+    public bool isDoorToSecondLevelEntrance;
+    public bool isDoorToThirdLayerEntrance;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -29,6 +31,8 @@ public class DoorTrigger : MonoBehaviour
         {
             if (isSecondLevelToCatacombEntrance) GameManager.instance.milestones.HasOpenedSecondLayerToEntranceRoute = true;
             if (isThirdLevelToCatacombEntrance) GameManager.instance.milestones.HasOpenedThirdLayerToEntranceRoute = true;
+            if (isDoorToSecondLevelEntrance) GameManager.instance.milestones.HasFinishedFirstLayer = true;
+            if (isDoorToThirdLayerEntrance) GameManager.instance.milestones.HasFinishedSecondLayer = true;
 
             GameManager.instance.LoadScene(levelName.ToString(), new Vector2(horizontalPositionAfterLoad, verticalPositionAfterLoad));
         }

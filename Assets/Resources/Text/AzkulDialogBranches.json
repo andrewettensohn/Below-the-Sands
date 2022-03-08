@@ -187,16 +187,20 @@
                     "NextBranchID": 230
                 },
                 {
-                    "Response": "What lies below?",
+                    "Response": "Do you have any supplies you can spare?",
                     "NextBranchID": 240
                 },
                 {
-                    "Response": "The first layer is finished. What lies below?",
+                    "Response": "What lies below?",
                     "NextBranchID": 250
                 },
                 {
-                    "Response": "How many more layers must I persist through?",
+                    "Response": "The first layer is finished. What lies below?",
                     "NextBranchID": 260
+                },
+                {
+                    "Response": "How many more layers must I persist through?",
+                    "NextBranchID": 270
                 },
                 {
                     "Response": "I have work to do [Leave]",
@@ -206,15 +210,53 @@
         },
         {
             "BranchID": 240,
-            "Prompt": "Excellent! Consider our bargain fulfilled.",
+            "Prompt": "Fufill our bargin first. Bring me three relics and then I might be willing to part with supplies.",
             "Responses": [
                 {
-                    "Response": "What do you plan to do with the relics?",
-                    "NextBranchID": 211
+                    "Response": "Very well.",
+                    "NextBranchID": 200
+                }
+            ]
+        },
+        {
+            "BranchID": 250,
+            "Prompt": "A curse was left by the slaves of the Ajaxians. The soldiers buried below now kill anyone who attempts to enter the catacomb. Expect some simple traps in this first layer and the camp followers of the legion.",
+            "Responses": [
+                {
+                    "Response": "Thank you for the warning.",
+                    "NextBranchID": 200
                 },
                 {
-                    "Response": "Good.",
+                    "Response": "Should be easy.",
                     "NextBranchID": 200
+                }
+            ]
+        },
+        {
+            "BranchID": 260,
+            "Prompt": "You will start to encounter the undead soldiers of the legion. Their armor might be old but it is still somewhat effective. Be wary of Ajaxian magic keeping their captains alive, much worse than the Xorian spells.",
+            "Responses": [
+                {
+                    "Response": "I was hoping you would not say Ajaxin spells. Regardless I must press on.",
+                    "NextBranchID": 200
+                },
+                {
+                    "Response": "Nothing I have not handled before.",
+                    "NextBranchID": 200
+                }
+            ]
+        },
+        {
+            "BranchID": 270,
+            "Prompt": "You are reaching the end soon but it will not be easy. The deepest layers of the catacombs are always guarded by enslaved demons. You will also encounter more Ajaxian undead captains.",
+            "Responses": [
+                {
+                    "Response": "Demons? Wondeful. Goodbye Azkul.",
+                    "NextBranchID": 0
+                },
+                {
+                    "Response": "I will return these demons to the abyss.",
+                    "NextBranchID": 0
                 }
             ]
         },

@@ -60,6 +60,18 @@ public class Azkul : MonoBehaviour
             {
                 filteredResponses.Add(response);
             }
+            else if (response.NextBranchID == 250 && !milestones.HasFinishedFirstLayer)
+            {
+                filteredResponses.Add(response);
+            }
+            else if (response.NextBranchID == 260 && milestones.HasFinishedFirstLayer && !milestones.HasFinishedSecondLayer)
+            {
+                filteredResponses.Add(response);
+            }
+            else if (response.NextBranchID == 270 && milestones.HasFinishedSecondLayer && !milestones.HasCompletedThirdLayer)
+            {
+                filteredResponses.Add(response);
+            }
             else if (response.NextBranchID == 0)
             {
                 filteredResponses.Add(response);
