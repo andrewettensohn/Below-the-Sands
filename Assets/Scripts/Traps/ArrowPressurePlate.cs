@@ -16,7 +16,7 @@ public class ArrowPressurePlate : MonoBehaviour
             GameObject arrowGameObject = Instantiate(arrowPrefab, new Vector3(arrowSpawnX, arrowSpawnY, 0), Quaternion.identity);
 
             Arrow arrow = arrowGameObject.GetComponent<Arrow>();
-            arrow.Launch(new Vector2(arrowXFlightDirection, 0), 1000);
+            arrow.Launch(new Vector2(arrowXFlightDirection, 0), 1200);
         }
     }
 }

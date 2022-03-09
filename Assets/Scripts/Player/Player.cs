@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject PlayerUICanvas;
     public Movement movement { get; private set; }
     public PlayerUI playerUI { get; private set; }
+    public bool isInteractKeyDown { get; private set; }
 
     public ParticleSystem blessedEffect;
 
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
         if (PlayerInfo.instance.isShieldEquipped)
         {
             ToggleShieldEquipped(true);
@@ -58,6 +60,10 @@ public class Player : MonoBehaviour
         else if (PlayerInfo.instance.isTwoHandSwordEquipped)
         {
             ToggleTwoHandSwordEquipped(true);
+        }
+        else
+        {
+            playerUI.ToggleBlockIconsActive(4, false);
         }
 
         if (PlayerInfo.instance.nextPlayerPositionOnLoad != Vector2.zero)
@@ -85,20 +91,53 @@ public class Player : MonoBehaviour
         HandleCombat();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
         if (isBlessed)
         {
-            DamageableEnemy enemy = collision.collider.GetComponent<DamageableEnemy>();
-            if (enemy == null) return;
+            HandleBlessedAttack();
+        }
+    }
 
-            enemy.OnDeltDamage(5);
+    private void HandleBlessedAttack()
+    {
+        RaycastHit2D hit = GetEnemyHit(1.0f);
+        DamageableEnemy enemy = hit.collider?.GetComponent<DamageableEnemy>();
+        if (enemy == null) return;
+
+        enemy.OnDeltDamage(5);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (isInteractKeyDown)
+        {
+            UseDoor(collider);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (isInteractKeyDown)
+        {
+            UseDoor(collider);
+        }
+    }
+
+    private void UseDoor(Collider2D collider)
+    {
+        if (collider.tag == "Doors")
+        {
+            DoorTrigger door = collider.GetComponent<DoorTrigger>();
+            door.TransportPlayer();
         }
     }
 
     private void GetUserInput()
     {
         isBlocking = Input.GetKey(KeyCode.Mouse1);
+
+        isInteractKeyDown = Input.GetKeyDown(KeyCode.E);
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {

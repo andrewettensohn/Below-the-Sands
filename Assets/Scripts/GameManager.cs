@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour
         if (sceneName == "MainMenu")
         {
             audioSource.Stop();
-            audioSource.PlayOneShot(musicTracks.NightsRespite);
+            audioSource.clip = musicTracks.NightsRespite;
+            audioSource.Play();
         }
     }
 

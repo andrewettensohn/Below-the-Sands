@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1327360421215254180}
   m_Layer: 13
   m_Name: LayerDoor
-  m_TagString: Untagged
+  m_TagString: Doors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LockedSprite: {fileID: 21300000, guid: 6c6270fdc8ea15347bcd0ac5adb9b9dc, type: 3}
   UnlockedSprite: {fileID: 21300000, guid: d0463918528f8ac4eb5d69d340ef2c52, type: 3}
-  levelName: 1
 --- !u!61 &1218712827772214102
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,3 +142,8 @@ MonoBehaviour:
   levelName: 1
   horizontalPositionAfterLoad: 0
   verticalPositionAfterLoad: 0
+  isLocked: 0
+  isSecondLevelToCatacombEntrance: 0
+  isThirdLevelToCatacombEntrance: 0
+  isDoorToSecondLevelEntrance: 0
+  isDoorToThirdLayerEntrance: 0

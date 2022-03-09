@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3217089570240990960}
   m_Layer: 13
   m_Name: DoorTrigger
-  m_TagString: Untagged
+  m_TagString: Doors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,6 +71,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354129e8195c2384e8809163216b91d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: FirstLevelTreasureRoom
+  levelName: 0
   horizontalPositionAfterLoad: 0
   verticalPositionAfterLoad: 0
+  isLocked: 0
+  isSecondLevelToCatacombEntrance: 0
+  isThirdLevelToCatacombEntrance: 0
+  isDoorToSecondLevelEntrance: 0
+  isDoorToThirdLayerEntrance: 0

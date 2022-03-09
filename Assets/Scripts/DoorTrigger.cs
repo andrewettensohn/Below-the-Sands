@@ -13,28 +13,16 @@ public class DoorTrigger : MonoBehaviour
     public bool isDoorToSecondLevelEntrance;
     public bool isDoorToThirdLayerEntrance;
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        TransportPlayer(collider);
-    }
-
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        TransportPlayer(collider);
-    }
-
-    private void TransportPlayer(Collider2D collider)
+    public void TransportPlayer()
     {
         if (isLocked) return;
 
-        if (collider.name == "Player" && Input.GetKeyDown(KeyCode.E))
-        {
-            if (isSecondLevelToCatacombEntrance) GameManager.instance.milestones.HasOpenedSecondLayerToEntranceRoute = true;
-            if (isThirdLevelToCatacombEntrance) GameManager.instance.milestones.HasOpenedThirdLayerToEntranceRoute = true;
-            if (isDoorToSecondLevelEntrance) GameManager.instance.milestones.HasFinishedFirstLayer = true;
-            if (isDoorToThirdLayerEntrance) GameManager.instance.milestones.HasFinishedSecondLayer = true;
+        if (isSecondLevelToCatacombEntrance) GameManager.instance.milestones.HasOpenedSecondLayerToEntranceRoute = true;
+        if (isThirdLevelToCatacombEntrance) GameManager.instance.milestones.HasOpenedThirdLayerToEntranceRoute = true;
+        if (isDoorToSecondLevelEntrance) GameManager.instance.milestones.HasFinishedFirstLayer = true;
+        if (isDoorToThirdLayerEntrance) GameManager.instance.milestones.HasFinishedSecondLayer = true;
 
-            GameManager.instance.LoadScene(levelName.ToString(), new Vector2(horizontalPositionAfterLoad, verticalPositionAfterLoad));
-        }
+        GameManager.instance.LoadScene(levelName.ToString(), new Vector2(horizontalPositionAfterLoad, verticalPositionAfterLoad));
+
     }
 }

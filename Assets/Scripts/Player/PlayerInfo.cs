@@ -44,7 +44,10 @@ public class PlayerInfo : MonoBehaviour
     public void ResetPlayerInfo()
     {
         hasShield = false;
-        healthPotionCount = 0;
+        hasTwoHandSword = false;
+        isShieldEquipped = false;
+        isTwoHandSwordEquipped = false;
+        healthPotionCount = 1;
         relicCount = 0;
         prayerCount = 0;
         health = fullHealth;
