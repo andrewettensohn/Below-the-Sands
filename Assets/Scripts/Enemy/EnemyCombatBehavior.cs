@@ -8,7 +8,7 @@ public class EnemyCombatBehavior : EnemyBehavior
     [Range(0.0f, 5.0f)]
     public float dealDamageDelay;
 
-    [Range(0.1f, 1.5f)]
+    [Range(0.1f, 10f)]
     public float attackRange;
 
     [Range(0.0f, 5.0f)]
@@ -26,6 +26,8 @@ public class EnemyCombatBehavior : EnemyBehavior
     public bool canAttack { get; protected set; } = true;
     public bool canBlock { get; protected set; }
     public bool canLeaveOpening { get; protected set; }
+
+    public float detectionSizeModifier = 0.75f;
 
     public virtual void HandleCombat()
     {
@@ -58,7 +60,7 @@ public class EnemyCombatBehavior : EnemyBehavior
 
     protected virtual RaycastHit2D GetPlayerHit(float distance)
     {
-        return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, enemy.movement.lookDirection, distance, enemy.playerLayer);
+        return Physics2D.BoxCast(transform.position, Vector2.one * detectionSizeModifier, 0.0f, enemy.movement.lookDirection, distance, enemy.playerLayer);
     }
 
     protected virtual void OnAttack(Player player)

@@ -23,6 +23,10 @@ public class PlayerInfo : MonoBehaviour
 
     public bool hasShield { get; set; }
 
+    public bool isTwoHandSwordEquipped { get; set; }
+
+    public bool hasTwoHandSword { get; set; }
+
     private void Awake()
     {
         if (instance == null)

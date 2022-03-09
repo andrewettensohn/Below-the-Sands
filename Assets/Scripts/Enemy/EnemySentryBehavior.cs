@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySentryBehavior : EnemyBehavior
 {
+    public float detectionSizeModifier = 0.75f;
+
     public void FixedUpdate()
     {
         if (isBehaviorEnabled == false) return;
@@ -14,7 +16,7 @@ public class EnemySentryBehavior : EnemyBehavior
     private bool IsPlayerDetected(Vector2 direction)
     {
 
-        RaycastHit2D playerHit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direction, 10.0f, enemy.playerLayer);
+        RaycastHit2D playerHit = Physics2D.BoxCast(transform.position, Vector2.one * detectionSizeModifier, 0.0f, direction, 10.0f, enemy.playerLayer);
 
         return playerHit.collider != null;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : DamageableEnemy
 {
-    [Range(1, 10)]
+    [Range(1, 20)]
     public float health;
 
     public Movement movement { get; private set; }

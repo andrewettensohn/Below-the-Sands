@@ -51,7 +51,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        PlayerInfo.instance.hasShield = true;
+        if (PlayerInfo.instance.isShieldEquipped)
+        {
+            ToggleShieldEquipped(true);
+        }
+        else if (PlayerInfo.instance.isTwoHandSwordEquipped)
+        {
+            ToggleTwoHandSwordEquipped(true);
+        }
 
         if (PlayerInfo.instance.nextPlayerPositionOnLoad != Vector2.zero)
         {
@@ -59,16 +66,6 @@ public class Player : MonoBehaviour
         }
 
         playerUI.SyncHearts();
-
-        if (!PlayerInfo.instance.isShieldEquipped)
-        {
-            playerUI.ToggleBlockIconsActive(4, false);
-        }
-        else
-        {
-            animator.SetBool("Using Shield", true);
-            playerUI.ToggleBlockIconsActive(5, true);
-        }
     }
 
     private void Update()
@@ -103,9 +100,9 @@ public class Player : MonoBehaviour
     {
         isBlocking = Input.GetKey(KeyCode.Mouse1);
 
-        if (Input.GetKeyDown(KeyCode.Z) && PlayerInfo.instance.hasShield)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            HandleShieldEquipped();
+            HandleEquippedEquipment();
         }
 
         if (PlayerInfo.instance.prayerCount > 0 && Input.GetKeyDown(KeyCode.Alpha2))
@@ -144,19 +141,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void HandleShieldEquipped()
+    private void HandleEquippedEquipment()
     {
-        if (PlayerInfo.instance.isShieldEquipped)
+
+        if (!PlayerInfo.instance.hasShield && !PlayerInfo.instance.hasTwoHandSword) return;
+
+        bool shouldEquipNormalSword = !PlayerInfo.instance.hasTwoHandSword && PlayerInfo.instance.hasShield && PlayerInfo.instance.isShieldEquipped;
+        bool shouldEquipShield = PlayerInfo.instance.hasShield && !PlayerInfo.instance.isShieldEquipped;
+        bool shouldEquipTwoHandSword = PlayerInfo.instance.hasTwoHandSword && !PlayerInfo.instance.isTwoHandSwordEquipped;
+
+        if (shouldEquipNormalSword)
         {
-            PlayerInfo.instance.isShieldEquipped = false;
-            animator.SetBool("Using Shield", false);
-            playerUI.ToggleBlockIconsActive(4, false);
+            ToggleShieldEquipped(false);
         }
-        else
+        else if (shouldEquipShield)
         {
-            PlayerInfo.instance.isShieldEquipped = true;
-            animator.SetBool("Using Shield", true);
-            playerUI.ToggleBlockIconsActive(5, true);
+            ToggleShieldEquipped(true);
+            ToggleTwoHandSwordEquipped(false);
+        }
+        else if (shouldEquipTwoHandSword)
+        {
+            ToggleShieldEquipped(false);
+            ToggleTwoHandSwordEquipped(true);
         }
     }
 
@@ -185,8 +191,10 @@ public class Player : MonoBehaviour
             if (hit.collider != null && !isStaggered)
             {
                 audioSource.PlayOneShot(hitWithSwordAudioClip);
+
+                int damageToDeal = PlayerInfo.instance.isTwoHandSwordEquipped ? 3 : 1;
                 DamageableEnemy enemy = hit.collider.GetComponent<DamageableEnemy>();
-                enemy.OnDeltDamage(1);
+                enemy.OnDeltDamage(damageToDeal);
             }
 
             isAttacking = false;
@@ -226,13 +234,27 @@ public class Player : MonoBehaviour
         return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, enemyLayer);
     }
 
+    public void ToggleShieldEquipped(bool isShiledEquipped)
+    {
+        PlayerInfo.instance.isShieldEquipped = isShiledEquipped;
+        animator.SetBool("Using Shield", isShiledEquipped);
+        playerUI.ToggleBlockIconsActive(4, !isShiledEquipped);
+    }
+
+    public void ToggleTwoHandSwordEquipped(bool isTwoHandSwordEquipped)
+    {
+        PlayerInfo.instance.isTwoHandSwordEquipped = isTwoHandSwordEquipped;
+        animator.SetBool("Using Two Hand Sword", isTwoHandSwordEquipped);
+        playerUI.ToggleBlockIconsActive(5, !isTwoHandSwordEquipped);
+    }
+
     public void OnDeltDamage(int damage, bool overrideBlocking = false)
     {
         damage = Mathf.Abs(damage);
 
         if (isBlessed || damage <= 0) return;
 
-        if (isBlocking && !overrideBlocking && blockedDamage <= playerUI.blockIcons.Count(x => x.isBlockIconActive))
+        if (isBlocking && !overrideBlocking && blockedDamage < playerUI.blockIcons.Count(x => x.isBlockIconActive))
         {
             audioSource.PlayOneShot(blockedAudioClip);
             blockedDamage += damage;
