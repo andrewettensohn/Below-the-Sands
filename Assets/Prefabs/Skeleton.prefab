@@ -151,6 +151,7 @@ MonoBehaviour:
     m_Bits: 64
   target: {fileID: 0}
   isStaggered: 0
+  canBeStaggered: 1
   playerDetected: 0
 --- !u!114 &5475355408251122625
 MonoBehaviour:
@@ -193,6 +194,7 @@ MonoBehaviour:
   blockTime: 0
   leaveOpeningTime: 1
   willBlock: 0
+  detectionSizeModifier: 0.75
 --- !u!114 &5886285886026939121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
+  detectionSizeModifier: 0.75
 --- !u!114 &370821799
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -88,7 +88,7 @@ public class EnemyCombatBehavior : EnemyBehavior
         yield return new WaitForSeconds(dealDamageDelay);
 
         RaycastHit2D hit = GetPlayerHit(attackRange);
-        if (enemy.health > 0 && hit.collider != null && !enemy.isStaggered)
+        if (enemy.health > 0 && hit.collider != null && (!enemy.isStaggered || !enemy.canBeStaggered))
         {
             player.OnDeltDamage(1);
         }

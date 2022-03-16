@@ -17,6 +17,7 @@ public class Enemy : DamageableEnemy
     public LayerMask playerLayer;
     public Transform target;
     public bool isStaggered;
+    public bool canBeStaggered;
     public bool playerDetected;
     protected Animator animator;
 
