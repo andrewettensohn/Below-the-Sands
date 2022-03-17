@@ -11,27 +11,48 @@ public class EnemyEye : DamageableEnemy
     public AIPath aiPath;
     public LayerMask playerLayer;
     public bool isStaggered;
-    public new CircleCollider2D collider { get; private set; }
+    public new CapsuleCollider2D collider { get; private set; }
 
     private Animator animator;
     private EnemyEyeCombatBehavior enemyEyeCombatBehavior;
+    private bool isPlayerDetected;
 
     private void Awake()
     {
         enemyEyeCombatBehavior = GetComponent<EnemyEyeCombatBehavior>();
         animator = GetComponent<Animator>();
-        collider = GetComponent<CircleCollider2D>();
+        collider = GetComponent<CapsuleCollider2D>();
     }
 
     private void Start()
     {
         enemyEyeCombatBehavior.isBehaviorEnabled = true;
+        aiPath.isStopped = true;
     }
 
     private void Update()
     {
-        enemyEyeCombatBehavior.HandleCombat();
+        if (!isPlayerDetected)
+        {
+            Sentry();
+        }
+        else
+        {
+            enemyEyeCombatBehavior.HandleCombat();
+        }
+
         Animate();
+    }
+
+    private void Sentry()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 10.0f, aiPath.desiredVelocity, enemyEyeCombatBehavior.attackRange, playerLayer);
+
+        if (hit.collider != null)
+        {
+            isPlayerDetected = true;
+            aiPath.isStopped = false;
+        }
     }
 
     private void Animate()

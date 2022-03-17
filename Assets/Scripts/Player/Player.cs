@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
+        PlayerInfo.instance.hasShield = true;
         if (PlayerInfo.instance.isShieldEquipped)
         {
             ToggleShieldEquipped(true);
@@ -159,13 +159,13 @@ public class Player : MonoBehaviour
             HandleInteractAction();
         }
 
-        if (isBlocking)
+        if (isBlocking && !PlayerInfo.instance.isShieldEquipped)
         {
             movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
         }
 
         movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), 0f));
-        movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && !isBlocking;
+        movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && (!isBlocking || PlayerInfo.instance.isShieldEquipped);
     }
 
     private void HandleInteractAction()

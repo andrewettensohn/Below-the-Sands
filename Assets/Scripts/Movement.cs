@@ -21,7 +21,6 @@ public class Movement : MonoBehaviour
     public bool canMove = true;
     public bool isJumping;
     public bool isGrounded;
-    public bool fallenIntoAbyss;
 
     private void Awake()
     {
@@ -68,9 +67,7 @@ public class Movement : MonoBehaviour
         //Destroy the object if it falls off the map
         if (rigidbody.position.y < -15.0f)
         {
-            // TODO: Let objects read this and handle whether they are active
             gameObject.SetActive(false);
-            fallenIntoAbyss = true;
         }
     }
 

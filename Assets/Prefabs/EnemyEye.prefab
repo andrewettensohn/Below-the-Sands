@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8266654373030250444}
   - component: {fileID: 8266654373030250445}
   - component: {fileID: 8266654373030250451}
-  - component: {fileID: 8266654373030250450}
   - component: {fileID: 1132481042}
   - component: {fileID: 1132481043}
   - component: {fileID: 1132481044}
+  - component: {fileID: 4020339953796876872}
   m_Layer: 7
   m_Name: EnemyEye
   m_TagString: Untagged
@@ -154,9 +154,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
+  slowdownDistance: 1.5
   pickNextWaypointDist: 2
-  endReachedDistance: 0.2
+  endReachedDistance: 1
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -175,22 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
---- !u!58 &8266654373030250450
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8266654373030250440}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.12499999
 --- !u!95 &1132481042
 Animator:
   serializedVersion: 4
@@ -245,5 +229,22 @@ MonoBehaviour:
   dealDamageDelay: 0.5
   attackRange: 1.5
   blockTime: 0
-  leaveOpeningTime: 0.5
+  leaveOpeningTime: 1
   willBlock: 0
+  detectionSizeModifier: 0.75
+--- !u!70 &4020339953796876872
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266654373030250440}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.0000001575592}
+  m_Size: {x: 0.37833494, y: 0.42841685}
+  m_Direction: 0

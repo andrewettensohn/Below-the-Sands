@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : DamageableEnemy
 {
-    [Range(1, 20)]
+    [Range(1, 50)]
     public float health;
 
     public Movement movement { get; private set; }
@@ -92,7 +92,7 @@ public class Enemy : DamageableEnemy
         else
         {
             animator.SetTrigger("Hit");
-            isStaggered = true;
+            isStaggered = canBeStaggered;
         }
     }
 
