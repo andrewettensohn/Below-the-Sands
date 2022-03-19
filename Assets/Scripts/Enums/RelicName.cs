@@ -10,6 +10,16 @@ public enum RelicName
     SecondLevelRelicRoom1,
     SecondLevelRelicRoom2,
     SecondLevelRelicRoom3,
-    SecondLevelTreasureRoom1
+    SecondLevelTreasureRoom1,
+    ThirdLevelArmoredRelicRoom1,
+    ThirdLevelArmoredRelicRoom2,
+    ThirdLevelArmoredRelicRoom3,
+    ThirdLevelArmoredRelicRoom4,
+    ThirdLevelArmoredRelicRoom5,
+    ThirdLevelArmoredRelicRoom6,
+    ThirdLevelPlatformRelicRoom1,
+    ThirdLevelPlatformRelicRoom2,
+    ThirdLevelPlatformRelicRoom3,
+
 
 }

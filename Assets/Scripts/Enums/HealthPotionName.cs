@@ -9,4 +9,8 @@ public enum HealthPotionName
     SecondLevelRelicRoom1,
     SecondLevelTreasureRoom1,
     SecondLevelTreasureRoom2,
+    ThirdLevelArmoredRelicRoom1,
+    ThirdLevelPlatformRelicRoom1,
+    ThirdLevelTreasureRoom1,
+    ThirdLevelTreasureRoom2,
 }

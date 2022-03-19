@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        PlayerInfo.instance.hasShield = true;
+
         if (PlayerInfo.instance.isShieldEquipped)
         {
             ToggleShieldEquipped(true);

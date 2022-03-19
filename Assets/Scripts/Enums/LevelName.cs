@@ -23,7 +23,15 @@ public enum LevelName
     SecondLevelPrayerRoom,
     SecondLevelRelicRoom,
     SecondLevelShieldRoom,
-    SecondLevelTreasureRoom
+    SecondLevelTreasureRoom,
 
+    ThirdLevelArmored,
+    ThirdLevelArmoredRelicRoom,
+    ThirdLevelBossRoom,
+    ThirdLevelEntrance,
+    ThirdLevelPlatformerToRelics,
+    ThirdLevelPlatformerToSword,
+    ThirdLevelPlatformRelicRoom,
+    ThirdLevelSwordRoom,
 
 }

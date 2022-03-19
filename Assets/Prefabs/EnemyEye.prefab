@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 1
   dealDamageDelay: 0.5
-  attackRange: 1.5
+  attackRange: 0.5
   blockTime: 0
   leaveOpeningTime: 1
   willBlock: 0

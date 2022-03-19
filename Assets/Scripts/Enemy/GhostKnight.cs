@@ -19,7 +19,7 @@ public class GhostKnight : DamageableEnemy
 
     private new Rigidbody2D rigidbody;
     private Animator animator;
-    private new CapsuleCollider2D collider;
+    private new CircleCollider2D collider;
     private bool isGrounded;
     private bool isPlayerDetected;
 
@@ -28,7 +28,7 @@ public class GhostKnight : DamageableEnemy
         rigidbody = GetComponent<Rigidbody2D>();
         combatBehavior = GetComponent<GhostKnightCombatBehavior>();
         animator = GetComponent<Animator>();
-        collider = GetComponent<CapsuleCollider2D>();
+        collider = GetComponent<CircleCollider2D>();
         aiPath.isStopped = true;
     }
 
@@ -52,18 +52,13 @@ public class GhostKnight : DamageableEnemy
 
     private void HandleSentryForDirection(float direction)
     {
-        RaycastHit2D hit = GetPlayerHit(direction);
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 10.0f, aiPath.desiredVelocity, combatBehavior.attackRange, playerLayer);
 
         if (hit.collider != null)
         {
             isPlayerDetected = true;
             aiPath.isStopped = false;
         }
-    }
-
-    private RaycastHit2D GetPlayerHit(float direction)
-    {
-        return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, new Vector2(direction, 0.0f), detectionRange, playerLayer);
     }
 
     private void CheckIfGrounded()

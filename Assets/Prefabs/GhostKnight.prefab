@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 8689087826586799478}
   - component: {fileID: 8689087826586799464}
   - component: {fileID: 547153793724955520}
-  - component: {fileID: 547153793724955527}
   - component: {fileID: 5564185972836283155}
   - component: {fileID: 2015284109687944452}
   - component: {fileID: 2042215993}
+  - component: {fileID: 882340471767108458}
   m_Layer: 7
   m_Name: GhostKnight
   m_TagString: Untagged
@@ -133,8 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 0.4
-  height: 2
+  radius: 0.2
+  height: 1
   canMove: 1
   maxSpeed: 3
   gravity: {x: 0, y: 0, z: 0}
@@ -155,9 +155,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 1
+  slowdownDistance: 1.5
   pickNextWaypointDist: 2
-  endReachedDistance: 0.8
+  endReachedDistance: 1
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -197,22 +197,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &547153793724955527
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8689087826586799475}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.018550213, y: 0.020404547}
-  m_Size: {x: 0.2714925, y: 0.4310221}
-  m_Direction: 0
 --- !u!95 &5564185972836283155
 Animator:
   serializedVersion: 4
@@ -273,3 +257,20 @@ MonoBehaviour:
   blockTime: 0
   leaveOpeningTime: 0.5
   willBlock: 0
+  detectionSizeModifier: 0.75
+--- !u!58 &882340471767108458
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689087826586799475}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.05036098}
+  serializedVersion: 2
+  m_Radius: 0.20753431
