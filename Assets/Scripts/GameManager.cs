@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public bool isPlayerControlRestricted;
 
+    public MenuController menuController;
+
     public Milestones milestones = new Milestones { IsFistVisitToCatacomb = true };
 
     public Dictionary<HealthPotionName, bool> healthPotionAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<HealthPotionName>();
@@ -63,5 +65,11 @@ public class GameManager : MonoBehaviour
         PlayerInfo.instance.nextPlayerPositionOnLoad = positionAfterLoad;
         SceneManager.LoadScene(sceneName);
         HandleMusic(sceneName);
+    }
+
+    public void GameOver()
+    {
+        menuController.IsPauseMode(false);
+        menuController.PauseGame();
     }
 }

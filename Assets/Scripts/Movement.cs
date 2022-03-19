@@ -68,6 +68,8 @@ public class Movement : MonoBehaviour
         if (rigidbody.position.y < -15.0f)
         {
             gameObject.SetActive(false);
+
+            if (gameObject.name == "Player") GameManager.instance.GameOver();
         }
     }
 

@@ -308,7 +308,7 @@ public class Player : MonoBehaviour
         {
             animator.SetTrigger("Die");
             Invoke(nameof(OnDisable), 1.3f);
-            GameManager.instance.LoadMainMenu();
+            GameManager.instance.GameOver();
         }
         else if (!isAttacking)
         {

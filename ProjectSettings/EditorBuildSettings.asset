@@ -9,6 +9,36 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ccf7c785fade837468a74a490e3a4ee0
   - enabled: 1
+    path: Assets/Scenes/ThirdLevelArmored.unity
+    guid: f7a3f06ef03ff52409d8bbf8ab533fa9
+  - enabled: 1
+    path: Assets/Scenes/ThirdLevelArmoredRelicRoom.unity
+    guid: e37195dd3adc14f45baf9dc68a6985ed
+  - enabled: 1
+    path: Assets/Scenes/ThirdLevelBossRoom.unity
+    guid: 8934e17e2c872a549b18235657d83353
+  - enabled: 1
+    path: Assets/Scenes/ThirdLevelEntrance.unity
+    guid: 949d92b84cf923042af1019ab2e68c67
+  - enabled: 1
+    path: Assets/Scenes/ThirdLevelGhostFight.unity
+    guid: 5581d40f100ce384da73e45c2cc5e396
+  - enabled: 1
+    path: Assets/Scenes/ThirdLevelPlatformerToRelics.unity
+    guid: b747f47a18b22dd4b9c5a7fa11ea5993
+  - enabled: 1
+    path: Assets/Scenes/ThirdLevelPlatformerToSword.unity
+    guid: 0e9a20e0e68302047bb3bbd55296fb88
+  - enabled: 1
+    path: Assets/Scenes/ThirdLevelPlatformRelicRoom.unity
+    guid: 0cdb0c824a59a6d47916358fd9469f0d
+  - enabled: 1
+    path: Assets/Scenes/ThirdLevelSwordRoom.unity
+    guid: bed2c4fb8b43bcd48855570e0c3ff1c8
+  - enabled: 1
+    path: Assets/Scenes/ThirdLevelTreasureRoom.unity
+    guid: e5b8f48a7e508064d8c3a3fd1f0b85f6
+  - enabled: 1
     path: Assets/Scenes/CatacombEntrance.unity
     guid: 2c195c180c876e04dbc48004e93b0da5
   - enabled: 1
