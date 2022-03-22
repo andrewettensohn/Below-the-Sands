@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     public LayerMask enemyLayer;
     public LayerMask npcLayer;
+    public LayerMask transportTriggerLayer;
     public GameObject PlayerUICanvas;
     public Movement movement { get; private set; }
     public PlayerUI playerUI { get; private set; }
@@ -108,31 +109,6 @@ public class Player : MonoBehaviour
         enemy.OnDeltDamage(5);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (isInteractKeyDown)
-        {
-            UseDoor(collider);
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        if (isInteractKeyDown)
-        {
-            UseDoor(collider);
-        }
-    }
-
-    private void UseDoor(Collider2D collider)
-    {
-        if (collider.tag == "Doors")
-        {
-            DoorTrigger door = collider.GetComponent<DoorTrigger>();
-            door.TransportPlayer();
-        }
-    }
-
     private void GetUserInput()
     {
         isBlocking = Input.GetKey(KeyCode.Mouse1);
@@ -156,7 +132,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            HandleInteractAction();
+            HandleDoorInteraction();
+            HandleDialougeInteraction();
         }
 
         if (isBlocking && !PlayerInfo.instance.isShieldEquipped)
@@ -168,7 +145,18 @@ public class Player : MonoBehaviour
         movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && (!isBlocking || PlayerInfo.instance.isShieldEquipped);
     }
 
-    private void HandleInteractAction()
+    private void HandleDoorInteraction()
+    {
+        if (PlayerInfo.instance.isInDoorway)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, movement.lookDirection, 5.0f, transportTriggerLayer);
+
+            DoorTrigger door = hit.collider.GetComponent<DoorTrigger>();
+            door.TransportPlayer();
+        }
+    }
+
+    private void HandleDialougeInteraction()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, movement.lookDirection, 5.0f, npcLayer);
 
@@ -277,7 +265,7 @@ public class Player : MonoBehaviour
     {
         PlayerInfo.instance.isShieldEquipped = isShiledEquipped;
         animator.SetBool("Using Shield", isShiledEquipped);
-        playerUI.ToggleBlockIconsActive(4, !isShiledEquipped);
+        playerUI.ToggleBlockIconsActive(4, isShiledEquipped);
     }
 
     public void ToggleTwoHandSwordEquipped(bool isTwoHandSwordEquipped)

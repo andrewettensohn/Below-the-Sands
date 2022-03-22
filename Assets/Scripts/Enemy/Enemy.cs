@@ -60,6 +60,12 @@ public class Enemy : DamageableEnemy
         collider.isTrigger = true;
         movement.rigidbody.gravityScale = 0;
         Invoke(nameof(OnDisable), 1.3f);
+
+        if (gameObject.name == "Demon")
+        {
+            GameManager.instance.milestones.HasCompletedThirdLayer = true;
+            GameManager.instance.PlayEndGameCutscene();
+        }
     }
 
     private void Animate()

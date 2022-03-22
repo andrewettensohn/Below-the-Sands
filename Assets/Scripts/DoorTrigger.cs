@@ -13,6 +13,16 @@ public class DoorTrigger : MonoBehaviour
     public bool isDoorToSecondLevelEntrance;
     public bool isDoorToThirdLayerEntrance;
 
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        PlayerInfo.instance.isInDoorway = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        PlayerInfo.instance.isInDoorway = false;
+    }
+
     public void TransportPlayer()
     {
         if (isLocked) return;

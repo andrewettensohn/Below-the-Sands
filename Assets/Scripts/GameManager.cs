@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
         HandleMusic(sceneName);
     }
 
+    public void PlayEndGameCutscene()
+    {
+
+    }
+
     public void GameOver()
     {
         menuController.IsPauseMode(false);

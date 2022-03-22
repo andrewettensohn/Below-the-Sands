@@ -117043,7 +117043,7 @@ PrefabInstance:
     - target: {fileID: 7740456981030056743, guid: 5109d23d8e7e8e34f91b2ff80253b303, type: 3}
       propertyPath: blessedEffect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1617422957}
     - target: {fileID: 7740456981030056743, guid: 5109d23d8e7e8e34f91b2ff80253b303, type: 3}
       propertyPath: PlayerUICanvas
       value: 
@@ -117057,6 +117057,11 @@ PrefabInstance:
 --- !u!4 &1617422956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7740456981030056740, guid: 5109d23d8e7e8e34f91b2ff80253b303, type: 3}
+  m_PrefabInstance: {fileID: 1617422955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1617422957 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4373413852940189263, guid: 5109d23d8e7e8e34f91b2ff80253b303, type: 3}
   m_PrefabInstance: {fileID: 1617422955}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1663309042
@@ -117127,6 +117132,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3217089570240990960, guid: 0336b45e928b3f0418834f937517a989, type: 3}
+      propertyPath: levelName
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217089570240990960, guid: 0336b45e928b3f0418834f937517a989, type: 3}
+      propertyPath: verticalPositionAfterLoad
+      value: -5.232951
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217089570240990960, guid: 0336b45e928b3f0418834f937517a989, type: 3}
+      propertyPath: horizontalPositionAfterLoad
+      value: 25.389
+      objectReference: {fileID: 0}
     - target: {fileID: 3217089570240990965, guid: 0336b45e928b3f0418834f937517a989, type: 3}
       propertyPath: m_Name
       value: BossRoomDoor

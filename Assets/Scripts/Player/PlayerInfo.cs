@@ -27,6 +27,8 @@ public class PlayerInfo : MonoBehaviour
 
     public bool hasTwoHandSword { get; set; }
 
+    public bool isInDoorway { get; set; }
+
     private void Awake()
     {
         if (instance == null)

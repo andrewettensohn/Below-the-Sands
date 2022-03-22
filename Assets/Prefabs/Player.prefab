@@ -4933,6 +4933,9 @@ MonoBehaviour:
   npcLayer:
     serializedVersion: 2
     m_Bits: 32768
+  transportTriggerLayer:
+    serializedVersion: 2
+    m_Bits: 8192
   PlayerUICanvas: {fileID: 0}
   blessedEffect: {fileID: 4373413852940189263}
   runningAudioClip: {fileID: 8300000, guid: fba95cafa5bba8649a7d269656e7317b, type: 3}
@@ -4961,7 +4964,6 @@ MonoBehaviour:
   canMove: 1
   isJumping: 0
   isGrounded: 0
-  fallenIntoAbyss: 0
 --- !u!50 &7740456981030056742
 Rigidbody2D:
   serializedVersion: 4

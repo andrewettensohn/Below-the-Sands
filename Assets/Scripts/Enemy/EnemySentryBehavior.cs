@@ -15,8 +15,7 @@ public class EnemySentryBehavior : EnemyBehavior
 
     private bool IsPlayerDetected(Vector2 direction)
     {
-
-        RaycastHit2D playerHit = Physics2D.BoxCast(transform.position, Vector2.one * detectionSizeModifier, 0.0f, direction, 10.0f, enemy.playerLayer);
+        RaycastHit2D playerHit = Physics2D.CircleCast(transform.position, 10.0f, enemy.movement.lookDirection, 1.0f, enemy.playerLayer);
 
         return playerHit.collider != null;
     }

@@ -36485,10 +36485,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7740456981030056743, guid: 5109d23d8e7e8e34f91b2ff80253b303, type: 3}
-      propertyPath: blessedEffect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740456981030056743, guid: 5109d23d8e7e8e34f91b2ff80253b303, type: 3}
       propertyPath: PlayerUICanvas
       value: 
       objectReference: {fileID: 2127307225}

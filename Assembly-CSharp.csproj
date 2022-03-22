@@ -54,7 +54,6 @@
      <Compile Include="Assets\Scripts\PlayerUI\HealthHeart.cs" />
      <Compile Include="Assets\Scripts\Enemy\GhostKnightCombatBehavior.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\PrayerSlot.cs" />
-     <Compile Include="Assets\Scripts\GameOverController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemySentryBehavior.cs" />
      <Compile Include="Assets\Scripts\MainMenuController.cs" />
