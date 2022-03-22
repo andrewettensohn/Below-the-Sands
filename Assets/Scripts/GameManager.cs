@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource;
     private MusicTracks musicTracks;
+    private bool isEndGameCutscenePlaying;
 
     private void Awake()
     {
@@ -69,7 +70,17 @@ public class GameManager : MonoBehaviour
 
     public void PlayEndGameCutscene()
     {
+        if (!isEndGameCutscenePlaying)
+        {
+            isEndGameCutscenePlaying = true;
+            StartCoroutine(WaitForEndGameCutscene(6));
+        }
+    }
 
+    private IEnumerator WaitForEndGameCutscene(float secondsToWait)
+    {
+        yield return new WaitForSeconds(secondsToWait);
+        SceneManager.LoadScene("EndGameCutscene");
     }
 
     public void GameOver()
