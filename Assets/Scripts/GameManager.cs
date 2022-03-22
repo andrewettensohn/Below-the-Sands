@@ -23,9 +23,11 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<PrayerName, bool> prayerAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<PrayerName>();
 
+    public bool isIntroCutscenePlaying;
+    public bool isEndGameCutscenePlaying;
+
     private AudioSource audioSource;
     private MusicTracks musicTracks;
-    private bool isEndGameCutscenePlaying;
 
     private void Awake()
     {

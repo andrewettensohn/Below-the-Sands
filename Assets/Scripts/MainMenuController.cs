@@ -15,8 +15,8 @@ public class MainMenuController : MonoBehaviour
         GameManager.instance.healthPotionAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<HealthPotionName>();
         GameManager.instance.prayerAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<PrayerName>();
 
-        PlayerInfo.instance.nextPlayerPositionOnLoad = new Vector2(-10.5f, 0.6f);
-        SceneManager.LoadScene("CatacombEntrance");
+        GameManager.instance.isIntroCutscenePlaying = true;
+        SceneManager.LoadScene("IntroCutscene");
     }
 
     public void ExitGame() => Application.Quit();

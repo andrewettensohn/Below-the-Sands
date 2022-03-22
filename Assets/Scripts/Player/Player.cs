@@ -54,8 +54,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
 
-        PlayerInfo.instance.prayerCount = 1;
-
         if (PlayerInfo.instance.isShieldEquipped)
         {
             ToggleShieldEquipped(true);
