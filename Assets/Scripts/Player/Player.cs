@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
     public ParticleSystem blessedEffect;
 
     public AudioClip runningAudioClip;
-    public AudioClip swingWithSwordAudioClip;
-    public AudioClip hitWithSwordAudioClip;
+    public AudioClip attackAudioClip;
     public AudioClip blockedAudioClip;
+    public AudioClip hitAudioClip;
 
     private bool isAttacking;
     private bool canAttack = true;
@@ -204,7 +204,7 @@ public class Player : MonoBehaviour
 
         isAttacking = true;
         canAttack = false;
-        audioSource.PlayOneShot(swingWithSwordAudioClip);
+        audioSource.PlayOneShot(attackAudioClip);
         StartCoroutine(HandleAttackDelayTimer());
     }
 
@@ -217,7 +217,7 @@ public class Player : MonoBehaviour
             RaycastHit2D hit = GetEnemyHit(attackRange);
             if (hit.collider != null && !isStaggered)
             {
-                audioSource.PlayOneShot(hitWithSwordAudioClip);
+                audioSource.PlayOneShot(attackAudioClip);
 
                 int damageToDeal = PlayerInfo.instance.isTwoHandSwordEquipped ? 3 : 1;
                 DamageableEnemy enemy = hit.collider.GetComponent<DamageableEnemy>();
@@ -291,6 +291,7 @@ public class Player : MonoBehaviour
 
         PlayerInfo.instance.health -= damage;
         playerUI.ChangeHealthHearts(damage, false);
+        audioSource.PlayOneShot(hitAudioClip);
 
         if (PlayerInfo.instance.health <= 0)
         {

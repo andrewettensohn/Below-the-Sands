@@ -86,16 +86,20 @@ public class EnemyCombatBehavior : EnemyBehavior
     protected virtual IEnumerator HandleDealDamageDelayTimer(Player player)
     {
         yield return new WaitForSeconds(dealDamageDelay);
-        enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
-        RaycastHit2D hit = GetPlayerHit(attackRange);
-        if (enemy.health > 0 && hit.collider != null && !enemy.isStaggered)
-        {
-            player.OnDeltDamage(1);
-        }
 
-        enemy.isStaggered = false;
-        isAttacking = false;
-        canBlock = true;
+        if (enemy.health > 0)
+        {
+            enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
+            RaycastHit2D hit = GetPlayerHit(attackRange);
+            if (enemy.health > 0 && hit.collider != null && !enemy.isStaggered)
+            {
+                player.OnDeltDamage(1);
+            }
+
+            enemy.isStaggered = false;
+            isAttacking = false;
+            canBlock = true;
+        }
     }
 
     protected virtual IEnumerator HandleBlockTimer()

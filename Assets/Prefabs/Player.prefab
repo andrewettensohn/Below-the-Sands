@@ -4939,9 +4939,9 @@ MonoBehaviour:
   PlayerUICanvas: {fileID: 0}
   blessedEffect: {fileID: 4373413852940189263}
   runningAudioClip: {fileID: 8300000, guid: fba95cafa5bba8649a7d269656e7317b, type: 3}
-  swingWithSwordAudioClip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
-  hitWithSwordAudioClip: {fileID: 8300000, guid: d64e91cef03af304fa237225b23c5707, type: 3}
+  attackAudioClip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
   blockedAudioClip: {fileID: 8300000, guid: 67dd73a8fb8b99e4d8c8d793c86c4324, type: 3}
+  hitAudioClip: {fileID: 8300000, guid: 98f45cffdc4ef4147a7ac1a7aa3d1edf, type: 3}
 --- !u!114 &906428597906432331
 MonoBehaviour:
   m_ObjectHideFlags: 0
