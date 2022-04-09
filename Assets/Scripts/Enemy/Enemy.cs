@@ -13,14 +13,18 @@ public class Enemy : DamageableEnemy
     public EnemySentryBehavior sentry { get; private set; }
     public EnemyCombatBehavior combatBehavior { get; private set; }
     public new CircleCollider2D collider { get; private set; }
-
+    public AudioClip DeathAudioClip;
+    public AudioClip WalkingAudioClip;
+    public AudioClip AttackingAudioClip;
+    public AudioClip HitAudioClip;
+    public AudioClip BlockAudioClip;
     public LayerMask playerLayer;
     public Transform target;
     public bool isStaggered;
     public bool canBeStaggered;
     public bool playerDetected;
+    public AudioSource audioSource;
     protected Animator animator;
-
 
     private void Start()
     {
@@ -37,6 +41,7 @@ public class Enemy : DamageableEnemy
         chase = GetComponent<EnemyChaseBehavior>();
         sentry = GetComponent<EnemySentryBehavior>();
         combatBehavior = GetComponent<EnemyCombatBehavior>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -84,6 +89,16 @@ public class Enemy : DamageableEnemy
         animator.SetFloat("Look X", movement.lookDirection.x);
     }
 
+    // private void HandleAudio()
+    // {
+    //     if (audioSource.isPlaying) return;
+
+    //     if (combatBehavior.isAttacking)
+    //     {
+    //         audioSource.PlayOneShot(AttackingAudioClip);
+    //     }
+    // }
+
     public override void OnDeltDamage(float damage)
     {
         if (combatBehavior.isBlocking) return;
@@ -94,10 +109,12 @@ public class Enemy : DamageableEnemy
         if (health <= 0)
         {
             OnDeath();
+            audioSource.PlayOneShot(DeathAudioClip);
         }
         else
         {
             animator.SetTrigger("Hit");
+            audioSource.PlayOneShot(HitAudioClip);
             isStaggered = canBeStaggered;
         }
     }

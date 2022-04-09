@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenuTrack: {fileID: 8300000, guid: f09d17f1129a44644966a1f8df093b0a, type: 3}
-  FirstLayerTrack: {fileID: 8300000, guid: ad049231bf82a0d47b23d111991bf966, type: 3}
+  FirstLayerTrack: {fileID: 8300000, guid: a4a3d79abc68fd64a86e7a2f7f111f09, type: 3}
   SecondLayerTrack: {fileID: 8300000, guid: dff80ae8313a969449533d3269959779, type: 3}
   ThirdLayerTrack: {fileID: 8300000, guid: 292aa2e3d6c60b647a406b313645a351, type: 3}
   BossFightTrack: {fileID: 8300000, guid: 5cfba2d2a15b7324eb69be860946fdf2, type: 3}
@@ -85,7 +85,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.179
   m_Pitch: 1
   Loop: 1
   Mute: 0

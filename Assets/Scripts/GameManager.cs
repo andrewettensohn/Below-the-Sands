@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleMusic(string sceneName)
     {
+
         audioSource.Stop();
 
         if (FirstLevelMusicTriggers.Any(x => x.ToString() == sceneName))
@@ -79,7 +80,8 @@ public class GameManager : MonoBehaviour
             audioSource.clip = musicTracks.FinalTrack;
         }
 
-        audioSource.Play();
+        if (audioSource.clip != null) audioSource.Play();
+
     }
 
     public void LoadMainMenu()
