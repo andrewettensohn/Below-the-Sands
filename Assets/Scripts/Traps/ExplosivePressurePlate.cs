@@ -7,6 +7,13 @@ public class ExplosivePressurePlate : MonoBehaviour
 
     public ParticleSystem explosiveEffect;
     public float explosionEffectTime;
+    public AudioClip explosionAudioClip;
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,6 +22,7 @@ public class ExplosivePressurePlate : MonoBehaviour
             Player player = collision.GetComponent<Player>();
             player.OnDeltDamage(-1, true);
 
+            audioSource.PlayOneShot(explosionAudioClip);
             explosiveEffect.Play();
             StartCoroutine(nameof(HandleBlessedTimer));
         }

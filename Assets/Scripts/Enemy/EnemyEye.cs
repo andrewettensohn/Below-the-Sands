@@ -12,16 +12,21 @@ public class EnemyEye : DamageableEnemy
     public LayerMask playerLayer;
     public bool isStaggered;
     public new CapsuleCollider2D collider { get; private set; }
-
+    public AudioClip DeathAudioClip;
+    public AudioClip AttackingAudioClip;
+    public AudioClip HitAudioClip;
+    public AudioSource audioSource;
     private Animator animator;
     private EnemyEyeCombatBehavior enemyEyeCombatBehavior;
     private bool isPlayerDetected;
+    private bool isDying;
 
     private void Awake()
     {
         enemyEyeCombatBehavior = GetComponent<EnemyEyeCombatBehavior>();
         animator = GetComponent<Animator>();
         collider = GetComponent<CapsuleCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -57,8 +62,9 @@ public class EnemyEye : DamageableEnemy
 
     private void Animate()
     {
-        if (health <= 0)
+        if (health <= 0 && !isDying)
         {
+            isDying = true;
             animator.SetTrigger("Die");
             OnDeath();
             return;
@@ -70,12 +76,14 @@ public class EnemyEye : DamageableEnemy
 
     private void OnDeath()
     {
+        audioSource.PlayOneShot(DeathAudioClip);
         collider.isTrigger = true;
         Invoke(nameof(OnDisable), 1.0f);
     }
 
     public override void OnDeltDamage(float damage)
     {
+        audioSource.PlayOneShot(HitAudioClip);
         damage = Mathf.Abs(damage);
         health -= damage;
     }

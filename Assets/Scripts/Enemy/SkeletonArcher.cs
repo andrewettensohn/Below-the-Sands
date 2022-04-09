@@ -21,17 +21,21 @@ public class SkeletonArcher : DamageableEnemy
     public new CircleCollider2D collider { get; private set; }
     public float lookDirection { get; private set; }
     public LayerMask playerLayer;
+    public AudioClip DeathAudioClip;
+    public AudioClip AttackingAudioClip;
     private Animator animator;
     private new Rigidbody2D rigidbody;
     private bool isAttacking;
     private bool canShoot { get; set; } = true;
-
+    private AudioSource audioSource;
+    private bool isDying;
 
     private void Awake()
     {
         collider = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -74,6 +78,7 @@ public class SkeletonArcher : DamageableEnemy
 
             Arrow arrow = arrowGameObject.GetComponent<Arrow>();
             arrow.Launch(new Vector2(lookDirection, 0), arrowLaunchForce);
+            audioSource.PlayOneShot(AttackingAudioClip);
 
             StartCoroutine(HandleShootDelayTimer());
         }
@@ -108,9 +113,11 @@ public class SkeletonArcher : DamageableEnemy
 
         health -= damage;
 
-        if (health <= 0)
+        if (health <= 0 && !isDying)
         {
+            isDying = true;
             animator.SetTrigger("Die");
+            audioSource.PlayOneShot(DeathAudioClip);
             collider.isTrigger = true;
             rigidbody.gravityScale = 0;
             Invoke(nameof(OnDisable), 1.3f);

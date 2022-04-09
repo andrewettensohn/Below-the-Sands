@@ -49,6 +49,7 @@ public class GhostKnightCombatBehavior : EnemyCombatBehavior
     {
         yield return new WaitForSeconds(dealDamageDelay);
 
+        ghostKnight.audioSource.PlayOneShot(ghostKnight.AttackingAudioClip);
         RaycastHit2D hit = GetPlayerHit(attackRange);
         if (ghostKnight.health > 0 && hit.collider != null && !ghostKnight.isStaggered)
         {

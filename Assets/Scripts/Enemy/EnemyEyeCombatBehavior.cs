@@ -50,6 +50,7 @@ public class EnemyEyeCombatBehavior : EnemyCombatBehavior
     {
         yield return new WaitForSeconds(dealDamageDelay);
 
+        enemyEye.audioSource.PlayOneShot(enemyEye.AttackingAudioClip);
         RaycastHit2D hit = GetPlayerHit(attackRange);
         if (enemyEye.health > 0 && hit.collider != null && !enemyEye.isStaggered)
         {

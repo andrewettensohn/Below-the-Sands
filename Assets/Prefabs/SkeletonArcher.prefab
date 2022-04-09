@@ -145,6 +145,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  DeathAudioClip: {fileID: 8300000, guid: 56ec1bcf451872c43a7e485973345ec1, type: 3}
+  AttackingAudioClip: {fileID: 8300000, guid: f4baf9e94f8caa2498da669e135d0668, type: 3}
 --- !u!95 &5613310594766418123
 Animator:
   serializedVersion: 4

@@ -14,7 +14,6 @@ public class Enemy : DamageableEnemy
     public EnemyCombatBehavior combatBehavior { get; private set; }
     public new CircleCollider2D collider { get; private set; }
     public AudioClip DeathAudioClip;
-    public AudioClip WalkingAudioClip;
     public AudioClip AttackingAudioClip;
     public AudioClip HitAudioClip;
     public AudioClip BlockAudioClip;
@@ -89,19 +88,13 @@ public class Enemy : DamageableEnemy
         animator.SetFloat("Look X", movement.lookDirection.x);
     }
 
-    // private void HandleAudio()
-    // {
-    //     if (audioSource.isPlaying) return;
-
-    //     if (combatBehavior.isAttacking)
-    //     {
-    //         audioSource.PlayOneShot(AttackingAudioClip);
-    //     }
-    // }
-
     public override void OnDeltDamage(float damage)
     {
-        if (combatBehavior.isBlocking) return;
+        if (combatBehavior.isBlocking)
+        {
+            audioSource.PlayOneShot(BlockAudioClip);
+            return;
+        }
 
         damage = Math.Abs(damage);
         health -= damage;

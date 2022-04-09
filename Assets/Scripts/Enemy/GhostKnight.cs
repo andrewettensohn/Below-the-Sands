@@ -16,12 +16,16 @@ public class GhostKnight : DamageableEnemy
     public LayerMask playerLayer;
     public LayerMask obstacleLayer;
     public bool isStaggered;
-
+    public AudioClip DeathAudioClip;
+    public AudioClip AttackingAudioClip;
+    public AudioClip HitAudioClip;
+    public AudioSource audioSource;
     private new Rigidbody2D rigidbody;
     private Animator animator;
     private new CircleCollider2D collider;
     private bool isGrounded;
     private bool isPlayerDetected;
+    private bool isDying;
 
     private void Start()
     {
@@ -29,6 +33,7 @@ public class GhostKnight : DamageableEnemy
         combatBehavior = GetComponent<GhostKnightCombatBehavior>();
         animator = GetComponent<Animator>();
         collider = GetComponent<CircleCollider2D>();
+        audioSource = GetComponent<AudioSource>();
         aiPath.isStopped = true;
     }
 
@@ -83,8 +88,10 @@ public class GhostKnight : DamageableEnemy
 
         health -= damage;
 
-        if (health <= 0)
+        if (health <= 0 && !isDying)
         {
+            isDying = true;
+            audioSource.PlayOneShot(DeathAudioClip);
             animator.SetTrigger("Die");
             collider.isTrigger = true;
             rigidbody.gravityScale = 0;
@@ -92,6 +99,7 @@ public class GhostKnight : DamageableEnemy
         }
         else
         {
+            audioSource.PlayOneShot(HitAudioClip);
             animator.SetTrigger("Hit");
         }
     }
