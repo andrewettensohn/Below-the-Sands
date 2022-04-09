@@ -53,9 +53,7 @@ public class GameManager : MonoBehaviour
     private void HandleMusic(string sceneName)
     {
 
-        audioSource.Stop();
-
-        if (FirstLevelMusicTriggers.Any(x => x.ToString() == sceneName))
+        if (FirstLevelMusicTriggers.Any(x => x.ToString() == sceneName) && audioSource.clip != musicTracks.FirstLayerTrack)
         {
             audioSource.clip = musicTracks.FirstLayerTrack;
         }
@@ -63,11 +61,11 @@ public class GameManager : MonoBehaviour
         {
             audioSource.clip = musicTracks.MainMenuTrack;
         }
-        else if (SecondLevelMusicTriggers.Any(x => x.ToString() == sceneName))
+        else if (SecondLevelMusicTriggers.Any(x => x.ToString() == sceneName) && audioSource.clip != musicTracks.SecondLayerTrack)
         {
             audioSource.clip = musicTracks.SecondLayerTrack;
         }
-        else if (ThirdLevelMusicTriggers.Any(x => x.ToString() == sceneName))
+        else if (ThirdLevelMusicTriggers.Any(x => x.ToString() == sceneName) && audioSource.clip != musicTracks.ThirdLayerTrack)
         {
             audioSource.clip = musicTracks.ThirdLayerTrack;
         }
@@ -79,9 +77,13 @@ public class GameManager : MonoBehaviour
         {
             audioSource.clip = musicTracks.FinalTrack;
         }
+        else
+        {
+            return;
+        }
 
-        if (audioSource.clip != null) audioSource.Play();
-
+        audioSource.Stop();
+        audioSource.Play();
     }
 
     public void LoadMainMenu()
