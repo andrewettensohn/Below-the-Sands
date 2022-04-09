@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class MusicTracks : MonoBehaviour
 {
-    public AudioClip NightsRespite;
-    public AudioClip BehindWalls;
-    public AudioClip FirstFrost;
-    public AudioClip HemlockCliffs;
-    public AudioClip HookAndCrookInn;
-    public AudioClip RoundRobinInn;
-    public AudioClip ScentOfScarlet;
-    public AudioClip StreetsofScholars;
-    public AudioClip TheSaltCrags;
-    public AudioClip UnderTheIronGates;
+    public AudioClip MainMenuTrack;
+    public AudioClip FirstLayerTrack;
+    public AudioClip SecondLayerTrack;
+    public AudioClip ThirdLayerTrack;
+    public AudioClip BossFightTrack;
+    public AudioClip FinalTrack;
 
 }

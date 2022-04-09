@@ -50,6 +50,11 @@ MonoBehaviour:
   isGamePaused: 0
   isPlayerControlRestricted: 0
   menuController: {fileID: 7786782222758357359}
+  isIntroCutscenePlaying: 0
+  isEndGameCutscenePlaying: 0
+  FirstLevelMusicTriggers: 0100000002000000
+  SecondLevelMusicTriggers: 090000000c0000000b000000
+  ThirdLevelMusicTriggers: 15000000
 --- !u!114 &4824659691480458942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,16 +67,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abae1481615e0bb4f860a37bd602b58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NightsRespite: {fileID: 8300000, guid: 245654c35edb355448f38b50501b1b48, type: 3}
-  BehindWalls: {fileID: 8300000, guid: 52b08b5907ae4b14787a1bf50e3d09d2, type: 3}
-  FirstFrost: {fileID: 8300000, guid: ac19cb220891ac646b0ae754b9d36185, type: 3}
-  HemlockCliffs: {fileID: 8300000, guid: 8cb9ed3fdb1b3a142bc4ea2b29b485a0, type: 3}
-  HookAndCrookInn: {fileID: 8300000, guid: dc741fdd51e53534f99015a7c88a8428, type: 3}
-  RoundRobinInn: {fileID: 8300000, guid: d591cfee056524b4594f5f4f3f139015, type: 3}
-  ScentOfScarlet: {fileID: 8300000, guid: a4a3d79abc68fd64a86e7a2f7f111f09, type: 3}
-  StreetsofScholars: {fileID: 8300000, guid: 979cea3f7d0a60e4b99468da709b76fd, type: 3}
-  TheSaltCrags: {fileID: 8300000, guid: 98186a99c7a98cf4a96ecc36389b5908, type: 3}
-  UnderTheIronGates: {fileID: 8300000, guid: a3ca344a2ea1b7a4f898adb99100e239, type: 3}
+  MainMenuTrack: {fileID: 8300000, guid: f09d17f1129a44644966a1f8df093b0a, type: 3}
+  FirstLayerTrack: {fileID: 8300000, guid: ad049231bf82a0d47b23d111991bf966, type: 3}
+  SecondLayerTrack: {fileID: 8300000, guid: dff80ae8313a969449533d3269959779, type: 3}
+  ThirdLayerTrack: {fileID: 8300000, guid: 292aa2e3d6c60b647a406b313645a351, type: 3}
+  BossFightTrack: {fileID: 8300000, guid: 5cfba2d2a15b7324eb69be860946fdf2, type: 3}
+  FinalTrack: {fileID: 8300000, guid: a8539b5fa7c1bff47a25068df7819725, type: 3}
 --- !u!82 &5444481627793312585
 AudioSource:
   m_ObjectHideFlags: 0

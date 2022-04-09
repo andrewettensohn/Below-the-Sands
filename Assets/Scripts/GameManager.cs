@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     public bool isIntroCutscenePlaying;
     public bool isEndGameCutscenePlaying;
 
+    public List<LevelName> FirstLevelMusicTriggers;
+    public List<LevelName> SecondLevelMusicTriggers;
+    public List<LevelName> ThirdLevelMusicTriggers;
+
     private AudioSource audioSource;
     private MusicTracks musicTracks;
 
@@ -48,12 +52,34 @@ public class GameManager : MonoBehaviour
 
     private void HandleMusic(string sceneName)
     {
-        if (sceneName == "MainMenu")
+        audioSource.Stop();
+
+        if (FirstLevelMusicTriggers.Any(x => x.ToString() == sceneName))
         {
-            audioSource.Stop();
-            audioSource.clip = musicTracks.NightsRespite;
-            audioSource.Play();
+            audioSource.clip = musicTracks.FirstLayerTrack;
         }
+        else if (sceneName == "MainMenu" || LevelName.CatacombEntrance.ToString() == sceneName)
+        {
+            audioSource.clip = musicTracks.MainMenuTrack;
+        }
+        else if (SecondLevelMusicTriggers.Any(x => x.ToString() == sceneName))
+        {
+            audioSource.clip = musicTracks.SecondLayerTrack;
+        }
+        else if (ThirdLevelMusicTriggers.Any(x => x.ToString() == sceneName))
+        {
+            audioSource.clip = musicTracks.ThirdLayerTrack;
+        }
+        else if (LevelName.ThirdLevelBossRoom.ToString() == sceneName)
+        {
+            audioSource.clip = musicTracks.BossFightTrack;
+        }
+        else if (sceneName == "EndGameCutscene")
+        {
+            audioSource.clip = musicTracks.FinalTrack;
+        }
+
+        audioSource.Play();
     }
 
     public void LoadMainMenu()
