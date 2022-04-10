@@ -102,13 +102,13 @@ public class Enemy : DamageableEnemy
         if (health <= 0)
         {
             OnDeath();
-            audioSource.PlayOneShot(DeathAudioClip);
+            if (!PlayerInfo.instance.isBlessed) audioSource.PlayOneShot(DeathAudioClip);
         }
         else
         {
             animator.SetTrigger("Hit");
-            audioSource.PlayOneShot(HitAudioClip);
             isStaggered = canBeStaggered;
+            if (!PlayerInfo.instance.isBlessed) audioSource.PlayOneShot(HitAudioClip);
         }
     }
 

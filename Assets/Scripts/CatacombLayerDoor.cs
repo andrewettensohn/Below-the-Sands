@@ -19,7 +19,8 @@ public class CatacombLayerDoor : MonoBehaviour
     {
         bool isUnlocked =
             doorTrigger.levelName == LevelName.FirstLevelEntrance ||
-            (doorTrigger.levelName == LevelName.SecondLevelGreatHall && GameManager.instance.milestones.HasOpenedSecondLayerToEntranceRoute);
+            (doorTrigger.levelName == LevelName.SecondLevelGreatHall && GameManager.instance.milestones.HasOpenedSecondLayerToEntranceRoute) ||
+            (doorTrigger.levelName == LevelName.ThirdLevelEntrance && GameManager.instance.milestones.HasOpenedThirdLayerToEntranceRoute);
 
         doorTrigger.isLocked = !isUnlocked;
 

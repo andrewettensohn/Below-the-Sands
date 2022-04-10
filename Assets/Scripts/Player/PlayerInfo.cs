@@ -29,6 +29,8 @@ public class PlayerInfo : MonoBehaviour
 
     public bool isInDoorway { get; set; }
 
+    public bool isBlessed;
+
     private void Awake()
     {
         if (instance == null)

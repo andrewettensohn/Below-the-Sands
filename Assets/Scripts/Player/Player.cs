@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
 
     private AudioSource audioSource;
 
-    private bool isBlessed;
     private bool isBlocking;
     private int blockedDamage;
     private bool isStaggered;
@@ -53,6 +52,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        PlayerInfo.instance.isBlessed = false;
 
         if (PlayerInfo.instance.isShieldEquipped)
         {
@@ -88,13 +88,12 @@ public class Player : MonoBehaviour
 
         AnimateMovement();
         GetUserInput();
-        PlaySound();
         HandleCombat();
     }
 
     private void FixedUpdate()
     {
-        if (isBlessed)
+        if (PlayerInfo.instance.isBlessed)
         {
             HandleBlessedAttack();
         }
@@ -235,7 +234,7 @@ public class Player : MonoBehaviour
         PlayerInfo.instance.prayerCount -= 1;
         playerUI.SyncPrayerCount();
 
-        isBlessed = true;
+        PlayerInfo.instance.isBlessed = true;
         blessedEffect.Play();
         StartCoroutine(nameof(HandleBlessedTimer));
     }
@@ -244,7 +243,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(blessedTime);
         blessedEffect.Stop();
-        isBlessed = false;
+        PlayerInfo.instance.isBlessed = false;
     }
 
     private void HandleHealthPotionUsed()
@@ -279,7 +278,7 @@ public class Player : MonoBehaviour
     {
         damage = Mathf.Abs(damage);
 
-        if (isBlessed || damage <= 0) return;
+        if (PlayerInfo.instance.isBlessed || damage <= 0) return;
 
         if (isBlocking && !overrideBlocking && blockedDamage < playerUI.blockIcons.Count(x => x.isBlockIconActive))
         {
@@ -303,14 +302,6 @@ public class Player : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             isStaggered = true;
-        }
-    }
-
-    private void PlaySound()
-    {
-        if (movement.rigidbody.velocity.x != 0 && movement.isGrounded && !audioSource.isPlaying)
-        {
-            audioSource.PlayOneShot(runningAudioClip);
         }
     }
 
