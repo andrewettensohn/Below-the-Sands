@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    public void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void StartGame()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         GameManager.instance.milestones = new Milestones();
         GameManager.instance.milestones.IsFistVisitToCatacomb = true;
 

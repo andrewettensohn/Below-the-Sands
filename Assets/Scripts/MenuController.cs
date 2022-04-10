@@ -48,6 +48,8 @@ public class MenuController : MonoBehaviour
 
     public void PauseGame()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         GameManager.instance.isGamePaused = true;
         canvas.enabled = true;
         Time.timeScale = 0;
@@ -55,6 +57,8 @@ public class MenuController : MonoBehaviour
 
     public void ResumeGame()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         GameManager.instance.isGamePaused = false;
         Time.timeScale = 1;
         canvas.enabled = false;
