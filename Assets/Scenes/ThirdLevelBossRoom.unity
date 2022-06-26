@@ -36706,6 +36706,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8174815576950221978, guid: 3faa39865cdd5b445b5318823d406bf0, type: 3}
+      propertyPath: health
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174815576950221978, guid: 3faa39865cdd5b445b5318823d406bf0, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1617422956}
@@ -36765,7 +36769,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.311747, y: 1}
+    m_SensorSize: {x: 1.8409475, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

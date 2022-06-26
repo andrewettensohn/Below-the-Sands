@@ -15,7 +15,10 @@ public class OptionsController : MonoBehaviour
 
     public void Start()
     {
-        slider.value = AudioListener.volume;
+        if (slider != null)
+        {
+            slider.value = AudioListener.volume;
+        }
     }
 
     public void OpenOptionsMenu()
