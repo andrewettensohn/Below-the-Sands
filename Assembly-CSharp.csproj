@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{a2edb636-0fb3-61b5-310d-d8fd2817f2cb}</ProjectGuid>
+    <ProjectGuid>{8e8450e7-e796-a2a9-c759-9d5dd04f3003}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -40,7 +40,6 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyEyeCombatBehavior.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogPack.cs" />
      <Compile Include="Assets\Scripts\Collectables\HealthPotion.cs" />
-     <Compile Include="Assets\Scripts\Collectables\Relic.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyCombatBehavior.cs" />
      <Compile Include="Assets\Scripts\Node.cs" />
      <Compile Include="Assets\Scripts\Helpers\CollectableDictionaryHelper.cs" />
@@ -73,15 +72,12 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyBehavior.cs" />
      <Compile Include="Assets\Scripts\Enemy\GhostKnight.cs" />
      <Compile Include="Assets\Scripts\Milestones.cs" />
-     <Compile Include="Assets\Scripts\Collectables\Prayer.cs" />
      <Compile Include="Assets\Scripts\Traps\ExplosivePressurePlate.cs" />
      <Compile Include="Assets\Scripts\Dialog\TextSlideCutscene.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Arrow.cs" />
      <Compile Include="Assets\Scripts\DoorTrigger.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\HealthPotSlot.cs" />
-     <Compile Include="Assets\Scripts\Collectables\TwoHandedSwordPickup.cs" />
      <Compile Include="Assets\Scripts\OptionsController.cs" />
-     <Compile Include="Assets\Scripts\Collectables\ShieldPickup.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
@@ -355,28 +351,28 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.8f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.Unsafe.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Assets\Plugins\AstarPathfindingProject\Plugins\DotNetZip\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Assets\Plugins\AstarPathfindingProject\Plugins\DotNetZip\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Pdb">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Rocks">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="clipper_library">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.cinemachine@2.8.4\Runtime\ThirdParty\clipper_library.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\PackageCache\com.unity.cinemachine@2.8.4\Runtime\ThirdParty\clipper_library.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.8f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -745,122 +741,122 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.8f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Path.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Haddrax Falling\Below the Sands\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+        <HintPath>C:\Users\Andrew\Documents\UnityProjects\Fell Deeds\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PackageToolsEditor.csproj">
-      <Project>{bf33893b-e494-d161-c862-0e465319d992}</Project>
+      <Project>{519f9724-4361-4940-748b-49227b7458a8}</Project>
       <Name>PackageToolsEditor</Name>
     </ProjectReference>
     <ProjectReference Include="AstarPathfindingProject.csproj">
-      <Project>{66344f31-d4d3-1a2b-4f24-889636346d9c}</Project>
+      <Project>{9cf91774-c6c0-3442-399b-50940723b1b1}</Project>
       <Name>AstarPathfindingProject</Name>
     </ProjectReference>
     <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
-      <Project>{028b754a-422d-fa8c-eb7f-9d4bd696c5e0}</Project>
+      <Project>{72e2ed35-4650-5833-b4dd-710d5c67df54}</Project>
       <Name>AstarPathfindingProjectEditor</Name>
     </ProjectReference>
   </ItemGroup>

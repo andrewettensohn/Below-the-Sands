@@ -46,7 +46,7 @@ public class EnemyEyeCombatBehavior : EnemyCombatBehavior
         return Physics2D.CircleCast(transform.position, attackRange, enemyEye.aiPath.desiredVelocity, distance, enemyEye.playerLayer);
     }
 
-    protected override IEnumerator HandleDealDamageDelayTimer(Player player)
+    protected override IEnumerator HandlePostAttackDelayTimer(Player player)
     {
         yield return new WaitForSeconds(dealDamageDelay);
 

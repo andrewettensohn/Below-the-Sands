@@ -30,6 +30,12 @@ public class Enemy : DamageableEnemy
         sentry.isBehaviorEnabled = true;
         chase.isBehaviorEnabled = false;
         combatBehavior.isBehaviorEnabled = true;
+
+        GameObject targetGameObject = GameObject.Find("Ronin");
+        if (targetGameObject != null)
+        {
+            target = targetGameObject.transform;
+        }
     }
 
     private void Awake()

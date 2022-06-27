@@ -45,7 +45,7 @@ public class GhostKnightCombatBehavior : EnemyCombatBehavior
         return Physics2D.CircleCast(transform.position, attackRange, ghostKnight.aiPath.desiredVelocity, distance, ghostKnight.playerLayer);
     }
 
-    protected override IEnumerator HandleDealDamageDelayTimer(Player player)
+    protected override IEnumerator HandlePostAttackDelayTimer(Player player)
     {
         yield return new WaitForSeconds(dealDamageDelay);
 

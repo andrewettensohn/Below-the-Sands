@@ -67,7 +67,20 @@ public class EnemyCombatBehavior : EnemyBehavior
     {
         canAttack = false;
         isAttacking = true;
-        StartCoroutine(HandleDealDamageDelayTimer(player));
+        enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
+
+        if (!isAttacking)
+        {
+            StartCoroutine(HandlePreAttackDelayTimer(player));
+        }
+
+        RaycastHit2D hit = GetPlayerHit(attackRange);
+        if (enemy.health > 0 && hit.collider != null && !enemy.isStaggered)
+        {
+            player.OnDeltDamage(1);
+        }
+
+        StartCoroutine(HandlePostAttackDelayTimer(player));
     }
 
     protected virtual void OnBlock()
@@ -83,19 +96,22 @@ public class EnemyCombatBehavior : EnemyBehavior
         StartCoroutine(HandleLeaveOpeningTimer());
     }
 
-    protected virtual IEnumerator HandleDealDamageDelayTimer(Player player)
+    protected virtual IEnumerator HandlePreAttackDelayTimer(Player player)
+    {
+        yield return new WaitForSeconds(leaveOpeningTime);
+
+        if (enemy.health > 0)
+        {
+            isAttacking = true;
+        }
+    }
+
+    protected virtual IEnumerator HandlePostAttackDelayTimer(Player player)
     {
         yield return new WaitForSeconds(dealDamageDelay);
 
         if (enemy.health > 0)
         {
-            enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
-            RaycastHit2D hit = GetPlayerHit(attackRange);
-            if (enemy.health > 0 && hit.collider != null && !enemy.isStaggered)
-            {
-                player.OnDeltDamage(1);
-            }
-
             enemy.isStaggered = false;
             isAttacking = false;
             canBlock = true;
