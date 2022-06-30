@@ -9,38 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ccf7c785fade837468a74a490e3a4ee0
   - enabled: 1
-    path: Assets/Scenes/ThirdLevelArmored.unity
-    guid: f7a3f06ef03ff52409d8bbf8ab533fa9
-  - enabled: 1
-    path: Assets/Scenes/ThirdLevelArmoredRelicRoom.unity
-    guid: e37195dd3adc14f45baf9dc68a6985ed
-  - enabled: 1
-    path: Assets/Scenes/ThirdLevelBossRoom.unity
-    guid: 8934e17e2c872a549b18235657d83353
-  - enabled: 1
-    path: Assets/Scenes/ThirdLevelEntrance.unity
-    guid: 949d92b84cf923042af1019ab2e68c67
-  - enabled: 1
-    path: Assets/Scenes/ThirdLevelGhostFight.unity
-    guid: 5581d40f100ce384da73e45c2cc5e396
-  - enabled: 1
     path: Assets/Scenes/IntroCutscene.unity
     guid: 771756dd418e82a429c2043875ff22b0
-  - enabled: 1
-    path: Assets/Scenes/ThirdLevelPlatformerToRelics.unity
-    guid: b747f47a18b22dd4b9c5a7fa11ea5993
-  - enabled: 1
-    path: Assets/Scenes/ThirdLevelPlatformerToSword.unity
-    guid: 0e9a20e0e68302047bb3bbd55296fb88
-  - enabled: 1
-    path: Assets/Scenes/ThirdLevelPlatformRelicRoom.unity
-    guid: 0cdb0c824a59a6d47916358fd9469f0d
-  - enabled: 1
-    path: Assets/Scenes/ThirdLevelSwordRoom.unity
-    guid: bed2c4fb8b43bcd48855570e0c3ff1c8
-  - enabled: 1
-    path: Assets/Scenes/ThirdLevelTreasureRoom.unity
-    guid: e5b8f48a7e508064d8c3a3fd1f0b85f6
   - enabled: 1
     path: Assets/Scenes/CatacombEntrance.unity
     guid: 2c195c180c876e04dbc48004e93b0da5
@@ -48,54 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/FirstLevelEntrance.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/FirstLevelTreasureRoom.unity
-    guid: c27efce2df15a8345beaed8c51b65b53
-  - enabled: 1
-    path: Assets/Scenes/FirstLevelSkeletonAlley.unity
-    guid: f3fe123ddf0dd7b45ad2c193ed67e699
-  - enabled: 1
-    path: Assets/Scenes/FirstLevelPlatformer.unity
-    guid: 76dabc61d4d905c4cb50de9d30025655
-  - enabled: 1
-    path: Assets/Scenes/FirstLevelTrapRoom.unity
-    guid: 16f6a7ee64674ce4094cb411fb4b8fa5
-  - enabled: 1
-    path: Assets/Scenes/FirstLevelStairs.unity
-    guid: 226fcb3e5022b254fb0d85abc6ab60ed
-  - enabled: 1
-    path: Assets/Scenes/FirstLevelExit.unity
-    guid: 0ae5a40ed0aa0d74e859de5ba9636e5d
-  - enabled: 1
-    path: Assets/Scenes/FirstLevelRelicRoom.unity
-    guid: 0f065ca2063f76342b9a80a769e18664
-  - enabled: 1
-    path: Assets/Scenes/SecondLevelArmoredCompany.unity
-    guid: e801930ca9b1b77459a6c9f129d49ee4
-  - enabled: 1
-    path: Assets/Scenes/SecondLevelEntrance.unity
-    guid: 1893fba25d34501499cf87209aae229b
-  - enabled: 1
-    path: Assets/Scenes/SecondLevelExit.unity
-    guid: 72209470c3c8a4b4facb61d094e1d1f2
-  - enabled: 1
-    path: Assets/Scenes/SecondLevelGreatHall.unity
-    guid: ffffc54f0cab10e499eaabbbd1aa7a83
-  - enabled: 1
-    path: Assets/Scenes/SecondLevelPlatformer.unity
-    guid: e939b0e3a406ba745aed7e1072e9a8da
-  - enabled: 1
-    path: Assets/Scenes/SecondLevelPrayerRoom.unity
-    guid: 2baeb205285371f44a6b744db41fc853
-  - enabled: 1
-    path: Assets/Scenes/SecondLevelRelicRoom.unity
-    guid: e12f372d6b3e0d541a81e7cd0f30d2d3
-  - enabled: 1
     path: Assets/Scenes/EndGameCutscene.unity
     guid: 5fb2675d5eef2394c869416d1925b71b
-  - enabled: 1
-    path: Assets/Scenes/SecondLevelShieldRoom.unity
-    guid: bf79c1ad42af18743a021b5fc4fc2848
-  - enabled: 1
-    path: Assets/Scenes/SecondLevelTreasureRoom.unity
-    guid: 0049731a6680cee4bab38b9202d8e6d7
   m_configObjects: {}

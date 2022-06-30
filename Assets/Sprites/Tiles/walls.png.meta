@@ -1746,7 +1746,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -1758,7 +1758,19 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -13471,7 +13483,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       walls_285: 21300570
-      walls_210: 21300420
+      walls_376: 21300752
       walls_180: 21300360
       walls_87: 21300174
       walls_536: 21301072
@@ -13507,8 +13519,8 @@ TextureImporter:
       walls_235: 21300470
       walls_172: 21300344
       walls_523: 21301046
-      walls_525: 21301050
       walls_127: 21300254
+      walls_525: 21301050
       walls_48: 21300096
       walls_293: 21300586
       walls_425: 21300850
@@ -14026,7 +14038,7 @@ TextureImporter:
       walls_352: 21300704
       walls_480: 21300960
       walls_3: 21300006
-      walls_376: 21300752
+      walls_210: 21300420
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -83,6 +83,8 @@
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\Enums\HealthPotionName.cs" />
      <Compile Include="Assets\Scripts\Audio\MusicTracks.cs" />
+     <Compile Include="Assets\Scripts\Traps\Spikes.cs" />
+     <Compile Include="Assets\Scripts\Traps\FireFloorTrap.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

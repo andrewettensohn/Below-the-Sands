@@ -7,13 +7,13 @@ public class SkeletonArcher : DamageableEnemy
     [Range(1, 10)]
     public float health;
 
-    [Range(1, 20)]
+    [Range(1, 100)]
     public float detectionRange;
 
     [Range(1, 5)]
     public float shootDelayTime;
 
-    [Range(300, 2000)]
+    [Range(300, 5000)]
     public int arrowLaunchForce;
 
     public GameObject arrowPrefab;
@@ -25,10 +25,12 @@ public class SkeletonArcher : DamageableEnemy
     public AudioClip AttackingAudioClip;
     private Animator animator;
     private new Rigidbody2D rigidbody;
-    private bool isAttacking;
-    private bool canShoot { get; set; } = true;
     private AudioSource audioSource;
     private bool isDying;
+    private bool isPlayerDetected;
+    private bool canShoot;
+    private bool isWaitingToShoot;
+    private bool hasDelayedShot;
 
     private void Awake()
     {
@@ -38,19 +40,17 @@ public class SkeletonArcher : DamageableEnemy
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         animator.SetFloat("Look X", lookDirection);
 
-        if (!isAttacking)
+        if (isPlayerDetected && health > 0)
+        {
+            HandleCombat();
+        }
+        else
         {
             Sentry();
-            animator.SetBool("Is Attacking", false);
-        }
-        else if (health > 0)
-        {
-            Shoot();
-            animator.SetBool("Is Attacking", true);
         }
     }
 
@@ -60,26 +60,26 @@ public class SkeletonArcher : DamageableEnemy
         HandleSentryForDirection(-0.1f);
     }
 
-    private void Shoot()
+    private void HandleCombat()
     {
         RaycastHit2D hit = GetPlayerHit(lookDirection);
 
         if (hit.collider == null)
         {
-            isAttacking = false;
-            return;
+            isPlayerDetected = false;
+            hasDelayedShot = false;
         }
 
-        if (canShoot)
+        if (!hasDelayedShot && !isWaitingToShoot)
+        {
+            hasDelayedShot = true;
+            StartCoroutine(HandleShootDelayTimer());
+        }
+
+        if (canShoot && !isWaitingToShoot)
         {
             canShoot = false;
-
-            GameObject arrowGameObject = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
-
-            Arrow arrow = arrowGameObject.GetComponent<Arrow>();
-            arrow.Launch(new Vector2(lookDirection, 0), arrowLaunchForce);
-            audioSource.PlayOneShot(AttackingAudioClip);
-
+            FireArrow();
             StartCoroutine(HandleShootDelayTimer());
         }
     }
@@ -90,20 +90,32 @@ public class SkeletonArcher : DamageableEnemy
 
         if (hit.collider != null)
         {
-            isAttacking = true;
+            isPlayerDetected = true;
             lookDirection = direction;
         }
     }
 
     private RaycastHit2D GetPlayerHit(float direction)
     {
-        return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, new Vector2(direction, 0.0f), detectionRange, playerLayer);
+        return Physics2D.BoxCast(transform.position, Vector2.one * 0.4f, 0.0f, new Vector2(direction, 0.0f), detectionRange, playerLayer);
+    }
+
+    private void FireArrow()
+    {
+        animator.SetTrigger("Is Attacking");
+
+        GameObject arrowGameObject = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+
+        Arrow arrow = arrowGameObject.GetComponent<Arrow>();
+        arrow.Launch(new Vector2(lookDirection, 0), arrowLaunchForce);
+        audioSource.PlayOneShot(AttackingAudioClip);
     }
 
     private IEnumerator HandleShootDelayTimer()
     {
+        isWaitingToShoot = true;
         yield return new WaitForSeconds(shootDelayTime);
-
+        isWaitingToShoot = false;
         canShoot = true;
     }
 

@@ -66,23 +66,6 @@ public class Player : MonoBehaviour
         HandleCombat();
     }
 
-    private void FixedUpdate()
-    {
-        if (PlayerInfo.instance.isBlessed)
-        {
-            HandleBlessedAttack();
-        }
-    }
-
-    private void HandleBlessedAttack()
-    {
-        RaycastHit2D hit = GetEnemyHit(1.0f);
-        DamageableEnemy enemy = hit.collider?.GetComponent<DamageableEnemy>();
-        if (enemy == null) return;
-
-        enemy.OnDeltDamage(5);
-    }
-
     private void GetUserInput()
     {
 
@@ -135,6 +118,7 @@ public class Player : MonoBehaviour
         isAttacking = true;
         canAttack = false;
         audioSource.PlayOneShot(attackAudioClip);
+        animator.SetTrigger("Attacking");
         RaycastHit2D hit = GetEnemyHit(attackRange);
         if (hit.collider != null && !isStaggered)
         {
@@ -168,7 +152,8 @@ public class Player : MonoBehaviour
 
     private RaycastHit2D GetEnemyHit(float distance)
     {
-        return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, enemyLayer);
+        //return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, enemyLayer);
+        return Physics2D.CircleCast(transform.position, distance, movement.lookDirection, distance, enemyLayer);
     }
 
     public void OnDeltDamage(int damage, bool overrideBlocking = false)
@@ -196,7 +181,6 @@ public class Player : MonoBehaviour
 
     private void AnimateMovement()
     {
-        animator.SetBool("Attacking", isAttacking && !isStaggered);
         animator.SetFloat("Speed", movement.rigidbody.velocity.sqrMagnitude);
         animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
         animator.SetFloat("Look X", movement.lookDirection.x);

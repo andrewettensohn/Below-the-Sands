@@ -23,9 +23,9 @@ public class EnemyCombatBehavior : EnemyBehavior
     public bool isAttacking { get; protected set; }
     public bool isInCombat { get; protected set; }
 
-    public bool canAttack { get; protected set; } = true;
+    public bool canAttack { get; protected set; }
     public bool canBlock { get; protected set; }
-    public bool canLeaveOpening { get; protected set; }
+    public bool canLeaveOpening { get; protected set; } = true;
 
     public float detectionSizeModifier = 0.75f;
 
@@ -42,19 +42,18 @@ public class EnemyCombatBehavior : EnemyBehavior
 
         isInCombat = true;
 
+        if (canLeaveOpening)
+        {
+            OnLeaveOpening();
+        }
+
         if (canAttack)
         {
             OnAttack(player);
         }
-
         else if (canBlock)
         {
             OnBlock();
-        }
-
-        if (canLeaveOpening)
-        {
-            OnLeaveOpening();
         }
     }
 
@@ -68,17 +67,6 @@ public class EnemyCombatBehavior : EnemyBehavior
         canAttack = false;
         isAttacking = true;
         enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
-
-        if (!isAttacking)
-        {
-            StartCoroutine(HandlePreAttackDelayTimer(player));
-        }
-
-        RaycastHit2D hit = GetPlayerHit(attackRange);
-        if (enemy.health > 0 && hit.collider != null && !enemy.isStaggered)
-        {
-            player.OnDeltDamage(1);
-        }
 
         StartCoroutine(HandlePostAttackDelayTimer(player));
     }
@@ -96,22 +84,17 @@ public class EnemyCombatBehavior : EnemyBehavior
         StartCoroutine(HandleLeaveOpeningTimer());
     }
 
-    protected virtual IEnumerator HandlePreAttackDelayTimer(Player player)
-    {
-        yield return new WaitForSeconds(leaveOpeningTime);
-
-        if (enemy.health > 0)
-        {
-            isAttacking = true;
-        }
-    }
-
     protected virtual IEnumerator HandlePostAttackDelayTimer(Player player)
     {
         yield return new WaitForSeconds(dealDamageDelay);
 
         if (enemy.health > 0)
         {
+            RaycastHit2D hit = GetPlayerHit(attackRange);
+            if (enemy.health > 0 && hit.collider != null && !enemy.isStaggered)
+            {
+                player.OnDeltDamage(1);
+            }
             enemy.isStaggered = false;
             isAttacking = false;
             canBlock = true;

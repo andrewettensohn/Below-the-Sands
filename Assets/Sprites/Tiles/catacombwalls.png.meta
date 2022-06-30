@@ -62085,12 +62085,12 @@ TextureImporter:
       catacombwalls_1286: 2128651624
       catacombwalls_463: -1871732243
       catacombwalls_589: -1929225332
-      catacombwalls_224: -694737607
       catacombwalls_861: -1898532843
-      catacombwalls_985: -187879574
       catacombwalls_1808: -1922820798
-      catacombwalls_1261: 875203125
+      catacombwalls_985: -187879574
       catacombwalls_1813: -1019941941
+      catacombwalls_1261: 875203125
+      catacombwalls_224: -694737607
       catacombwalls_731: 85711919
       catacombwalls_968: 707163216
       catacombwalls_1952: -62545609
@@ -62104,11 +62104,11 @@ TextureImporter:
       catacombwalls_878: 41210599
       catacombwalls_462: -1178879954
       catacombwalls_555: -1930073910
-      catacombwalls_1200: 1160559671
-      catacombwalls_185: -1150650902
-      catacombwalls_999: 131082557
       catacombwalls_1974: 1289425585
+      catacombwalls_185: -1150650902
       catacombwalls_2102: 1673777768
+      catacombwalls_999: 131082557
+      catacombwalls_1200: 1160559671
       catacombwalls_596: -1533293441
       catacombwalls_1847: 1727671979
       catacombwalls_1376: -1721850851
@@ -62121,22 +62121,22 @@ TextureImporter:
       catacombwalls_1632: 409232976
       catacombwalls_671: -1043943443
       catacombwalls_524: -1388663049
+      catacombwalls_2050: -1724406146
       catacombwalls_1512: -1302127096
       catacombwalls_1216: 794422891
-      catacombwalls_854: 592955153
       catacombwalls_1729: -1813443057
-      catacombwalls_2050: -1724406146
+      catacombwalls_854: 592955153
       catacombwalls_1800: 70688118
       catacombwalls_131: 1040907797
       catacombwalls_621: -1992607881
       catacombwalls_136: -681105012
-      catacombwalls_482: 663950373
-      catacombwalls_1867: -905517660
       catacombwalls_599: 29415321
+      catacombwalls_482: 663950373
       catacombwalls_639: 1108762945
       catacombwalls_1034: -124336970
-      catacombwalls_1060: 1770820182
+      catacombwalls_1867: -905517660
       catacombwalls_1743: -789437864
+      catacombwalls_1060: 1770820182
       catacombwalls_869: 1051700430
       catacombwalls_1162: 1995120096
       catacombwalls_1607: -607361867
@@ -62402,8 +62402,8 @@ TextureImporter:
       catacombwalls_977: -211162221
       catacombwalls_1878: 649900188
       catacombwalls_821: 1720145509
-      catacombwalls_1491: -1048304671
       catacombwalls_1745: 169348787
+      catacombwalls_1491: -1048304671
       catacombwalls_1820: -1251357692
       catacombwalls_66: 1702669484
       catacombwalls_343: -583719001
@@ -62488,15 +62488,15 @@ TextureImporter:
       catacombwalls_1673: -592429439
       catacombwalls_843: -1038579683
       catacombwalls_244: -85200365
-      catacombwalls_974: -908307179
+      catacombwalls_473: 1432520535
       catacombwalls_1329: -434296621
       catacombwalls_325: 2132730016
       catacombwalls_1664: -368144856
-      catacombwalls_473: 1432520535
       catacombwalls_2108: 1518521686
       catacombwalls_573: 9773180
       catacombwalls_1390: -1641746926
       catacombwalls_1596: 454652953
+      catacombwalls_974: -908307179
       catacombwalls_2101: -672807162
       catacombwalls_128: 919596682
       catacombwalls_1441: -427088930
@@ -62880,31 +62880,31 @@ TextureImporter:
       catacombwalls_1143: 1852777851
       catacombwalls_310: 140078641
       catacombwalls_1027: -909420740
+      catacombwalls_2025: 1887933127
       catacombwalls_1011: 904580021
-      catacombwalls_1723: 664564634
       catacombwalls_323: 1436993002
+      catacombwalls_1723: 664564634
       catacombwalls_397: -789626740
       catacombwalls_2061: -2067876494
       catacombwalls_1883: -247990913
       catacombwalls_1293: -776150906
       catacombwalls_474: 791816274
       catacombwalls_920: 891555883
-      catacombwalls_2025: 1887933127
       catacombwalls_950: 1556194664
-      catacombwalls_527: 371445820
-      catacombwalls_622: 1131212579
       catacombwalls_1103: 301884448
+      catacombwalls_527: 371445820
+      catacombwalls_2023: 1597113547
       catacombwalls_1394: -1793182057
       catacombwalls_1711: -656383271
       catacombwalls_535: -1558538209
       catacombwalls_191: -1738909243
       catacombwalls_1164: 348164099
-      catacombwalls_2023: 1597113547
       catacombwalls_1311: -1214694454
+      catacombwalls_622: 1131212579
       catacombwalls_486: -1416165609
       catacombwalls_1407: 1245840207
-      catacombwalls_1079: 2099239622
       catacombwalls_1739: 971138486
+      catacombwalls_1079: 2099239622
       catacombwalls_1082: -1534394786
       catacombwalls_274: -889199097
       catacombwalls_334: 387579880
@@ -62961,9 +62961,9 @@ TextureImporter:
       catacombwalls_1291: 392589145
       catacombwalls_1699: -1927548264
       catacombwalls_1997: 711359821
-      catacombwalls_709: -1337745527
-      catacombwalls_444: 1660732279
       catacombwalls_2121: 2009864045
+      catacombwalls_444: 1660732279
+      catacombwalls_709: -1337745527
       catacombwalls_1486: 1797674785
       catacombwalls_1569: -513418417
       catacombwalls_1704: 683142841
@@ -62982,8 +62982,8 @@ TextureImporter:
       catacombwalls_354: 689723947
       catacombwalls_1111: 1253658322
       catacombwalls_195: 881225941
-      catacombwalls_1720: 1316206070
       catacombwalls_2002: -33990510
+      catacombwalls_1720: 1316206070
       catacombwalls_804: 1706241133
       catacombwalls_1220: 113389217
       catacombwalls_1896: -814233539
@@ -63019,19 +63019,19 @@ TextureImporter:
       catacombwalls_122: 967562546
       catacombwalls_1891: -292803147
       catacombwalls_1093: 1603349613
+      catacombwalls_1933: 1572072213
       catacombwalls_1889: -542081218
       catacombwalls_1931: 1883533570
       catacombwalls_1191: -469312213
-      catacombwalls_1933: 1572072213
       catacombwalls_986: -846868284
       catacombwalls_445: -1461956241
       catacombwalls_1088: 1364548328
       catacombwalls_764: -997103647
       catacombwalls_1202: -1379402672
-      catacombwalls_1009: 2015908592
+      catacombwalls_1854: -619768205
       catacombwalls_1113: -1087354165
       catacombwalls_1192: -2070731556
-      catacombwalls_1854: -619768205
+      catacombwalls_1009: 2015908592
       catacombwalls_994: 41000670
       catacombwalls_1503: 1587267427
       catacombwalls_1335: 1158467120
@@ -63052,8 +63052,8 @@ TextureImporter:
       catacombwalls_7: 1826313842
       catacombwalls_957: 1169545578
       catacombwalls_458: 934278245
-      catacombwalls_749: -1576618632
       catacombwalls_1450: -765129263
+      catacombwalls_749: -1576618632
       catacombwalls_724: -1451413462
       catacombwalls_47: -338145657
       catacombwalls_1700: 1280954996
@@ -63077,10 +63077,10 @@ TextureImporter:
       catacombwalls_1680: 333707376
       catacombwalls_1241: 1047124363
       catacombwalls_1332: 1404720407
+      catacombwalls_1759: 763706397
       catacombwalls_812: 1093112284
       catacombwalls_520: 608582389
       catacombwalls_814: 81706761
-      catacombwalls_1759: 763706397
       catacombwalls_1885: -2064851367
       catacombwalls_1248: 244409628
       catacombwalls_1451: 1948195944
@@ -63095,29 +63095,29 @@ TextureImporter:
       catacombwalls_783: -1158710454
       catacombwalls_1446: 181441967
       catacombwalls_1259: 790539210
-      catacombwalls_870: -1113802982
+      catacombwalls_1605: 2072944350
       catacombwalls_1160: -1255586949
       catacombwalls_505: -1860108065
-      catacombwalls_1605: 2072944350
+      catacombwalls_870: -1113802982
       catacombwalls_600: -1446135204
       catacombwalls_333: 1928231730
       catacombwalls_319: 940817336
       catacombwalls_525: -1278613191
-      catacombwalls_919: 2114071238
-      catacombwalls_904: -1566613243
       catacombwalls_1445: -1332517169
+      catacombwalls_904: -1566613243
       catacombwalls_1790: -1750818220
+      catacombwalls_1685: 1850334793
       catacombwalls_105: -1212424211
       catacombwalls_13: 857253902
+      catacombwalls_919: 2114071238
       catacombwalls_1977: -586253508
-      catacombwalls_1685: 1850334793
       catacombwalls_581: -1278080630
       catacombwalls_1557: 1644017781
       catacombwalls_607: -905956601
       catacombwalls_1655: -2065705775
       catacombwalls_1440: 1879580716
-      catacombwalls_1041: -1736731531
       catacombwalls_1898: 1201350546
+      catacombwalls_1041: -1736731531
       catacombwalls_1993: 980102655
       catacombwalls_376: 681666584
       catacombwalls_470: -1536379180
@@ -63133,16 +63133,15 @@ TextureImporter:
       catacombwalls_1577: -968418206
       catacombwalls_129: -1966466365
       catacombwalls_553: 891234855
-      catacombwalls_964: -143931522
+      catacombwalls_1544: -1044040142
       catacombwalls_584: 2106685022
       catacombwalls_106: 483955489
-      catacombwalls_1656: 1198811262
+      catacombwalls_964: -143931522
       catacombwalls_769: -389725627
-      catacombwalls_1223: 192953950
       catacombwalls_1858: 735188324
-      catacombwalls_1544: -1044040142
+      catacombwalls_1656: 1198811262
       catacombwalls_303: -1711609607
-      catacombwalls_1237: 287174326
+      catacombwalls_1223: 192953950
       catacombwalls_401: -666256668
       catacombwalls_1576: -1045830632
       catacombwalls_235: 980960057
@@ -63150,18 +63149,18 @@ TextureImporter:
       catacombwalls_1725: 149458666
       catacombwalls_1366: -421366885
       catacombwalls_86: 1285345554
-      catacombwalls_1462: -19084781
       catacombwalls_1906: 1089631459
       catacombwalls_1772: -645473638
       catacombwalls_633: 1538454325
       catacombwalls_2117: -45185480
       catacombwalls_1468: 778390671
+      catacombwalls_1462: -19084781
       catacombwalls_1669: 1044867556
       catacombwalls_1146: 1095751124
       catacombwalls_1461: -1579159645
       catacombwalls_698: -50045030
       catacombwalls_1865: 73619510
-      catacombwalls_1558: -192783318
+      catacombwalls_1237: 287174326
       catacombwalls_1621: 536383463
       catacombwalls_1382: -1805198421
       catacombwalls_1731: 1465558062
@@ -63170,6 +63169,7 @@ TextureImporter:
       catacombwalls_1829: -1255048744
       catacombwalls_1616: 502012584
       catacombwalls_893: -952570804
+      catacombwalls_1558: -192783318
       catacombwalls_2015: 196270396
       catacombwalls_60: -791356857
       catacombwalls_446: 997780692
@@ -63198,12 +63198,12 @@ TextureImporter:
       catacombwalls_1342: 1808625882
       catacombwalls_2082: 1200930459
       catacombwalls_744: 382570716
-      catacombwalls_1638: -1415506563
       catacombwalls_2068: 1054409207
       catacombwalls_456: 1796919599
       catacombwalls_1622: -623838276
       catacombwalls_1114: 1659164420
       catacombwalls_1689: -834131248
+      catacombwalls_1638: -1415506563
       catacombwalls_937: -1626640619
       catacombwalls_1872: -643595701
       catacombwalls_45: -1702006733

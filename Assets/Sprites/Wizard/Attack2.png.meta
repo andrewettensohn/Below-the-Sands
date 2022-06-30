@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -303,7 +303,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack2_14: -591754813
       Attack2_19: 1394104805
       Attack2_5: -1336417620
       Attack2_15: 774875125
@@ -322,6 +321,7 @@ TextureImporter:
       Attack2_17: -260148049
       Attack2_2: -394118176
       Attack2_7: 132712623
+      Attack2_14: -591754813
       Attack2_1: 1309800472
       Attack2_3: -131869200
       Attack2_0: -1612913008

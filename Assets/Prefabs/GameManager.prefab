@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abae1481615e0bb4f860a37bd602b58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenuTrack: {fileID: 8300000, guid: f09d17f1129a44644966a1f8df093b0a, type: 3}
+  MainMenuTrack: {fileID: 8300000, guid: a6665da79891a5c4eb646250aaff57be, type: 3}
   FirstLayerTrack: {fileID: 8300000, guid: a4a3d79abc68fd64a86e7a2f7f111f09, type: 3}
   SecondLayerTrack: {fileID: 8300000, guid: dff80ae8313a969449533d3269959779, type: 3}
   ThirdLayerTrack: {fileID: 8300000, guid: 292aa2e3d6c60b647a406b313645a351, type: 3}

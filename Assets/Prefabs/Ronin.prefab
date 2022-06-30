@@ -4834,8 +4834,8 @@ GameObject:
   - component: {fileID: 906428597906432331}
   - component: {fileID: 7740456981030056742}
   - component: {fileID: 676081939463089699}
-  - component: {fileID: 6300872318306135629}
   - component: {fileID: 4298113461820853857}
+  - component: {fileID: 1326805188}
   m_Layer: 6
   m_Name: Ronin
   m_TagString: Untagged
@@ -4923,8 +4923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecee4a04a560284e9b2322ef9b6c0c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelay: 1
-  attackRange: 1
+  attackDelay: 0.65
+  attackRange: 0.7
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -4952,7 +4952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5.5
   fallingMultiplier: 1.5
-  jumpVelocity: 7
+  jumpVelocity: 8
   lookDirection: {x: 1, y: 0}
   obstacleLayer:
     serializedVersion: 2
@@ -5001,22 +5001,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &6300872318306135629
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7740456981030056762}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.008722067, y: 0.103997566}
-  serializedVersion: 2
-  m_Radius: 0.38180774
 --- !u!82 &4298113461820853857
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5113,3 +5097,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!70 &1326805188
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7740456981030056762}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.03107605, y: -0.012984944}
+  m_Size: {x: 0.377771, y: 0.49935362}
+  m_Direction: 0

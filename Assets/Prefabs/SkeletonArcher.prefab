@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8691850715657894951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.56, y: -1.025, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -304824095, guid: 3d98cbb431f11cf45b5554fcfc195b16, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 106369c480765e34bbfaed1f0258c5c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,9 +123,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0029586405, y: 0.022556439}
+  m_Offset: {x: -0.0077134967, y: -0.0011903942}
   serializedVersion: 2
-  m_Radius: 0.23123442
+  m_Radius: 0.16466644
 --- !u!114 &4915697934130904296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   detectionRange: 20
-  shootDelayTime: 2.3
-  arrowLaunchForce: 1500
+  shootDelayTime: 1.2
+  arrowLaunchForce: 2000
   arrowPrefab: {fileID: 4355225305427646132, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
   playerLayer:
     serializedVersion: 2
