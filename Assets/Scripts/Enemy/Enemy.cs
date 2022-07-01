@@ -12,7 +12,7 @@ public class Enemy : DamageableEnemy
     public EnemyChaseBehavior chase { get; private set; }
     public EnemySentryBehavior sentry { get; private set; }
     public EnemyCombatBehavior combatBehavior { get; private set; }
-    public new CircleCollider2D collider { get; private set; }
+    public EnemyWaypointBehavior enemyWaypointBehavior { get; private set; }
     public AudioClip DeathAudioClip;
     public AudioClip AttackingAudioClip;
     public AudioClip HitAudioClip;
@@ -27,9 +27,7 @@ public class Enemy : DamageableEnemy
 
     private void Start()
     {
-        sentry.isBehaviorEnabled = true;
-        chase.isBehaviorEnabled = false;
-        combatBehavior.isBehaviorEnabled = true;
+        SetDefaultBehaviors();
 
         GameObject targetGameObject = GameObject.Find("Ronin");
         if (targetGameObject != null)
@@ -40,18 +38,38 @@ public class Enemy : DamageableEnemy
 
     private void Awake()
     {
-        collider = GetComponent<CircleCollider2D>();
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
         chase = GetComponent<EnemyChaseBehavior>();
         sentry = GetComponent<EnemySentryBehavior>();
         combatBehavior = GetComponent<EnemyCombatBehavior>();
+        enemyWaypointBehavior = GetComponent<EnemyWaypointBehavior>();
         audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        if (playerDetected)
+
+        HandleBehaviors();
+        Animate();
+    }
+
+    public void SetDefaultBehaviors()
+    {
+        sentry.isBehaviorEnabled = true;
+        chase.isBehaviorEnabled = false;
+        combatBehavior.isBehaviorEnabled = true;
+    }
+
+    protected void HandleBehaviors()
+    {
+        if (enemyWaypointBehavior?.isBehaviorEnabled == true)
+        {
+            chase.isBehaviorEnabled = false;
+            combatBehavior.isBehaviorEnabled = false;
+            sentry.isBehaviorEnabled = false;
+        }
+        else if (playerDetected)
         {
             combatBehavior.HandleCombat();
             chase.isBehaviorEnabled = true;
@@ -61,13 +79,10 @@ public class Enemy : DamageableEnemy
             chase.isBehaviorEnabled = false;
             movement.SetDirection(Vector2.zero);
         }
-
-        Animate();
     }
 
-    private void OnDeath()
+    protected void OnDeath()
     {
-        collider.isTrigger = true;
         movement.rigidbody.gravityScale = 0;
         Invoke(nameof(OnDisable), 1.3f);
 

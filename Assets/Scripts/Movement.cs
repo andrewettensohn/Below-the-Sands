@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour
         HandleMovement();
     }
 
-    private void HandleMovement()
+    public void HandleMovement()
     {
 
         RaycastHit2D groundHit = Physics2D.Raycast(transform.position, Vector2.down, 0.735f, obstacleLayer);

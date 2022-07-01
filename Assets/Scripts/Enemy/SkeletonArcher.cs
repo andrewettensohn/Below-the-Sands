@@ -16,10 +16,12 @@ public class SkeletonArcher : DamageableEnemy
     [Range(300, 5000)]
     public int arrowLaunchForce;
 
+    public bool freeFire;
+
     public GameObject arrowPrefab;
 
     public new CircleCollider2D collider { get; private set; }
-    public float lookDirection { get; private set; }
+    public float lookDirection;
     public LayerMask playerLayer;
     public AudioClip DeathAudioClip;
     public AudioClip AttackingAudioClip;
@@ -44,6 +46,11 @@ public class SkeletonArcher : DamageableEnemy
     {
         animator.SetFloat("Look X", lookDirection);
 
+        if (freeFire)
+        {
+            isPlayerDetected = true;
+        }
+
         if (isPlayerDetected && health > 0)
         {
             HandleCombat();
@@ -64,7 +71,7 @@ public class SkeletonArcher : DamageableEnemy
     {
         RaycastHit2D hit = GetPlayerHit(lookDirection);
 
-        if (hit.collider == null)
+        if (hit.collider == null && !freeFire)
         {
             isPlayerDetected = false;
             hasDelayedShot = false;

@@ -26,9 +26,7 @@ public class Player : MonoBehaviour
     private bool isAttacking;
     private bool canAttack = true;
     private Animator animator;
-
     private AudioSource audioSource;
-
     private bool isStaggered;
 
     private void Awake()
@@ -54,7 +52,7 @@ public class Player : MonoBehaviour
     {
         if (GameManager.instance.isGamePaused) return;
 
-        if (GameManager.instance.isPlayerControlRestricted)
+        if (GameManager.instance.isPlayerControlRestricted || (isAttacking && movement.isGrounded))
         {
             movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
             AnimateMovement();
@@ -117,8 +115,10 @@ public class Player : MonoBehaviour
 
         isAttacking = true;
         canAttack = false;
+
         audioSource.PlayOneShot(attackAudioClip);
         animator.SetTrigger("Attacking");
+
         RaycastHit2D hit = GetEnemyHit(attackRange);
         if (hit.collider != null && !isStaggered)
         {

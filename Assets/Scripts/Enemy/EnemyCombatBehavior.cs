@@ -57,6 +57,7 @@ public class EnemyCombatBehavior : EnemyBehavior
         }
     }
 
+
     protected virtual RaycastHit2D GetPlayerHit(float distance)
     {
         return Physics2D.BoxCast(transform.position, Vector2.one * detectionSizeModifier, 0.0f, enemy.movement.lookDirection, distance, enemy.playerLayer);
