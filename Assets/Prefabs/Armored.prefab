@@ -160,6 +160,7 @@ MonoBehaviour:
   canBeStaggered: 1
   playerDetected: 0
   audioSource: {fileID: 0}
+  scoreValue: 1000
 --- !u!114 &5475355408251122625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +200,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 131072
   WaypointDetectionDistance: 100
+  isWaypointFound: 0
 --- !u!114 &8206952045015469774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +217,7 @@ MonoBehaviour:
   dealDamageDelay: 0.6
   attackRange: 0.8
   blockTime: 0
-  leaveOpeningTime: 2.5
+  leaveOpeningTime: 1
   willBlock: 0
   detectionSizeModifier: 3
 --- !u!114 &5886285886026939121

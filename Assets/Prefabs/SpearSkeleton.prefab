@@ -159,6 +159,7 @@ MonoBehaviour:
   canBeStaggered: 0
   playerDetected: 0
   audioSource: {fileID: 0}
+  scoreValue: 100
 --- !u!114 &5426661131028268269
 MonoBehaviour:
   m_ObjectHideFlags: 0

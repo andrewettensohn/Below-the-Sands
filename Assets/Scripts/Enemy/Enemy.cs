@@ -23,6 +23,7 @@ public class Enemy : DamageableEnemy
     public bool canBeStaggered;
     public bool playerDetected;
     public AudioSource audioSource;
+    public int scoreValue;
     protected Animator animator;
 
     private void Start()
@@ -85,6 +86,7 @@ public class Enemy : DamageableEnemy
     {
         movement.rigidbody.gravityScale = 0;
         Invoke(nameof(OnDisable), 1.3f);
+        GameManager.instance.UpdateScore(scoreValue);
 
         if (gameObject.name == "Demon")
         {

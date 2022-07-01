@@ -7,13 +7,26 @@ public class FallbackNode : MonoBehaviour
     public LayerMask EnemyLayer;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Entered");
+        CheckIfWaypointBehaviorShouldEnd(collision);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        CheckIfWaypointBehaviorShouldEnd(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        CheckIfWaypointBehaviorShouldEnd(collision);
+    }
+
+    private void CheckIfWaypointBehaviorShouldEnd(Collider2D collision)
+    {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
             if (enemy.enemyWaypointBehavior != null)
             {
-                Debug.Log("Changing");
                 enemy.enemyWaypointBehavior.isBehaviorEnabled = false;
                 enemy.enemyWaypointBehavior.isWaypointFound = false;
                 enemy.SetDefaultBehaviors();

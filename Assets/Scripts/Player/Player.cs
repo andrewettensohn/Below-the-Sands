@@ -109,7 +109,6 @@ public class Player : MonoBehaviour
 
     private void HandleCombat()
     {
-        playerUI.ResetBlockIcons();
 
         if (!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) return;
 
@@ -124,6 +123,7 @@ public class Player : MonoBehaviour
         {
             int damageToDeal = PlayerInfo.instance.isTwoHandSwordEquipped ? 3 : 1;
             DamageableEnemy enemy = hit.collider.GetComponent<DamageableEnemy>();
+
             enemy.OnDeltDamage(damageToDeal);
         }
         StartCoroutine(HandleAttackDelayTimer());
@@ -191,18 +191,6 @@ public class Player : MonoBehaviour
     {
         PlayerInfo.instance.healthPotionCount += 1;
         playerUI.SyncHealthPotCount();
-    }
-
-    public void OnRelicPickedUp()
-    {
-        PlayerInfo.instance.relicCount += 1;
-        playerUI.SyncRelicCount();
-    }
-
-    public void OnPrayerPickedUp()
-    {
-        PlayerInfo.instance.prayerCount += 1;
-        playerUI.SyncPrayerCount();
     }
 
     public void OnDisable()
