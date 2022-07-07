@@ -40,6 +40,7 @@ public class EnemyCombatBehavior : EnemyBehavior
         }
 
         isInCombat = true;
+        enemy.navMeshAgent.isStopped = true;
 
         if (canLeaveOpening)
         {

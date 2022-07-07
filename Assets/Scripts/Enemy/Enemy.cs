@@ -58,8 +58,15 @@ public class Enemy : DamageableEnemy
 
     private void Update()
     {
+        DetermineLookDirection();
+        HandleBehaviors();
+        Animate();
+    }
+
+    private void DetermineLookDirection()
+    {
         lookDirection = navMeshAgent.desiredVelocity;
-        if (lookDirection.x > 0)
+        if (lookDirection.x > 0 && health > 0)
         {
             transform.rotation = Quaternion.identity;
         }
@@ -67,9 +74,6 @@ public class Enemy : DamageableEnemy
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-
-        HandleBehaviors();
-        Animate();
     }
 
     public void SetDefaultBehaviors()
@@ -81,6 +85,13 @@ public class Enemy : DamageableEnemy
 
     protected void HandleBehaviors()
     {
+        if (health <= 0)
+        {
+            chase.isBehaviorEnabled = false;
+            combatBehavior.isBehaviorEnabled = false;
+            return;
+        }
+
         if (enemyWaypointBehavior?.isBehaviorEnabled == true)
         {
             chase.isBehaviorEnabled = false;
@@ -95,12 +106,17 @@ public class Enemy : DamageableEnemy
         else
         {
             chase.isBehaviorEnabled = false;
+            navMeshAgent.isStopped = true;
         }
     }
 
     protected void OnDeath()
     {
+        animator.SetTrigger("Die");
+
         navMeshAgent.isStopped = true;
+        navMeshAgent.velocity = Vector3.zero;
+
         Invoke(nameof(OnDisable), 1.3f);
         GameManager.instance.UpdateScore(scoreValue);
 
@@ -113,12 +129,6 @@ public class Enemy : DamageableEnemy
 
     private void Animate()
     {
-        if (health <= 0)
-        {
-            animator.SetTrigger("Die");
-            return;
-        }
-
         animator.SetBool("Attacking", combatBehavior.isAttacking && !isStaggered);
         animator.SetBool("Block", combatBehavior.isBlocking);
 
@@ -160,6 +170,5 @@ public class Enemy : DamageableEnemy
     {
         if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, combatBehavior.attackRange);
-        //Gizmos.DrawCube(transform.position, new Vector2(10.0f, 4.0f));
     }
 }

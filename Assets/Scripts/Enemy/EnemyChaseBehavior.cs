@@ -9,6 +9,7 @@ public class EnemyChaseBehavior : EnemyBehavior
     private void Update()
     {
         if (!isBehaviorEnabled) return;
+        enemy.navMeshAgent.isStopped = false;
         // if (canJump)
         // {
         //     enemy.navMeshAgent.SetDestination(enemy.target.position);
