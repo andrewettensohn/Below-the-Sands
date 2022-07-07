@@ -2,33 +2,41 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : DamageableEnemy
 {
     [Range(1, 50)]
     public float health;
 
-    public Movement movement { get; private set; }
+    public float speed;
+
     public EnemyChaseBehavior chase { get; private set; }
     public EnemySentryBehavior sentry { get; private set; }
     public EnemyCombatBehavior combatBehavior { get; private set; }
     public EnemyWaypointBehavior enemyWaypointBehavior { get; private set; }
+    public Transform attackPoint;
     public AudioClip DeathAudioClip;
     public AudioClip AttackingAudioClip;
     public AudioClip HitAudioClip;
     public AudioClip BlockAudioClip;
     public LayerMask playerLayer;
-    public Transform target;
+    public Transform target { get; private set; }
     public bool isStaggered;
     public bool canBeStaggered;
     public bool playerDetected;
     public AudioSource audioSource;
     public int scoreValue;
     protected Animator animator;
+    public NavMeshAgent navMeshAgent { get; private set; }
+    public Vector2 lookDirection;
 
     private void Start()
     {
         SetDefaultBehaviors();
+
+        navMeshAgent.stoppingDistance = combatBehavior.attackRange;
+        navMeshAgent.speed = speed;
 
         GameObject targetGameObject = GameObject.Find("Ronin");
         if (targetGameObject != null)
@@ -39,7 +47,7 @@ public class Enemy : DamageableEnemy
 
     private void Awake()
     {
-        movement = GetComponent<Movement>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         chase = GetComponent<EnemyChaseBehavior>();
         sentry = GetComponent<EnemySentryBehavior>();
@@ -50,6 +58,15 @@ public class Enemy : DamageableEnemy
 
     private void Update()
     {
+        lookDirection = navMeshAgent.desiredVelocity;
+        if (lookDirection.x > 0)
+        {
+            transform.rotation = Quaternion.identity;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
 
         HandleBehaviors();
         Animate();
@@ -59,7 +76,7 @@ public class Enemy : DamageableEnemy
     {
         sentry.isBehaviorEnabled = true;
         chase.isBehaviorEnabled = false;
-        combatBehavior.isBehaviorEnabled = true;
+        combatBehavior.isBehaviorEnabled = false;
     }
 
     protected void HandleBehaviors()
@@ -78,13 +95,12 @@ public class Enemy : DamageableEnemy
         else
         {
             chase.isBehaviorEnabled = false;
-            movement.SetDirection(Vector2.zero);
         }
     }
 
     protected void OnDeath()
     {
-        movement.rigidbody.gravityScale = 0;
+        navMeshAgent.isStopped = true;
         Invoke(nameof(OnDisable), 1.3f);
         GameManager.instance.UpdateScore(scoreValue);
 
@@ -106,9 +122,9 @@ public class Enemy : DamageableEnemy
         animator.SetBool("Attacking", combatBehavior.isAttacking && !isStaggered);
         animator.SetBool("Block", combatBehavior.isBlocking);
 
-        animator.SetFloat("Speed", movement.rigidbody.velocity.sqrMagnitude);
-        animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
-        animator.SetFloat("Look X", movement.lookDirection.x);
+        animator.SetFloat("Speed", navMeshAgent.velocity.sqrMagnitude);
+        animator.SetFloat("Move Y", navMeshAgent.velocity.y);
+        animator.SetFloat("Look X", 1);
     }
 
     public override void OnDeltDamage(float damage)
@@ -138,5 +154,12 @@ public class Enemy : DamageableEnemy
     public void OnDisable()
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+        Gizmos.DrawWireSphere(attackPoint.position, combatBehavior.attackRange);
+        //Gizmos.DrawCube(transform.position, new Vector2(10.0f, 4.0f));
     }
 }

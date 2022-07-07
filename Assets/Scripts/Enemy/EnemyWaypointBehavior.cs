@@ -20,7 +20,7 @@ public class EnemyWaypointBehavior : EnemyBehavior
         }
         else
         {
-            enemy.movement.SetDirection(new Vector2(xDirection, 0f));
+            //enemy.SetDirection(new Vector2(xDirection, 0f));
         }
     }
 

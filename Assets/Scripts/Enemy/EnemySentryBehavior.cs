@@ -10,12 +10,12 @@ public class EnemySentryBehavior : EnemyBehavior
     {
         if (isBehaviorEnabled == false) return;
 
-        enemy.playerDetected = IsPlayerDetected(enemy.movement.lookDirection) || IsPlayerDetected(-enemy.movement.lookDirection);
+        enemy.playerDetected = IsPlayerDetected(enemy.lookDirection) || IsPlayerDetected(-enemy.lookDirection);
     }
 
     private bool IsPlayerDetected(Vector2 direction)
     {
-        RaycastHit2D playerHit = Physics2D.CircleCast(transform.position, 10.0f, enemy.movement.lookDirection, 1.0f, enemy.playerLayer);
+        RaycastHit2D playerHit = Physics2D.CircleCast(transform.position, 7.0f, enemy.lookDirection, 1.0f, enemy.playerLayer);
 
         return playerHit.collider != null;
     }

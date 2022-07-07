@@ -1,63 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Obsolete("Uses old framework. Use as reference only.")]
 public class EnemyEyeCombatBehavior : EnemyCombatBehavior
 {
 
-    private EnemyEye enemyEye;
+    // private EnemyEye enemyEye;
 
-    private void Awake()
-    {
-        enemyEye = GetComponent<EnemyEye>();
-    }
+    // private void Awake()
+    // {
+    //     enemyEye = GetComponent<EnemyEye>();
+    // }
 
-    public override void HandleCombat()
-    {
-        RaycastHit2D hit = GetPlayerHit(attackRange);
-        Player player = hit.collider?.GetComponent<Player>();
+    // public override void HandleCombat()
+    // {
+    //     RaycastHit2D hit = GetPlayerHit(attackRange);
+    //     Player player = hit.collider?.GetComponent<Player>();
 
-        if (hit.collider == null)
-        {
-            isInCombat = false;
-            return;
-        }
+    //     if (hit.collider == null)
+    //     {
+    //         isInCombat = false;
+    //         return;
+    //     }
 
-        isInCombat = true;
+    //     isInCombat = true;
 
-        if (canAttack)
-        {
-            OnAttack(player);
-        }
+    //     if (canAttack)
+    //     {
+    //         OnAttack(player);
+    //     }
 
-        else if (canBlock)
-        {
-            OnBlock();
-        }
+    //     else if (canBlock)
+    //     {
+    //         OnBlock();
+    //     }
 
-        if (canLeaveOpening)
-        {
-            OnLeaveOpening();
-        }
-    }
+    //     if (canLeaveOpening)
+    //     {
+    //         OnLeaveOpening();
+    //     }
+    // }
 
-    protected override RaycastHit2D GetPlayerHit(float distance)
-    {
-        return Physics2D.CircleCast(transform.position, attackRange, enemyEye.aiPath.desiredVelocity, distance, enemyEye.playerLayer);
-    }
+    // protected override RaycastHit2D GetPlayerHit(float distance)
+    // {
+    //     return Physics2D.CircleCast(transform.position, attackRange, enemyEye.aiPath.desiredVelocity, distance, enemyEye.playerLayer);
+    // }
 
-    protected override IEnumerator HandlePostAttackDelayTimer(Player player)
-    {
-        yield return new WaitForSeconds(dealDamageDelay);
+    // protected override IEnumerator HandlePostAttackDelayTimer(Player player)
+    // {
+    //     yield return new WaitForSeconds(dealDamageDelay);
 
-        enemyEye.audioSource.PlayOneShot(enemyEye.AttackingAudioClip);
-        RaycastHit2D hit = GetPlayerHit(attackRange);
-        if (enemyEye.health > 0 && hit.collider != null && !enemyEye.isStaggered)
-        {
-            player.OnDeltDamage(1);
-        }
+    //     enemyEye.audioSource.PlayOneShot(enemyEye.AttackingAudioClip);
+    //     RaycastHit2D hit = GetPlayerHit(attackRange);
+    //     if (enemyEye.health > 0 && hit.collider != null && !enemyEye.isStaggered)
+    //     {
+    //         player.OnDeltDamage(1);
+    //     }
 
-        isAttacking = false;
-        canBlock = true;
-    }
+    //     isAttacking = false;
+    //     canBlock = true;
+    // }
 }

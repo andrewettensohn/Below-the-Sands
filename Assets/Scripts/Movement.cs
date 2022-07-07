@@ -57,6 +57,15 @@ public class Movement : MonoBehaviour
             lookDirection.Normalize();
         }
 
+        if (lookDirection.x > 0)
+        {
+            transform.rotation = Quaternion.identity;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+
         if (!canMove) return;
 
         // If the object is falling

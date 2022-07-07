@@ -17,6 +17,7 @@ public class Armored : Enemy
         }
         else
         {
+            audioSource.PlayOneShot(DeathAudioClip);
             animator.SetTrigger("Hit");
             isStaggered = canBeStaggered;
             enemyWaypointBehavior.isBehaviorEnabled = true;

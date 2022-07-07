@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             instance = this;
             HandleMusic("MainMenu");
-            PlayerInfo.instance.healthPotionCount = 1;
         }
         else if (instance != this)
         {

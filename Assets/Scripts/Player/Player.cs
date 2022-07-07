@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [Range(0.1f, 1.5f)]
     public float attackRange;
 
+    public Transform attackPoint;
+    public bool isGodModeEnabled;
+
     public LayerMask enemyLayer;
     public LayerMask npcLayer;
     public LayerMask transportTriggerLayer;
@@ -115,17 +118,23 @@ public class Player : MonoBehaviour
         isAttacking = true;
         canAttack = false;
 
-        audioSource.PlayOneShot(attackAudioClip);
         animator.SetTrigger("Attacking");
+        audioSource.PlayOneShot(attackAudioClip);
 
-        RaycastHit2D hit = GetEnemyHit(attackRange);
-        if (hit.collider != null && !isStaggered)
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
+        foreach (Collider2D hit in hitEnemies)
         {
-            int damageToDeal = PlayerInfo.instance.isTwoHandSwordEquipped ? 3 : 1;
-            DamageableEnemy enemy = hit.collider.GetComponent<DamageableEnemy>();
+            if (hit != null)
+            {
+                Debug.Log("Damage!");
+                int damageToDeal = 1;
+                DamageableEnemy enemy = hit.GetComponent<DamageableEnemy>();
 
-            enemy.OnDeltDamage(damageToDeal);
+                enemy.OnDeltDamage(damageToDeal);
+            }
         }
+
         StartCoroutine(HandleAttackDelayTimer());
     }
 
@@ -152,8 +161,15 @@ public class Player : MonoBehaviour
 
     private RaycastHit2D GetEnemyHit(float distance)
     {
-        //return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, enemyLayer);
-        return Physics2D.CircleCast(transform.position, distance, movement.lookDirection, distance, enemyLayer);
+        return Physics2D.BoxCast(transform.position, Vector2.one * 2f, 0.0f, movement.lookDirection, distance, enemyLayer);
+        //return Physics2D.CircleCast(transform.position, distance, movement.lookDirection, distance, enemyLayer);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
     public void OnDeltDamage(int damage, bool overrideBlocking = false)
@@ -161,6 +177,13 @@ public class Player : MonoBehaviour
         damage = Mathf.Abs(damage);
 
         if (damage <= 0) return;
+
+        if (isGodModeEnabled)
+        {
+            animator.SetTrigger("Hit");
+            isStaggered = true;
+            return;
+        }
 
         PlayerInfo.instance.health -= damage;
         playerUI.ChangeHealthHearts(damage, false);
@@ -183,7 +206,8 @@ public class Player : MonoBehaviour
     {
         animator.SetFloat("Speed", movement.rigidbody.velocity.sqrMagnitude);
         animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
-        animator.SetFloat("Look X", movement.lookDirection.x);
+        //animator.SetFloat("Look X", movement.lookDirection.x);
+        animator.SetFloat("Look X", 1f);
         animator.SetBool("Is Grounded", movement.isGrounded);
     }
 

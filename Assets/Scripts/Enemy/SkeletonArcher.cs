@@ -20,7 +20,7 @@ public class SkeletonArcher : DamageableEnemy
 
     public GameObject arrowPrefab;
 
-    public new CircleCollider2D collider { get; private set; }
+    public new CapsuleCollider2D collider { get; private set; }
     public float lookDirection;
     public LayerMask playerLayer;
     public AudioClip DeathAudioClip;
@@ -36,7 +36,7 @@ public class SkeletonArcher : DamageableEnemy
 
     private void Awake()
     {
-        collider = GetComponent<CircleCollider2D>();
+        collider = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
@@ -129,6 +129,7 @@ public class SkeletonArcher : DamageableEnemy
     public override void OnDeltDamage(float damage)
     {
         damage = Mathf.Abs(damage);
+        Debug.Log("Hit Skeleton");
 
         health -= damage;
 
@@ -137,8 +138,6 @@ public class SkeletonArcher : DamageableEnemy
             isDying = true;
             animator.SetTrigger("Die");
             audioSource.PlayOneShot(DeathAudioClip);
-            collider.isTrigger = true;
-            rigidbody.gravityScale = 0;
             Invoke(nameof(OnDisable), 1.3f);
         }
     }
