@@ -7,12 +7,14 @@ public class EnemyWaypointBehavior : EnemyBehavior
     public LayerMask WaypointLayer;
     public float WaypointDetectionDistance;
     public bool isWaypointFound;
-    private float xDirection;
+    private Vector3 waypointPos;
 
     // Update is called once per frame
     private void FixedUpdate()
     {
         if (isBehaviorEnabled == false) return;
+
+        enemy.navMeshAgent.stoppingDistance = 0;
 
         if (!isWaypointFound)
         {
@@ -20,8 +22,16 @@ public class EnemyWaypointBehavior : EnemyBehavior
         }
         else
         {
-            //enemy.SetDirection(new Vector2(xDirection, 0f));
+            enemy.navMeshAgent.SetDestination(waypointPos);
         }
+    }
+
+    public void BehaviorStop()
+    {
+        enemy.enemyWaypointBehavior.isBehaviorEnabled = false;
+        enemy.enemyWaypointBehavior.isWaypointFound = false;
+        enemy.navMeshAgent.stoppingDistance = enemy.combatBehavior.attackRange;
+        enemy.navMeshAgent.SetDestination(enemy.target.position);
     }
 
     private void FindWaypoint()
@@ -31,7 +41,7 @@ public class EnemyWaypointBehavior : EnemyBehavior
 
         if (waypointHit.collider != null)
         {
-            xDirection = waypointHit.collider.GetComponent<Transform>().position.x > 0 ? 1 : -1;
+            waypointPos = waypointHit.collider.GetComponent<Transform>().position;
             isWaypointFound = true;
         }
     }

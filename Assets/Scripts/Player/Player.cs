@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Player : MonoBehaviour
 {
-    [Range(0.0f, 1.0f)]
+    [Range(0.0f, 5.0f)]
     public float attackDelay;
 
     [Range(0.1f, 1.5f)]
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private AudioSource audioSource;
     private bool isStaggered;
+    SpriteRenderer rendererSprite;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         playerUI = PlayerUICanvas.GetComponent<PlayerUI>();
+        rendererSprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
         if (GameManager.instance.isPlayerControlRestricted || (isAttacking && movement.isGrounded))
         {
             movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
+            //AnimateAttack();
             AnimateMovement();
             return;
         }
@@ -118,7 +121,7 @@ public class Player : MonoBehaviour
         isAttacking = true;
         canAttack = false;
 
-        animator.SetTrigger("Attacking");
+        animator.SetTrigger("Attack");
         audioSource.PlayOneShot(attackAudioClip);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
@@ -127,7 +130,6 @@ public class Player : MonoBehaviour
         {
             if (hit != null)
             {
-                Debug.Log("Damage!");
                 int damageToDeal = 1;
                 DamageableEnemy enemy = hit.GetComponent<DamageableEnemy>();
 
@@ -147,6 +149,7 @@ public class Player : MonoBehaviour
             isAttacking = false;
             isStaggered = false;
             canAttack = true;
+            animator.ResetTrigger("Attack");
         }
     }
 
@@ -157,12 +160,6 @@ public class Player : MonoBehaviour
 
         playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
         playerUI.SyncHealthPotCount();
-    }
-
-    private RaycastHit2D GetEnemyHit(float distance)
-    {
-        return Physics2D.BoxCast(transform.position, Vector2.one * 2f, 0.0f, movement.lookDirection, distance, enemyLayer);
-        //return Physics2D.CircleCast(transform.position, distance, movement.lookDirection, distance, enemyLayer);
     }
 
     private void OnDrawGizmosSelected()
@@ -206,9 +203,14 @@ public class Player : MonoBehaviour
     {
         animator.SetFloat("Speed", movement.rigidbody.velocity.sqrMagnitude);
         animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
-        //animator.SetFloat("Look X", movement.lookDirection.x);
         animator.SetFloat("Look X", 1f);
         animator.SetBool("Is Grounded", movement.isGrounded);
+    }
+
+    private void AnimateAttack()
+    {
+        animator.SetFloat("Speed", 0);
+        animator.SetFloat("Move Y", 0);
     }
 
     public void OnHealthPotionPickedUp()

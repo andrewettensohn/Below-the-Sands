@@ -28,6 +28,8 @@ public class FireFloorTrap : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collider)
     {
+        if (playerGameObject == null) return;
+
         bool shouldDealDamage = DamageSprites.Any(x => x.name == spriteRenderer.sprite.name);
 
         if (shouldDealDamage && !hasDeltDamage)

@@ -37,6 +37,8 @@ public class Enemy : DamageableEnemy
 
         navMeshAgent.stoppingDistance = combatBehavior.attackRange;
         navMeshAgent.speed = speed;
+        navMeshAgent.updateRotation = false;
+        navMeshAgent.updateUpAxis = false;
 
         GameObject targetGameObject = GameObject.Find("Ronin");
         if (targetGameObject != null)
@@ -65,15 +67,29 @@ public class Enemy : DamageableEnemy
 
     private void DetermineLookDirection()
     {
+        if (health <= 0) return;
+
         lookDirection = navMeshAgent.desiredVelocity;
-        if (lookDirection.x > 0 && health > 0)
+
+        if (lookDirection.x > 0.1)
         {
             transform.rotation = Quaternion.identity;
         }
-        else
+        else if (lookDirection.x < -0.1)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+    }
+
+    public void StopMovement()
+    {
+        navMeshAgent.isStopped = true;
+        navMeshAgent.velocity = Vector3.zero;
+    }
+
+    public void AllowMovement()
+    {
+        navMeshAgent.isStopped = false;
     }
 
     public void SetDefaultBehaviors()
@@ -89,6 +105,7 @@ public class Enemy : DamageableEnemy
         {
             chase.isBehaviorEnabled = false;
             combatBehavior.isBehaviorEnabled = false;
+            StopMovement();
             return;
         }
 
@@ -97,16 +114,18 @@ public class Enemy : DamageableEnemy
             chase.isBehaviorEnabled = false;
             combatBehavior.isBehaviorEnabled = false;
             sentry.isBehaviorEnabled = false;
+            AllowMovement();
         }
         else if (playerDetected)
         {
             combatBehavior.HandleCombat();
             chase.isBehaviorEnabled = true;
+            AllowMovement();
         }
         else
         {
             chase.isBehaviorEnabled = false;
-            navMeshAgent.isStopped = true;
+            StopMovement();
         }
     }
 
@@ -114,8 +133,7 @@ public class Enemy : DamageableEnemy
     {
         animator.SetTrigger("Die");
 
-        navMeshAgent.isStopped = true;
-        navMeshAgent.velocity = Vector3.zero;
+        StopMovement();
 
         Invoke(nameof(OnDisable), 1.3f);
         GameManager.instance.UpdateScore(scoreValue);

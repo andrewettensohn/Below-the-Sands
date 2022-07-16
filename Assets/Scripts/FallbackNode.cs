@@ -27,8 +27,7 @@ public class FallbackNode : MonoBehaviour
         {
             if (enemy.enemyWaypointBehavior != null)
             {
-                enemy.enemyWaypointBehavior.isBehaviorEnabled = false;
-                enemy.enemyWaypointBehavior.isWaypointFound = false;
+                enemy.enemyWaypointBehavior.BehaviorStop();
                 enemy.SetDefaultBehaviors();
             }
         }
