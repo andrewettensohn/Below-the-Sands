@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8691850715657894945}
   - component: {fileID: 8691850715657894950}
   - component: {fileID: 8691850715657894946}
-  - component: {fileID: 4933749431587300605}
   - component: {fileID: 4915697934130904296}
   - component: {fileID: 5613310594766418123}
   - component: {fileID: -4103078926590118572}
+  - component: {fileID: 245304927756418672}
   m_Layer: 7
   m_Name: SkeletonArcher
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8691850715657894951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.56, y: -1.025, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -304824095, guid: 3d98cbb431f11cf45b5554fcfc195b16, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 106369c480765e34bbfaed1f0258c5c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,22 +110,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &4933749431587300605
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8691850715657894951}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0029586405, y: 0.022556439}
-  serializedVersion: 2
-  m_Radius: 0.23123442
 --- !u!114 &4915697934130904296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,9 +124,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   detectionRange: 20
-  shootDelayTime: 2.3
-  arrowLaunchForce: 1500
+  shootDelayTime: 1.2
+  arrowLaunchForce: 2000
+  freeFire: 0
   arrowPrefab: {fileID: 4355225305427646132, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+  lookDirection: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -189,7 +175,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -224,7 +210,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -264,3 +250,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!70 &245304927756418672
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691850715657894951}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0011997223, y: -0.01080513}
+  m_Size: {x: 0.17584991, y: 0.31991577}
+  m_Direction: 0

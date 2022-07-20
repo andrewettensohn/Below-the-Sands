@@ -37,20 +37,33 @@ public class Movement : MonoBehaviour
         HandleMovement();
     }
 
-    private void HandleMovement()
+    public void HandleMovement()
     {
+
+        RaycastHit2D groundHit = Physics2D.Raycast(transform.position, Vector2.down, 0.735f, obstacleLayer);
+
         //Jump
-        if (isGrounded == true && isJumping)
+        if (isJumping && groundHit.collider != null)
         {
             rigidbody.velocity += Vector2.up * jumpVelocity;
-            isGrounded = false;
         }
+
+        isGrounded = groundHit.collider != null;
 
         // Set Look
         if (!Mathf.Approximately(direction.x, 0.0f))
         {
             lookDirection.Set(direction.x, 0.0f);
             lookDirection.Normalize();
+        }
+
+        if (lookDirection.x > 0)
+        {
+            transform.rotation = Quaternion.identity;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
         if (!canMove) return;
@@ -69,15 +82,7 @@ public class Movement : MonoBehaviour
         {
             gameObject.SetActive(false);
 
-            if (gameObject.name == "Player") GameManager.instance.GameOver();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.name == "Platform")
-        {
-            isGrounded = true;
+            if (gameObject.name == "Ronin") GameManager.instance.GameOver();
         }
     }
 

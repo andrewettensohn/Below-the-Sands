@@ -133,7 +133,6 @@ public class Azkul : MonoBehaviour
         PlayerUI ui = GameObject.Find("Player").GetComponent<Player>().playerUI;
 
         ui.SyncHealthPotCount();
-        ui.SyncRelicCount();
     }
 
     public void LoadDialogBranchFromID(int dialogBranchID)

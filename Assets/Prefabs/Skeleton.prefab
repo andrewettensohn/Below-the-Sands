@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 5091820314847450808}
   - component: {fileID: 5091820314847450810}
   - component: {fileID: 1931283019}
-  - component: {fileID: 5475355408251122625}
   - component: {fileID: 8206952045015469774}
   - component: {fileID: 5886285886026939121}
   - component: {fileID: 370821799}
-  - component: {fileID: 8813084059490127463}
+  - component: {fileID: 4498754354346560283}
+  - component: {fileID: 1712039118}
   - component: {fileID: 2833013812460154704}
   m_Layer: 7
   m_Name: Skeleton
@@ -37,7 +37,8 @@ Transform:
   m_LocalPosition: {x: 10.56, y: -1.025, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1692759582532754508}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -105,7 +106,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 250
+  m_Mass: 500
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -147,40 +148,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  speed: 1
+  attackPoint: {fileID: 1692759582532754508}
   DeathAudioClip: {fileID: 8300000, guid: e585ce79ce6c44b40b1f4e595873ac79, type: 3}
-  WalkingAudioClip: {fileID: 8300000, guid: 4c9d3fcfb6684ea46a5e6af6f4144fe7, type: 3}
   AttackingAudioClip: {fileID: 8300000, guid: 794ad4c9e62fbc74693f280cab4382b6, type: 3}
   HitAudioClip: {fileID: 8300000, guid: 12ffe787549bf1844a6bf6d3d4de2099, type: 3}
   BlockAudioClip: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  target: {fileID: 0}
   isStaggered: 0
   canBeStaggered: 1
   playerDetected: 0
---- !u!114 &5475355408251122625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5091820314847450813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 657f8aec34c9f544a95454485e90a78f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  fallingMultiplier: 0
-  jumpVelocity: 0
-  lookDirection: {x: 1, y: 0}
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  canMove: 1
-  isJumping: 0
-  isGrounded: 0
+  audioSource: {fileID: 0}
+  scoreValue: 10
+  lookDirection: {x: 0, y: 0}
 --- !u!114 &8206952045015469774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
   dealDamageDelay: 0.6
-  attackRange: 1
+  attackRange: 0.5
   blockTime: 0
   leaveOpeningTime: 1
   willBlock: 0
@@ -214,6 +196,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
   detectionSizeModifier: 0.75
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  nodeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &370821799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,8 +215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
---- !u!58 &8813084059490127463
-CircleCollider2D:
+  canJump: 0
+--- !u!70 &4498754354346560283
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -240,9 +229,31 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.08}
-  serializedVersion: 2
-  m_Radius: 0.39
+  m_Offset: {x: -0.19451833, y: -0.16997504}
+  m_Size: {x: 0.19479322, y: 0.6371217}
+  m_Direction: 0
+--- !u!195 &1712039118
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091820314847450813}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 0.7
+  m_BaseOffset: 0.48
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!82 &2833013812460154704
 AudioSource:
   m_ObjectHideFlags: 0
@@ -339,3 +350,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8934745804851055368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1692759582532754508}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1692759582532754508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8934745804851055368}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.001, y: -0.219, z: -0.008266509}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5091820314847450811}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -5,17 +5,14 @@ using System.Linq;
 
 public class Player : MonoBehaviour
 {
-    [Range(0.0f, 1.0f)]
+    [Range(0.0f, 5.0f)]
     public float attackDelay;
 
     [Range(0.1f, 1.5f)]
     public float attackRange;
 
-    [Range(1, 10)]
-    public int maxSwordBlockedDamage;
-
-    [Range(1, 60)]
-    public float blessedTime;
+    public Transform attackPoint;
+    public bool isGodModeEnabled;
 
     public LayerMask enemyLayer;
     public LayerMask npcLayer;
@@ -25,22 +22,16 @@ public class Player : MonoBehaviour
     public PlayerUI playerUI { get; private set; }
     public bool isInteractKeyDown { get; private set; }
 
-    public ParticleSystem blessedEffect;
-
     public AudioClip runningAudioClip;
     public AudioClip attackAudioClip;
-    public AudioClip blockedAudioClip;
     public AudioClip hitAudioClip;
 
     private bool isAttacking;
     private bool canAttack = true;
     private Animator animator;
-
     private AudioSource audioSource;
-
-    private bool isBlocking;
-    private int blockedDamage;
     private bool isStaggered;
+    SpriteRenderer rendererSprite;
 
     private void Awake()
     {
@@ -48,24 +39,11 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         playerUI = PlayerUICanvas.GetComponent<PlayerUI>();
+        rendererSprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
-        PlayerInfo.instance.isBlessed = false;
-
-        if (PlayerInfo.instance.isShieldEquipped)
-        {
-            ToggleShieldEquipped(true);
-        }
-        else if (PlayerInfo.instance.isTwoHandSwordEquipped)
-        {
-            ToggleTwoHandSwordEquipped(true);
-        }
-        else
-        {
-            playerUI.ToggleBlockIconsActive(4, false);
-        }
 
         if (PlayerInfo.instance.nextPlayerPositionOnLoad != Vector2.zero)
         {
@@ -79,9 +57,10 @@ public class Player : MonoBehaviour
     {
         if (GameManager.instance.isGamePaused) return;
 
-        if (GameManager.instance.isPlayerControlRestricted)
+        if (GameManager.instance.isPlayerControlRestricted || (isAttacking && movement.isGrounded))
         {
             movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
+            //AnimateAttack();
             AnimateMovement();
             return;
         }
@@ -91,38 +70,10 @@ public class Player : MonoBehaviour
         HandleCombat();
     }
 
-    private void FixedUpdate()
-    {
-        if (PlayerInfo.instance.isBlessed)
-        {
-            HandleBlessedAttack();
-        }
-    }
-
-    private void HandleBlessedAttack()
-    {
-        RaycastHit2D hit = GetEnemyHit(1.0f);
-        DamageableEnemy enemy = hit.collider?.GetComponent<DamageableEnemy>();
-        if (enemy == null) return;
-
-        enemy.OnDeltDamage(5);
-    }
-
     private void GetUserInput()
     {
-        isBlocking = Input.GetKey(KeyCode.Mouse1);
 
         isInteractKeyDown = Input.GetKeyDown(KeyCode.E);
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            HandleEquippedEquipment();
-        }
-
-        if (PlayerInfo.instance.prayerCount > 0 && Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            HandlePrayerUsed();
-        }
 
         if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -135,13 +86,8 @@ public class Player : MonoBehaviour
             HandleDialougeInteraction();
         }
 
-        if (isBlocking && !PlayerInfo.instance.isShieldEquipped)
-        {
-            movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
-        }
-
         movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), 0f));
-        movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && (!isBlocking || PlayerInfo.instance.isShieldEquipped);
+        movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space));
     }
 
     private void HandleDoorInteraction()
@@ -167,43 +113,30 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void HandleEquippedEquipment()
-    {
-
-        if (!PlayerInfo.instance.hasShield && !PlayerInfo.instance.hasTwoHandSword) return;
-
-        bool shouldEquipNormalSword = !PlayerInfo.instance.hasTwoHandSword && PlayerInfo.instance.hasShield && PlayerInfo.instance.isShieldEquipped;
-        bool shouldEquipShield = PlayerInfo.instance.hasShield && !PlayerInfo.instance.isShieldEquipped;
-        bool shouldEquipTwoHandSword = PlayerInfo.instance.hasTwoHandSword && !PlayerInfo.instance.isTwoHandSwordEquipped;
-
-        if (shouldEquipNormalSword)
-        {
-            ToggleShieldEquipped(false);
-        }
-        else if (shouldEquipShield)
-        {
-            ToggleShieldEquipped(true);
-            ToggleTwoHandSwordEquipped(false);
-        }
-        else if (shouldEquipTwoHandSword)
-        {
-            ToggleShieldEquipped(false);
-            ToggleTwoHandSwordEquipped(true);
-        }
-    }
-
     private void HandleCombat()
     {
-        if (isBlocking) return;
-
-        blockedDamage = 0;
-        playerUI.ResetBlockIcons();
 
         if (!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) return;
 
         isAttacking = true;
         canAttack = false;
+
+        animator.SetTrigger("Attack");
         audioSource.PlayOneShot(attackAudioClip);
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
+        foreach (Collider2D hit in hitEnemies)
+        {
+            if (hit != null)
+            {
+                int damageToDeal = 1;
+                DamageableEnemy enemy = hit.GetComponent<DamageableEnemy>();
+
+                enemy.OnDeltDamage(damageToDeal);
+            }
+        }
+
         StartCoroutine(HandleAttackDelayTimer());
     }
 
@@ -213,37 +146,11 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForSeconds(attackDelay);
 
-            RaycastHit2D hit = GetEnemyHit(attackRange);
-            if (hit.collider != null && !isStaggered)
-            {
-                audioSource.PlayOneShot(attackAudioClip);
-
-                int damageToDeal = PlayerInfo.instance.isTwoHandSwordEquipped ? 3 : 1;
-                DamageableEnemy enemy = hit.collider.GetComponent<DamageableEnemy>();
-                enemy.OnDeltDamage(damageToDeal);
-            }
-
             isAttacking = false;
             isStaggered = false;
             canAttack = true;
+            animator.ResetTrigger("Attack");
         }
-    }
-
-    private void HandlePrayerUsed()
-    {
-        PlayerInfo.instance.prayerCount -= 1;
-        playerUI.SyncPrayerCount();
-
-        PlayerInfo.instance.isBlessed = true;
-        blessedEffect.Play();
-        StartCoroutine(nameof(HandleBlessedTimer));
-    }
-
-    private IEnumerator HandleBlessedTimer()
-    {
-        yield return new WaitForSeconds(blessedTime);
-        blessedEffect.Stop();
-        PlayerInfo.instance.isBlessed = false;
     }
 
     private void HandleHealthPotionUsed()
@@ -255,36 +162,23 @@ public class Player : MonoBehaviour
         playerUI.SyncHealthPotCount();
     }
 
-    private RaycastHit2D GetEnemyHit(float distance)
+    private void OnDrawGizmosSelected()
     {
-        return Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, movement.lookDirection, distance, enemyLayer);
-    }
+        if (attackPoint == null) return;
 
-    public void ToggleShieldEquipped(bool isShiledEquipped)
-    {
-        PlayerInfo.instance.isShieldEquipped = isShiledEquipped;
-        animator.SetBool("Using Shield", isShiledEquipped);
-        playerUI.ToggleBlockIconsActive(4, isShiledEquipped);
-    }
-
-    public void ToggleTwoHandSwordEquipped(bool isTwoHandSwordEquipped)
-    {
-        PlayerInfo.instance.isTwoHandSwordEquipped = isTwoHandSwordEquipped;
-        animator.SetBool("Using Two Hand Sword", isTwoHandSwordEquipped);
-        playerUI.ToggleBlockIconsActive(5, !isTwoHandSwordEquipped);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
     public void OnDeltDamage(int damage, bool overrideBlocking = false)
     {
         damage = Mathf.Abs(damage);
 
-        if (PlayerInfo.instance.isBlessed || damage <= 0) return;
+        if (damage <= 0) return;
 
-        if (isBlocking && !overrideBlocking && blockedDamage < playerUI.blockIcons.Count(x => x.isBlockIconActive))
+        if (isGodModeEnabled)
         {
-            audioSource.PlayOneShot(blockedAudioClip);
-            blockedDamage += damage;
-            playerUI.SetBlockIconsToBroken(damage);
+            animator.SetTrigger("Hit");
+            isStaggered = true;
             return;
         }
 
@@ -307,30 +201,22 @@ public class Player : MonoBehaviour
 
     private void AnimateMovement()
     {
-        animator.SetBool("Attacking", isAttacking && !isStaggered);
         animator.SetFloat("Speed", movement.rigidbody.velocity.sqrMagnitude);
         animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
-        animator.SetFloat("Look X", movement.lookDirection.x);
+        animator.SetFloat("Look X", 1f);
         animator.SetBool("Is Grounded", movement.isGrounded);
-        animator.SetBool("Blocking", isBlocking);
+    }
+
+    private void AnimateAttack()
+    {
+        animator.SetFloat("Speed", 0);
+        animator.SetFloat("Move Y", 0);
     }
 
     public void OnHealthPotionPickedUp()
     {
         PlayerInfo.instance.healthPotionCount += 1;
         playerUI.SyncHealthPotCount();
-    }
-
-    public void OnRelicPickedUp()
-    {
-        PlayerInfo.instance.relicCount += 1;
-        playerUI.SyncRelicCount();
-    }
-
-    public void OnPrayerPickedUp()
-    {
-        PlayerInfo.instance.prayerCount += 1;
-        playerUI.SyncPrayerCount();
     }
 
     public void OnDisable()

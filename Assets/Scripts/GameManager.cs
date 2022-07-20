@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     public List<LevelName> SecondLevelMusicTriggers;
     public List<LevelName> ThirdLevelMusicTriggers;
 
+    public int score { get; private set; }
+
     private AudioSource audioSource;
     private MusicTracks musicTracks;
 
@@ -113,6 +115,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsToWait);
         SceneManager.LoadScene("EndGameCutscene");
+    }
+
+    public void UpdateScore(int scoreValue)
+    {
+        score += scoreValue;
     }
 
     public void GameOver()

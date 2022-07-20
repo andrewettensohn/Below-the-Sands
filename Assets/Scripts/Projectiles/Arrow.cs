@@ -26,7 +26,7 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.name == "Player")
+        if (other.collider.name == "Ronin")
         {
             Player player = other.collider.GetComponent<Player>();
 

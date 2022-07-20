@@ -23,18 +23,17 @@ public class EnemyCombatBehavior : EnemyBehavior
     public bool isAttacking { get; protected set; }
     public bool isInCombat { get; protected set; }
 
-    public bool canAttack { get; protected set; } = true;
+    public bool canAttack { get; protected set; }
     public bool canBlock { get; protected set; }
-    public bool canLeaveOpening { get; protected set; }
+    public bool canLeaveOpening { get; protected set; } = true;
 
     public float detectionSizeModifier = 0.75f;
 
     public virtual void HandleCombat()
     {
-        RaycastHit2D hit = GetPlayerHit(attackRange);
-        Player player = hit.collider?.GetComponent<Player>();
+        Collider2D[] players = GetPlayerHits(attackRange);
 
-        if (hit.collider == null)
+        if (players.Length == 0)
         {
             isInCombat = false;
             return;
@@ -42,32 +41,34 @@ public class EnemyCombatBehavior : EnemyBehavior
 
         isInCombat = true;
 
-        if (canAttack)
-        {
-            OnAttack(player);
-        }
-
-        else if (canBlock)
-        {
-            OnBlock();
-        }
-
         if (canLeaveOpening)
         {
             OnLeaveOpening();
         }
+
+        if (canAttack)
+        {
+            OnAttack();
+        }
+        else if (canBlock)
+        {
+            OnBlock();
+        }
     }
 
-    protected virtual RaycastHit2D GetPlayerHit(float distance)
+
+    protected virtual Collider2D[] GetPlayerHits(float distance)
     {
-        return Physics2D.BoxCast(transform.position, Vector2.one * detectionSizeModifier, 0.0f, enemy.movement.lookDirection, distance, enemy.playerLayer);
+        return Physics2D.OverlapCircleAll(enemy.attackPoint.position, attackRange, enemy.playerLayer);
     }
 
-    protected virtual void OnAttack(Player player)
+    protected virtual void OnAttack()
     {
         canAttack = false;
         isAttacking = true;
-        StartCoroutine(HandleDealDamageDelayTimer(player));
+        enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
+
+        StartCoroutine(HandlePostAttackDelayTimer());
     }
 
     protected virtual void OnBlock()
@@ -83,17 +84,25 @@ public class EnemyCombatBehavior : EnemyBehavior
         StartCoroutine(HandleLeaveOpeningTimer());
     }
 
-    protected virtual IEnumerator HandleDealDamageDelayTimer(Player player)
+    protected virtual IEnumerator HandlePostAttackDelayTimer()
     {
         yield return new WaitForSeconds(dealDamageDelay);
 
         if (enemy.health > 0)
         {
-            enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
-            RaycastHit2D hit = GetPlayerHit(attackRange);
-            if (enemy.health > 0 && hit.collider != null && !enemy.isStaggered)
+            Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(enemy.attackPoint.position, attackRange, enemy.playerLayer);
+
+            if (enemy.health > 0 && hitPlayers.Length > 0 && !enemy.isStaggered)
             {
-                player.OnDeltDamage(1);
+                foreach (Collider2D hit in hitPlayers)
+                {
+                    bool isPlayerComponentPresent = hit.TryGetComponent<Player>(out Player player);
+
+                    if (isPlayerComponentPresent)
+                    {
+                        player.OnDeltDamage(1);
+                    }
+                }
             }
 
             enemy.isStaggered = false;
