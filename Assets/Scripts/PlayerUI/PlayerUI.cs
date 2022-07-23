@@ -7,7 +7,12 @@ using System;
 
 public class PlayerUI : MonoBehaviour
 {
-    public GameObject healthPotObject;
+    public GameObject healthPotCountObject;
+    public GameObject healthPotIconObject;
+    public GameObject dashIconObject;
+    public GameObject deflectIconObject;
+    public GameObject rapidIconObject;
+    public GameObject AbilityUseBackground;
     private TMP_Text healthPotCount;
     public GameObject scoreObject;
     private TMP_Text score;
@@ -16,7 +21,7 @@ public class PlayerUI : MonoBehaviour
     private void Awake()
     {
         hearts = GetComponentsInChildren<HealthHeart>().ToList();
-        healthPotCount = healthPotObject.GetComponent<TMP_Text>();
+        healthPotCount = healthPotCountObject.GetComponent<TMP_Text>();
         score = scoreObject.GetComponent<TMP_Text>();
     }
 
@@ -24,6 +29,10 @@ public class PlayerUI : MonoBehaviour
     {
         SyncHealthPotCount();
         score.text = GameManager.instance.score.ToString();
+
+        SetAllAbilityIconsToInactive();
+        SetAbilityUseBackground(false);
+        dashIconObject.SetActive(true);
     }
 
     private void Update()
@@ -38,6 +47,36 @@ public class PlayerUI : MonoBehaviour
         int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
 
         ChangeHealthHearts(heartsNeededToChange, false);
+    }
+
+    public void SwapAbilityIcon(PlayerAbility newAbility)
+    {
+        SetAllAbilityIconsToInactive();
+
+        if (newAbility == PlayerAbility.Dash)
+        {
+            dashIconObject.SetActive(true);
+        }
+        else if (newAbility == PlayerAbility.Deflect)
+        {
+            deflectIconObject.SetActive(true);
+        }
+        else if (newAbility == PlayerAbility.RapidAttack)
+        {
+            rapidIconObject.SetActive(true);
+        }
+    }
+
+    public void SetAllAbilityIconsToInactive()
+    {
+        dashIconObject.SetActive(false);
+        rapidIconObject.SetActive(false);
+        deflectIconObject.SetActive(false);
+    }
+
+    public void SetAbilityUseBackground(bool isActive)
+    {
+        AbilityUseBackground.SetActive(isActive);
     }
 
     public void ChangeHealthHearts(int heartsNeededToChange, bool isActive)

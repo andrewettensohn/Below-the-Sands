@@ -27,6 +27,9 @@ public class EnemyCombatBehavior : EnemyBehavior
     public bool canBlock { get; protected set; }
     public bool canLeaveOpening { get; protected set; } = true;
 
+    public bool hasKnockBackAttack;
+    public float knockBackForce;
+
     public float detectionSizeModifier = 0.75f;
 
     public virtual void HandleCombat()
@@ -101,6 +104,11 @@ public class EnemyCombatBehavior : EnemyBehavior
                     if (isPlayerComponentPresent)
                     {
                         player.OnDeltDamage(1);
+                        enemy.OnSuccessfulAttack();
+                        if(hasKnockBackAttack)
+                        {
+                            player.movement.KnockBack(knockBackForce);
+                        }
                     }
                 }
             }

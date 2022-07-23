@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [Range(0.0f, 5.0f)]
     public float attackDelay;
 
-    [Range(0.1f, 1.5f)]
+    [Range(0.1f, 5.0f)]
     public float attackRange;
 
     public Transform attackPoint;
@@ -17,21 +17,29 @@ public class Player : MonoBehaviour
     public LayerMask enemyLayer;
     public LayerMask npcLayer;
     public LayerMask transportTriggerLayer;
+    public LayerMask projectileLayer;
+
     public GameObject PlayerUICanvas;
     public Movement movement { get; private set; }
     public PlayerUI playerUI { get; private set; }
-    public bool isInteractKeyDown { get; private set; }
 
     public AudioClip runningAudioClip;
     public AudioClip attackAudioClip;
     public AudioClip hitAudioClip;
+
+    public float dashAbilityLength;
+    public float deflectAbilityLength;
+    public float rapidAttackAbilityLength;
+
+    public bool isUsingAbility { get; private set; }
 
     private bool isAttacking;
     private bool canAttack = true;
     private Animator animator;
     private AudioSource audioSource;
     private bool isStaggered;
-    SpriteRenderer rendererSprite;
+    private float defaultSpeed;
+    private float defaultAttackRange;
 
     private void Awake()
     {
@@ -39,7 +47,6 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         playerUI = PlayerUICanvas.GetComponent<PlayerUI>();
-        rendererSprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -50,6 +57,8 @@ public class Player : MonoBehaviour
             movement.rigidbody.MovePosition(PlayerInfo.instance.nextPlayerPositionOnLoad);
         }
 
+        defaultSpeed = movement.speed;
+        defaultAttackRange = attackRange;
         playerUI.SyncHearts();
     }
 
@@ -60,7 +69,6 @@ public class Player : MonoBehaviour
         if (GameManager.instance.isPlayerControlRestricted || (isAttacking && movement.isGrounded))
         {
             movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
-            //AnimateAttack();
             AnimateMovement();
             return;
         }
@@ -73,21 +81,79 @@ public class Player : MonoBehaviour
     private void GetUserInput()
     {
 
-        isInteractKeyDown = Input.GetKeyDown(KeyCode.E);
-
-        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.Alpha1))
+        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.E))
         {
             HandleHealthPotionUsed();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            HandleDoorInteraction();
-            HandleDialougeInteraction();
+            SwitchEquippedAbility();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            HandleEquippedAbility();
         }
 
         movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), 0f));
         movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space));
+    }
+
+    private void SwitchEquippedAbility()
+    {
+        if(isUsingAbility) return;
+
+        int currentIndex = PlayerInfo.instance.AbilityOrder.IndexOf(PlayerInfo.instance.EquippedAbility);
+
+        int newAbilityIndex = currentIndex + 1 >= PlayerInfo.instance.AbilityOrder.Count ? 0 : currentIndex + 1;
+
+        PlayerInfo.instance.EquippedAbility = PlayerInfo.instance.AbilityOrder[newAbilityIndex];
+        playerUI.SwapAbilityIcon(PlayerInfo.instance.EquippedAbility);
+
+        Debug.Log($"Equipped {PlayerInfo.instance.EquippedAbility}");
+    }
+
+    private void HandleEquippedAbility()
+    {
+        if(isUsingAbility) return;
+
+        isUsingAbility = true;
+
+        if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Dash)
+        {
+            Dash();
+            playerUI.SetAbilityUseBackground(true);
+            StartCoroutine(HandleAbilityTimer(dashAbilityLength));
+        }
+        else if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect)
+        {
+            Deflect();
+            playerUI.SetAbilityUseBackground(true);
+            StartCoroutine(HandleAbilityTimer(deflectAbilityLength));
+        }
+        else if (PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
+        {
+            playerUI.SetAbilityUseBackground(true);
+            StartCoroutine(HandleAbilityTimer(rapidAttackAbilityLength));
+        }
+        else
+        {
+            isUsingAbility = false;
+        }
+    }
+
+    private IEnumerator HandleAbilityTimer(float timerLength)
+    {
+        if (isUsingAbility)
+        {
+            yield return new WaitForSeconds(timerLength);
+
+            isUsingAbility = false;
+            attackRange = defaultAttackRange;
+            movement.speed = defaultSpeed;
+            playerUI.SetAbilityUseBackground(false);
+        }
     }
 
     private void HandleDoorInteraction()
@@ -99,6 +165,17 @@ public class Player : MonoBehaviour
             DoorTrigger door = hit.collider.GetComponent<DoorTrigger>();
             door.TransportPlayer();
         }
+    }
+
+    private void Dash()
+    {
+        movement.speed = 8;
+    }
+
+    private void Deflect()
+    {
+        attackRange = 2.4f;
+        HandleCombat(true, true);
     }
 
     private void HandleDialougeInteraction()
@@ -113,27 +190,41 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void HandleCombat()
+    private void HandleCombat(bool overrideUserInput = false, bool canHitArrows = false)
     {
 
-        if (!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) return;
+        if ((!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) && !overrideUserInput) return;
 
         isAttacking = true;
         canAttack = false;
+        int damageToDeal = 1;
 
-        animator.SetTrigger("Attack");
+        if (isUsingAbility && PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
+        {
+            animator.SetTrigger("Rapid Attack");
+            damageToDeal = 2;
+        }
+        else
+        {
+            animator.SetTrigger("Attack");
+        }
+
         audioSource.PlayOneShot(attackAudioClip);
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+        List<Collider2D> hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer).ToList();
+
+        if (canHitArrows)
+        {
+            hitEnemies.AddRange(Physics2D.OverlapCircleAll(attackPoint.position, attackRange, projectileLayer));
+        }
 
         foreach (Collider2D hit in hitEnemies)
         {
             if (hit != null)
             {
-                int damageToDeal = 1;
                 DamageableEnemy enemy = hit.GetComponent<DamageableEnemy>();
 
-                enemy.OnDeltDamage(damageToDeal);
+                enemy.OnDeltDamage(damageToDeal, this);
             }
         }
 
@@ -150,6 +241,7 @@ public class Player : MonoBehaviour
             isStaggered = false;
             canAttack = true;
             animator.ResetTrigger("Attack");
+            animator.ResetTrigger("RapidAttack");
         }
     }
 
@@ -205,12 +297,6 @@ public class Player : MonoBehaviour
         animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
         animator.SetFloat("Look X", 1f);
         animator.SetBool("Is Grounded", movement.isGrounded);
-    }
-
-    private void AnimateAttack()
-    {
-        animator.SetFloat("Speed", 0);
-        animator.SetFloat("Move Y", 0);
     }
 
     public void OnHealthPotionPickedUp()

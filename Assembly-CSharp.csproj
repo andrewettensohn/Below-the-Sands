@@ -79,6 +79,7 @@
      <Compile Include="Assets\Scripts\Dialog\TextSlideCutscene.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Arrow.cs" />
      <Compile Include="Assets\Scripts\FallbackNode.cs" />
+     <Compile Include="Assets\Scripts\Enums\PlayerAbility.cs" />
      <Compile Include="Assets\Scripts\DoorTrigger.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\HealthPotSlot.cs" />
      <Compile Include="Assets\Scripts\OptionsController.cs" />

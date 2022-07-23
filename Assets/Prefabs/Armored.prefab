@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358c9b20e0e6c33439c93f78ddd5c1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 30
   speed: 3
   attackPoint: {fileID: 3189233392061767673}
   DeathAudioClip: {fileID: 8300000, guid: e585ce79ce6c44b40b1f4e595873ac79, type: 3}
@@ -231,6 +231,8 @@ MonoBehaviour:
   blockTime: 0
   leaveOpeningTime: 1
   willBlock: 0
+  hasKnockBackAttack: 1
+  knockBackForce: 7000
   detectionSizeModifier: 3
 --- !u!114 &5886285886026939121
 MonoBehaviour:
@@ -245,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  detectionSizeModifier: 2
+  detectionSizeModifier: 3
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 256

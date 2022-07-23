@@ -81,7 +81,7 @@ public class EnemyEye : DamageableEnemy
         Invoke(nameof(OnDisable), 1.0f);
     }
 
-    public override void OnDeltDamage(float damage)
+    public override void OnDeltDamage(float damage, Player player = null)
     {
         audioSource.PlayOneShot(HitAudioClip);
         damage = Mathf.Abs(damage);

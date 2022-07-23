@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class Arrow : DamageableEnemy
 {
     public LayerMask obstacleLayer;
     private Rigidbody2D rigidbody2d;
@@ -20,6 +20,17 @@ public class Arrow : MonoBehaviour
     {
         if (transform.position.magnitude > 1000.0f)
         {
+            Destroy(gameObject);
+        }
+    }
+
+    public override void OnDeltDamage(float damage, Player player = null)
+    {
+        Debug.Log("Arrow hit detected");
+        Debug.Log(player.isUsingAbility);
+        if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect && player.isUsingAbility)
+        {
+            Debug.Log("Arrow dead");
             Destroy(gameObject);
         }
     }

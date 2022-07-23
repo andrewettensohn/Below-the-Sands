@@ -155,7 +155,7 @@ public class Enemy : DamageableEnemy
         animator.SetFloat("Look X", 1);
     }
 
-    public override void OnDeltDamage(float damage)
+    public override void OnDeltDamage(float damage, Player player = null)
     {
         if (combatBehavior.isBlocking)
         {
@@ -177,6 +177,11 @@ public class Enemy : DamageableEnemy
             isStaggered = canBeStaggered;
             if (!PlayerInfo.instance.isBlessed) audioSource.PlayOneShot(HitAudioClip);
         }
+    }
+
+    public virtual void OnSuccessfulAttack()
+    {
+        //Implement in override on custom enemy script
     }
 
     public void OnDisable()

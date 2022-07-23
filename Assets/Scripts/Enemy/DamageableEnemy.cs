@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class DamageableEnemy : MonoBehaviour
 {
-    public abstract void OnDeltDamage(float damage);
+    public abstract void OnDeltDamage(float damage, Player player = null);
 }

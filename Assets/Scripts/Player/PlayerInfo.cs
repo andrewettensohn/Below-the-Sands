@@ -31,6 +31,10 @@ public class PlayerInfo : MonoBehaviour
 
     public bool isBlessed;
 
+    public PlayerAbility EquippedAbility = PlayerAbility.Dash;
+
+    public List<PlayerAbility> AbilityOrder = new List<PlayerAbility> { PlayerAbility.Dash, PlayerAbility.Deflect, PlayerAbility.RapidAttack };
+
     private void Awake()
     {
         if (instance == null)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [Range(1, 10)]
+    [Range(1, 100)]
     public float speed;
 
     [Range(1, 5)]
@@ -96,5 +96,11 @@ public class Movement : MonoBehaviour
     public void SetDirection(Vector2 newDirection, bool forced = false)
     {
         direction = newDirection;
+    }
+
+    public void KnockBack(float force)
+    {
+        force = lookDirection.x < 0 ? force : -force;
+        rigidbody.AddForce(new Vector2(force, 0.0f));
     }
 }
