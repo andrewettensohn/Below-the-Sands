@@ -31,6 +31,8 @@ public class PlayerInfo : MonoBehaviour
 
     public bool isBlessed;
 
+    public int focusPoints;
+
     public PlayerAbility EquippedAbility = PlayerAbility.Dash;
 
     public List<PlayerAbility> AbilityOrder = new List<PlayerAbility> { PlayerAbility.Dash, PlayerAbility.Deflect, PlayerAbility.RapidAttack };
@@ -59,5 +61,7 @@ public class PlayerInfo : MonoBehaviour
         relicCount = 0;
         prayerCount = 0;
         health = fullHealth;
+        focusPoints = 3;
+        EquippedAbility = PlayerAbility.Dash;
     }
 }

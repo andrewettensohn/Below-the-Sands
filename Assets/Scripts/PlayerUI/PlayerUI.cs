@@ -8,36 +8,36 @@ using System;
 public class PlayerUI : MonoBehaviour
 {
     public GameObject healthPotCountObject;
+    public GameObject focusPointCountObject;
     public GameObject healthPotIconObject;
     public GameObject dashIconObject;
     public GameObject deflectIconObject;
     public GameObject rapidIconObject;
     public GameObject AbilityUseBackground;
     private TMP_Text healthPotCount;
-    public GameObject scoreObject;
-    private TMP_Text score;
+    private TMP_Text focusPointCount;
+
     private List<HealthHeart> hearts;
 
     private void Awake()
     {
         hearts = GetComponentsInChildren<HealthHeart>().ToList();
         healthPotCount = healthPotCountObject.GetComponent<TMP_Text>();
-        score = scoreObject.GetComponent<TMP_Text>();
+        focusPointCount = focusPointCountObject.GetComponent<TMP_Text>();
     }
 
     private void Start()
     {
         SyncHealthPotCount();
-        score.text = GameManager.instance.score.ToString();
 
         SetAllAbilityIconsToInactive();
         SetAbilityUseBackground(false);
         dashIconObject.SetActive(true);
     }
 
-    private void Update()
+    public void Update()
     {
-        score.text = GameManager.instance.score.ToString();
+        focusPointCount.text = PlayerInfo.instance.focusPoints.ToString();
     }
 
     public void SyncHealthPotCount() => healthPotCount.text = PlayerInfo.instance.healthPotionCount.ToString();

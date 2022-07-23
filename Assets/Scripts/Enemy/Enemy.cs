@@ -30,6 +30,9 @@ public class Enemy : DamageableEnemy
     protected Animator animator;
     public NavMeshAgent navMeshAgent { get; private set; }
     public Vector2 lookDirection;
+    public int focusPointReward;
+    
+    private bool isDying;
 
     private void Start()
     {
@@ -131,18 +134,24 @@ public class Enemy : DamageableEnemy
 
     protected void OnDeath()
     {
+        isDying = true;
         animator.SetTrigger("Die");
-
+        GivePlayerRewardForDeath();
         StopMovement();
 
         Invoke(nameof(OnDisable), 1.3f);
-        GameManager.instance.UpdateScore(scoreValue);
 
         if (gameObject.name == "Demon")
         {
             GameManager.instance.milestones.HasCompletedThirdLayer = true;
             GameManager.instance.PlayEndGameCutscene();
         }
+    }
+
+    protected virtual void GivePlayerRewardForDeath()
+    {
+        GameManager.instance.UpdateScore(scoreValue);
+        PlayerInfo.instance.focusPoints += focusPointReward;
     }
 
     private void Animate()
@@ -166,7 +175,7 @@ public class Enemy : DamageableEnemy
         damage = Math.Abs(damage);
         health -= damage;
 
-        if (health <= 0)
+        if (health <= 0 && !isDying)
         {
             OnDeath();
             if (!PlayerInfo.instance.isBlessed) audioSource.PlayOneShot(DeathAudioClip);

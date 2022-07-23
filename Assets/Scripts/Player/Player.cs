@@ -116,9 +116,10 @@ public class Player : MonoBehaviour
 
     private void HandleEquippedAbility()
     {
-        if(isUsingAbility) return;
+        if(isUsingAbility || PlayerInfo.instance.focusPoints <= 0) return;
 
         isUsingAbility = true;
+        PlayerInfo.instance.focusPoints -= 1;
 
         if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Dash)
         {

@@ -195,6 +195,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   scoreValue: 1000
   lookDirection: {x: 0, y: 0}
+  focusPointReward: 5
 --- !u!114 &2979424305549143427
 MonoBehaviour:
   m_ObjectHideFlags: 0

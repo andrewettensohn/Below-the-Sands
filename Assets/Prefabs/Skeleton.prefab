@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1351c046ca389048ab90149b86a21e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 3
   speed: 1
   attackPoint: {fileID: 1692759582532754508}
   DeathAudioClip: {fileID: 8300000, guid: e585ce79ce6c44b40b1f4e595873ac79, type: 3}
@@ -158,11 +158,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isStaggered: 0
-  canBeStaggered: 1
+  canBeStaggered: 0
   playerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 10
   lookDirection: {x: 0, y: 0}
+  focusPointReward: 0
 --- !u!114 &8206952045015469774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,8 +180,10 @@ MonoBehaviour:
   dealDamageDelay: 0.6
   attackRange: 0.5
   blockTime: 0
-  leaveOpeningTime: 1
+  leaveOpeningTime: 0.5
   willBlock: 0
+  hasKnockBackAttack: 0
+  knockBackForce: 0
   detectionSizeModifier: 0.75
 --- !u!114 &5886285886026939121
 MonoBehaviour:
