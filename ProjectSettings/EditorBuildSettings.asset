@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: ccf7c785fade837468a74a490e3a4ee0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/IntroCutscene.unity
     guid: 771756dd418e82a429c2043875ff22b0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CatacombEntrance.unity
     guid: 2c195c180c876e04dbc48004e93b0da5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FirstLevelEntrance.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EndGameCutscene.unity
     guid: 5fb2675d5eef2394c869416d1925b71b
   - enabled: 1

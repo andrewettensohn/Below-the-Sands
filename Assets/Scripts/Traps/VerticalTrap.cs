@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class FireFloorTrap : MonoBehaviour
+public class VerticalTrap : MonoBehaviour
 {
 
-    public AnimationClip FlameOnClip;
+    public AnimationClip TrapAnimationClip;
     public List<Sprite> DamageSprites;
     private SpriteRenderer spriteRenderer;
     private Player playerGameObject;
     private bool hasDeltDamage;
+    public bool alwaysDealsDamage;
 
     private void Start()
     {
@@ -30,7 +31,7 @@ public class FireFloorTrap : MonoBehaviour
     {
         if (playerGameObject == null) return;
 
-        bool shouldDealDamage = DamageSprites.Any(x => x.name == spriteRenderer.sprite.name);
+        bool shouldDealDamage = DamageSprites.Any(x => x.name == spriteRenderer.sprite.name) || alwaysDealsDamage;
 
         if (shouldDealDamage && !hasDeltDamage)
         {

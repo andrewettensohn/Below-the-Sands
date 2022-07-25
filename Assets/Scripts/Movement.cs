@@ -98,9 +98,8 @@ public class Movement : MonoBehaviour
         direction = newDirection;
     }
 
-    public void KnockBack(float force)
-    {
-        force = lookDirection.x < 0 ? force : -force;
-        rigidbody.AddForce(new Vector2(force, 0.0f));
-    }
+    // public void KnockBack(float force)
+    // {
+    //     rigidbody.AddForce(new Vector2(force, 0.0f));
+    // }
 }

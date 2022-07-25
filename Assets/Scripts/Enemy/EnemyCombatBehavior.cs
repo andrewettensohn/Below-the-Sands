@@ -93,29 +93,47 @@ public class EnemyCombatBehavior : EnemyBehavior
 
         if (enemy.health > 0)
         {
-            Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(enemy.attackPoint.position, attackRange, enemy.playerLayer);
-
-            if (enemy.health > 0 && hitPlayers.Length > 0 && !enemy.isStaggered)
-            {
-                foreach (Collider2D hit in hitPlayers)
-                {
-                    bool isPlayerComponentPresent = hit.TryGetComponent<Player>(out Player player);
-
-                    if (isPlayerComponentPresent)
-                    {
-                        player.OnDeltDamage(1);
-                        enemy.OnSuccessfulAttack();
-                        if(hasKnockBackAttack)
-                        {
-                            player.movement.KnockBack(knockBackForce);
-                        }
-                    }
-                }
-            }
+            HandleAttack();
 
             enemy.isStaggered = false;
             isAttacking = false;
             canBlock = true;
+        }
+    }
+
+    protected virtual void HandleAttack()
+    {
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(enemy.attackPoint.position, attackRange, enemy.playerLayer);
+
+        if (enemy.health > 0 && hitPlayers.Length > 0 && !enemy.isStaggered)
+        {
+            foreach (Collider2D hit in hitPlayers)
+            {
+                bool isPlayerComponentPresent = hit.TryGetComponent<Player>(out Player player);
+
+                if (isPlayerComponentPresent)
+                {
+                    player.OnDeltDamage(1);
+                    enemy.OnSuccessfulAttack();
+                    KnockBackEffect(player);
+                }
+            }
+        }
+    }
+
+    protected void KnockBackEffect(Player player)
+    {
+        if(!hasKnockBackAttack) return;
+
+        float force = enemy.lookDirection.x > 0 ? knockBackForce : -knockBackForce;
+
+        if(enemy.lookDirection.x > 0)
+        {
+            player.movement.rigidbody.AddForce(player.transform.right * knockBackForce);
+        }
+        else
+        {
+            player.movement.rigidbody.AddForce(player.transform.right * -knockBackForce);
         }
     }
 

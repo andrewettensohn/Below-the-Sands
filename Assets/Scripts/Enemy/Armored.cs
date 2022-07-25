@@ -5,8 +5,5 @@ using System;
 
 public class Armored : Enemy
 {
-    public override void OnSuccessfulAttack()
-    {
-        enemyWaypointBehavior.isBehaviorEnabled = true;
-    }
+
 }

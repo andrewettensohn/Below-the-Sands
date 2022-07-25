@@ -153,7 +153,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.BelowtheSands
+    Standalone: com.AndrewEttensohn.FellDeeds
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -271,7 +271,7 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: f18f12a7ace45174da359c96353f2829, type: 3}
+      m_Icon: {fileID: 2800000, guid: d0463918528f8ac4eb5d69d340ef2c52, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 0
@@ -313,7 +313,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: f18f12a7ace45174da359c96353f2829, type: 3}
+      m_Icon: {fileID: 2800000, guid: d0463918528f8ac4eb5d69d340ef2c52, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

@@ -60,6 +60,9 @@ public class Player : MonoBehaviour
         defaultSpeed = movement.speed;
         defaultAttackRange = attackRange;
         playerUI.SyncHearts();
+
+        
+        
     }
 
     private void Update()
