@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5.5
-  fallingMultiplier: 1.5
+  fallingMultiplier: 2
   jumpVelocity: 8
   lookDirection: {x: 1, y: 0}
   obstacleLayer:
@@ -198,7 +198,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &676081939463089699
 Animator:

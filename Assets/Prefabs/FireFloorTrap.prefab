@@ -99,10 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158630ebc2c71b94d97e7f05cbf22986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FlameOnClip: {fileID: 0}
+  TrapAnimationClip: {fileID: 7400000, guid: 39e6e7a0c9bc66140977fdd21610d6ed, type: 2}
   DamageSprites:
   - {fileID: 408024259, guid: 55088958838498849bae13a9fc7e21f7, type: 3}
   - {fileID: 1936510110, guid: 55088958838498849bae13a9fc7e21f7, type: 3}
+  animationStartDelay: 0
 --- !u!95 &5485503194661323099
 Animator:
   serializedVersion: 4

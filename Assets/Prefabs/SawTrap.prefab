@@ -101,12 +101,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrapAnimationClip: {fileID: 7400000, guid: 119a9b2de7c9bf9419afd2b95819604e, type: 2}
   DamageSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  IsAlwaysDangerous: 1
+  - {fileID: -245805533, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: 674918947, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: 139791452, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: 216598532, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: -640830116, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: -1386381625, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: 1915690015, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: -1488889389, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: -1375129145, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: 1986174862, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  - {fileID: -1331768185, guid: 815d451c5b479784085528d48392fa04, type: 3}
+  alwaysDealsDamage: 0
 --- !u!95 &4171425052545796064
 Animator:
   serializedVersion: 4

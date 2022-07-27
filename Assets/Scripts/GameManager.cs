@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-            HandleMusic("MainMenu");
+            HandleMusic();
         }
         else if (instance != this)
         {
@@ -52,54 +52,54 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void HandleMusic(string sceneName)
+    private void HandleMusic()
     {
+        audioSource.Stop();
 
-        if (FirstLevelMusicTriggers.Any(x => x.ToString() == sceneName) && audioSource.clip != musicTracks.FirstLayerTrack)
-        {
-            audioSource.clip = musicTracks.FirstLayerTrack;
-        }
-        else if (sceneName == "MainMenu" || LevelName.CatacombEntrance.ToString() == sceneName)
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if(sceneName == "MainMenu")
         {
             audioSource.clip = musicTracks.MainMenuTrack;
         }
-        else if (SecondLevelMusicTriggers.Any(x => x.ToString() == sceneName) && audioSource.clip != musicTracks.SecondLayerTrack)
+        else if(sceneName == "Stage1")
         {
-            audioSource.clip = musicTracks.SecondLayerTrack;
-        }
-        else if (ThirdLevelMusicTriggers.Any(x => x.ToString() == sceneName) && audioSource.clip != musicTracks.ThirdLayerTrack)
-        {
-            audioSource.clip = musicTracks.ThirdLayerTrack;
-        }
-        else if (LevelName.ThirdLevelBossRoom.ToString() == sceneName)
-        {
-            audioSource.clip = musicTracks.BossFightTrack;
-        }
-        else if (sceneName == "EndGameCutscene")
-        {
-            audioSource.clip = musicTracks.FinalTrack;
+            audioSource.clip = musicTracks.FirstLayerTrack;
         }
         else
         {
             return;
         }
 
-        audioSource.Stop();
         audioSource.Play();
+    }
+
+    private IEnumerator HandleSwitchMusicTrackDelay()
+    {
+
+        yield return new WaitForSeconds(1.0f);
+
+        HandleMusic();
     }
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
-        HandleMusic("MainMenu");
+        StartCoroutine(HandleSwitchMusicTrackDelay());
     }
 
     public void LoadScene(string sceneName, Vector2 positionAfterLoad)
     {
         PlayerInfo.instance.nextPlayerPositionOnLoad = positionAfterLoad;
         SceneManager.LoadScene(sceneName);
-        HandleMusic(sceneName);
+        StartCoroutine(HandleSwitchMusicTrackDelay());
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+        StartCoroutine(HandleSwitchMusicTrackDelay());
     }
 
     public void PlayEndGameCutscene()

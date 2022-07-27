@@ -30,8 +30,6 @@ public class EnemyCombatBehavior : EnemyBehavior
     public bool hasKnockBackAttack;
     public float knockBackForce;
 
-    public float detectionSizeModifier = 0.75f;
-
     public virtual void HandleCombat()
     {
         Collider2D[] players = GetPlayerHits(attackRange);

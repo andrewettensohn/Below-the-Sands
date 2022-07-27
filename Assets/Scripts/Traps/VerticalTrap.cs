@@ -8,14 +8,28 @@ public class VerticalTrap : MonoBehaviour
 
     public AnimationClip TrapAnimationClip;
     public List<Sprite> DamageSprites;
+    public float animationStartDelay;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
     private Player playerGameObject;
     private bool hasDeltDamage;
-    public bool alwaysDealsDamage;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine(HandleAnimationStartDelay());
+    }
+
+    protected virtual IEnumerator HandleAnimationStartDelay()
+    {
+        yield return new WaitForSeconds(animationStartDelay);
+
+        animator.Play(TrapAnimationClip.name);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +45,7 @@ public class VerticalTrap : MonoBehaviour
     {
         if (playerGameObject == null) return;
 
-        bool shouldDealDamage = DamageSprites.Any(x => x.name == spriteRenderer.sprite.name) || alwaysDealsDamage;
+        bool shouldDealDamage = DamageSprites.Any(x => x.name == spriteRenderer.sprite.name);
 
         if (shouldDealDamage && !hasDeltDamage)
         {
@@ -49,5 +63,4 @@ public class VerticalTrap : MonoBehaviour
     {
         playerGameObject = null;
     }
-
 }

@@ -164,6 +164,7 @@ MonoBehaviour:
   scoreValue: 10
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
+  debugAttackRange: 0.8
 --- !u!114 &8206952045015469774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,13 +179,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
   dealDamageDelay: 0.6
-  attackRange: 0.5
+  attackRange: 0.8
   blockTime: 0
-  leaveOpeningTime: 0.5
+  leaveOpeningTime: 0.3
   willBlock: 0
   hasKnockBackAttack: 0
   knockBackForce: 0
-  detectionSizeModifier: 0.75
 --- !u!114 &5886285886026939121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8934745804851055368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.001, y: -0.219, z: -0.008266509}
+  m_LocalPosition: {x: 0.001, y: -0.125, z: -0.008266509}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

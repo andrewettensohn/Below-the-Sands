@@ -31,6 +31,7 @@ public class Enemy : DamageableEnemy
     public NavMeshAgent navMeshAgent { get; private set; }
     public Vector2 lookDirection;
     public int focusPointReward;
+    public float debugAttackRange;
     
     private bool isDying;
 
@@ -180,7 +181,7 @@ public class Enemy : DamageableEnemy
             OnDeath();
             if (!PlayerInfo.instance.isBlessed) audioSource.PlayOneShot(DeathAudioClip);
         }
-        else
+        else if(health <= 0)
         {
             animator.SetTrigger("Hit");
             isStaggered = canBeStaggered;
@@ -201,6 +202,6 @@ public class Enemy : DamageableEnemy
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
-        Gizmos.DrawWireSphere(attackPoint.position, combatBehavior.attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, debugAttackRange);
     }
 }

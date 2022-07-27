@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
             SwitchEquippedAbility();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             HandleEquippedAbility();
         }
@@ -119,7 +119,8 @@ public class Player : MonoBehaviour
 
     private void HandleEquippedAbility()
     {
-        if(isUsingAbility || PlayerInfo.instance.focusPoints <= 0) return;
+        //if(isUsingAbility || PlayerInfo.instance.focusPoints <= 0) return;
+        if(isUsingAbility) return;
 
         isUsingAbility = true;
         PlayerInfo.instance.focusPoints -= 1;
