@@ -14,13 +14,14 @@ public class EnemyCombatBehavior : EnemyBehavior
     [Range(0.0f, 5.0f)]
     public float blockTime;
 
-    [Range(0.1f, 5.0f)]
+    [Range(0.0f, 5.0f)]
     public float leaveOpeningTime;
 
     public bool willBlock;
+    public bool hasContinuousAttack;
 
     public bool isBlocking { get; protected set; }
-    public bool isAttacking { get; protected set; }
+    public bool isAttacking { get; set; }
     public bool isInCombat { get; protected set; }
 
     public bool canAttack { get; protected set; }
@@ -37,6 +38,7 @@ public class EnemyCombatBehavior : EnemyBehavior
         if (players.Length == 0)
         {
             isInCombat = false;
+            isAttacking = false;
             return;
         }
 
@@ -47,7 +49,11 @@ public class EnemyCombatBehavior : EnemyBehavior
             OnLeaveOpening();
         }
 
-        if (canAttack)
+        if (hasContinuousAttack && canAttack)
+        {
+            OnContinuousAttack();
+        }
+        else if (canAttack)
         {
             OnAttack();
         }
@@ -61,6 +67,14 @@ public class EnemyCombatBehavior : EnemyBehavior
     protected virtual Collider2D[] GetPlayerHits(float distance)
     {
         return Physics2D.OverlapCircleAll(enemy.attackPoint.position, attackRange, enemy.playerLayer);
+    }
+
+    protected virtual void OnContinuousAttack()
+    {
+        canAttack = false;
+        isAttacking = true;
+        
+        StartCoroutine(HandleContinuousAttackDelayTimer());
     }
 
     protected virtual void OnAttack()
@@ -96,6 +110,19 @@ public class EnemyCombatBehavior : EnemyBehavior
             enemy.isStaggered = false;
             isAttacking = false;
             canBlock = true;
+        }
+    }
+
+    protected virtual IEnumerator HandleContinuousAttackDelayTimer()
+    {
+        yield return new WaitForSeconds(dealDamageDelay);
+
+        if (enemy.health > 0)
+        {
+            HandleAttack();
+
+            enemy.isStaggered = false;
+            canAttack = true;
         }
     }
 
