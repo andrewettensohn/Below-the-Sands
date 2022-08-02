@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public float dashAbilityLength;
     public float deflectAbilityLength;
     public float rapidAttackAbilityLength;
+    public bool isSpirit;
 
     public bool isUsingAbility { get; private set; }
 
@@ -60,9 +61,6 @@ public class Player : MonoBehaviour
         defaultSpeed = movement.speed;
         defaultAttackRange = attackRange;
         playerUI.SyncHearts();
-
-        
-        
     }
 
     private void Update()
@@ -75,6 +73,8 @@ public class Player : MonoBehaviour
             AnimateMovement();
             return;
         }
+
+        movement.canFloat = isSpirit;
 
         AnimateMovement();
         GetUserInput();
@@ -99,7 +99,15 @@ public class Player : MonoBehaviour
             HandleEquippedAbility();
         }
 
-        movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), 0f));
+        if(isSpirit)
+        {
+            movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+        }
+        else
+        {
+            movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), 0f));
+        }
+
         movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space));
     }
 
@@ -119,7 +127,7 @@ public class Player : MonoBehaviour
 
     private void HandleEquippedAbility()
     {
-        //if(isUsingAbility || PlayerInfo.instance.focusPoints <= 0) return;
+
         if(isUsingAbility) return;
 
         isUsingAbility = true;
@@ -283,11 +291,18 @@ public class Player : MonoBehaviour
         playerUI.ChangeHealthHearts(damage, false);
         audioSource.PlayOneShot(hitAudioClip);
 
-        if (PlayerInfo.instance.health <= 0)
+        if (PlayerInfo.instance.health <= 0 && !isSpirit)
         {
             animator.SetTrigger("Die");
             Invoke(nameof(OnDisable), 1.3f);
             GameManager.instance.GameOver();
+        }
+        else if(PlayerInfo.instance.health <= 0 && isSpirit)
+        {
+            animator.SetTrigger("Die");
+            PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
+            playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
+            isSpirit = false;
         }
         else if (!isAttacking)
         {
@@ -302,12 +317,19 @@ public class Player : MonoBehaviour
         animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
         animator.SetFloat("Look X", 1f);
         animator.SetBool("Is Grounded", movement.isGrounded);
+        animator.SetBool("Is Spirit", isSpirit);
     }
 
     public void OnHealthPotionPickedUp()
     {
         PlayerInfo.instance.healthPotionCount += 1;
         playerUI.SyncHealthPotCount();
+    }
+
+    public void OnSpiritPowerupPickedUp()
+    {
+        animator.SetTrigger("Become Spirit");
+        isSpirit = true;
     }
 
     public void OnDisable()
