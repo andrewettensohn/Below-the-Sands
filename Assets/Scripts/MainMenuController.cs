@@ -25,7 +25,7 @@ public class MainMenuController : MonoBehaviour
         GameManager.instance.prayerAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<PrayerName>();
 
         GameManager.instance.isIntroCutscenePlaying = true;
-        GameManager.instance.LoadScene("Stage1");
+        GameManager.instance.LoadScene("SurfaceStage");
     }
 
     public void ExitGame() => Application.Quit();

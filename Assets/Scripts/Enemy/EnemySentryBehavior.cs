@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySentryBehavior : EnemyBehavior
 {
-    public float detectionSizeModifier = 0.75f;
     public LayerMask obstacleLayer;
     public LayerMask nodeLayer;
     public bool canSeeThroughWalls;
@@ -18,7 +17,7 @@ public class EnemySentryBehavior : EnemyBehavior
 
     private bool IsPlayerDetected(Vector2 direction)
     {
-        RaycastHit2D playerHit = Physics2D.CircleCast(transform.position, 7.0f, Vector2.zero, 0.0f, enemy.playerLayer);
+        RaycastHit2D playerHit = Physics2D.CircleCast(transform.position, 7.0f * enemy.detectionSizeModifier, Vector2.zero, 0.0f, enemy.playerLayer);
 
         if (playerHit.collider == null) return false;
 

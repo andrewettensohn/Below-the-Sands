@@ -32,6 +32,7 @@ public class Enemy : DamageableEnemy
     public Vector2 lookDirection;
     public int focusPointReward;
     public float debugAttackRange;
+    public float detectionSizeModifier = 0.75f;
     
     private bool isDying;
 
@@ -203,5 +204,6 @@ public class Enemy : DamageableEnemy
     {
         if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, debugAttackRange);
+        Gizmos.DrawWireSphere(transform.position, 7.0f * detectionSizeModifier);
     }
 }
