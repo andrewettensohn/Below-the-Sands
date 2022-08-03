@@ -27,7 +27,7 @@ public class Enemy : DamageableEnemy
     public bool playerDetected;
     public AudioSource audioSource;
     public int scoreValue;
-    protected Animator animator;
+    public Animator animator;
     public NavMeshAgent navMeshAgent { get; private set; }
     public Vector2 lookDirection;
     public int focusPointReward;

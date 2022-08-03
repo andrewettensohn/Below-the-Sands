@@ -162,6 +162,7 @@ MonoBehaviour:
   playerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 10
+  animator: {fileID: 0}
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
   debugAttackRange: 1.6
@@ -182,11 +183,16 @@ MonoBehaviour:
   dealDamageDelay: 0.6
   attackRange: 1.6
   blockTime: 0
-  leaveOpeningTime: 0.5
-  willBlock: 0
-  hasContinuousAttack: 0
-  hasKnockBackAttack: 0
+  primaryAttackHasKnockBack: 0
+  secondaryAttackHasKnockBack: 1
   knockBackForce: 10000
+  hasSecondaryAttack: 1
+  hasBlock: 0
+  hasContinuousAttack: 0
+  initalLeaveOpeningTime: 0.5
+  postAttackLeaveOpeningTime: 0.3
+  postBlockLeaveOpeningTime: 0
+  postSecondaryAttackLeaveOpeningTime: 0.8
 --- !u!114 &6679380822188060389
 MonoBehaviour:
   m_ObjectHideFlags: 0

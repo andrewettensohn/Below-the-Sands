@@ -162,9 +162,11 @@ MonoBehaviour:
   playerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 100
+  animator: {fileID: 0}
   lookDirection: {x: 0, y: 0}
   focusPointReward: 1
   debugAttackRange: 0.8
+  detectionSizeModifier: 0.75
 --- !u!114 &4605634523838323553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,11 +183,16 @@ MonoBehaviour:
   dealDamageDelay: 0.5
   attackRange: 0.8
   blockTime: 0
-  leaveOpeningTime: 0.2
-  willBlock: 0
-  hasContinuousAttack: 0
-  hasKnockBackAttack: 0
+  primaryAttackHasKnockBack: 0
+  secondaryAttackHasKnockBack: 0
   knockBackForce: 0
+  hasSecondaryAttack: 0
+  hasBlock: 0
+  hasContinuousAttack: 0
+  initalLeaveOpeningTime: 0.2
+  postAttackLeaveOpeningTime: 0.3
+  postBlockLeaveOpeningTime: 0
+  postSecondaryAttackLeaveOpeningTime: 0
 --- !u!114 &5837589688164650461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  detectionSizeModifier: 0.75
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 256
