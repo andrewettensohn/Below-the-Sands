@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
     private void GetUserInput()
     {
 
-        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.E))
+        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.E) && !isSpirit)
         {
             HandleHealthPotionUsed();
         }
@@ -191,18 +191,6 @@ public class Player : MonoBehaviour
         HandleCombat(true, true);
     }
 
-    private void HandleDialougeInteraction()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, movement.lookDirection, 5.0f, npcLayer);
-
-        if (hit.collider != null)
-        {
-            Azkul azkul = hit.collider.GetComponent<Azkul>();
-            azkul.OpenDialog();
-            GameManager.instance.isPlayerControlRestricted = true;
-        }
-    }
-
     private void HandleCombat(bool overrideUserInput = false, bool canHitArrows = false)
     {
 
@@ -210,7 +198,7 @@ public class Player : MonoBehaviour
 
         isAttacking = true;
         canAttack = false;
-        int damageToDeal = 1;
+        int damageToDeal =  isSpirit ? 2 : 1;
 
         if (isUsingAbility && PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
         {
@@ -330,6 +318,8 @@ public class Player : MonoBehaviour
     {
         animator.SetTrigger("Become Spirit");
         isSpirit = true;
+        PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
+        playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
     }
 
     public void OnDisable()

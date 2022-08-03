@@ -112,7 +112,7 @@ MonoBehaviour:
   - {fileID: -1375129145, guid: 815d451c5b479784085528d48392fa04, type: 3}
   - {fileID: 1986174862, guid: 815d451c5b479784085528d48392fa04, type: 3}
   - {fileID: -1331768185, guid: 815d451c5b479784085528d48392fa04, type: 3}
-  alwaysDealsDamage: 0
+  animationStartDelay: 0
 --- !u!95 &4171425052545796064
 Animator:
   serializedVersion: 4
@@ -146,7 +146,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0012964457, y: -0.043821663}
+  m_Offset: {x: 0.0012928955, y: -0.043821663}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -157,5 +157,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3225995, y: 0.55235666}
+  m_Size: {x: 0.24521431, y: 0.55235666}
   m_EdgeRadius: 0
