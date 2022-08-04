@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
+    public readonly string playerCharacterName = "Samurai";
+
     public bool isGamePaused;
 
     public bool isPlayerControlRestricted;
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
         {
             audioSource.clip = musicTracks.MainMenuTrack;
         }
-        else if(sceneName == "Stage1")
+        else if(sceneName == "Stage1" || sceneName == "SurfaceStage")
         {
             audioSource.clip = musicTracks.FirstLayerTrack;
         }

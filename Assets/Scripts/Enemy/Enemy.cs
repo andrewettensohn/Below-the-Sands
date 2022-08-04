@@ -34,7 +34,7 @@ public class Enemy : DamageableEnemy
     public float debugAttackRange;
     public float detectionSizeModifier = 0.75f;
     
-    private bool isDying;
+    protected bool isDying;
 
     private void Start()
     {
@@ -45,7 +45,7 @@ public class Enemy : DamageableEnemy
         navMeshAgent.updateRotation = false;
         navMeshAgent.updateUpAxis = false;
 
-        GameObject targetGameObject = GameObject.Find("Ronin");
+        GameObject targetGameObject = GameObject.Find(GameManager.instance.playerCharacterName);
         if (targetGameObject != null)
         {
             target = targetGameObject.transform;
@@ -134,7 +134,7 @@ public class Enemy : DamageableEnemy
         }
     }
 
-    protected void OnDeath()
+    protected virtual void OnDeath()
     {
         isDying = true;
         animator.SetTrigger("Die");

@@ -67,7 +67,7 @@ public class Movement : MonoBehaviour
         {
             gameObject.SetActive(false);
 
-            if (gameObject.name == "Ronin") GameManager.instance.GameOver();
+            if (gameObject.name == GameManager.instance.playerCharacterName) GameManager.instance.GameOver();
         }
     }
 

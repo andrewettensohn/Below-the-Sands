@@ -196,6 +196,7 @@ public class Player : MonoBehaviour
 
         if ((!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) && !overrideUserInput) return;
 
+        movement.canMove = false;
         isAttacking = true;
         canAttack = false;
         int damageToDeal =  isSpirit ? 2 : 1;
@@ -241,6 +242,7 @@ public class Player : MonoBehaviour
             isAttacking = false;
             isStaggered = false;
             canAttack = true;
+            movement.canMove = true;
             animator.ResetTrigger("Attack");
             animator.ResetTrigger("RapidAttack");
         }

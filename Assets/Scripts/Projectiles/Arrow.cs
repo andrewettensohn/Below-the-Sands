@@ -37,7 +37,7 @@ public class Arrow : DamageableEnemy
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.name == "Ronin")
+        if (other.collider.name == GameManager.instance.playerCharacterName)
         {
             Player player = other.collider.GetComponent<Player>();
 

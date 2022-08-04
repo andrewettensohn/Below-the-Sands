@@ -34,7 +34,7 @@ public class VerticalTrap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "Ronin")
+        if (collision.name == GameManager.instance.playerCharacterName)
         {
             Player player = collision.GetComponent<Player>();
             playerGameObject = player;
