@@ -35,11 +35,6 @@ public class PlayerUI : MonoBehaviour
         dashIconObject.SetActive(true);
     }
 
-    public void Update()
-    {
-        focusPointCount.text = PlayerInfo.instance.focusPoints.ToString();
-    }
-
     public void SyncHealthPotCount() => healthPotCount.text = PlayerInfo.instance.healthPotionCount.ToString();
 
     public void SyncHearts()

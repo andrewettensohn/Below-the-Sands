@@ -36,49 +36,49 @@ public class Azkul : MonoBehaviour
     {
         DialogBranch dynamicMainBranch = GetDialogBranches().FirstOrDefault(x => x.BranchID == 200);
 
-        dynamicMainBranch.Responses = dynamicMainBranch.Responses.Select(x => new DialogResponse { Response = x.Response, NextBranchID = x.NextBranchID }).ToList();
+        // dynamicMainBranch.Responses = dynamicMainBranch.Responses.Select(x => new DialogResponse { Response = x.Response, NextBranchID = x.NextBranchID }).ToList();
 
-        List<DialogResponse> filteredResponses = new List<DialogResponse>();
+        // List<DialogResponse> filteredResponses = new List<DialogResponse>();
 
-        Milestones milestones = GameManager.instance.milestones;
+        // Milestones milestones = GameManager.instance.milestones;
 
-        foreach (DialogResponse response in dynamicMainBranch.Responses)
-        {
-            if (response.NextBranchID == 210 && !milestones.HasFinishedAzkulQuest && PlayerInfo.instance.relicCount >= 3)
-            {
-                filteredResponses.Add(response);
-            }
-            else if (response.NextBranchID == 220 && milestones.HasFinishedAzkulQuest && !milestones.HasAskedAzkulForSupplies)
-            {
-                filteredResponses.Add(response);
-            }
-            else if (response.NextBranchID == 230 && milestones.HasFinishedAzkulQuest && milestones.HasAskedAzkulForSupplies && PlayerInfo.instance.relicCount > 0)
-            {
-                filteredResponses.Add(response);
-            }
-            else if (response.NextBranchID == 240 && !milestones.HasFinishedAzkulQuest && !milestones.HasAskedAzkulForSupplies)
-            {
-                filteredResponses.Add(response);
-            }
-            else if (response.NextBranchID == 250 && !milestones.HasFinishedFirstLayer)
-            {
-                filteredResponses.Add(response);
-            }
-            else if (response.NextBranchID == 260 && milestones.HasFinishedFirstLayer && !milestones.HasFinishedSecondLayer)
-            {
-                filteredResponses.Add(response);
-            }
-            else if (response.NextBranchID == 270 && milestones.HasFinishedSecondLayer && !milestones.HasCompletedThirdLayer)
-            {
-                filteredResponses.Add(response);
-            }
-            else if (response.NextBranchID == 0)
-            {
-                filteredResponses.Add(response);
-            }
-        }
+        // foreach (DialogResponse response in dynamicMainBranch.Responses)
+        // {
+        //     if (response.NextBranchID == 210 && !milestones.HasFinishedAzkulQuest && PlayerInfo.instance.relicCount >= 3)
+        //     {
+        //         filteredResponses.Add(response);
+        //     }
+        //     else if (response.NextBranchID == 220 && milestones.HasFinishedAzkulQuest && !milestones.HasAskedAzkulForSupplies)
+        //     {
+        //         filteredResponses.Add(response);
+        //     }
+        //     else if (response.NextBranchID == 230 && milestones.HasFinishedAzkulQuest && milestones.HasAskedAzkulForSupplies && PlayerInfo.instance.relicCount > 0)
+        //     {
+        //         filteredResponses.Add(response);
+        //     }
+        //     else if (response.NextBranchID == 240 && !milestones.HasFinishedAzkulQuest && !milestones.HasAskedAzkulForSupplies)
+        //     {
+        //         filteredResponses.Add(response);
+        //     }
+        //     else if (response.NextBranchID == 250 && !milestones.HasFinishedFirstLayer)
+        //     {
+        //         filteredResponses.Add(response);
+        //     }
+        //     else if (response.NextBranchID == 260 && milestones.HasFinishedFirstLayer && !milestones.HasFinishedSecondLayer)
+        //     {
+        //         filteredResponses.Add(response);
+        //     }
+        //     else if (response.NextBranchID == 270 && milestones.HasFinishedSecondLayer && !milestones.HasCompletedThirdLayer)
+        //     {
+        //         filteredResponses.Add(response);
+        //     }
+        //     else if (response.NextBranchID == 0)
+        //     {
+        //         filteredResponses.Add(response);
+        //     }
+        // }
 
-        dynamicMainBranch.Responses = filteredResponses;
+        // dynamicMainBranch.Responses = filteredResponses;
         return dynamicMainBranch;
     }
 
@@ -110,22 +110,22 @@ public class Azkul : MonoBehaviour
 
     private void CheckForMilestoneFromBranchId(int branchID)
     {
-        if (branchID == 210)
-        {
-            GameManager.instance.milestones.HasFinishedAzkulQuest = true;
-            PlayerInfo.instance.relicCount -= 3;
-        }
-        else if (branchID == 220 || branchID == 240)
-        {
-            GameManager.instance.milestones.HasAskedAzkulForSupplies = true;
-        }
-        else if (branchID == 230)
-        {
-            PlayerInfo.instance.healthPotionCount += PlayerInfo.instance.relicCount;
-            PlayerInfo.instance.relicCount = 0;
-        }
+        // if (branchID == 210)
+        // {
+        //     GameManager.instance.milestones.HasFinishedAzkulQuest = true;
+        //     PlayerInfo.instance.relicCount -= 3;
+        // }
+        // else if (branchID == 220 || branchID == 240)
+        // {
+        //     GameManager.instance.milestones.HasAskedAzkulForSupplies = true;
+        // }
+        // else if (branchID == 230)
+        // {
+        //     PlayerInfo.instance.healthPotionCount += PlayerInfo.instance.relicCount;
+        //     PlayerInfo.instance.relicCount = 0;
+        // }
 
-        SyncPlayerUI();
+        // SyncPlayerUI();
     }
 
     private void SyncPlayerUI()

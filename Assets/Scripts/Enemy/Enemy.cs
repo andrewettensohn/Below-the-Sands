@@ -153,7 +153,6 @@ public class Enemy : DamageableEnemy
     protected virtual void GivePlayerRewardForDeath()
     {
         GameManager.instance.UpdateScore(scoreValue);
-        PlayerInfo.instance.focusPoints += focusPointReward;
     }
 
     private void Animate()
@@ -180,13 +179,11 @@ public class Enemy : DamageableEnemy
         if (health <= 0 && !isDying)
         {
             OnDeath();
-            if (!PlayerInfo.instance.isBlessed) audioSource.PlayOneShot(DeathAudioClip);
         }
         else if(health <= 0)
         {
             animator.SetTrigger("Hit");
             isStaggered = canBeStaggered;
-            if (!PlayerInfo.instance.isBlessed) audioSource.PlayOneShot(HitAudioClip);
         }
     }
 

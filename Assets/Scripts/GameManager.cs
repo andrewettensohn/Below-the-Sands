@@ -21,10 +21,6 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<HealthPotionName, bool> healthPotionAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<HealthPotionName>();
 
-    public Dictionary<RelicName, bool> relicAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<RelicName>();
-
-    public Dictionary<PrayerName, bool> prayerAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<PrayerName>();
-
     public bool isIntroCutscenePlaying;
     public bool isEndGameCutscenePlaying;
 
@@ -117,6 +113,12 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsToWait);
         SceneManager.LoadScene("EndGameCutscene");
+    }
+
+    public void SaveProgress()
+    {
+        TextAsset dialogPackText = Resources.Load<TextAsset>("Text/AzkulDialogBranches");
+        DialogPack pack = JsonUtility.FromJson<DialogPack>(dialogPackText.text);
     }
 
     public void UpdateScore(int scoreValue)

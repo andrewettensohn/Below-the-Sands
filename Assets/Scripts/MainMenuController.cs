@@ -20,9 +20,7 @@ public class MainMenuController : MonoBehaviour
         GameManager.instance.milestones.IsFistVisitToCatacomb = true;
 
         PlayerInfo.instance.ResetPlayerInfo();
-        GameManager.instance.relicAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<RelicName>();
         GameManager.instance.healthPotionAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<HealthPotionName>();
-        GameManager.instance.prayerAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<PrayerName>();
 
         GameManager.instance.isIntroCutscenePlaying = true;
         GameManager.instance.LoadScene("SurfaceStage");

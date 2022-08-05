@@ -131,7 +131,6 @@ public class Player : MonoBehaviour
         if(isUsingAbility) return;
 
         isUsingAbility = true;
-        PlayerInfo.instance.focusPoints -= 1;
 
         if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Dash)
         {
