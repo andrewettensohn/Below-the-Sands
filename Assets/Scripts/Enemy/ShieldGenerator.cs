@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShieldGenerator : DamageableEnemy
 {
     public float health;
-    public GameObject magicShieldGameObject;
+    //public GameObject magicShieldGameObject;
 
     public override void OnDeltDamage(float damage, Player player = null)
     {
@@ -13,7 +13,7 @@ public class ShieldGenerator : DamageableEnemy
 
         if(health <= 0)
         {
-            magicShieldGameObject.SetActive(false);
+            //magicShieldGameObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }
