@@ -87,11 +87,11 @@
      <Compile Include="Assets\Scripts\OptionsController.cs" />
      <Compile Include="Assets\Scripts\Enemy\ShieldGenerator.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
+     <Compile Include="Assets\Scripts\CampfireSavePoint.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\Enums\HealthPotionName.cs" />
      <Compile Include="Assets\Scripts\Audio\MusicTracks.cs" />
-     <Compile Include="Assets\Scripts\CampfireSavePoint.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

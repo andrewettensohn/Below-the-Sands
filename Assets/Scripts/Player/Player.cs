@@ -55,7 +55,8 @@ public class Player : MonoBehaviour
 
         if (PlayerInfo.instance.nextPlayerPositionOnLoad != Vector2.zero)
         {
-            movement.rigidbody.MovePosition(PlayerInfo.instance.nextPlayerPositionOnLoad);
+            Debug.Log(PlayerInfo.instance.nextPlayerPositionOnLoad.y);
+            transform.position = PlayerInfo.instance.nextPlayerPositionOnLoad;
         }
 
         defaultSpeed = movement.speed;
@@ -65,6 +66,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        PlayerInfo.instance.playerPosition = transform.position;
+
         if (GameManager.instance.isGamePaused) return;
 
         if (GameManager.instance.isPlayerControlRestricted || (isAttacking && movement.isGrounded))

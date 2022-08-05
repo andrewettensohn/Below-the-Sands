@@ -26,5 +26,18 @@ public class MainMenuController : MonoBehaviour
         GameManager.instance.LoadScene("SurfaceStage");
     }
 
+    public void ContinueGame()
+    {
+        bool isLastSceneKeyPresent = PlayerPrefs.HasKey("LastScene");
+
+        if(isLastSceneKeyPresent == false)
+        {
+            StartGame();
+            return;
+        }
+        
+        GameManager.instance.LoadProgress();
+    }
+
     public void ExitGame() => Application.Quit();
 }

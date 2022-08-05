@@ -9,6 +9,8 @@ public class PlayerInfo : MonoBehaviour
 
     public Vector2 nextPlayerPositionOnLoad { get; set; }
 
+    public Vector2 playerPosition { get; set; }
+
     public int healthPotionCount { get; set; }
 
     public int health { get; set; }
