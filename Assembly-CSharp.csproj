@@ -44,6 +44,7 @@
      <Compile Include="Assets\Scripts\Node.cs" />
      <Compile Include="Assets\Scripts\Traps\Spikes.cs" />
      <Compile Include="Assets\Scripts\Helpers\CollectableDictionaryHelper.cs" />
+     <Compile Include="Assets\Scripts\Traps\ArrowTrap.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogPrompt.cs" />
      <Compile Include="Assets\Scripts\Enemy\DamageableEnemy.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\BlockIcon.cs" />
@@ -77,6 +78,7 @@
      <Compile Include="Assets\Scripts\Collectables\SpiritPowerup.cs" />
      <Compile Include="Assets\Scripts\Milestones.cs" />
      <Compile Include="Assets\Scripts\Enemy\Acolyte.cs" />
+     <Compile Include="Assets\Scripts\Enemy\AlligatorWarrior.cs" />
      <Compile Include="Assets\Scripts\Traps\ExplosivePressurePlate.cs" />
      <Compile Include="Assets\Scripts\Dialog\TextSlideCutscene.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Arrow.cs" />

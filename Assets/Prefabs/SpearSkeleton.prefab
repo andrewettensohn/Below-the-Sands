@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1351c046ca389048ab90149b86a21e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 6
+  health: 4
   speed: 2
   attackPoint: {fileID: 6912137220842514993}
   DeathAudioClip: {fileID: 8300000, guid: 56ec1bcf451872c43a7e485973345ec1, type: 3}

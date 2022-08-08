@@ -157,7 +157,7 @@ public class Enemy : DamageableEnemy
 
     private void Animate()
     {
-        animator.SetBool("Attacking", combatBehavior.isAttacking && !isStaggered);
+        // animator.SetBool("Attacking", combatBehavior.isAttacking && !isStaggered);
         animator.SetBool("Block", combatBehavior.isBlocking);
 
         animator.SetFloat("Speed", navMeshAgent.velocity.sqrMagnitude);

@@ -155,6 +155,7 @@ public class EnemyCombatBehavior : EnemyBehavior
     {
         canAttack = false;
         isAttacking = true;
+        enemy.animator.SetTrigger("Attack");
         
         StartCoroutine(HandleContinuousAttackDelayTimer());
     }
@@ -176,7 +177,8 @@ public class EnemyCombatBehavior : EnemyBehavior
     {
         canAttack = false;
         isAttacking = true;
-        // enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
+        enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
+        enemy.animator.SetTrigger("Attack");
 
         StartCoroutine(HandlePostAttackDelayTimer());
     }

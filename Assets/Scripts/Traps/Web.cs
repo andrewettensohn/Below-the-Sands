@@ -19,7 +19,7 @@ public class Web : MonoBehaviour
         if (collision.name == GameManager.instance.playerCharacterName)
         {
             Player player = collision.GetComponent<Player>();
-            player.movement.speed = 3.5f;
+            player.movement.speed = player.defaultSpeed;
         }
     }
 }

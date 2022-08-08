@@ -17,16 +17,16 @@ public class CatacombLayerDoor : MonoBehaviour
 
     private void Start()
     {
-        bool isUnlocked =
-            doorTrigger.levelName == LevelName.FirstLevelEntrance ||
-            (doorTrigger.levelName == LevelName.SecondLevelGreatHall && GameManager.instance.milestones.HasOpenedSecondLayerToEntranceRoute) ||
-            (doorTrigger.levelName == LevelName.ThirdLevelEntrance && GameManager.instance.milestones.HasOpenedThirdLayerToEntranceRoute);
+        // // bool isUnlocked =
+        // //     doorTrigger.levelName == LevelName.FirstLevelEntrance ||
+        // //     (doorTrigger.levelName == LevelName.SecondLevelGreatHall && GameManager.instance.milestones.HasOpenedSecondLayerToEntranceRoute) ||
+        // //     (doorTrigger.levelName == LevelName.ThirdLevelEntrance && GameManager.instance.milestones.HasOpenedThirdLayerToEntranceRoute);
 
-        doorTrigger.isLocked = !isUnlocked;
+        // doorTrigger.isLocked = !isUnlocked;
 
-        spriteRenderer.sprite = isUnlocked ? UnlockedSprite : LockedSprite;
+        // spriteRenderer.sprite = isUnlocked ? UnlockedSprite : LockedSprite;
 
-        Vector3 scale = isUnlocked ? new Vector3(1.216326f, 1.297422f, 1) : new Vector3(1.030567f, 1.122422f, 1);
-        transform.localScale = scale;
+        // Vector3 scale = isUnlocked ? new Vector3(1.216326f, 1.297422f, 1) : new Vector3(1.030567f, 1.122422f, 1);
+        // transform.localScale = scale;
     }
 }

@@ -14,6 +14,7 @@ public class PlayerUI : MonoBehaviour
     public GameObject deflectIconObject;
     public GameObject rapidIconObject;
     public GameObject AbilityUseBackground;
+    public GameObject ProgressSavedGameObject;
     private TMP_Text healthPotCount;
     private TMP_Text focusPointCount;
 
@@ -33,12 +34,17 @@ public class PlayerUI : MonoBehaviour
         SetAllAbilityIconsToInactive();
         SetAbilityUseBackground(false);
         dashIconObject.SetActive(true);
+
+        SyncHearts();
+
+        ProgressSavedGameObject.SetActive(false);
     }
 
     public void SyncHealthPotCount() => healthPotCount.text = PlayerInfo.instance.healthPotionCount.ToString();
 
     public void SyncHearts()
     {
+        Debug.Log($"Player health: {PlayerInfo.instance.health}");
         int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
 
         ChangeHealthHearts(heartsNeededToChange, false);
@@ -81,10 +87,12 @@ public class PlayerUI : MonoBehaviour
         {
             if (heartsChanged >= heartsNeededToChange) break;
 
+            Debug.Log(hearts[i].isHealthy == true);
             if (hearts[i].isHealthy == true && isActive == false)
             {
                 hearts[i].SetUnhealthy();
                 heartsChanged++;
+                Debug.Log("unhealthy");
             }
             else if (hearts[i].isHealthy == false && isActive == true)
             {
@@ -93,4 +101,18 @@ public class PlayerUI : MonoBehaviour
             }
         }
     }
+
+    public void DisplayProgressSavedMessage()
+    {
+        ProgressSavedGameObject.SetActive(true);
+
+        StartCoroutine(HandleProgressSavedMessageTimer());
+    }
+
+    private IEnumerator HandleProgressSavedMessageTimer()
+    {
+        yield return new WaitForSeconds(3.0f);
+
+        ProgressSavedGameObject.SetActive(false);
+    } 
 }

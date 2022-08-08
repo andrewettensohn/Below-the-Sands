@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private AudioSource audioSource;
     private bool isStaggered;
-    private float defaultSpeed;
+    public float defaultSpeed { get; private set; }
     private float defaultAttackRange;
 
     private void Awake()
@@ -61,7 +61,6 @@ public class Player : MonoBehaviour
 
         defaultSpeed = movement.speed;
         defaultAttackRange = attackRange;
-        playerUI.SyncHearts();
     }
 
     private void Update()

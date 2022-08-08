@@ -115,13 +115,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("EndGameCutscene");
     }
 
+    public void ResetProgress()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
     public void SaveProgress()
     {
         PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.SetFloat("LastPositionX", PlayerInfo.instance.playerPosition.x);
         PlayerPrefs.SetFloat("LastPositionY", PlayerInfo.instance.playerPosition.y);
-        PlayerPrefs.SetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
+        //PlayerPrefs.SetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
         PlayerPrefs.Save();
+
+        bool isUIPresent = GameObject.Find("PlayerUICanvas").TryGetComponent<PlayerUI>(out PlayerUI playerUI);
+
+        if(isUIPresent)
+        {
+            playerUI.DisplayProgressSavedMessage();
+        }
     }
 
     public void LoadProgress()
@@ -129,10 +141,10 @@ public class GameManager : MonoBehaviour
         string lastSceneName = PlayerPrefs.GetString("LastScene", SceneManager.GetActiveScene().name);
         float lastPositionX = PlayerPrefs.GetFloat("LastPositionX", PlayerInfo.instance.playerPosition.x);
         float lastPositionY = PlayerPrefs.GetFloat("LastPositionY", PlayerInfo.instance.playerPosition.y);
-        int healthPotCount = PlayerPrefs.GetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
+        //int healthPotCount = PlayerPrefs.GetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
 
         PlayerInfo.instance.nextPlayerPositionOnLoad = new Vector2(lastPositionX, lastPositionY);
-        PlayerInfo.instance.healthPotionCount = healthPotCount;
+        //PlayerInfo.instance.healthPotionCount = healthPotCount;
         PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
 
         Debug.Log($"Loading: {PlayerInfo.instance.nextPlayerPositionOnLoad.y}");

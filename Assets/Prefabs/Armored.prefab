@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
+  singleWaypointLocation: {fileID: 0}
   WaypointLayer:
     serializedVersion: 2
     m_Bits: 131072

@@ -19,6 +19,7 @@ public class MainMenuController : MonoBehaviour
         GameManager.instance.milestones = new Milestones();
         GameManager.instance.milestones.IsFistVisitToCatacomb = true;
 
+        GameManager.instance.ResetProgress();
         PlayerInfo.instance.ResetPlayerInfo();
         GameManager.instance.healthPotionAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<HealthPotionName>();
 
