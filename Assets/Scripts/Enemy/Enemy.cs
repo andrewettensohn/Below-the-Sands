@@ -104,7 +104,7 @@ public class Enemy : DamageableEnemy
         combatBehavior.isBehaviorEnabled = false;
     }
 
-    protected void HandleBehaviors()
+    protected virtual void HandleBehaviors()
     {
         if (health <= 0)
         {

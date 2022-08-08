@@ -9,10 +9,10 @@ public class VerticalTrap : MonoBehaviour
     public AnimationClip TrapAnimationClip;
     public List<Sprite> DamageSprites;
     public float animationStartDelay;
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
-    private Player playerGameObject;
-    private bool hasDeltDamage;
+    public SpriteRenderer spriteRenderer { get; private set; }
+    protected Animator animator;
+    protected Player playerGameObject;
+    protected bool hasDeltDamage;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class VerticalTrap : MonoBehaviour
         animator.Play(TrapAnimationClip.name);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name == GameManager.instance.playerCharacterName)
         {
@@ -41,7 +41,7 @@ public class VerticalTrap : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collider)
+    protected virtual void OnTriggerStay2D(Collider2D collider)
     {
         if (playerGameObject == null) return;
 
@@ -59,7 +59,7 @@ public class VerticalTrap : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collider)
+    protected virtual void OnTriggerExit2D(Collider2D collider)
     {
         playerGameObject = null;
     }

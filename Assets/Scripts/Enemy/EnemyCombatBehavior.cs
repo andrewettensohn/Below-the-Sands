@@ -31,14 +31,14 @@ public class EnemyCombatBehavior : EnemyBehavior
     public float postBlockLeaveOpeningTime;
     public float postSecondaryAttackLeaveOpeningTime;
 
-    private bool canLeaveInitalOpening = true;
-    private bool canLeavePostAttackOpening;
-    private bool canLeavePostBlockOpening;
-    private bool canLeavePostSecondaryAttackOpening;
+    protected bool canLeaveInitalOpening = true;
+    protected bool canLeavePostAttackOpening;
+    protected bool canLeavePostBlockOpening;
+    protected bool canLeavePostSecondaryAttackOpening;
 
-    private bool canAttack;
-    private bool canBlock;
-    private bool canDoSecondaryAttack;
+    protected bool canAttack;
+    protected bool canBlock;
+    protected bool canDoSecondaryAttack;
 
     protected enum AttackStage
     {

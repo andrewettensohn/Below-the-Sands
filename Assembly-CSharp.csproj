@@ -44,6 +44,7 @@
      <Compile Include="Assets\Scripts\Node.cs" />
      <Compile Include="Assets\Scripts\Traps\Spikes.cs" />
      <Compile Include="Assets\Scripts\Helpers\CollectableDictionaryHelper.cs" />
+     <Compile Include="Assets\Scripts\Enemy\NecromancerCombatBehavior.cs" />
      <Compile Include="Assets\Scripts\Traps\ArrowTrap.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogPrompt.cs" />
      <Compile Include="Assets\Scripts\Enemy\DamageableEnemy.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\Scripts\Dialog\DialogBranch.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyChaseBehavior.cs" />
      <Compile Include="Assets\Scripts\Dialog\Azkul.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Necromancer.cs" />
      <Compile Include="Assets\Scripts\Enums\RelicName.cs" />
      <Compile Include="Assets\Scripts\CatacombLayerDoor.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\PlayerUI.cs" />
@@ -94,6 +96,8 @@
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\Enums\HealthPotionName.cs" />
      <Compile Include="Assets\Scripts\Audio\MusicTracks.cs" />
+     <Compile Include="Assets\Scripts\Traps\DangerZone.cs" />
+     <Compile Include="Assets\Scripts\Traps\MagicTrap.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
