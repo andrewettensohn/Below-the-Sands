@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public float deflectAbilityLength;
     public float rapidAttackAbilityLength;
     public bool isSpirit;
+    public float staggerTime;
 
     public bool isUsingAbility { get; private set; }
 
@@ -39,8 +40,10 @@ public class Player : MonoBehaviour
     private Animator animator;
     private AudioSource audioSource;
     private bool isStaggered;
+    private bool isStaggerTimerActive;
     public float defaultSpeed { get; private set; }
     private float defaultAttackRange;
+
 
     private void Awake()
     {
@@ -68,6 +71,19 @@ public class Player : MonoBehaviour
         PlayerInfo.instance.playerPosition = transform.position;
 
         if (GameManager.instance.isGamePaused) return;
+
+        if(isStaggered && !isStaggerTimerActive)
+        {
+            isStaggerTimerActive = true;
+            StartCoroutine(HandleStaggerTimer());
+            return;
+        }
+
+        if(isStaggered)
+        {
+            GetUserInput();
+            movement.speed = movement.speed / 2;
+        }
 
         if (GameManager.instance.isPlayerControlRestricted || (isAttacking && movement.isGrounded))
         {
@@ -111,6 +127,7 @@ public class Player : MonoBehaviour
         }
 
         movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space));
+        
     }
 
     private void SwitchEquippedAbility()
@@ -170,15 +187,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void HandleDoorInteraction()
+    private IEnumerator HandleStaggerTimer()
     {
-        if (PlayerInfo.instance.isInDoorway)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, movement.lookDirection, 5.0f, transportTriggerLayer);
+        yield return new WaitForSeconds(staggerTime);
 
-            DoorTrigger door = hit.collider.GetComponent<DoorTrigger>();
-            door.TransportPlayer();
-        }
+        isStaggered = false;
+        isStaggerTimerActive = false; 
+        movement.speed = defaultSpeed;
     }
 
     private void Dash()
@@ -195,7 +210,7 @@ public class Player : MonoBehaviour
     private void HandleCombat(bool overrideUserInput = false, bool canHitArrows = false)
     {
 
-        if ((!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) && !overrideUserInput) return;
+        if ((!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) && !overrideUserInput || isStaggered) return;
 
         movement.canMove = false;
         isAttacking = true;
@@ -241,7 +256,6 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
 
             isAttacking = false;
-            isStaggered = false;
             canAttack = true;
             movement.canMove = true;
             animator.ResetTrigger("Attack");
@@ -269,7 +283,7 @@ public class Player : MonoBehaviour
     {
         damage = Mathf.Abs(damage);
 
-        if (damage <= 0) return;
+        if (damage <= 0 || isStaggered) return;
 
         if (isGodModeEnabled)
         {
@@ -295,7 +309,7 @@ public class Player : MonoBehaviour
             playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
             isSpirit = false;
         }
-        else if (!isAttacking)
+        else
         {
             animator.SetTrigger("Hit");
             isStaggered = true;

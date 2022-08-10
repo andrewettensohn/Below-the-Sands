@@ -20,16 +20,7 @@ public class MagicTrap : VerticalTrap
         }
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name == GameManager.instance.playerCharacterName)
-        {
-            Player player = collision.GetComponent<Player>();
-            playerGameObject = player;
-        }
-    }
-
-    protected override void OnTriggerStay2D(Collider2D collider)
+    protected override void HandleTrapDamage()
     {
         if (playerGameObject == null) return;
 
@@ -44,6 +35,15 @@ public class MagicTrap : VerticalTrap
         if (!shouldDealDamage)
         {
             hasDeltDamage = false;
+        }
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == GameManager.instance.playerCharacterName)
+        {
+            Player player = collision.GetComponent<Player>();
+            playerGameObject = player;
         }
     }
 

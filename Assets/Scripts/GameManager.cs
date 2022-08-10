@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
         //int healthPotCount = PlayerPrefs.GetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
 
         PlayerInfo.instance.nextPlayerPositionOnLoad = new Vector2(lastPositionX, lastPositionY);
-        //PlayerInfo.instance.healthPotionCount = healthPotCount;
+        PlayerInfo.instance.healthPotionCount = 0;
         PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
 
         Debug.Log($"Loading: {PlayerInfo.instance.nextPlayerPositionOnLoad.y}");

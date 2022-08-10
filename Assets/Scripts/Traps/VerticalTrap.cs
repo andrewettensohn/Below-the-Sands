@@ -25,23 +25,12 @@ public class VerticalTrap : MonoBehaviour
         StartCoroutine(HandleAnimationStartDelay());
     }
 
-    protected virtual IEnumerator HandleAnimationStartDelay()
+    private void Update()
     {
-        yield return new WaitForSeconds(animationStartDelay);
-
-        animator.Play(TrapAnimationClip.name);
+        HandleTrapDamage();
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name == GameManager.instance.playerCharacterName)
-        {
-            Player player = collision.GetComponent<Player>();
-            playerGameObject = player;
-        }
-    }
-
-    protected virtual void OnTriggerStay2D(Collider2D collider)
+    protected virtual void HandleTrapDamage()
     {
         if (playerGameObject == null) return;
 
@@ -56,6 +45,22 @@ public class VerticalTrap : MonoBehaviour
         if (!shouldDealDamage)
         {
             hasDeltDamage = false;
+        }
+    }
+
+    protected virtual IEnumerator HandleAnimationStartDelay()
+    {
+        yield return new WaitForSeconds(animationStartDelay);
+
+        animator.Play(TrapAnimationClip.name);
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == GameManager.instance.playerCharacterName)
+        {
+            Player player = collision.GetComponent<Player>();
+            playerGameObject = player;
         }
     }
 
