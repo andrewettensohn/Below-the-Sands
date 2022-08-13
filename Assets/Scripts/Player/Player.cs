@@ -109,14 +109,26 @@ public class Player : MonoBehaviour
             HandleHealthPotionUsed();
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !isUsingAbility)
         {
-            SwitchEquippedAbility();
+            Dash();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if(Input.GetKeyDown(KeyCode.LeftControl) && !isUsingAbility)
         {
-            HandleEquippedAbility();
+            Deflect();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Mouse1) && !isUsingAbility)
+        {
+            if(PlayerInfo.instance.isSpirit)
+            {
+                SpiritBlast();
+            }
+            else
+            {
+                RapidAttack();
+            }
         }
 
         if(PlayerInfo.instance.isSpirit)
@@ -132,62 +144,7 @@ public class Player : MonoBehaviour
         
     }
 
-    private void SwitchEquippedAbility()
-    {
-        if(isUsingAbility) return;
-
-        if(PlayerInfo.instance.isSpirit)
-        {
-            int currentIndex = PlayerInfo.instance.SpiritAbilityOrder.IndexOf(PlayerInfo.instance.EquippedAbility);
-
-            int newAbilityIndex = currentIndex + 1 >= PlayerInfo.instance.SpiritAbilityOrder.Count ? 0 : currentIndex + 1;
-
-            PlayerInfo.instance.EquippedAbility = PlayerInfo.instance.SpiritAbilityOrder[newAbilityIndex];
-        }
-        else
-        {
-            int currentIndex = PlayerInfo.instance.AbilityOrder.IndexOf(PlayerInfo.instance.EquippedAbility);
-
-            int newAbilityIndex = currentIndex + 1 >= PlayerInfo.instance.AbilityOrder.Count ? 0 : currentIndex + 1;
-
-            PlayerInfo.instance.EquippedAbility = PlayerInfo.instance.AbilityOrder[newAbilityIndex];
-        }
-
-        playerUI.SwapAbilityIcon(PlayerInfo.instance.EquippedAbility);
-
-        Debug.Log($"Equipped {PlayerInfo.instance.EquippedAbility}");
-    }
-
-    private void HandleEquippedAbility()
-    {
-
-        if(isUsingAbility) return;
-
-        isUsingAbility = true;
-        playerUI.SetAbilityUseBackground(true);
-
-        if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Dash)
-        {
-            Dash();
-            StartCoroutine(HandleAbilityTimer(dashAbilityLength));
-        }
-        else if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect)
-        {
-            Deflect();
-            StartCoroutine(HandleAbilityTimer(deflectAbilityLength));
-        }
-        else if (PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
-        {
-            StartCoroutine(HandleAbilityTimer(rapidAttackAbilityLength));
-        }
-        else if(PlayerInfo.instance.EquippedAbility == PlayerAbility.SpiritBlast)
-        {
-            SpiritBlast();
-            StartCoroutine(HandleAbilityTimer(spiritBlastCoolDownLength));
-        }
-    }
-
-    private IEnumerator HandleAbilityTimer(float timerLength)
+    private IEnumerator HandleAbilityTimer(float timerLength, PlayerAbility playerAbility)
     {
         if (isUsingAbility)
         {
@@ -196,7 +153,7 @@ public class Player : MonoBehaviour
             isUsingAbility = false;
             attackRange = defaultAttackRange;
             movement.speed = defaultSpeed;
-            playerUI.SetAbilityUseBackground(false);
+            playerUI.SetAbilityUseActive(playerAbility, false);
         }
     }
 
@@ -211,22 +168,50 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
+        isUsingAbility = true;
+        PlayerInfo.instance.EquippedAbility = PlayerAbility.Dash;
+
+        playerUI.SetAbilityUseActive(PlayerAbility.Dash, true);
+        StartCoroutine(HandleAbilityTimer(dashAbilityLength, PlayerAbility.Dash));
+
         movement.speed = 8;
     }
 
     private void Deflect()
     {
+        isUsingAbility = true;
+        PlayerInfo.instance.EquippedAbility = PlayerAbility.Deflect;
+
+        playerUI.SetAbilityUseActive(PlayerAbility.Deflect, true);
+        StartCoroutine(HandleAbilityTimer(deflectAbilityLength, PlayerAbility.Deflect));
+
         attackRange = 2.4f;
         HandleCombat(true, true);
     }
 
     private void SpiritBlast()
     {
+        isUsingAbility = true;
+
+        PlayerInfo.instance.EquippedAbility = PlayerAbility.SpiritBlast;
+
+        playerUI.SetAbilityUseActive(PlayerAbility.SpiritBlast, true);
+        StartCoroutine(HandleAbilityTimer(spiritBlastCoolDownLength, PlayerAbility.SpiritBlast));
+
         animator.SetTrigger("Attack");
         GameObject fireballGameObject = Instantiate(fireballPrefab, attackPoint.transform.position, Quaternion.identity);
 
         Fireball fireball = fireballGameObject.GetComponent<Fireball>();
         fireball.Launch(new Vector2(movement.lookDirection.x, 0), fireballLaunchForce);
+    }
+
+    private void RapidAttack()
+    {
+        isUsingAbility = true;
+        PlayerInfo.instance.EquippedAbility = PlayerAbility.RapidAttack;
+        playerUI.SetAbilityUseActive(PlayerAbility.RapidAttack, true);
+
+        StartCoroutine(HandleAbilityTimer(rapidAttackAbilityLength, PlayerAbility.RapidAttack));
     }
 
     private void HandleCombat(bool overrideUserInput = false, bool canHitArrows = false)
@@ -330,6 +315,7 @@ public class Player : MonoBehaviour
             PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
             playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
             PlayerInfo.instance.isSpirit = false;
+            playerUI.SwapToNormalAbilities();
         }
         else
         {
@@ -359,6 +345,7 @@ public class Player : MonoBehaviour
         PlayerInfo.instance.isSpirit = true;
         PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
         playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
+        playerUI.SwapToSpiritAbilities();
     }
 
     public void OnDisable()

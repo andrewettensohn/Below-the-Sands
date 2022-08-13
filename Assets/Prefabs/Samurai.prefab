@@ -156,9 +156,9 @@ MonoBehaviour:
   runningAudioClip: {fileID: 8300000, guid: fba95cafa5bba8649a7d269656e7317b, type: 3}
   attackAudioClip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
   hitAudioClip: {fileID: 8300000, guid: 98f45cffdc4ef4147a7ac1a7aa3d1edf, type: 3}
-  dashAbilityLength: 1
-  deflectAbilityLength: 1
-  rapidAttackAbilityLength: 3
+  dashAbilityLength: 1.5
+  deflectAbilityLength: 0.3
+  rapidAttackAbilityLength: 1.5
   spiritBlastCoolDownLength: 0.5
   staggerTime: 0.6
 --- !u!114 &5447899885563848641

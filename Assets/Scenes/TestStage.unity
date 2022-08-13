@@ -8943,7 +8943,7 @@ PrefabInstance:
       objectReference: {fileID: 223754840}
     - target: {fileID: 3199029665597912493, guid: b39664852be7b1149ac4fcc0b5df9e99, type: 3}
       propertyPath: isGodModeEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3199029665597912494, guid: b39664852be7b1149ac4fcc0b5df9e99, type: 3}
       propertyPath: m_RootOrder
