@@ -8,19 +8,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: ccf7c785fade837468a74a490e3a4ee0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/IntroCutscene.unity
     guid: 771756dd418e82a429c2043875ff22b0
-  - enabled: 1
-    path: Assets/Scenes/CatacombEntrance.unity
-    guid: 2c195c180c876e04dbc48004e93b0da5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FirstLevelEntrance.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EndGameCutscene.unity
     guid: 5fb2675d5eef2394c869416d1925b71b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Stage1.unity
     guid: 259d2c3ef99337340914d884c8bdc12b
+  - enabled: 1
+    path: Assets/Scenes/SurfaceStage.unity
+    guid: 6f500ae3a468fef45b9953332da65299
+  - enabled: 1
+    path: Assets/Scenes/Layer1.unity
+    guid: 461b116c3d90cd64b9ba6769344b453d
+  - enabled: 1
+    path: Assets/Scenes/Layer2.unity
+    guid: d6acca12ee6b3124bb3b70e32d537b47
   m_configObjects: {}

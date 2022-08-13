@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
+    public readonly string playerCharacterName = "Samurai";
+
     public bool isGamePaused;
 
     public bool isPlayerControlRestricted;
@@ -18,10 +20,6 @@ public class GameManager : MonoBehaviour
     public Milestones milestones = new Milestones { IsFistVisitToCatacomb = true };
 
     public Dictionary<HealthPotionName, bool> healthPotionAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<HealthPotionName>();
-
-    public Dictionary<RelicName, bool> relicAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<RelicName>();
-
-    public Dictionary<PrayerName, bool> prayerAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<PrayerName>();
 
     public bool isIntroCutscenePlaying;
     public bool isEndGameCutscenePlaying;
@@ -44,7 +42,7 @@ public class GameManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-            HandleMusic("MainMenu");
+            HandleMusic();
         }
         else if (instance != this)
         {
@@ -52,54 +50,54 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void HandleMusic(string sceneName)
+    private void HandleMusic()
     {
+        audioSource.Stop();
 
-        if (FirstLevelMusicTriggers.Any(x => x.ToString() == sceneName) && audioSource.clip != musicTracks.FirstLayerTrack)
-        {
-            audioSource.clip = musicTracks.FirstLayerTrack;
-        }
-        else if (sceneName == "MainMenu" || LevelName.CatacombEntrance.ToString() == sceneName)
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if(sceneName == "MainMenu")
         {
             audioSource.clip = musicTracks.MainMenuTrack;
         }
-        else if (SecondLevelMusicTriggers.Any(x => x.ToString() == sceneName) && audioSource.clip != musicTracks.SecondLayerTrack)
+        else if(sceneName == "Stage1" || sceneName == "SurfaceStage")
         {
-            audioSource.clip = musicTracks.SecondLayerTrack;
-        }
-        else if (ThirdLevelMusicTriggers.Any(x => x.ToString() == sceneName) && audioSource.clip != musicTracks.ThirdLayerTrack)
-        {
-            audioSource.clip = musicTracks.ThirdLayerTrack;
-        }
-        else if (LevelName.ThirdLevelBossRoom.ToString() == sceneName)
-        {
-            audioSource.clip = musicTracks.BossFightTrack;
-        }
-        else if (sceneName == "EndGameCutscene")
-        {
-            audioSource.clip = musicTracks.FinalTrack;
+            audioSource.clip = musicTracks.FirstLayerTrack;
         }
         else
         {
             return;
         }
 
-        audioSource.Stop();
         audioSource.Play();
+    }
+
+    private IEnumerator HandleSwitchMusicTrackDelay()
+    {
+
+        yield return new WaitForSeconds(1.0f);
+
+        HandleMusic();
     }
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
-        HandleMusic("MainMenu");
+        StartCoroutine(HandleSwitchMusicTrackDelay());
     }
 
     public void LoadScene(string sceneName, Vector2 positionAfterLoad)
     {
         PlayerInfo.instance.nextPlayerPositionOnLoad = positionAfterLoad;
         SceneManager.LoadScene(sceneName);
-        HandleMusic(sceneName);
+        StartCoroutine(HandleSwitchMusicTrackDelay());
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+        StartCoroutine(HandleSwitchMusicTrackDelay());
     }
 
     public void PlayEndGameCutscene()
@@ -115,6 +113,45 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsToWait);
         SceneManager.LoadScene("EndGameCutscene");
+    }
+
+    public void ResetProgress()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    public void SaveProgress()
+    {
+        PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
+        PlayerPrefs.SetFloat("LastPositionX", PlayerInfo.instance.playerPosition.x);
+        PlayerPrefs.SetFloat("LastPositionY", PlayerInfo.instance.playerPosition.y);
+        //PlayerPrefs.SetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
+        PlayerPrefs.Save();
+
+        bool isUIPresent = GameObject.Find("PlayerUICanvas").TryGetComponent<PlayerUI>(out PlayerUI playerUI);
+
+        if(isUIPresent)
+        {
+            playerUI.DisplayProgressSavedMessage();
+        }
+    }
+
+    public void LoadProgress()
+    {
+        string lastSceneName = PlayerPrefs.GetString("LastScene", SceneManager.GetActiveScene().name);
+        float lastPositionX = PlayerPrefs.GetFloat("LastPositionX", PlayerInfo.instance.playerPosition.x);
+        float lastPositionY = PlayerPrefs.GetFloat("LastPositionY", PlayerInfo.instance.playerPosition.y);
+        //int healthPotCount = PlayerPrefs.GetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
+
+        PlayerInfo.instance.nextPlayerPositionOnLoad = new Vector2(lastPositionX, lastPositionY);
+        PlayerInfo.instance.healthPotionCount = 0;
+        PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
+
+        Debug.Log($"Loading: {PlayerInfo.instance.nextPlayerPositionOnLoad.y}");
+
+        Debug.Log("Loading progrss");
+        
+        SceneManager.LoadScene(lastSceneName);
     }
 
     public void UpdateScore(int scoreValue)

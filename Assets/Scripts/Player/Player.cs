@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [Range(0.0f, 5.0f)]
     public float attackDelay;
 
-    [Range(0.1f, 1.5f)]
+    [Range(0.1f, 5.0f)]
     public float attackRange;
 
     public Transform attackPoint;
@@ -17,21 +17,36 @@ public class Player : MonoBehaviour
     public LayerMask enemyLayer;
     public LayerMask npcLayer;
     public LayerMask transportTriggerLayer;
+    public LayerMask projectileLayer;
+
+    public GameObject fireballPrefab;
+    public float fireballLaunchForce;
+
     public GameObject PlayerUICanvas;
     public Movement movement { get; private set; }
     public PlayerUI playerUI { get; private set; }
-    public bool isInteractKeyDown { get; private set; }
 
     public AudioClip runningAudioClip;
     public AudioClip attackAudioClip;
     public AudioClip hitAudioClip;
+
+    public float dashAbilityLength;
+    public float deflectAbilityLength;
+    public float rapidAttackAbilityLength;
+    public float spiritBlastCoolDownLength;
+    public float staggerTime;
+
+    public bool isUsingAbility { get; private set; }
 
     private bool isAttacking;
     private bool canAttack = true;
     private Animator animator;
     private AudioSource audioSource;
     private bool isStaggered;
-    SpriteRenderer rendererSprite;
+    private bool isStaggerTimerActive;
+    public float defaultSpeed { get; private set; }
+    private float defaultAttackRange;
+
 
     private void Awake()
     {
@@ -39,7 +54,6 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         playerUI = PlayerUICanvas.GetComponent<PlayerUI>();
-        rendererSprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -47,23 +61,40 @@ public class Player : MonoBehaviour
 
         if (PlayerInfo.instance.nextPlayerPositionOnLoad != Vector2.zero)
         {
-            movement.rigidbody.MovePosition(PlayerInfo.instance.nextPlayerPositionOnLoad);
+            Debug.Log(PlayerInfo.instance.nextPlayerPositionOnLoad.y);
+            transform.position = PlayerInfo.instance.nextPlayerPositionOnLoad;
         }
 
-        playerUI.SyncHearts();
+        defaultSpeed = movement.speed;
+        defaultAttackRange = attackRange;
     }
 
     private void Update()
     {
+        PlayerInfo.instance.playerPosition = transform.position;
+
         if (GameManager.instance.isGamePaused) return;
+
+        if(isStaggered && !isStaggerTimerActive)
+        {
+            isStaggerTimerActive = true;
+            StartCoroutine(HandleStaggerTimer());
+            return;
+        }
+
+        if(isStaggered)
+        {
+            movement.speed = defaultSpeed * 0.50f;
+        }
 
         if (GameManager.instance.isPlayerControlRestricted || (isAttacking && movement.isGrounded))
         {
             movement.rigidbody.velocity = new Vector2(0f, movement.rigidbody.velocity.y);
-            //AnimateAttack();
             AnimateMovement();
             return;
         }
+
+        movement.canFloat = PlayerInfo.instance.isSpirit;
 
         AnimateMovement();
         GetUserInput();
@@ -73,67 +104,167 @@ public class Player : MonoBehaviour
     private void GetUserInput()
     {
 
-        isInteractKeyDown = Input.GetKeyDown(KeyCode.E);
-
-        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.Alpha1))
+        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.E) && !PlayerInfo.instance.isSpirit)
         {
             HandleHealthPotionUsed();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            HandleDoorInteraction();
-            HandleDialougeInteraction();
+            SwitchEquippedAbility();
         }
 
-        movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), 0f));
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            HandleEquippedAbility();
+        }
+
+        if(PlayerInfo.instance.isSpirit)
+        {
+            movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+        }
+        else
+        {
+            movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), 0f));
+        }
+
         movement.isJumping = (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space));
+        
     }
 
-    private void HandleDoorInteraction()
+    private void SwitchEquippedAbility()
     {
-        if (PlayerInfo.instance.isInDoorway)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, movement.lookDirection, 5.0f, transportTriggerLayer);
+        if(isUsingAbility) return;
 
-            DoorTrigger door = hit.collider.GetComponent<DoorTrigger>();
-            door.TransportPlayer();
+        if(PlayerInfo.instance.isSpirit)
+        {
+            int currentIndex = PlayerInfo.instance.SpiritAbilityOrder.IndexOf(PlayerInfo.instance.EquippedAbility);
+
+            int newAbilityIndex = currentIndex + 1 >= PlayerInfo.instance.SpiritAbilityOrder.Count ? 0 : currentIndex + 1;
+
+            PlayerInfo.instance.EquippedAbility = PlayerInfo.instance.SpiritAbilityOrder[newAbilityIndex];
+        }
+        else
+        {
+            int currentIndex = PlayerInfo.instance.AbilityOrder.IndexOf(PlayerInfo.instance.EquippedAbility);
+
+            int newAbilityIndex = currentIndex + 1 >= PlayerInfo.instance.AbilityOrder.Count ? 0 : currentIndex + 1;
+
+            PlayerInfo.instance.EquippedAbility = PlayerInfo.instance.AbilityOrder[newAbilityIndex];
+        }
+
+        playerUI.SwapAbilityIcon(PlayerInfo.instance.EquippedAbility);
+
+        Debug.Log($"Equipped {PlayerInfo.instance.EquippedAbility}");
+    }
+
+    private void HandleEquippedAbility()
+    {
+
+        if(isUsingAbility) return;
+
+        isUsingAbility = true;
+        playerUI.SetAbilityUseBackground(true);
+
+        if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Dash)
+        {
+            Dash();
+            StartCoroutine(HandleAbilityTimer(dashAbilityLength));
+        }
+        else if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect)
+        {
+            Deflect();
+            StartCoroutine(HandleAbilityTimer(deflectAbilityLength));
+        }
+        else if (PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
+        {
+            StartCoroutine(HandleAbilityTimer(rapidAttackAbilityLength));
+        }
+        else if(PlayerInfo.instance.EquippedAbility == PlayerAbility.SpiritBlast)
+        {
+            SpiritBlast();
+            StartCoroutine(HandleAbilityTimer(spiritBlastCoolDownLength));
         }
     }
 
-    private void HandleDialougeInteraction()
+    private IEnumerator HandleAbilityTimer(float timerLength)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, movement.lookDirection, 5.0f, npcLayer);
-
-        if (hit.collider != null)
+        if (isUsingAbility)
         {
-            Azkul azkul = hit.collider.GetComponent<Azkul>();
-            azkul.OpenDialog();
-            GameManager.instance.isPlayerControlRestricted = true;
+            yield return new WaitForSeconds(timerLength);
+
+            isUsingAbility = false;
+            attackRange = defaultAttackRange;
+            movement.speed = defaultSpeed;
+            playerUI.SetAbilityUseBackground(false);
         }
     }
 
-    private void HandleCombat()
+    private IEnumerator HandleStaggerTimer()
+    {
+        yield return new WaitForSeconds(staggerTime);
+
+        isStaggered = false;
+        isStaggerTimerActive = false; 
+        movement.speed = defaultSpeed;
+    }
+
+    private void Dash()
+    {
+        movement.speed = 8;
+    }
+
+    private void Deflect()
+    {
+        attackRange = 2.4f;
+        HandleCombat(true, true);
+    }
+
+    private void SpiritBlast()
+    {
+        animator.SetTrigger("Attack");
+        GameObject fireballGameObject = Instantiate(fireballPrefab, attackPoint.transform.position, Quaternion.identity);
+
+        Fireball fireball = fireballGameObject.GetComponent<Fireball>();
+        fireball.Launch(new Vector2(movement.lookDirection.x, 0), fireballLaunchForce);
+    }
+
+    private void HandleCombat(bool overrideUserInput = false, bool canHitArrows = false)
     {
 
-        if (!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) return;
+        if ((!Input.GetKeyDown(KeyCode.Mouse0) || !canAttack) && !overrideUserInput || isStaggered) return;
 
+        movement.canMove = false;
         isAttacking = true;
         canAttack = false;
+        int damageToDeal =  PlayerInfo.instance.isSpirit ? 2 : 1;
 
-        animator.SetTrigger("Attack");
+        if (isUsingAbility && PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
+        {
+            animator.SetTrigger("Rapid Attack");
+            damageToDeal = 2;
+        }
+        else
+        {
+            animator.SetTrigger("Attack");
+        }
+
         audioSource.PlayOneShot(attackAudioClip);
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+        List<Collider2D> hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer).ToList();
+
+        if (canHitArrows)
+        {
+            hitEnemies.AddRange(Physics2D.OverlapCircleAll(attackPoint.position, attackRange, projectileLayer));
+        }
 
         foreach (Collider2D hit in hitEnemies)
         {
             if (hit != null)
             {
-                int damageToDeal = 1;
                 DamageableEnemy enemy = hit.GetComponent<DamageableEnemy>();
 
-                enemy.OnDeltDamage(damageToDeal);
+                enemy.OnDeltDamage(damageToDeal, this);
             }
         }
 
@@ -147,9 +278,10 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
 
             isAttacking = false;
-            isStaggered = false;
             canAttack = true;
+            movement.canMove = true;
             animator.ResetTrigger("Attack");
+            animator.ResetTrigger("RapidAttack");
         }
     }
 
@@ -173,7 +305,7 @@ public class Player : MonoBehaviour
     {
         damage = Mathf.Abs(damage);
 
-        if (damage <= 0) return;
+        if (damage <= 0 || isStaggered) return;
 
         if (isGodModeEnabled)
         {
@@ -186,13 +318,20 @@ public class Player : MonoBehaviour
         playerUI.ChangeHealthHearts(damage, false);
         audioSource.PlayOneShot(hitAudioClip);
 
-        if (PlayerInfo.instance.health <= 0)
+        if (PlayerInfo.instance.health <= 0 && !PlayerInfo.instance.isSpirit)
         {
             animator.SetTrigger("Die");
             Invoke(nameof(OnDisable), 1.3f);
             GameManager.instance.GameOver();
         }
-        else if (!isAttacking)
+        else if(PlayerInfo.instance.health <= 0 && PlayerInfo.instance.isSpirit)
+        {
+            animator.SetTrigger("Die");
+            PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
+            playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
+            PlayerInfo.instance.isSpirit = false;
+        }
+        else
         {
             animator.SetTrigger("Hit");
             isStaggered = true;
@@ -205,18 +344,21 @@ public class Player : MonoBehaviour
         animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
         animator.SetFloat("Look X", 1f);
         animator.SetBool("Is Grounded", movement.isGrounded);
-    }
-
-    private void AnimateAttack()
-    {
-        animator.SetFloat("Speed", 0);
-        animator.SetFloat("Move Y", 0);
+        animator.SetBool("Is Spirit", PlayerInfo.instance.isSpirit);
     }
 
     public void OnHealthPotionPickedUp()
     {
         PlayerInfo.instance.healthPotionCount += 1;
         playerUI.SyncHealthPotCount();
+    }
+
+    public void OnSpiritPowerupPickedUp()
+    {
+        animator.SetTrigger("Become Spirit");
+        PlayerInfo.instance.isSpirit = true;
+        PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
+        playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
     }
 
     public void OnDisable()

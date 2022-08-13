@@ -7,28 +7,38 @@ using System;
 
 public class PlayerUI : MonoBehaviour
 {
-    public GameObject healthPotObject;
+    public GameObject healthPotCountObject;
+    public GameObject focusPointCountObject;
+    public GameObject healthPotIconObject;
+    public GameObject dashIconObject;
+    public GameObject deflectIconObject;
+    public GameObject rapidIconObject;
+    public GameObject spiritBlastIconObject;
+    public GameObject AbilityUseBackground;
+    public GameObject ProgressSavedGameObject;
     private TMP_Text healthPotCount;
-    public GameObject scoreObject;
-    private TMP_Text score;
+    private TMP_Text focusPointCount;
+
     private List<HealthHeart> hearts;
 
     private void Awake()
     {
         hearts = GetComponentsInChildren<HealthHeart>().ToList();
-        healthPotCount = healthPotObject.GetComponent<TMP_Text>();
-        score = scoreObject.GetComponent<TMP_Text>();
+        healthPotCount = healthPotCountObject.GetComponent<TMP_Text>();
+        focusPointCount = focusPointCountObject.GetComponent<TMP_Text>();
     }
 
     private void Start()
     {
         SyncHealthPotCount();
-        score.text = GameManager.instance.score.ToString();
-    }
 
-    private void Update()
-    {
-        score.text = GameManager.instance.score.ToString();
+        SetAllAbilityIconsToInactive();
+        SetAbilityUseBackground(false);
+        dashIconObject.SetActive(true);
+
+        SyncHearts();
+
+        ProgressSavedGameObject.SetActive(false);
     }
 
     public void SyncHealthPotCount() => healthPotCount.text = PlayerInfo.instance.healthPotionCount.ToString();
@@ -38,6 +48,41 @@ public class PlayerUI : MonoBehaviour
         int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
 
         ChangeHealthHearts(heartsNeededToChange, false);
+    }
+
+    public void SwapAbilityIcon(PlayerAbility newAbility)
+    {
+        SetAllAbilityIconsToInactive();
+
+        if (newAbility == PlayerAbility.Dash)
+        {
+            dashIconObject.SetActive(true);
+        }
+        else if (newAbility == PlayerAbility.Deflect)
+        {
+            deflectIconObject.SetActive(true);
+        }
+        else if (newAbility == PlayerAbility.RapidAttack)
+        {
+            rapidIconObject.SetActive(true);
+        }
+        else if(newAbility == PlayerAbility.SpiritBlast)
+        {
+            spiritBlastIconObject.SetActive(true);
+        }
+    }
+
+    public void SetAllAbilityIconsToInactive()
+    {
+        dashIconObject.SetActive(false);
+        rapidIconObject.SetActive(false);
+        deflectIconObject.SetActive(false);
+        spiritBlastIconObject.SetActive(false);
+    }
+
+    public void SetAbilityUseBackground(bool isActive)
+    {
+        AbilityUseBackground.SetActive(isActive);
     }
 
     public void ChangeHealthHearts(int heartsNeededToChange, bool isActive)
@@ -59,4 +104,18 @@ public class PlayerUI : MonoBehaviour
             }
         }
     }
+
+    public void DisplayProgressSavedMessage()
+    {
+        ProgressSavedGameObject.SetActive(true);
+
+        StartCoroutine(HandleProgressSavedMessageTimer());
+    }
+
+    private IEnumerator HandleProgressSavedMessageTimer()
+    {
+        yield return new WaitForSeconds(3.0f);
+
+        ProgressSavedGameObject.SetActive(false);
+    } 
 }

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class Arrow : DamageableEnemy
 {
-    public LayerMask obstacleLayer;
     private Rigidbody2D rigidbody2d;
     private SpriteRenderer spriteRenderer;
     private new BoxCollider2D collider;
@@ -24,9 +23,17 @@ public class Arrow : MonoBehaviour
         }
     }
 
+    public override void OnDeltDamage(float damage, Player player = null)
+    {
+        if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect && player.isUsingAbility)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.name == "Ronin")
+        if (other.collider.name == GameManager.instance.playerCharacterName)
         {
             Player player = other.collider.GetComponent<Player>();
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyWaypointBehavior : EnemyBehavior
 {
+    public Transform singleWaypointLocation;
     public LayerMask WaypointLayer;
     public float WaypointDetectionDistance;
     public bool isWaypointFound;
@@ -13,6 +14,12 @@ public class EnemyWaypointBehavior : EnemyBehavior
     private void FixedUpdate()
     {
         if (isBehaviorEnabled == false) return;
+
+        if(singleWaypointLocation != null)
+        {
+            isWaypointFound = true;
+            waypointPos = singleWaypointLocation.position;
+        }
 
         enemy.navMeshAgent.stoppingDistance = 0;
 

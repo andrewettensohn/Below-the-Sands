@@ -23,13 +23,21 @@ public class Enemy : DamageableEnemy
     public LayerMask playerLayer;
     public Transform target { get; private set; }
     public bool isStaggered;
+    public float staggerTime;
     public bool canBeStaggered;
     public bool playerDetected;
     public AudioSource audioSource;
     public int scoreValue;
-    protected Animator animator;
+    public Animator animator;
     public NavMeshAgent navMeshAgent { get; private set; }
     public Vector2 lookDirection;
+    public int focusPointReward;
+    public float debugAttackRange;
+    public float detectionSizeModifier = 0.75f;
+
+    private bool isStaggerTimerActive;
+    
+    protected bool isDying;
 
     private void Start()
     {
@@ -40,7 +48,7 @@ public class Enemy : DamageableEnemy
         navMeshAgent.updateRotation = false;
         navMeshAgent.updateUpAxis = false;
 
-        GameObject targetGameObject = GameObject.Find("Ronin");
+        GameObject targetGameObject = GameObject.Find(GameManager.instance.playerCharacterName);
         if (targetGameObject != null)
         {
             target = targetGameObject.transform;
@@ -60,6 +68,12 @@ public class Enemy : DamageableEnemy
 
     private void Update()
     {
+        if(isStaggered && !isStaggerTimerActive)
+        {
+            isStaggerTimerActive = true;
+            StartCoroutine(HandleStaggerTimer());
+        }
+
         DetermineLookDirection();
         HandleBehaviors();
         Animate();
@@ -99,7 +113,7 @@ public class Enemy : DamageableEnemy
         combatBehavior.isBehaviorEnabled = false;
     }
 
-    protected void HandleBehaviors()
+    protected virtual void HandleBehaviors()
     {
         if (health <= 0)
         {
@@ -129,14 +143,22 @@ public class Enemy : DamageableEnemy
         }
     }
 
-    protected void OnDeath()
+    private IEnumerator HandleStaggerTimer()
     {
-        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(staggerTime);
 
+        isStaggered = false;
+        isStaggerTimerActive = false; 
+    }
+
+    protected virtual void OnDeath()
+    {
+        isDying = true;
+        animator.SetTrigger("Die");
+        GivePlayerRewardForDeath();
         StopMovement();
 
         Invoke(nameof(OnDisable), 1.3f);
-        GameManager.instance.UpdateScore(scoreValue);
 
         if (gameObject.name == "Demon")
         {
@@ -145,9 +167,13 @@ public class Enemy : DamageableEnemy
         }
     }
 
+    protected virtual void GivePlayerRewardForDeath()
+    {
+        GameManager.instance.UpdateScore(scoreValue);
+    }
+
     private void Animate()
     {
-        animator.SetBool("Attacking", combatBehavior.isAttacking && !isStaggered);
         animator.SetBool("Block", combatBehavior.isBlocking);
 
         animator.SetFloat("Speed", navMeshAgent.velocity.sqrMagnitude);
@@ -155,8 +181,10 @@ public class Enemy : DamageableEnemy
         animator.SetFloat("Look X", 1);
     }
 
-    public override void OnDeltDamage(float damage)
+    public override void OnDeltDamage(float damage, Player player = null)
     {
+        if(isStaggered) return;
+
         if (combatBehavior.isBlocking)
         {
             audioSource.PlayOneShot(BlockAudioClip);
@@ -166,17 +194,21 @@ public class Enemy : DamageableEnemy
         damage = Math.Abs(damage);
         health -= damage;
 
-        if (health <= 0)
+        if (health <= 0 && !isDying)
         {
             OnDeath();
-            if (!PlayerInfo.instance.isBlessed) audioSource.PlayOneShot(DeathAudioClip);
         }
-        else
+        else if(health > 0)
         {
             animator.SetTrigger("Hit");
             isStaggered = canBeStaggered;
-            if (!PlayerInfo.instance.isBlessed) audioSource.PlayOneShot(HitAudioClip);
+            Debug.Log(isStaggered);
         }
+    }
+
+    public virtual void OnSuccessfulAttack()
+    {
+        //Implement in override on custom enemy script
     }
 
     public void OnDisable()
@@ -187,6 +219,7 @@ public class Enemy : DamageableEnemy
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
-        Gizmos.DrawWireSphere(attackPoint.position, combatBehavior.attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, debugAttackRange);
+        Gizmos.DrawWireSphere(transform.position, 7.0f * detectionSizeModifier);
     }
 }

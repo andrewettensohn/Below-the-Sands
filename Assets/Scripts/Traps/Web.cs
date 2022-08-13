@@ -6,7 +6,7 @@ public class Web : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "Player")
+        if (collision.name == GameManager.instance.playerCharacterName)
         {
             Debug.Log("Slow");
             Player player = collision.GetComponent<Player>();
@@ -16,10 +16,10 @@ public class Web : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.name == "Player")
+        if (collision.name == GameManager.instance.playerCharacterName)
         {
             Player player = collision.GetComponent<Player>();
-            player.movement.speed = 4;
+            player.movement.speed = player.defaultSpeed;
         }
     }
 }

@@ -126,7 +126,7 @@ public class SkeletonArcher : DamageableEnemy
         canShoot = true;
     }
 
-    public override void OnDeltDamage(float damage)
+    public override void OnDeltDamage(float damage, Player player = null)
     {
         damage = Mathf.Abs(damage);
         Debug.Log("Hit Skeleton");

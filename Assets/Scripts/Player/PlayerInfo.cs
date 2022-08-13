@@ -9,27 +9,22 @@ public class PlayerInfo : MonoBehaviour
 
     public Vector2 nextPlayerPositionOnLoad { get; set; }
 
+    public Vector2 playerPosition { get; set; }
+
     public int healthPotionCount { get; set; }
-
-    public int relicCount { get; set; }
-
-    public int prayerCount { get; set; }
 
     public int health { get; set; }
 
     public readonly int fullHealth = 5;
 
-    public bool isShieldEquipped { get; set; }
-
-    public bool hasShield { get; set; }
-
-    public bool isTwoHandSwordEquipped { get; set; }
-
-    public bool hasTwoHandSword { get; set; }
-
     public bool isInDoorway { get; set; }
+    public bool isSpirit { get; set; }
 
-    public bool isBlessed;
+    public PlayerAbility EquippedAbility = PlayerAbility.Dash;
+
+    public List<PlayerAbility> AbilityOrder = new List<PlayerAbility> { PlayerAbility.Dash, PlayerAbility.Deflect, PlayerAbility.RapidAttack };
+
+    public List<PlayerAbility> SpiritAbilityOrder = new List<PlayerAbility> { PlayerAbility.SpiritBlast, PlayerAbility.Dash, PlayerAbility.Deflect };
 
     private void Awake()
     {
@@ -47,13 +42,8 @@ public class PlayerInfo : MonoBehaviour
 
     public void ResetPlayerInfo()
     {
-        hasShield = false;
-        hasTwoHandSword = false;
-        isShieldEquipped = false;
-        isTwoHandSwordEquipped = false;
         healthPotionCount = 1;
-        relicCount = 0;
-        prayerCount = 0;
         health = fullHealth;
+        EquippedAbility = PlayerAbility.Dash;
     }
 }

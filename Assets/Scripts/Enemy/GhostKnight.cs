@@ -82,7 +82,7 @@ public class GhostKnight : DamageableEnemy
         animator.SetBool("Is Grounded", isGrounded);
     }
 
-    public override void OnDeltDamage(float damage)
+    public override void OnDeltDamage(float damage, Player player = null)
     {
         damage = Mathf.Abs(damage);
 

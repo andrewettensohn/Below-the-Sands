@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2094373044497685924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7826033671584242034}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7826033671584242034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094373044497685924}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.467, y: -0.255, z: -0.041824505}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8174815576950221975}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8174815576950221973
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,12 +44,12 @@ GameObject:
   - component: {fileID: 8174815576950221980}
   - component: {fileID: 8174815576950221979}
   - component: {fileID: 8174815576950221978}
-  - component: {fileID: 1991264489427732714}
   - component: {fileID: 8174815576950221977}
   - component: {fileID: 8174815576950221981}
   - component: {fileID: 2510706994939386065}
-  - component: {fileID: 1616131136605759397}
   - component: {fileID: 4104186344497442982}
+  - component: {fileID: 2050956088}
+  - component: {fileID: 2050956089}
   m_Layer: 7
   m_Name: Demon
   m_TagString: Untagged
@@ -37,7 +68,8 @@ Transform:
   m_LocalPosition: {x: -2, y: 3.16, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7826033671584242034}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
+  canJump: 0
 --- !u!114 &8174815576950221979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,12 +152,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  dealDamageDelay: 1.5
-  attackRange: 0.8
+  dealDamageDelay: 0.8
+  attackRange: 3
   blockTime: 0
-  leaveOpeningTime: 0.1
-  willBlock: 0
-  detectionSizeModifier: 6.5
+  primaryAttackHasKnockBack: 1
+  secondaryAttackHasKnockBack: 0
+  knockBackForce: 5000
+  hasSecondaryAttack: 0
+  hasBlock: 0
+  hasContinuousAttack: 0
+  initalLeaveOpeningTime: 0.3
+  postAttackLeaveOpeningTime: 1.5
+  postBlockLeaveOpeningTime: 0
+  postSecondaryAttackLeaveOpeningTime: 0
 --- !u!114 &8174815576950221978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,41 +177,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1351c046ca389048ab90149b86a21e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 15
+  health: 50
+  speed: 1
+  attackPoint: {fileID: 7826033671584242034}
   DeathAudioClip: {fileID: 8300000, guid: ed06b70f55509cd46930a81c6abf91f8, type: 3}
-  WalkingAudioClip: {fileID: 0}
   AttackingAudioClip: {fileID: 8300000, guid: 164e852eeceb6cc4eb9605971387dbdd, type: 3}
   HitAudioClip: {fileID: 8300000, guid: c732791a2ef53cd42a4ae67201c21f0b, type: 3}
   BlockAudioClip: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  target: {fileID: 0}
   isStaggered: 0
   canBeStaggered: 0
   playerDetected: 0
---- !u!114 &1991264489427732714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8174815576950221973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 657f8aec34c9f544a95454485e90a78f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  fallingMultiplier: 0
-  jumpVelocity: 0
-  lookDirection: {x: 1, y: 0}
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  canMove: 1
-  isJumping: 0
-  isGrounded: 0
+  audioSource: {fileID: 0}
+  scoreValue: 0
+  animator: {fileID: 0}
+  lookDirection: {x: 0, y: 0}
+  focusPointReward: 0
+  debugAttackRange: 3
+  detectionSizeModifier: 3
 --- !u!114 &8174815576950221977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +210,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  detectionSizeModifier: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  nodeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  canSeeThroughWalls: 1
 --- !u!95 &8174815576950221981
 Animator:
   serializedVersion: 4
@@ -227,22 +258,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &1616131136605759397
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8174815576950221973}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.20021595}
-  serializedVersion: 2
-  m_Radius: 0.5897325
 --- !u!82 &4104186344497442982
 AudioSource:
   m_ObjectHideFlags: 0
@@ -339,3 +354,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!70 &2050956088
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174815576950221973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.017318726, y: -0.40526724}
+  m_Size: {x: 0.6362648, y: 0.77452946}
+  m_Direction: 0
+--- !u!195 &2050956089
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174815576950221973}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 1.1
+  m_BaseOffset: 0.8
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
