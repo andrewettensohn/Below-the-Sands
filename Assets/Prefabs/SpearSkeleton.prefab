@@ -158,7 +158,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isStaggered: 0
-  canBeStaggered: 0
+  staggerTime: 0.5
+  canBeStaggered: 1
   playerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 100

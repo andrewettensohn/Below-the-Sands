@@ -52,7 +52,7 @@ public class EnemyCombatBehavior : EnemyBehavior
     {
         Collider2D[] players = GetPlayerHits(attackRange);
 
-        if (players.Length == 0)
+        if (players.Length == 0 || enemy.isStaggered)
         {
             isInCombat = false;
             isAttacking = false;
@@ -168,7 +168,6 @@ public class EnemyCombatBehavior : EnemyBehavior
         {
             HandleAttack(primaryAttackHasKnockBack);
 
-            enemy.isStaggered = false;
             canAttack = true;
         }
     }
@@ -191,7 +190,6 @@ public class EnemyCombatBehavior : EnemyBehavior
         {
             HandleAttack(primaryAttackHasKnockBack);
 
-            enemy.isStaggered = false;
             isAttacking = false;
             canLeavePostAttackOpening = true;   
         }
@@ -201,7 +199,7 @@ public class EnemyCombatBehavior : EnemyBehavior
     {
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(enemy.attackPoint.position, attackRange, enemy.playerLayer);
 
-        if (enemy.health > 0 && hitPlayers.Length > 0 && !enemy.isStaggered)
+        if (enemy.health > 0 && hitPlayers.Length > 0)
         {
             foreach (Collider2D hit in hitPlayers)
             {
@@ -264,7 +262,6 @@ public class EnemyCombatBehavior : EnemyBehavior
         {
             HandleAttack(secondaryAttackHasKnockBack);
 
-            enemy.isStaggered = false;
             canLeavePostSecondaryAttackOpening = true;
         }
     }

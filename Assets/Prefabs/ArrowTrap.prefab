@@ -162,12 +162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080ec44e0432e584697e27271956aa7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowFiredSprite: {fileID: 1312772769, guid: caa00a1e3c4b1e14f99950c6c7b99256, type: 3}
+  arrowFiredSprite: {fileID: -664434384, guid: caa00a1e3c4b1e14f99950c6c7b99256, type: 3}
   arrowPrefab: {fileID: 6354839084362612362, guid: a097fe322fa6b044198c077f619a224f, type: 3}
   arrowLaunchPointLeft: {fileID: 798048673}
   arrowLaunchPointRight: {fileID: 593302672}
   direction: 1
-  fireDelay: 1
+  fireDelay: 0.1
   launchForce: 300
 --- !u!95 &5543786354958925887
 Animator:

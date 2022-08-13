@@ -40,6 +40,7 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyEyeCombatBehavior.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogPack.cs" />
      <Compile Include="Assets\Scripts\Collectables\HealthPotion.cs" />
+     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyCombatBehavior.cs" />
      <Compile Include="Assets\Scripts\Traps\MagicTrap.cs" />
      <Compile Include="Assets\Scripts\Node.cs" />
@@ -75,6 +76,7 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyEye.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyWaypointBehavior.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogUI.cs" />
+     <Compile Include="Assets\Scripts\SpawnTrigger.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogField.cs" />
      <Compile Include="Assets\Scripts\Traps\ArrowPressurePlate.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyBehavior.cs" />
@@ -98,6 +100,7 @@
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\Enums\HealthPotionName.cs" />
      <Compile Include="Assets\Scripts\Audio\MusicTracks.cs" />
+     <Compile Include="Assets\Scripts\Projectiles\Fireball.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

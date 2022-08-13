@@ -18,10 +18,13 @@ public class PlayerInfo : MonoBehaviour
     public readonly int fullHealth = 5;
 
     public bool isInDoorway { get; set; }
+    public bool isSpirit { get; set; }
 
     public PlayerAbility EquippedAbility = PlayerAbility.Dash;
 
     public List<PlayerAbility> AbilityOrder = new List<PlayerAbility> { PlayerAbility.Dash, PlayerAbility.Deflect, PlayerAbility.RapidAttack };
+
+    public List<PlayerAbility> SpiritAbilityOrder = new List<PlayerAbility> { PlayerAbility.SpiritBlast, PlayerAbility.Dash, PlayerAbility.Deflect };
 
     private void Awake()
     {

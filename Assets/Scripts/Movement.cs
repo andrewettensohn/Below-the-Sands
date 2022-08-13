@@ -63,7 +63,7 @@ public class Movement : MonoBehaviour
         rigidbody.velocity = new Vector2(direction.x * speed, rigidbody.velocity.y);
 
         //Destroy the object if it falls off the map
-        if (rigidbody.position.y < -15.0f)
+        if (rigidbody.position.y < -100.0f)
         {
             gameObject.SetActive(false);
 

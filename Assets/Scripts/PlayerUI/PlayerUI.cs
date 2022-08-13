@@ -13,6 +13,7 @@ public class PlayerUI : MonoBehaviour
     public GameObject dashIconObject;
     public GameObject deflectIconObject;
     public GameObject rapidIconObject;
+    public GameObject spiritBlastIconObject;
     public GameObject AbilityUseBackground;
     public GameObject ProgressSavedGameObject;
     private TMP_Text healthPotCount;
@@ -44,7 +45,6 @@ public class PlayerUI : MonoBehaviour
 
     public void SyncHearts()
     {
-        Debug.Log($"Player health: {PlayerInfo.instance.health}");
         int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
 
         ChangeHealthHearts(heartsNeededToChange, false);
@@ -66,6 +66,10 @@ public class PlayerUI : MonoBehaviour
         {
             rapidIconObject.SetActive(true);
         }
+        else if(newAbility == PlayerAbility.SpiritBlast)
+        {
+            spiritBlastIconObject.SetActive(true);
+        }
     }
 
     public void SetAllAbilityIconsToInactive()
@@ -73,6 +77,7 @@ public class PlayerUI : MonoBehaviour
         dashIconObject.SetActive(false);
         rapidIconObject.SetActive(false);
         deflectIconObject.SetActive(false);
+        spiritBlastIconObject.SetActive(false);
     }
 
     public void SetAbilityUseBackground(bool isActive)
@@ -87,12 +92,10 @@ public class PlayerUI : MonoBehaviour
         {
             if (heartsChanged >= heartsNeededToChange) break;
 
-            Debug.Log(hearts[i].isHealthy == true);
             if (hearts[i].isHealthy == true && isActive == false)
             {
                 hearts[i].SetUnhealthy();
                 heartsChanged++;
-                Debug.Log("unhealthy");
             }
             else if (hearts[i].isHealthy == false && isActive == true)
             {

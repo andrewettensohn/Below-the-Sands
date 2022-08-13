@@ -13,7 +13,8 @@ public class ArrowTrap : MonoBehaviour
     public int launchForce;
     private SpriteRenderer spriteRenderer;
     private Transform launchDirection;
-    private bool canFire = true;
+    private bool canFire;
+    private bool hasFired;
 
     private void Awake()
     {
@@ -27,15 +28,16 @@ public class ArrowTrap : MonoBehaviour
 
     private void Update()
     {
+        canFire = spriteRenderer.sprite.name == arrowFiredSprite.name;
+
         OnAttack();
     }
 
-
     protected virtual void OnAttack()
     {
-        if(!canFire) return;
+        if(!canFire || hasFired) return;
 
-        canFire = false;
+        hasFired = true;
 
         GameObject arrowGameObject = Instantiate(arrowPrefab, launchDirection.position, Quaternion.Euler(0, 180, 0));
         Arrow arrow = arrowGameObject.GetComponent<Arrow>();
@@ -48,6 +50,6 @@ public class ArrowTrap : MonoBehaviour
     {
         yield return new WaitForSeconds(fireDelay);
 
-        canFire = true;
+        hasFired = false;
     }
 }

@@ -150,6 +150,8 @@ MonoBehaviour:
   projectileLayer:
     serializedVersion: 2
     m_Bits: 65536
+  fireballPrefab: {fileID: 7058883388194537264, guid: be197b75c884d084bbe8df659bff090d, type: 3}
+  fireballLaunchForce: 500
   PlayerUICanvas: {fileID: 0}
   runningAudioClip: {fileID: 8300000, guid: fba95cafa5bba8649a7d269656e7317b, type: 3}
   attackAudioClip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
@@ -157,7 +159,7 @@ MonoBehaviour:
   dashAbilityLength: 1
   deflectAbilityLength: 1
   rapidAttackAbilityLength: 3
-  isSpirit: 0
+  spiritBlastCoolDownLength: 0.5
   staggerTime: 0.6
 --- !u!114 &5447899885563848641
 MonoBehaviour:

@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     public LayerMask transportTriggerLayer;
     public LayerMask projectileLayer;
 
+    public GameObject fireballPrefab;
+    public float fireballLaunchForce;
+
     public GameObject PlayerUICanvas;
     public Movement movement { get; private set; }
     public PlayerUI playerUI { get; private set; }
@@ -30,7 +33,7 @@ public class Player : MonoBehaviour
     public float dashAbilityLength;
     public float deflectAbilityLength;
     public float rapidAttackAbilityLength;
-    public bool isSpirit;
+    public float spiritBlastCoolDownLength;
     public float staggerTime;
 
     public bool isUsingAbility { get; private set; }
@@ -81,8 +84,7 @@ public class Player : MonoBehaviour
 
         if(isStaggered)
         {
-            GetUserInput();
-            movement.speed = movement.speed / 2;
+            movement.speed = defaultSpeed * 0.50f;
         }
 
         if (GameManager.instance.isPlayerControlRestricted || (isAttacking && movement.isGrounded))
@@ -92,7 +94,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        movement.canFloat = isSpirit;
+        movement.canFloat = PlayerInfo.instance.isSpirit;
 
         AnimateMovement();
         GetUserInput();
@@ -102,7 +104,7 @@ public class Player : MonoBehaviour
     private void GetUserInput()
     {
 
-        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.E) && !isSpirit)
+        if (PlayerInfo.instance.healthPotionCount > 0 && Input.GetKeyDown(KeyCode.E) && !PlayerInfo.instance.isSpirit)
         {
             HandleHealthPotionUsed();
         }
@@ -117,7 +119,7 @@ public class Player : MonoBehaviour
             HandleEquippedAbility();
         }
 
-        if(isSpirit)
+        if(PlayerInfo.instance.isSpirit)
         {
             movement.SetDirection(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
         }
@@ -134,11 +136,23 @@ public class Player : MonoBehaviour
     {
         if(isUsingAbility) return;
 
-        int currentIndex = PlayerInfo.instance.AbilityOrder.IndexOf(PlayerInfo.instance.EquippedAbility);
+        if(PlayerInfo.instance.isSpirit)
+        {
+            int currentIndex = PlayerInfo.instance.SpiritAbilityOrder.IndexOf(PlayerInfo.instance.EquippedAbility);
 
-        int newAbilityIndex = currentIndex + 1 >= PlayerInfo.instance.AbilityOrder.Count ? 0 : currentIndex + 1;
+            int newAbilityIndex = currentIndex + 1 >= PlayerInfo.instance.SpiritAbilityOrder.Count ? 0 : currentIndex + 1;
 
-        PlayerInfo.instance.EquippedAbility = PlayerInfo.instance.AbilityOrder[newAbilityIndex];
+            PlayerInfo.instance.EquippedAbility = PlayerInfo.instance.SpiritAbilityOrder[newAbilityIndex];
+        }
+        else
+        {
+            int currentIndex = PlayerInfo.instance.AbilityOrder.IndexOf(PlayerInfo.instance.EquippedAbility);
+
+            int newAbilityIndex = currentIndex + 1 >= PlayerInfo.instance.AbilityOrder.Count ? 0 : currentIndex + 1;
+
+            PlayerInfo.instance.EquippedAbility = PlayerInfo.instance.AbilityOrder[newAbilityIndex];
+        }
+
         playerUI.SwapAbilityIcon(PlayerInfo.instance.EquippedAbility);
 
         Debug.Log($"Equipped {PlayerInfo.instance.EquippedAbility}");
@@ -150,27 +164,26 @@ public class Player : MonoBehaviour
         if(isUsingAbility) return;
 
         isUsingAbility = true;
+        playerUI.SetAbilityUseBackground(true);
 
         if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Dash)
         {
             Dash();
-            playerUI.SetAbilityUseBackground(true);
             StartCoroutine(HandleAbilityTimer(dashAbilityLength));
         }
         else if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect)
         {
             Deflect();
-            playerUI.SetAbilityUseBackground(true);
             StartCoroutine(HandleAbilityTimer(deflectAbilityLength));
         }
         else if (PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
         {
-            playerUI.SetAbilityUseBackground(true);
             StartCoroutine(HandleAbilityTimer(rapidAttackAbilityLength));
         }
-        else
+        else if(PlayerInfo.instance.EquippedAbility == PlayerAbility.SpiritBlast)
         {
-            isUsingAbility = false;
+            SpiritBlast();
+            StartCoroutine(HandleAbilityTimer(spiritBlastCoolDownLength));
         }
     }
 
@@ -207,6 +220,15 @@ public class Player : MonoBehaviour
         HandleCombat(true, true);
     }
 
+    private void SpiritBlast()
+    {
+        animator.SetTrigger("Attack");
+        GameObject fireballGameObject = Instantiate(fireballPrefab, attackPoint.transform.position, Quaternion.identity);
+
+        Fireball fireball = fireballGameObject.GetComponent<Fireball>();
+        fireball.Launch(new Vector2(movement.lookDirection.x, 0), fireballLaunchForce);
+    }
+
     private void HandleCombat(bool overrideUserInput = false, bool canHitArrows = false)
     {
 
@@ -215,7 +237,7 @@ public class Player : MonoBehaviour
         movement.canMove = false;
         isAttacking = true;
         canAttack = false;
-        int damageToDeal =  isSpirit ? 2 : 1;
+        int damageToDeal =  PlayerInfo.instance.isSpirit ? 2 : 1;
 
         if (isUsingAbility && PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
         {
@@ -296,18 +318,18 @@ public class Player : MonoBehaviour
         playerUI.ChangeHealthHearts(damage, false);
         audioSource.PlayOneShot(hitAudioClip);
 
-        if (PlayerInfo.instance.health <= 0 && !isSpirit)
+        if (PlayerInfo.instance.health <= 0 && !PlayerInfo.instance.isSpirit)
         {
             animator.SetTrigger("Die");
             Invoke(nameof(OnDisable), 1.3f);
             GameManager.instance.GameOver();
         }
-        else if(PlayerInfo.instance.health <= 0 && isSpirit)
+        else if(PlayerInfo.instance.health <= 0 && PlayerInfo.instance.isSpirit)
         {
             animator.SetTrigger("Die");
             PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
             playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
-            isSpirit = false;
+            PlayerInfo.instance.isSpirit = false;
         }
         else
         {
@@ -322,7 +344,7 @@ public class Player : MonoBehaviour
         animator.SetFloat("Move Y", movement.rigidbody.velocity.y);
         animator.SetFloat("Look X", 1f);
         animator.SetBool("Is Grounded", movement.isGrounded);
-        animator.SetBool("Is Spirit", isSpirit);
+        animator.SetBool("Is Spirit", PlayerInfo.instance.isSpirit);
     }
 
     public void OnHealthPotionPickedUp()
@@ -334,7 +356,7 @@ public class Player : MonoBehaviour
     public void OnSpiritPowerupPickedUp()
     {
         animator.SetTrigger("Become Spirit");
-        isSpirit = true;
+        PlayerInfo.instance.isSpirit = true;
         PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
         playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
     }

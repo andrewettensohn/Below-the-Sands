@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : DamageableEnemy
+public class Fireball : MonoBehaviour
 {
     private Rigidbody2D rigidbody2d;
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private new BoxCollider2D collider;
 
@@ -13,6 +14,7 @@ public class Arrow : DamageableEnemy
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -23,26 +25,16 @@ public class Arrow : DamageableEnemy
         }
     }
 
-    public override void OnDeltDamage(float damage, Player player = null)
-    {
-        if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect && player.isUsingAbility)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.name == GameManager.instance.playerCharacterName)
+        bool isEnemy = other.collider.TryGetComponent<DamageableEnemy>(out DamageableEnemy enemy);
+
+        if(isEnemy)
         {
-            Player player = other.collider.GetComponent<Player>();
-
-            if (player == null) return;
-
-            player.OnDeltDamage(-1);
+            enemy.OnDeltDamage(-1);
             Destroy(gameObject);
         }
-        else
+        else if(other.collider.name != GameManager.instance.playerCharacterName)
         {
             Destroy(gameObject);
         }
@@ -50,10 +42,7 @@ public class Arrow : DamageableEnemy
 
     public void Launch(Vector2 direction, float force)
     {
-        if (direction.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
+        animator.SetFloat("X Direction", direction.x);
 
         rigidbody2d.AddForce(direction * force);
     }

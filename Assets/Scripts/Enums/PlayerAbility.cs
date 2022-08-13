@@ -6,5 +6,6 @@ public enum PlayerAbility
 {
     Dash,
     Deflect,
-    RapidAttack
+    RapidAttack,
+    SpiritBlast
 }

@@ -23,6 +23,7 @@ public class Enemy : DamageableEnemy
     public LayerMask playerLayer;
     public Transform target { get; private set; }
     public bool isStaggered;
+    public float staggerTime;
     public bool canBeStaggered;
     public bool playerDetected;
     public AudioSource audioSource;
@@ -33,6 +34,8 @@ public class Enemy : DamageableEnemy
     public int focusPointReward;
     public float debugAttackRange;
     public float detectionSizeModifier = 0.75f;
+
+    private bool isStaggerTimerActive;
     
     protected bool isDying;
 
@@ -65,6 +68,12 @@ public class Enemy : DamageableEnemy
 
     private void Update()
     {
+        if(isStaggered && !isStaggerTimerActive)
+        {
+            isStaggerTimerActive = true;
+            StartCoroutine(HandleStaggerTimer());
+        }
+
         DetermineLookDirection();
         HandleBehaviors();
         Animate();
@@ -134,6 +143,14 @@ public class Enemy : DamageableEnemy
         }
     }
 
+    private IEnumerator HandleStaggerTimer()
+    {
+        yield return new WaitForSeconds(staggerTime);
+
+        isStaggered = false;
+        isStaggerTimerActive = false; 
+    }
+
     protected virtual void OnDeath()
     {
         isDying = true;
@@ -157,7 +174,6 @@ public class Enemy : DamageableEnemy
 
     private void Animate()
     {
-        // animator.SetBool("Attacking", combatBehavior.isAttacking && !isStaggered);
         animator.SetBool("Block", combatBehavior.isBlocking);
 
         animator.SetFloat("Speed", navMeshAgent.velocity.sqrMagnitude);
@@ -167,6 +183,8 @@ public class Enemy : DamageableEnemy
 
     public override void OnDeltDamage(float damage, Player player = null)
     {
+        if(isStaggered) return;
+
         if (combatBehavior.isBlocking)
         {
             audioSource.PlayOneShot(BlockAudioClip);
@@ -180,10 +198,11 @@ public class Enemy : DamageableEnemy
         {
             OnDeath();
         }
-        else if(health <= 0)
+        else if(health > 0)
         {
             animator.SetTrigger("Hit");
             isStaggered = canBeStaggered;
+            Debug.Log(isStaggered);
         }
     }
 
