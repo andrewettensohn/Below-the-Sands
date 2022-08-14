@@ -170,7 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  dealDamageDelay: 0.3
+  primaryAttackDealDamageDelay: 0.2
+  secondaryAttackDealDamageDelay: 0
   attackRange: 0.5
   blockTime: 0
   primaryAttackHasKnockBack: 0
@@ -370,4 +371,4 @@ NavMeshAgent:
   m_Height: 0.22999999
   m_BaseOffset: 0.114999995
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0

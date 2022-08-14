@@ -101,6 +101,8 @@
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\Enums\HealthPotionName.cs" />
      <Compile Include="Assets\Scripts\Audio\MusicTracks.cs" />
+     <Compile Include="Assets\Scripts\Projectiles\ArcaneBolt.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Armored.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

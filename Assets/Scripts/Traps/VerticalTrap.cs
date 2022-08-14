@@ -64,6 +64,16 @@ public class VerticalTrap : MonoBehaviour
         }
     }
 
+    protected virtual void OnTriggerStay2D(Collider2D collision)
+    {
+        if (playerGameObject == null && collision.name == GameManager.instance.playerCharacterName)
+        {
+            Player player = collision.GetComponent<Player>();
+            playerGameObject = player;
+        }
+    }
+
+
     protected virtual void OnTriggerExit2D(Collider2D collider)
     {
         playerGameObject = null;

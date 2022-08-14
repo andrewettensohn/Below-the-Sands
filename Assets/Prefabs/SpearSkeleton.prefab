@@ -181,7 +181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  dealDamageDelay: 0.5
+  primaryAttackDealDamageDelay: 0.3
+  secondaryAttackDealDamageDelay: 0
   attackRange: 0.8
   blockTime: 0
   primaryAttackHasKnockBack: 0

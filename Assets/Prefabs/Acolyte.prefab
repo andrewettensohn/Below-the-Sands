@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 7107807255553383010}
   - component: {fileID: 4823561628985585245}
   - component: {fileID: 1387375236319436299}
-  - component: {fileID: 3255604806734421943}
   - component: {fileID: 1387375236050038882}
   - component: {fileID: 3751517594613611516}
+  - component: {fileID: 602181206}
   m_Layer: 7
   m_Name: Acolyte
   m_TagString: Untagged
@@ -168,8 +168,10 @@ MonoBehaviour:
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
   debugAttackRange: 1.4
-  detectionSizeModifier: 1.2
-  shieldGeneratorGameObjects: []
+  detectionSizeModifier: 1.5
+  shieldGeneratorGameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
   magicShieldGameObject: {fileID: 6677559449994175652}
 --- !u!114 &7107807255553383010
 MonoBehaviour:
@@ -184,7 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  dealDamageDelay: 0.5
+  primaryAttackDealDamageDelay: 0.6
+  secondaryAttackDealDamageDelay: 0
   attackRange: 1.4
   blockTime: 0
   primaryAttackHasKnockBack: 0
@@ -231,22 +234,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
   canJump: 0
---- !u!70 &3255604806734421943
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6190538485195964945}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.27609092, y: -0.0017586809}
-  m_Size: {x: 0.26967418, y: 0.517999}
-  m_Direction: 0
 --- !u!195 &1387375236050038882
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -256,7 +243,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6190538485195964945}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.2
+  m_Radius: 0.4
   m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
@@ -265,10 +252,10 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 0.5
-  m_BaseOffset: 0.25
+  m_Height: 0.6
+  m_BaseOffset: 0.3
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!82 &3751517594613611516
 AudioSource:
   m_ObjectHideFlags: 0
@@ -365,6 +352,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &602181206
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6190538485195964945}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.09395967, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3332001
 --- !u!1 &6677559449994175652
 GameObject:
   m_ObjectHideFlags: 0

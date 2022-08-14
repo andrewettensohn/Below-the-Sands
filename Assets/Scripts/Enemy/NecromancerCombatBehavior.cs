@@ -8,7 +8,7 @@ public class NecromancerCombatBehavior : EnemyCombatBehavior
 
     protected override IEnumerator HandlePostSecondaryAttackDelayTimer()
     {
-        yield return new WaitForSeconds(dealDamageDelay);
+        yield return new WaitForSeconds(secondaryAttackDealDamageDelay);
 
         if (enemy.health > 0)
         {

@@ -10,14 +10,6 @@ public class EnemyChaseBehavior : EnemyBehavior
     {
         if (!isBehaviorEnabled) return;
         enemy.navMeshAgent.isStopped = false;
-        // if (canJump)
-        // {
-        //     enemy.navMeshAgent.SetDestination(enemy.target.position);
-        // }
-        // else
-        // {
-        //     enemy.navMeshAgent.SetDestination(new Vector2(enemy.target.position.x, 0.0f));
-        // }
         enemy.navMeshAgent.SetDestination(enemy.target.position);
     }
 }

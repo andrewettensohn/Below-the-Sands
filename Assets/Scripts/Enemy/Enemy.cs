@@ -35,9 +35,10 @@ public class Enemy : DamageableEnemy
     public float debugAttackRange;
     public float detectionSizeModifier = 0.75f;
 
-    private bool isStaggerTimerActive;
+    protected bool isStaggerTimerActive;
     
     protected bool isDying;
+    protected bool isCustomBeahviorRunning;
 
     private void Start()
     {
@@ -66,7 +67,7 @@ public class Enemy : DamageableEnemy
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if(isStaggered && !isStaggerTimerActive)
         {
@@ -79,7 +80,7 @@ public class Enemy : DamageableEnemy
         Animate();
     }
 
-    private void DetermineLookDirection()
+    protected void DetermineLookDirection()
     {
         if (health <= 0) return;
 
@@ -113,8 +114,18 @@ public class Enemy : DamageableEnemy
         combatBehavior.isBehaviorEnabled = false;
     }
 
+    protected void DisableAllBehaviors()
+    {
+        chase.isBehaviorEnabled = false;
+        combatBehavior.isBehaviorEnabled = false;
+        sentry.isBehaviorEnabled = false;
+        enemyWaypointBehavior.isBehaviorEnabled = false;
+    }
+
     protected virtual void HandleBehaviors()
     {
+        if(isCustomBeahviorRunning) return;
+
         if (health <= 0)
         {
             chase.isBehaviorEnabled = false;
@@ -143,7 +154,7 @@ public class Enemy : DamageableEnemy
         }
     }
 
-    private IEnumerator HandleStaggerTimer()
+    protected virtual IEnumerator HandleStaggerTimer()
     {
         yield return new WaitForSeconds(staggerTime);
 
@@ -172,7 +183,7 @@ public class Enemy : DamageableEnemy
         GameManager.instance.UpdateScore(scoreValue);
     }
 
-    private void Animate()
+    protected void Animate()
     {
         animator.SetBool("Block", combatBehavior.isBlocking);
 

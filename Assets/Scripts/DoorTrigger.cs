@@ -19,7 +19,7 @@ public class DoorTrigger : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        isLockedBySpawners = bossLockSpawners != null;
+        isLockedBySpawners = bossLockSpawners.Any();
         isLockedByBoss = bossLockObject != null;
     }
 

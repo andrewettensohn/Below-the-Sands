@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5091820314847450812}
   - component: {fileID: 5091820314847450808}
   - component: {fileID: 5091820314847450810}
-  - component: {fileID: 6828886637034830081}
+  - component: {fileID: 6185360156626457224}
   - component: {fileID: 2979424305549143427}
   - component: {fileID: 8206952045015469774}
   - component: {fileID: 5886285886026939121}
@@ -167,7 +167,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6828886637034830081
+--- !u!114 &6185360156626457224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,11 +176,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5091820314847450813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1351c046ca389048ab90149b86a21e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a57cb4a7b56d1741aeb7b12774d8460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
-  speed: 5
+  speed: 2
   attackPoint: {fileID: 3189233392061767673}
   DeathAudioClip: {fileID: 0}
   AttackingAudioClip: {fileID: 0}
@@ -200,6 +200,10 @@ MonoBehaviour:
   focusPointReward: 0
   debugAttackRange: 2
   detectionSizeModifier: 0.75
+  arcaneBoltPrefab: {fileID: 2680505620633282611, guid: 185c9e2760510b1478f0829e90592a5c, type: 3}
+  arcaneBoltLaunchForce: 100
+  arcaneLaunchCycles: 3
+  postArcaneBlastTimer: 2
 --- !u!114 &2979424305549143427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,12 +236,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  dealDamageDelay: 0.6
+  primaryAttackDealDamageDelay: 0.5
+  secondaryAttackDealDamageDelay: 0
   attackRange: 2
   blockTime: 0
   primaryAttackHasKnockBack: 1
   secondaryAttackHasKnockBack: 0
-  knockBackForce: 4500
+  knockBackForce: 4000
   hasSecondaryAttack: 0
   hasBlock: 0
   hasContinuousAttack: 0
@@ -264,7 +269,7 @@ MonoBehaviour:
   nodeLayer:
     serializedVersion: 2
     m_Bits: 1024
-  canSeeThroughWalls: 0
+  canSeeThroughWalls: 1
 --- !u!114 &370821799
 MonoBehaviour:
   m_ObjectHideFlags: 0

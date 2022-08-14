@@ -158,6 +158,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isStaggered: 0
+  staggerTime: 0
   canBeStaggered: 0
   playerDetected: 0
   audioSource: {fileID: 0}
@@ -185,7 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  dealDamageDelay: 0.6
+  primaryAttackDealDamageDelay: 0.6
+  secondaryAttackDealDamageDelay: 0.5
   attackRange: 0.8
   blockTime: 0
   primaryAttackHasKnockBack: 0
