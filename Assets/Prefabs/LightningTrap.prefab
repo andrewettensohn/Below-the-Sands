@@ -101,7 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrapAnimationClip: {fileID: 7400000, guid: e1c89cc68df18d5459aaaf367f14f967, type: 2}
   DamageSprites:
-  - {fileID: -139313550, guid: ef38c424a818420468660fa9cc0c8f96, type: 3}
   - {fileID: 1498391664, guid: ef38c424a818420468660fa9cc0c8f96, type: 3}
   - {fileID: 1710068579, guid: ef38c424a818420468660fa9cc0c8f96, type: 3}
   - {fileID: -741033381, guid: ef38c424a818420468660fa9cc0c8f96, type: 3}
@@ -116,7 +115,6 @@ MonoBehaviour:
   - {fileID: 587168298, guid: ef38c424a818420468660fa9cc0c8f96, type: 3}
   - {fileID: -1061800205, guid: ef38c424a818420468660fa9cc0c8f96, type: 3}
   - {fileID: 1883770142, guid: ef38c424a818420468660fa9cc0c8f96, type: 3}
-  - {fileID: -2094325397, guid: ef38c424a818420468660fa9cc0c8f96, type: 3}
   animationStartDelay: 0
 --- !u!95 &788328502456095739
 Animator:

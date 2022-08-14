@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        PlayerInfo.instance.isSpirit = false;
 
         if (PlayerInfo.instance.nextPlayerPositionOnLoad != Vector2.zero)
         {

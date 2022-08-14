@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public List<LevelName> SecondLevelMusicTriggers;
     public List<LevelName> ThirdLevelMusicTriggers;
 
+    public bool canSaveGame = true;
+
     public int score { get; private set; }
 
     private AudioSource audioSource;
@@ -120,13 +122,16 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
-    public void SaveProgress()
+    public void SaveProgress(Vector2 position)
     {
+        Debug.Log("Saving!");
+
         PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
-        PlayerPrefs.SetFloat("LastPositionX", PlayerInfo.instance.playerPosition.x);
-        PlayerPrefs.SetFloat("LastPositionY", PlayerInfo.instance.playerPosition.y);
-        //PlayerPrefs.SetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
+        PlayerPrefs.SetFloat("LastPositionX", position.x);
+        PlayerPrefs.SetFloat("LastPositionY", position.y);
         PlayerPrefs.Save();
+
+        Debug.Log($"X Pos Save: {PlayerInfo.instance.playerPosition.x}. Y Pos Save: {PlayerInfo.instance.playerPosition.y}");
 
         bool isUIPresent = GameObject.Find("PlayerUICanvas").TryGetComponent<PlayerUI>(out PlayerUI playerUI);
 
@@ -141,7 +146,8 @@ public class GameManager : MonoBehaviour
         string lastSceneName = PlayerPrefs.GetString("LastScene", SceneManager.GetActiveScene().name);
         float lastPositionX = PlayerPrefs.GetFloat("LastPositionX", PlayerInfo.instance.playerPosition.x);
         float lastPositionY = PlayerPrefs.GetFloat("LastPositionY", PlayerInfo.instance.playerPosition.y);
-        //int healthPotCount = PlayerPrefs.GetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
+
+        Debug.Log($"X Pos Load: {lastPositionX}. Y Pos Load: {lastPositionY}");
 
         PlayerInfo.instance.nextPlayerPositionOnLoad = new Vector2(lastPositionX, lastPositionY);
         PlayerInfo.instance.healthPotionCount = 0;
