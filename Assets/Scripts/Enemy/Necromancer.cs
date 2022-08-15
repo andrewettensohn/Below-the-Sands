@@ -8,37 +8,6 @@ public class Necromancer : Enemy
     public List<Transform> teleportPositions;
     public int maxHealth;
 
-    protected override void HandleBehaviors()
-    {
-        if (health <= 0)
-        {
-            chase.isBehaviorEnabled = false;
-            combatBehavior.isBehaviorEnabled = false;
-            StopMovement();
-            return;
-        }
-
-        if (enemyWaypointBehavior?.isBehaviorEnabled == true)
-        {
-            chase.isBehaviorEnabled = false;
-            combatBehavior.isBehaviorEnabled = false;
-            sentry.isBehaviorEnabled = false;
-            AllowMovement();
-        }
-        else if (playerDetected)
-        {
-            combatBehavior.HandleCombat();
-            chase.isBehaviorEnabled = true;
-            AllowMovement();
-        }
-        else
-        {
-            chase.isBehaviorEnabled = false;
-            StopMovement();
-        }
-    }
-
-
     public override void OnDeltDamage(float damage, Player player = null)
     {
         damage = Math.Abs(damage);

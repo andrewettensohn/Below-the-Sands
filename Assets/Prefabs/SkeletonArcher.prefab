@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4839356288258701266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5832865084524450656}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5832865084524450656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4839356288258701266}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.474, y: -0.021, z: 0.93063277}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8691850715657894945}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8691850715657894951
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,10 +42,15 @@ GameObject:
   - component: {fileID: 8691850715657894945}
   - component: {fileID: 8691850715657894950}
   - component: {fileID: 8691850715657894946}
-  - component: {fileID: 4915697934130904296}
+  - component: {fileID: 2380906430559555445}
+  - component: {fileID: 8215385796770554652}
+  - component: {fileID: 4669869031733975814}
+  - component: {fileID: 3000326140821095626}
+  - component: {fileID: 1342334407803189394}
   - component: {fileID: 5613310594766418123}
   - component: {fileID: -4103078926590118572}
   - component: {fileID: 245304927756418672}
+  - component: {fileID: 2022451497}
   m_Layer: 7
   m_Name: SkeletonArcher
   m_TagString: Untagged
@@ -33,7 +69,8 @@ Transform:
   m_LocalPosition: {x: 10.56, y: -1.025, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5832865084524450656}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -110,7 +147,7 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4915697934130904296
+--- !u!114 &2380906430559555445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,21 +156,112 @@ MonoBehaviour:
   m_GameObject: {fileID: 8691850715657894951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30427905ba74d7a4eaca17462394212f, type: 3}
+  m_Script: {fileID: 11500000, guid: b1351c046ca389048ab90149b86a21e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  detectionRange: 20
-  shootDelayTime: 1.2
-  arrowLaunchForce: 2000
-  freeFire: 0
-  arrowPrefab: {fileID: 4355225305427646132, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
-  lookDirection: 0
+  speed: 2
+  attackPoint: {fileID: 5832865084524450656}
+  DeathAudioClip: {fileID: 0}
+  AttackingAudioClip: {fileID: 8300000, guid: f4baf9e94f8caa2498da669e135d0668, type: 3}
+  HitAudioClip: {fileID: 0}
+  BlockAudioClip: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  DeathAudioClip: {fileID: 8300000, guid: 56ec1bcf451872c43a7e485973345ec1, type: 3}
-  AttackingAudioClip: {fileID: 8300000, guid: f4baf9e94f8caa2498da669e135d0668, type: 3}
+  isStaggered: 0
+  staggerTime: 0
+  canBeStaggered: 0
+  playerDetected: 0
+  audioSource: {fileID: 0}
+  scoreValue: 0
+  animator: {fileID: 0}
+  lookDirection: {x: 0, y: 0}
+  focusPointReward: 0
+  debugAttackRange: 6
+  detectionSizeModifier: 2
+--- !u!114 &8215385796770554652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691850715657894951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b186ebb62010284ca1ea867cf43c1d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBehaviorEnabled: 0
+  primaryAttackDealDamageDelay: 0
+  secondaryAttackDealDamageDelay: 0
+  attackRange: 6
+  blockTime: 0
+  primaryAttackHasKnockBack: 0
+  secondaryAttackHasKnockBack: 0
+  knockBackForce: 0
+  hasSecondaryAttack: 0
+  hasBlock: 0
+  hasContinuousAttack: 0
+  initalLeaveOpeningTime: 0.5
+  postAttackLeaveOpeningTime: 1.5
+  postBlockLeaveOpeningTime: 0
+  postSecondaryAttackLeaveOpeningTime: 0
+  arrowPrefab: {fileID: 4355225305427646132, guid: df0eed11634f09d43b58afa1b05ac628, type: 3}
+  arrowLaunchForce: 2000
+--- !u!114 &4669869031733975814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691850715657894951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c2f30e7f14e35c4f943eff44f2c3c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBehaviorEnabled: 0
+  canJump: 0
+--- !u!114 &3000326140821095626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691850715657894951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a0e97392704784cba8c5fe5ff89526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBehaviorEnabled: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  nodeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  canSeeThroughWalls: 1
+--- !u!114 &1342334407803189394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691850715657894951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c699d15286637a4bb88b9e7d04d8d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBehaviorEnabled: 0
+  singleWaypointLocation: {fileID: 0}
+  WaypointLayer:
+    serializedVersion: 2
+    m_Bits: 131072
+  WaypointDetectionDistance: 0
+  isWaypointFound: 0
 --- !u!95 &5613310594766418123
 Animator:
   serializedVersion: 4
@@ -266,3 +394,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0011997223, y: -0.01080513}
   m_Size: {x: 0.17584991, y: 0.31991577}
   m_Direction: 0
+--- !u!195 &2022451497
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691850715657894951}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.3
+  m_BaseOffset: 0.1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 0

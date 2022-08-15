@@ -12,7 +12,14 @@ public class EnemySentryBehavior : EnemyBehavior
     {
         if (isBehaviorEnabled == false) return;
 
+        enemy.StopMovement();
         enemy.playerDetected = IsPlayerDetected(enemy.lookDirection) || IsPlayerDetected(-enemy.lookDirection);
+
+        if(enemy.playerDetected)
+        {
+            enemy.chase.isBehaviorEnabled = true;
+            this.isBehaviorEnabled = false;
+        }
     }
 
     private bool IsPlayerDetected(Vector2 direction)

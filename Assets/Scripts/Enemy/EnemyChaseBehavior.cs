@@ -9,7 +9,14 @@ public class EnemyChaseBehavior : EnemyBehavior
     private void Update()
     {
         if (!isBehaviorEnabled) return;
-        enemy.navMeshAgent.isStopped = false;
+        
+        enemy.AllowMovement();
         enemy.navMeshAgent.SetDestination(enemy.target.position);
+
+        if(enemy.navMeshAgent.remainingDistance <= enemy.combatBehavior.attackRange)
+        {
+            enemy.combatBehavior.isBehaviorEnabled = true;
+            this.isBehaviorEnabled = false;
+        }
     }
 }

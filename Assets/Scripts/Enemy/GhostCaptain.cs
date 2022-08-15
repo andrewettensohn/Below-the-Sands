@@ -41,7 +41,6 @@ public class GhostCaptain : Enemy
         }
 
         DetermineLookDirection();
-        HandleBehaviors();
         Animate();
     }
 

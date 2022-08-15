@@ -76,7 +76,6 @@ public class Enemy : DamageableEnemy
         }
 
         DetermineLookDirection();
-        HandleBehaviors();
         Animate();
     }
 
@@ -119,39 +118,6 @@ public class Enemy : DamageableEnemy
         chase.isBehaviorEnabled = false;
         combatBehavior.isBehaviorEnabled = false;
         sentry.isBehaviorEnabled = false;
-        enemyWaypointBehavior.isBehaviorEnabled = false;
-    }
-
-    protected virtual void HandleBehaviors()
-    {
-        if(isCustomBeahviorRunning) return;
-
-        if (health <= 0)
-        {
-            chase.isBehaviorEnabled = false;
-            combatBehavior.isBehaviorEnabled = false;
-            StopMovement();
-            return;
-        }
-
-        if (enemyWaypointBehavior?.isBehaviorEnabled == true)
-        {
-            chase.isBehaviorEnabled = false;
-            combatBehavior.isBehaviorEnabled = false;
-            sentry.isBehaviorEnabled = false;
-            AllowMovement();
-        }
-        else if (playerDetected)
-        {
-            combatBehavior.HandleCombat();
-            chase.isBehaviorEnabled = true;
-            AllowMovement();
-        }
-        else
-        {
-            chase.isBehaviorEnabled = false;
-            StopMovement();
-        }
     }
 
     protected virtual IEnumerator HandleStaggerTimer()
@@ -168,6 +134,7 @@ public class Enemy : DamageableEnemy
         animator.SetTrigger("Die");
         GivePlayerRewardForDeath();
         StopMovement();
+        DisableAllBehaviors();
 
         Invoke(nameof(OnDisable), 1.3f);
 

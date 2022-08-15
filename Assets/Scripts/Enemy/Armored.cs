@@ -37,7 +37,6 @@ public class Armored : Enemy
         }
 
         DetermineLookDirection();
-        HandleBehaviors();
         Animate();
     }
 

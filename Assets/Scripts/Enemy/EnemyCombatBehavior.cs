@@ -51,17 +51,22 @@ public class EnemyCombatBehavior : EnemyBehavior
         SecondaryAttack,
     }
 
-    public virtual void HandleCombat()
+    public virtual void Update()
     {
+        if(isBehaviorEnabled == false) return;
+
         Collider2D[] players = GetPlayerHits(attackRange);
 
-        if (players.Length == 0 || enemy.isStaggered)
+        if (players.Length == 0)
         {
             isInCombat = false;
             isAttacking = false;
+            enemy.sentry.isBehaviorEnabled = true;
+            this.isBehaviorEnabled = false;
             return;
         }
 
+        //enemy.StopMovement();
         isInCombat = true;
         
         if(canLeaveInitalOpening)
