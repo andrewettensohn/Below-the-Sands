@@ -39,8 +39,6 @@ public class PlayerUI : MonoBehaviour
 
         SetAllAbilityUseToInactive();
         SwapToNormalAbilities();
-        // SetAllAbilityIconsToInactive();
-        // SetAbilityUseBackground(false);
 
         SyncHearts();
 
@@ -94,41 +92,6 @@ public class PlayerUI : MonoBehaviour
         rapidSuiteObject.SetActive(true);
         spiritSuiteIconObject.SetActive(false);
     }
-
-    // public void SwapAbilityIcon(PlayerAbility newAbility)
-    // {
-    //     SetAllAbilityIconsToInactive();
-
-    //     if (newAbility == PlayerAbility.Dash)
-    //     {
-    //         dashIconObject.SetActive(true);
-    //     }
-    //     else if (newAbility == PlayerAbility.Deflect)
-    //     {
-    //         deflectIconObject.SetActive(true);
-    //     }
-    //     else if (newAbility == PlayerAbility.RapidAttack)
-    //     {
-    //         rapidIconObject.SetActive(true);
-    //     }
-    //     else if(newAbility == PlayerAbility.SpiritBlast)
-    //     {
-    //         spiritBlastIconObject.SetActive(true);
-    //     }
-    // }
-
-    // public void SetAllAbilityIconsToInactive()
-    // {
-    //     dashIconObject.SetActive(false);
-    //     rapidIconObject.SetActive(false);
-    //     deflectIconObject.SetActive(false);
-    //     spiritBlastIconObject.SetActive(false);
-    // }
-
-    // public void SetAbilityUseBackground(bool isActive)
-    // {
-    //     AbilityUseBackground.SetActive(isActive);
-    // }
 
     public void ChangeHealthHearts(int heartsNeededToChange, bool isActive)
     {

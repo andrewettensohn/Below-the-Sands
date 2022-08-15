@@ -205,7 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  dealDamageDelay: 0.3
+  primaryAttackDealDamageDelay: 0
+  secondaryAttackDealDamageDelay: 0
   attackRange: 0.6
   blockTime: 1
   primaryAttackHasKnockBack: 0
@@ -385,7 +386,7 @@ NavMeshAgent:
   m_Height: 0.7
   m_BaseOffset: 0.48
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!1 &7656486315094868132
 GameObject:
   m_ObjectHideFlags: 0

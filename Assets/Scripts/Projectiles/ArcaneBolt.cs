@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcaneBolt : DamageableEnemy
+public class ArcaneBolt : MonoBehaviour
 {
     private Rigidbody2D rigidbody2d;
     private SpriteRenderer spriteRenderer;
@@ -23,13 +23,13 @@ public class ArcaneBolt : DamageableEnemy
         }
     }
 
-    public override void OnDeltDamage(float damage, Player player = null)
-    {
-        if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect && player.isUsingAbility)
-        {
-            Destroy(gameObject);
-        }
-    }
+    // public override void OnDeltDamage(float damage, Player player = null)
+    // {
+    //     if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect && player.isUsingAbility)
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     private void OnCollisionEnter2D(Collision2D other)
     {

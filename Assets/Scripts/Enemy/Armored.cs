@@ -49,7 +49,7 @@ public class Armored : Enemy
 
         animator.SetBool("Is Blasting", true);
 
-        List<Vector2> launchDirections = new List<Vector2> { Vector2.up, Vector2.right, Vector2.left, Vector2.up, new Vector2(0.5f, 1f), new Vector2(-0.5f, 1) };
+        List<Vector2> launchDirections = new List<Vector2> { Vector2.up, Vector2.right, Vector2.left, Vector2.up, new Vector2(0.5f, 0.5f), new Vector2(-0.5f, 0.5f) };
 
         foreach(Vector2 launchDirection in launchDirections)
         {

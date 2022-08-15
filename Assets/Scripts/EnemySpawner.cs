@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
         SpawnEnemy();
 
-        areSpawnedEnemiesDefeated =(spawnedEnemies?.All(x => !x.activeSelf)).GetValueOrDefault();
+        areSpawnedEnemiesDefeated = (spawnedEnemies?.All(x => !x.activeSelf)).GetValueOrDefault() && numberSpawned >= spawnLimit;
     }
 
     private void SpawnEnemy()

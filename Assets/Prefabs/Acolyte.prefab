@@ -169,9 +169,7 @@ MonoBehaviour:
   focusPointReward: 0
   debugAttackRange: 1.4
   detectionSizeModifier: 1.5
-  shieldGeneratorGameObjects:
-  - {fileID: 0}
-  - {fileID: 0}
+  shieldGeneratorGameObjects: []
   magicShieldGameObject: {fileID: 6677559449994175652}
 --- !u!114 &7107807255553383010
 MonoBehaviour:
