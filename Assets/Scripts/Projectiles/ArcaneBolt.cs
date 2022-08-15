@@ -23,14 +23,6 @@ public class ArcaneBolt : MonoBehaviour
         }
     }
 
-    // public override void OnDeltDamage(float damage, Player player = null)
-    // {
-    //     if (PlayerInfo.instance.EquippedAbility == PlayerAbility.Deflect && player.isUsingAbility)
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.name == GameManager.instance.playerCharacterName)

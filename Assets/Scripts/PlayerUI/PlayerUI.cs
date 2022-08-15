@@ -40,19 +40,19 @@ public class PlayerUI : MonoBehaviour
         SetAllAbilityUseToInactive();
         SwapToNormalAbilities();
 
-        SyncHearts();
+        //SyncHearts();
 
         ProgressSavedGameObject.SetActive(false);
     }
 
     public void SyncHealthPotCount() => healthPotCount.text = PlayerInfo.instance.healthPotionCount.ToString();
 
-    public void SyncHearts()
-    {
-        int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
+    // public void SyncHearts()
+    // {
+    //     int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
 
-        ChangeHealthHearts(heartsNeededToChange, false);
-    }
+    //     ChangeHealthHearts(heartsNeededToChange, false);
+    // }
 
     public void SetAllAbilityUseToInactive()
     {

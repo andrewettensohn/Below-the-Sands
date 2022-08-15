@@ -3198,7 +3198,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4328572, y: 1}
+    m_SensorSize: {x: 1.4350315, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5183,8 +5183,20 @@ PrefabInstance:
       value: LayerDoor
       objectReference: {fileID: 0}
     - target: {fileID: 1327360421215254180, guid: 3681da5a54f2fb84db6507a9fa93024c, type: 3}
+      propertyPath: levelName
+      value: Layer3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327360421215254180, guid: 3681da5a54f2fb84db6507a9fa93024c, type: 3}
+      propertyPath: verticalPositionAfterLoad
+      value: 24.58459
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327360421215254180, guid: 3681da5a54f2fb84db6507a9fa93024c, type: 3}
       propertyPath: bossLockSpawners.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327360421215254180, guid: 3681da5a54f2fb84db6507a9fa93024c, type: 3}
+      propertyPath: horizontalPositionAfterLoad
+      value: 38.08057
       objectReference: {fileID: 0}
     - target: {fileID: 1327360421215254180, guid: 3681da5a54f2fb84db6507a9fa93024c, type: 3}
       propertyPath: bossLockSpawners.Array.data[0]
