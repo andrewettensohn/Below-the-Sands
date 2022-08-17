@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2382913940508792401}
   - component: {fileID: 2382913940508792403}
   - component: {fileID: 2382913940508792402}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ExplosionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4829,7 +4829,7 @@ GameObject:
   - component: {fileID: 2382913941377450510}
   - component: {fileID: 2382913941377450507}
   - component: {fileID: 7233343762739606833}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ExplosivePressurePlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

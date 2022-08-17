@@ -85,6 +85,8 @@
      <Compile Include="Assets\Scripts\Collectables\SpiritPowerup.cs" />
      <Compile Include="Assets\Scripts\Milestones.cs" />
      <Compile Include="Assets\Scripts\Projectiles\ArcaneBolt.cs" />
+     <Compile Include="Assets\Scripts\Enemy\SkeletonArcherCombatBehavior.cs" />
+     <Compile Include="Assets\Scripts\Enemy\GhostCaptain.cs" />
      <Compile Include="Assets\Scripts\Enemy\Acolyte.cs" />
      <Compile Include="Assets\Scripts\Enemy\AlligatorWarrior.cs" />
      <Compile Include="Assets\Scripts\Traps\ExplosivePressurePlate.cs" />
@@ -102,10 +104,8 @@
      <Compile Include="Assets\Scripts\Projectiles\Fireball.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\Enums\HealthPotionName.cs" />
-     <Compile Include="Assets\Scripts\Audio\MusicTracks.cs" />
-     <Compile Include="Assets\Scripts\Enemy\GhostCaptain.cs" />
      <Compile Include="Assets\Scripts\Projectiles\MagicRift.cs" />
-     <Compile Include="Assets\Scripts\Enemy\SkeletonArcherCombatBehavior.cs" />
+     <Compile Include="Assets\Scripts\Audio\MusicTracks.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -21,7 +21,7 @@ public class Enemy : DamageableEnemy
     public AudioClip HitAudioClip;
     public AudioClip BlockAudioClip;
     public LayerMask playerLayer;
-    public Transform target { get; private set; }
+    public Transform target { get; protected set; }
     public bool isStaggered;
     public float staggerTime;
     public bool canBeStaggered;
@@ -33,18 +33,23 @@ public class Enemy : DamageableEnemy
     public Vector2 lookDirection;
     public int focusPointReward;
     public float debugAttackRange;
+    public float debugStoppingDistance;
     public float detectionSizeModifier = 0.75f;
+    public float shootingRange;
 
     protected bool isStaggerTimerActive;
+    public bool isArcher;
     
     protected bool isDying;
     protected bool isCustomBeahviorRunning;
 
-    private void Start()
+    protected virtual void Start()
     {
         SetDefaultBehaviors();
 
-        navMeshAgent.stoppingDistance = combatBehavior.attackRange;
+        float stoppingDistance = isArcher ? shootingRange : combatBehavior.attackRange;
+
+        navMeshAgent.stoppingDistance = stoppingDistance;
         navMeshAgent.speed = speed;
         navMeshAgent.updateRotation = false;
         navMeshAgent.updateUpAxis = false;
@@ -56,7 +61,7 @@ public class Enemy : DamageableEnemy
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -79,7 +84,7 @@ public class Enemy : DamageableEnemy
         Animate();
     }
 
-    protected void DetermineLookDirection()
+    protected virtual void DetermineLookDirection()
     {
         if (health <= 0) return;
 
@@ -199,5 +204,6 @@ public class Enemy : DamageableEnemy
         if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, debugAttackRange);
         Gizmos.DrawWireSphere(transform.position, 7.0f * detectionSizeModifier);
+        Gizmos.DrawLine(new Vector2(transform.position.x, transform.position.y + 1f), new Vector2(transform.position.x + shootingRange, transform.position.y + 1f));
     }
 }

@@ -7,6 +7,7 @@ public class EnemySentryBehavior : EnemyBehavior
     public LayerMask obstacleLayer;
     public LayerMask nodeLayer;
     public bool canSeeThroughWalls;
+    public bool isNodeFilterOff;
 
     public void FixedUpdate()
     {
@@ -39,7 +40,7 @@ public class EnemySentryBehavior : EnemyBehavior
 
         RaycastHit2D nodeDetectionHit = Physics2D.Raycast(enemy.transform.position, heading / heading.magnitude, heading.magnitude, nodeLayer);
 
-        return nodeDetectionHit.collider == null;
+        return nodeDetectionHit.collider == null || isNodeFilterOff;
     }
 
     

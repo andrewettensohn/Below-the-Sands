@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 7
+  speed: 5
   attackPoint: {fileID: 2524304527159988134}
   DeathAudioClip: {fileID: 0}
   AttackingAudioClip: {fileID: 0}
@@ -190,7 +190,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isStaggered: 0
-  staggerTime: 0.5
+  staggerTime: 1
   canBeStaggered: 0
   playerDetected: 0
   audioSource: {fileID: 0}
@@ -199,7 +199,7 @@ MonoBehaviour:
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
   debugAttackRange: 1.2
-  detectionSizeModifier: 4
+  detectionSizeModifier: 2
 --- !u!114 &9203032238455740136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
   nodeLayer:
     serializedVersion: 2
     m_Bits: 1024
-  canSeeThroughWalls: 1
+  canSeeThroughWalls: 0
 --- !u!114 &3780141080621783373
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -35,6 +35,8 @@ public class SkeletonArcherCombatBehavior : EnemyCombatBehavior
         GameObject arrowGameObject = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
 
         Arrow arrow = arrowGameObject.GetComponent<Arrow>();
-        arrow.Launch(enemy.lookDirection, arrowLaunchForce);
+        Vector2 launchDirection = enemy.attackPoint.transform.position.x <= enemy.transform.position.x ? Vector2.left : Vector2.right;
+
+        arrow.Launch(launchDirection, arrowLaunchForce);
     }
 }

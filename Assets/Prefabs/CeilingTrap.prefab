@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5429232516403910852}
   - component: {fileID: 5429232516403910858}
   - component: {fileID: 5429232516403910859}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CeilingTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

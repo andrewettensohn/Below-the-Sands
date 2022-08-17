@@ -61,12 +61,12 @@ public class EnemyCombatBehavior : EnemyBehavior
         {
             isInCombat = false;
             isAttacking = false;
-            enemy.sentry.isBehaviorEnabled = true;
             this.isBehaviorEnabled = false;
+            enemy.sentry.isBehaviorEnabled = true;
+            Debug.Log("Player not in range, sentry");
             return;
         }
 
-        //enemy.StopMovement();
         isInCombat = true;
         
         if(canLeaveInitalOpening)
