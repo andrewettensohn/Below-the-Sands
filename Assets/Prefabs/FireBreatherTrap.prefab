@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7638255302620205718}
   - component: {fileID: 7638255302620205720}
   - component: {fileID: 7638255302620205721}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FireBreatherTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

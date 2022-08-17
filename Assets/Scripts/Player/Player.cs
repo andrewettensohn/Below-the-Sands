@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         PlayerInfo.instance.playerPosition = transform.position;
+        PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
 
         if (GameManager.instance.isGamePaused) return;
 

@@ -25,15 +25,13 @@ public class EnemyChaseBehavior : EnemyBehavior
         {
             TransitionToCombatBehavior();
         }
-        else if(enemy.isArcher)
+        else if(enemy.isArcher) // the archer has the ability to shoot through nodes so they need extra logic to determine if a player is within range
         {
+            //Check if the player is in range of the current look direction
             Collider2D[] playerHits = Physics2D.OverlapCircleAll(enemy.attackPoint.position, enemy.combatBehavior.attackRange, enemy.playerLayer);
-
-            Debug.Log($"Attack point {enemy.attackPoint.position}");
 
             if(playerHits.Length > 0)
             {
-                Debug.Log("Player is present in current look direction");
                 TransitionToCombatBehavior();
                 return;
             }
@@ -43,14 +41,13 @@ public class EnemyChaseBehavior : EnemyBehavior
             float oppositeDirection = isFacingLeft ? enemy.shootingRange : -enemy.shootingRange;
 
             Vector3 reversedAttackPoint = new Vector2(enemy.attackPoint.position.x + oppositeDirection, enemy.attackPoint.position.y);
-            
-            Debug.Log($"Reversed attack point {reversedAttackPoint}");
-
+        
+            // Check if the player would be in range if the enemy turned around
             Collider2D[] turnedAroundPlayerHits = Physics2D.OverlapCircleAll(reversedAttackPoint, enemy.combatBehavior.attackRange, enemy.playerLayer);
 
             if(turnedAroundPlayerHits.Length > 0)
             {
-                Debug.Log("Player is present in turned look direction");
+                //Turn around
                 if (isFacingLeft)
                 {
                     transform.rotation = Quaternion.identity;

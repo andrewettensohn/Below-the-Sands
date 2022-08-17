@@ -138,10 +138,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5000
+  m_Mass: 500
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 5
+  speed: 6
   attackPoint: {fileID: 2524304527159988134}
   DeathAudioClip: {fileID: 0}
   AttackingAudioClip: {fileID: 0}
@@ -199,7 +199,10 @@ MonoBehaviour:
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
   debugAttackRange: 1.2
+  debugStoppingDistance: 0
   detectionSizeModifier: 2
+  shootingRange: 0
+  isArcher: 0
 --- !u!114 &9203032238455740136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +269,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   canSeeThroughWalls: 0
+  isNodeFilterOff: 0
 --- !u!114 &3780141080621783373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  canJump: 0
 --- !u!70 &728188370611165425
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

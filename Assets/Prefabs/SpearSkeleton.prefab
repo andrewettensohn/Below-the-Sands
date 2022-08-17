@@ -167,7 +167,10 @@ MonoBehaviour:
   lookDirection: {x: 0, y: 0}
   focusPointReward: 1
   debugAttackRange: 0.8
+  debugStoppingDistance: 0
   detectionSizeModifier: 0.75
+  shootingRange: 0
+  isArcher: 0
 --- !u!114 &4605634523838323553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +195,7 @@ MonoBehaviour:
   hasBlock: 0
   hasContinuousAttack: 0
   initalLeaveOpeningTime: 0.2
-  postAttackLeaveOpeningTime: 0.3
+  postAttackLeaveOpeningTime: 0.4
   postBlockLeaveOpeningTime: 0
   postSecondaryAttackLeaveOpeningTime: 0
 --- !u!114 &5837589688164650461
@@ -215,6 +218,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   canSeeThroughWalls: 0
+  isNodeFilterOff: 0
 --- !u!114 &50385360837164427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  canJump: 0
 --- !u!82 &8398660832116316429
 AudioSource:
   m_ObjectHideFlags: 0

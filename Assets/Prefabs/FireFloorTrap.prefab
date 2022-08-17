@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5485503194661323093}
   - component: {fileID: 5485503194661323099}
   - component: {fileID: 5485503194661323098}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FireFloorTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
