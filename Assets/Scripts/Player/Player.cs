@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         PlayerInfo.instance.isSpirit = false;
+        PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
 
         if (PlayerInfo.instance.nextPlayerPositionOnLoad != Vector2.zero)
         {
@@ -73,7 +74,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         PlayerInfo.instance.playerPosition = transform.position;
-        PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
 
         if (GameManager.instance.isGamePaused) return;
 
@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
             Dash();
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftControl) && !isUsingAbility)
+        if(Input.GetKeyDown(KeyCode.Q) && !isUsingAbility)
         {
             Deflect();
         }
@@ -313,7 +313,7 @@ public class Player : MonoBehaviour
         }
         else if(PlayerInfo.instance.health <= 0 && PlayerInfo.instance.isSpirit)
         {
-            animator.SetTrigger("Die");
+            animator.SetTrigger("Leave Spirit Form");
             PlayerInfo.instance.health = PlayerInfo.instance.fullHealth;
             playerUI.ChangeHealthHearts(PlayerInfo.instance.fullHealth, true);
             PlayerInfo.instance.isSpirit = false;

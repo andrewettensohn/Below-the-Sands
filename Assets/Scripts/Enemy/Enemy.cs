@@ -21,6 +21,8 @@ public class Enemy : DamageableEnemy
     public AudioClip HitAudioClip;
     public AudioClip BlockAudioClip;
     public LayerMask playerLayer;
+    public LayerMask obstacleLayer;
+    public LayerMask nodeLayer;
     public Transform target { get; protected set; }
     public bool isStaggered;
     public float staggerTime;
@@ -36,6 +38,7 @@ public class Enemy : DamageableEnemy
     public float debugStoppingDistance;
     public float detectionSizeModifier = 0.75f;
     public float shootingRange;
+    public bool canFly;
 
     protected bool isStaggerTimerActive;
     public bool isArcher;
@@ -80,6 +83,11 @@ public class Enemy : DamageableEnemy
             StartCoroutine(HandleStaggerTimer());
         }
 
+        if(navMeshAgent.destination == target.position)
+        {
+            SetDestinationToPlayer();
+        }
+
         DetermineLookDirection();
         Animate();
     }
@@ -97,6 +105,21 @@ public class Enemy : DamageableEnemy
         else if (lookDirection.x < -0.1)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+    }
+
+    public void SetDestinationToPlayer()
+    {
+        RaycastHit2D groundHit = Physics2D.Raycast(transform.position, Vector2.down, 0.735f, obstacleLayer);
+        bool isGrounded = groundHit.collider != null;
+
+        if(canFly || !isGrounded)
+        {
+            navMeshAgent.SetDestination(target.position);
+        }
+        else
+        {
+            navMeshAgent.SetDestination(new Vector2(target.position.x, transform.position.y));
         }
     }
 
@@ -118,7 +141,7 @@ public class Enemy : DamageableEnemy
         combatBehavior.isBehaviorEnabled = false;
     }
 
-    protected void DisableAllBehaviors()
+    public void DisableAllBehaviors()
     {
         chase.isBehaviorEnabled = false;
         combatBehavior.isBehaviorEnabled = false;

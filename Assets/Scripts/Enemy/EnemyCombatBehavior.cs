@@ -51,7 +51,7 @@ public class EnemyCombatBehavior : EnemyBehavior
         SecondaryAttack,
     }
 
-    public virtual void Update()
+    protected virtual void Update()
     {
         if(isBehaviorEnabled == false) return;
 
@@ -63,10 +63,15 @@ public class EnemyCombatBehavior : EnemyBehavior
             isAttacking = false;
             this.isBehaviorEnabled = false;
             enemy.sentry.isBehaviorEnabled = true;
-            Debug.Log("Player not in range, sentry");
+
             return;
         }
 
+        HandleAttackCycle();
+    }
+
+    protected virtual void HandleAttackCycle()
+    {
         isInCombat = true;
         
         if(canLeaveInitalOpening)
@@ -102,7 +107,6 @@ public class EnemyCombatBehavior : EnemyBehavior
         {
             LeaveOpening(AttackStage.SecondaryAttack);
         }
-
     }
 
     protected virtual Collider2D[] GetPlayerHits(float distance)

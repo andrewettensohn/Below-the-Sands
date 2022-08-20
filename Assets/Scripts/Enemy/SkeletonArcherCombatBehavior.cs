@@ -6,13 +6,58 @@ public class SkeletonArcherCombatBehavior : EnemyCombatBehavior
 {
     public GameObject arrowPrefab;
     public float arrowLaunchForce;
+    public bool isFreeFire;
+    public float freeFireShotDelay;
+
+    private void Start()
+    {
+        canAttack = isFreeFire;
+    }
+
+    protected override void Update()
+    {
+        if(isBehaviorEnabled == false && !isFreeFire) return;
+
+        if(isFreeFire)
+        {
+            enemy.DisableAllBehaviors();
+
+            if(canAttack)
+            {
+                OnAttack();
+            }
+
+            return;
+        }
+
+        Collider2D[] players = GetPlayerHits(attackRange);
+
+        if (players.Length == 0)
+        {
+            isInCombat = false;
+            isAttacking = false;
+            this.isBehaviorEnabled = false;
+            enemy.sentry.isBehaviorEnabled = true;
+
+            return;
+        }
+
+        HandleAttackCycle();
+    }
 
     protected override void OnAttack()
     {
         canAttack = false;
         isAttacking = true;
 
-        StartCoroutine(HandlePostAttackDelayTimer());
+        if(isFreeFire)
+        {
+            StartCoroutine(HandlePostFreefireShotDelayTimer());
+        }
+        else
+        {
+            StartCoroutine(HandlePostAttackDelayTimer());
+        }
     }
 
     protected override IEnumerator HandlePostAttackDelayTimer()
@@ -25,6 +70,18 @@ public class SkeletonArcherCombatBehavior : EnemyCombatBehavior
 
             isAttacking = false;
             canLeavePostAttackOpening = true;
+        }
+    }
+
+    private IEnumerator HandlePostFreefireShotDelayTimer()
+    {
+        yield return new WaitForSeconds(freeFireShotDelay);
+
+        if (enemy.health > 0)
+        {
+            FireArrow();
+
+            canAttack = true;
         }
     }
 

@@ -8,9 +8,10 @@ public class EnemyChaseBehavior : EnemyBehavior
     private void FixedUpdate()
     {
         if (!isBehaviorEnabled) return;
+
         Debug.Log("Chase is on");
         
-        enemy.navMeshAgent.SetDestination(enemy.target.position);
+        enemy.SetDestinationToPlayer();
 
         if(enemy.navMeshAgent.remainingDistance == float.PositiveInfinity)
         {

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemySentryBehavior : EnemyBehavior
 {
-    public LayerMask obstacleLayer;
-    public LayerMask nodeLayer;
     public bool canSeeThroughWalls;
     public bool isNodeFilterOff;
 
@@ -34,11 +32,11 @@ public class EnemySentryBehavior : EnemyBehavior
         if (!isPlayerPresent) return false;
 
         Vector3 heading = (player.transform.position - enemy.transform.position);
-        RaycastHit2D wallDetectionHit = Physics2D.Raycast(enemy.transform.position, heading / heading.magnitude, heading.magnitude, obstacleLayer);
+        RaycastHit2D wallDetectionHit = Physics2D.Raycast(enemy.transform.position, heading / heading.magnitude, heading.magnitude, enemy.obstacleLayer);
 
         if (wallDetectionHit.collider != null && !canSeeThroughWalls) return false;
 
-        RaycastHit2D nodeDetectionHit = Physics2D.Raycast(enemy.transform.position, heading / heading.magnitude, heading.magnitude, nodeLayer);
+        RaycastHit2D nodeDetectionHit = Physics2D.Raycast(enemy.transform.position, heading / heading.magnitude, heading.magnitude, enemy.nodeLayer);
 
         return nodeDetectionHit.collider == null || isNodeFilterOff;
     }
