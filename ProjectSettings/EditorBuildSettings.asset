@@ -17,9 +17,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/EndGameCutscene.unity
     guid: 5fb2675d5eef2394c869416d1925b71b
-  - enabled: 0
-    path: Assets/Scenes/Stage1.unity
-    guid: 259d2c3ef99337340914d884c8bdc12b
   - enabled: 1
     path: Assets/Scenes/SurfaceStage.unity
     guid: 6f500ae3a468fef45b9953332da65299
@@ -32,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Layer3.unity
     guid: b1c505b37b5c20a47b1c30ac6c756501
+  - enabled: 1
+    path: Assets/Scenes/Layer4.unity
+    guid: ff2763341db642d42995403138e39d00
   m_configObjects: {}

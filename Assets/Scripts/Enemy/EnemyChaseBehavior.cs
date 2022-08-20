@@ -13,7 +13,9 @@ public class EnemyChaseBehavior : EnemyBehavior
         
         enemy.SetDestinationToPlayer();
 
-        if(enemy.navMeshAgent.remainingDistance == float.PositiveInfinity)
+        Debug.Log($"Remaining Distance {enemy.navMeshAgent.remainingDistance}");
+
+        if(enemy.navMeshAgent.remainingDistance == float.PositiveInfinity && !enemy.canFly)
         {
             enemy.StopMovement();
         }

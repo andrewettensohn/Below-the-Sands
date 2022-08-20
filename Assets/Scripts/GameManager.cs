@@ -60,11 +60,27 @@ public class GameManager : MonoBehaviour
 
         if(sceneName == "MainMenu")
         {
-            audioSource.clip = musicTracks.MainMenuTrack;
+            audioSource.clip = musicTracks.MainMenuTheme;
         }
-        else if(sceneName == "Stage1" || sceneName == "SurfaceStage")
+        else if(sceneName == "SurfaceStage")
+        {
+            audioSource.clip = musicTracks.SurfaceLayerTrack;
+        }
+        else if(sceneName == "FirstLayer")
         {
             audioSource.clip = musicTracks.FirstLayerTrack;
+        }
+        else if(sceneName == "SecondLayer")
+        {
+            audioSource.clip = musicTracks.SecondLayerTrack;
+        }
+        else if(sceneName == "ThirdLayer")
+        {
+            audioSource.clip = musicTracks.ThirdLayerTrack;
+        }
+        else if(sceneName == "FourthLayer")
+        {
+            audioSource.clip = musicTracks.FourthLayerTrack;
         }
         else
         {

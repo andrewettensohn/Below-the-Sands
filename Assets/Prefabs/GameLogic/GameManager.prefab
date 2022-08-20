@@ -69,12 +69,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abae1481615e0bb4f860a37bd602b58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenuTrack: {fileID: 8300000, guid: 4885c1a9cc8304d47bda93253bf600a9, type: 3}
-  FirstLayerTrack: {fileID: 8300000, guid: 56ee6641aea9fa14981efa690625c24e, type: 3}
-  SecondLayerTrack: {fileID: 8300000, guid: dff80ae8313a969449533d3269959779, type: 3}
-  ThirdLayerTrack: {fileID: 8300000, guid: 292aa2e3d6c60b647a406b313645a351, type: 3}
-  BossFightTrack: {fileID: 8300000, guid: 5cfba2d2a15b7324eb69be860946fdf2, type: 3}
-  FinalTrack: {fileID: 8300000, guid: a8539b5fa7c1bff47a25068df7819725, type: 3}
+  MainMenuTheme: {fileID: 8300000, guid: 4885c1a9cc8304d47bda93253bf600a9, type: 3}
+  VillageKostTrack: {fileID: 8300000, guid: 1f2b4352a471b5c49930215407477695, type: 3}
+  SurfaceLayerTrack: {fileID: 8300000, guid: 8c9e7873b3242944bbd4a78548dfa465, type: 3}
+  FirstLayerTrack: {fileID: 8300000, guid: f8367f1efa8abc344bc27406ceedc30b, type: 3}
+  SecondLayerTrack: {fileID: 8300000, guid: b56f7c36a0463f647a75736815536057, type: 3}
+  ThirdLayerTrack: {fileID: 8300000, guid: f9e0bced520ddb04696256bf9bdad11b, type: 3}
+  FourthLayerTrack: {fileID: 8300000, guid: b14b2bb1b6ca4b141be13a7dd7299a9b, type: 3}
+  BossFightTrack: {fileID: 8300000, guid: 9feed1193886e3a45bb0fbba265b90b3, type: 3}
+  EndingTrack: {fileID: 8300000, guid: 4885c1a9cc8304d47bda93253bf600a9, type: 3}
 --- !u!82 &5444481627793312585
 AudioSource:
   m_ObjectHideFlags: 0
