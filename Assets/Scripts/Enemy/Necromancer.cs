@@ -22,7 +22,7 @@ public class Necromancer : Enemy
         {
             OnDeath();
         }
-        else if(health <= 0)
+        else if(health > 0)
         {
             animator.SetTrigger("Hit");
             isStaggered = canBeStaggered;
