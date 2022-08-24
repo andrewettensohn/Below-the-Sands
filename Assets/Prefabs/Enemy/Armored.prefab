@@ -189,6 +189,12 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  nodeLayer:
+    serializedVersion: 2
+    m_Bits: 0
   isStaggered: 0
   staggerTime: 1
   canBeStaggered: 1
@@ -199,12 +205,17 @@ MonoBehaviour:
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
   debugAttackRange: 2
+  debugStoppingDistance: 0
   detectionSizeModifier: 0.75
+  shootingRange: 0
+  canFly: 0
+  isArcher: 0
+  isCustomBeahviorRunning: 0
   arcaneBoltPrefab: {fileID: 2680505620633282611, guid: 185c9e2760510b1478f0829e90592a5c, type: 3}
   arcaneBoltLaunchForce: 100
-  arcaneLaunchesPerCycle: 5
-  timeBetweenArcaneBlasts: 1
-  postArcaneBlastTimer: 3
+  arcaneLaunchesPerCycle: 3
+  timeBetweenArcaneBlasts: 1.5
+  postArcaneBlastTimer: 1
 --- !u!114 &2979424305549143427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,13 +275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  nodeLayer:
-    serializedVersion: 2
-    m_Bits: 1024
   canSeeThroughWalls: 1
+  isNodeFilterOff: 0
 --- !u!114 &370821799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  canJump: 0
 --- !u!82 &2833013812460154704
 AudioSource:
   m_ObjectHideFlags: 0

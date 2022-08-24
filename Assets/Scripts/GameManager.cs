@@ -66,19 +66,19 @@ public class GameManager : MonoBehaviour
         {
             audioSource.clip = musicTracks.SurfaceLayerTrack;
         }
-        else if(sceneName == "FirstLayer")
+        else if(sceneName == "Layer1")
         {
             audioSource.clip = musicTracks.FirstLayerTrack;
         }
-        else if(sceneName == "SecondLayer")
+        else if(sceneName == "Layer2")
         {
             audioSource.clip = musicTracks.SecondLayerTrack;
         }
-        else if(sceneName == "ThirdLayer")
+        else if(sceneName == "Layer3")
         {
             audioSource.clip = musicTracks.ThirdLayerTrack;
         }
-        else if(sceneName == "FourthLayer")
+        else if(sceneName == "Layer4")
         {
             audioSource.clip = musicTracks.FourthLayerTrack;
         }

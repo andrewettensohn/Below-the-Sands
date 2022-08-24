@@ -272,12 +272,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideTexts:
-  - The paladin slayed the demon and retrieved the scroll from our Lady Saint Rachel's
-    tomb...
-  - And that text spoke of the crusades of old and of the madness of the Xorian warlords...
-  - And it foretold the expansion of the sands and the return of the demons to forge
-    a new domain from the scattered Xorians...
-  - So the paladin began his journey across the sands once again.
+  - Fin
+  - Thanks
+  - For
+  - Playing
   slideDisplayLength: 8
 --- !u!1 &961524279
 GameObject:

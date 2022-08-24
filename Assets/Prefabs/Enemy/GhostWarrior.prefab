@@ -172,7 +172,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
-  debugAttackRange: 1.4
+  debugAttackRange: 1.2
   debugStoppingDistance: 0
   detectionSizeModifier: 2
   shootingRange: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
   isBehaviorEnabled: 0
   primaryAttackDealDamageDelay: 0.6
   secondaryAttackDealDamageDelay: 0
-  attackRange: 0.8
+  attackRange: 1.2
   blockTime: 0
   primaryAttackHasKnockBack: 0
   secondaryAttackHasKnockBack: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   hasSecondaryAttack: 0
   hasBlock: 0
   hasContinuousAttack: 0
-  initalLeaveOpeningTime: 0.3
+  initalLeaveOpeningTime: 0.2
   postAttackLeaveOpeningTime: 0.4
   postBlockLeaveOpeningTime: 0
   postSecondaryAttackLeaveOpeningTime: 0
@@ -265,7 +265,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.5
   m_BaseOffset: 0.3
@@ -391,7 +391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7004320489919234644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.236, y: -0.041, z: -0.008266509}
+  m_LocalPosition: {x: -0.44, y: 0.314, z: -0.008266509}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

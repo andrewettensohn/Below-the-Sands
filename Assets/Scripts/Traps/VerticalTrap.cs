@@ -73,9 +73,20 @@ public class VerticalTrap : MonoBehaviour
         }
     }
 
-
     protected virtual void OnTriggerExit2D(Collider2D collider)
     {
         playerGameObject = null;
+    }
+
+    public void StartLifeTimeTimer(float lifetime)
+    {
+       StartCoroutine(HandleLifetimeTimer(lifetime)); 
+    }
+
+    protected virtual IEnumerator HandleLifetimeTimer(float lifetime)
+    {
+        yield return new WaitForSeconds(lifetime);
+
+        Destroy(gameObject);
     }
 }

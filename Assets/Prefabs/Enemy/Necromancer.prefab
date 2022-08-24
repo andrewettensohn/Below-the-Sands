@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87fcddcabfc94d46a65bd1160288e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 50
   speed: 1
   attackPoint: {fileID: 5299318730831556430}
   DeathAudioClip: {fileID: 0}
@@ -157,22 +157,34 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 768
+  nodeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   isStaggered: 0
-  staggerTime: 0
-  canBeStaggered: 0
-  playerDetected: 0
+  staggerTime: 0.5
+  canBeStaggered: 1
+  isPlayerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 0
   animator: {fileID: 0}
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
   debugAttackRange: 1.5
-  detectionSizeModifier: 3
+  debugStoppingDistance: 0
+  detectionSizeModifier: 1.3
+  shootingRange: 0
+  canFly: 0
+  isArcher: 0
+  isCustomBeahviorRunning: 0
   teleportPositions:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  maxHealth: 0
+  - {fileID: 0}
+  teleportOrbPrefab: {fileID: 8331299541697621891, guid: 0b946e28e37121e43bb679a5811c5e32, type: 3}
 --- !u!114 &1756071842550949309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,9 +198,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  primaryAttackDealDamageDelay: 0.6
+  primaryAttackDealDamageDelay: 0.3
   secondaryAttackDealDamageDelay: 0.5
-  attackRange: 0.8
+  attackRange: 1.5
   blockTime: 0
   primaryAttackHasKnockBack: 0
   secondaryAttackHasKnockBack: 0
@@ -196,10 +208,10 @@ MonoBehaviour:
   hasSecondaryAttack: 1
   hasBlock: 0
   hasContinuousAttack: 0
-  initalLeaveOpeningTime: 0.3
-  postAttackLeaveOpeningTime: 0.4
+  initalLeaveOpeningTime: 0.1
+  postAttackLeaveOpeningTime: 0.3
   postBlockLeaveOpeningTime: 0
-  postSecondaryAttackLeaveOpeningTime: 1
+  postSecondaryAttackLeaveOpeningTime: 2
   skeletonPrefab: {fileID: 5091820314847450813, guid: b1ed531b50e6e4b468dbaaa691b75b8f, type: 3}
 --- !u!114 &1100950079747836403
 MonoBehaviour:
@@ -214,13 +226,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  nodeLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  canSeeThroughWalls: 1
+  canSeeThroughWalls: 0
+  isNodeFilterOff: 0
 --- !u!114 &6842961867968838053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +241,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  canJump: 0
 --- !u!70 &6960837346868115481
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -272,7 +278,7 @@ NavMeshAgent:
   m_Height: 0.7
   m_BaseOffset: 0.48
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!82 &8766246355191422034
 AudioSource:
   m_ObjectHideFlags: 0

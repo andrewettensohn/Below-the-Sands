@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class Necromancer : Enemy
 {
     public List<Transform> teleportPositions;
-    public int maxHealth;
+    public GameObject teleportOrbPrefab;
+    private int teleportsDone = 0;
+    private bool isTeleporting;
 
     public override void OnDeltDamage(float damage, Player player = null)
     {
+        if(isTeleporting || isStaggered) return;
+
         damage = Math.Abs(damage);
         health -= damage;
 
@@ -29,10 +34,52 @@ public class Necromancer : Enemy
         }
     }
 
+    protected override void OnDeath()
+    {
+        isDying = true;
+        animator.SetTrigger("Die");
+        StopMovement();
+        DisableAllBehaviors();
+
+        Invoke(nameof(OnDisable), 1.3f);
+
+        GameManager.instance.PlayEndGameCutscene();
+    }
+
     private void Teleport()
     {
-         System.Random random = new System.Random();
-         int index = random.Next(teleportPositions.Count);
-         transform.position = teleportPositions[index].position;
+        isTeleporting = true;
+
+        Vector2 teleportLocationPos = teleportPositions[teleportsDone].position;
+
+        animator.SetTrigger("Teleport");
+
+        GameObject orbGameOjbect = Instantiate(teleportOrbPrefab, transform.position, Quaternion.identity);
+        TeleportOrb orb = orbGameOjbect.GetComponent<TeleportOrb>();
+        orb.Launch(teleportLocationPos, 5);
+
+        DisableAllBehaviors();
+
+        StartCoroutine(HandleTeleportTimer(teleportLocationPos));
+    }
+
+    private IEnumerator HandleTeleportTimer(Vector2 teleportLocationPos)
+    {
+        yield return new WaitForSeconds(1f);
+
+        navMeshAgent.enabled = false;
+        transform.position = teleportLocationPos;
+        teleportsDone += 1;
+
+        StartCoroutine(HandleTeleportCoolDown());
+    }
+
+    private IEnumerator HandleTeleportCoolDown()
+    {
+        yield return new WaitForSeconds(staggerTime);
+
+        navMeshAgent.enabled = true;
+        SetDefaultBehaviors();
+        isTeleporting = false;
     }
 }

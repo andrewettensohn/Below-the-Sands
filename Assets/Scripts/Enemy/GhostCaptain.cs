@@ -5,27 +5,27 @@ using System;
 
 public class GhostCaptain : Enemy
 {
-    public GameObject arcaneBoltPrefab;
+    //public GameObject arcaneBoltPrefab;
     public GameObject magicRiftPrefab;
-    public float arcaneBoltLaunchForce;
-    public int arcaneLaunchesPerCycle;
-    public float timeBetweenArcaneBlasts;
+    // public float arcaneBoltLaunchForce;
+    // public int arcaneLaunchesPerCycle;
+    // public float timeBetweenArcaneBlasts;
     public float postMagicRiftTimer;
-    private bool canBlast;
-    private int numberOfBlastsThisCycle;
+    // private bool canBlast;
+    // private int numberOfBlastsThisCycle;
 
-    public override void OnSuccessfulAttack()
-    {
-        numberOfBlastsThisCycle = 0;
+    // public override void OnSuccessfulAttack()
+    // {
+    //     // numberOfBlastsThisCycle = 0;
 
-        animator.SetTrigger("Secondary Attack");
+    //     // animator.SetTrigger("Secondary Attack");
         
-        isCustomBeahviorRunning = true;
-        DisableAllBehaviors();
-        StopMovement();
+    //     // isCustomBeahviorRunning = true;
+    //     // DisableAllBehaviors();
+    //     // StopMovement();
 
-        StartCoroutine(HandlePostArcaneBlastCycleTimer());
-    }
+    //     // StartCoroutine(HandlePostArcaneBlastCycleTimer());
+    // }
 
     protected override void Update()
     {
@@ -35,59 +35,59 @@ public class GhostCaptain : Enemy
             StartCoroutine(HandleStaggerTimer());
         }
 
-        if(canBlast)
-        {
-            LaunchArcaneBolts();
-        }
+        // if(canBlast)
+        // {
+        //     LaunchArcaneBolts();
+        // }
 
         DetermineLookDirection();
         Animate();
     }
 
-    private void LaunchArcaneBolts()
-    {
-        if(!canBlast) return;
+    // private void LaunchArcaneBolts()
+    // {
+    //     if(!canBlast) return;
 
-        canBlast = false;
+    //     canBlast = false;
 
-        List<Vector2> launchDirections = new List<Vector2>
-        { 
-            Vector2.up, 
-            Vector2.right,
-            Vector2.left,
-            Vector2.down,
-            new Vector2(0.5f, 0.5f),
-            new Vector2(-0.5f, 0.5f),
-            new Vector2(0.5f, -0.5f),
-            new Vector2(-0.5f, -0.5f)
-        };
+    //     List<Vector2> launchDirections = new List<Vector2>
+    //     { 
+    //         Vector2.up, 
+    //         Vector2.right,
+    //         Vector2.left,
+    //         Vector2.down,
+    //         new Vector2(0.5f, 0.5f),
+    //         new Vector2(-0.5f, 0.5f),
+    //         new Vector2(0.5f, -0.5f),
+    //         new Vector2(-0.5f, -0.5f)
+    //     };
 
-        foreach(Vector2 launchDirection in launchDirections)
-        {
-            GameObject projectileGameObject = Instantiate(arcaneBoltPrefab, transform.position, Quaternion.identity);
+    //     foreach(Vector2 launchDirection in launchDirections)
+    //     {
+    //         GameObject projectileGameObject = Instantiate(arcaneBoltPrefab, transform.position, Quaternion.identity);
 
-            ArcaneBolt bolt = projectileGameObject.GetComponent<ArcaneBolt>();
-            bolt.Launch(launchDirection, arcaneBoltLaunchForce);
-        }
+    //         ArcaneBolt bolt = projectileGameObject.GetComponent<ArcaneBolt>();
+    //         bolt.Launch(launchDirection, arcaneBoltLaunchForce);
+    //     }
 
-        numberOfBlastsThisCycle += 1;
-        StartCoroutine(HandlePostArcaneBlastCycleTimer());
-    }
+    //     numberOfBlastsThisCycle += 1;
+    //     StartCoroutine(HandlePostArcaneBlastCycleTimer());
+    // }
 
-    protected virtual IEnumerator HandlePostArcaneBlastCycleTimer()
-    {
-        yield return new WaitForSeconds(timeBetweenArcaneBlasts);
+    // protected virtual IEnumerator HandlePostArcaneBlastCycleTimer()
+    // {
+    //     yield return new WaitForSeconds(timeBetweenArcaneBlasts);
 
-        if(numberOfBlastsThisCycle >= arcaneLaunchesPerCycle)
-        {
-            canBlast = false;
-            StartCoroutine(HandlePostArcaneBlastTimer());
-        }
-        else
-        {
-            canBlast = true;
-        }
-    }
+    //     if(numberOfBlastsThisCycle >= arcaneLaunchesPerCycle)
+    //     {
+    //         canBlast = false;
+    //         StartCoroutine(HandlePostArcaneBlastTimer());
+    //     }
+    //     else
+    //     {
+    //         canBlast = true;
+    //     }
+    // }
 
     protected virtual IEnumerator HandlePostArcaneBlastTimer()
     {
@@ -144,7 +144,6 @@ public class GhostCaptain : Enemy
             GameObject projectileGameObject = Instantiate(magicRiftPrefab, direction, Quaternion.identity);
 
             MagicRift rift = projectileGameObject.GetComponent<MagicRift>();
-            //rift.Launch(launchDirection, arcaneBoltLaunchForce);
             rift.StartLifeTimeTimer();
         }
 

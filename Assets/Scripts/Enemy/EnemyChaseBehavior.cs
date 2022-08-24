@@ -9,11 +9,15 @@ public class EnemyChaseBehavior : EnemyBehavior
     {
         if (!isBehaviorEnabled) return;
 
-        Debug.Log("Chase is on");
+        enemy.sentry.CheckIfPlayerIsDetected();
+
+        if(!enemy.isPlayerDetected)
+        {
+            TransitionToSentryBehavior();
+            return;
+        }
         
         enemy.SetDestinationToPlayer();
-
-        Debug.Log($"Remaining Distance {enemy.navMeshAgent.remainingDistance}");
 
         if(enemy.navMeshAgent.remainingDistance == float.PositiveInfinity && !enemy.canFly)
         {
@@ -72,5 +76,11 @@ public class EnemyChaseBehavior : EnemyBehavior
     {
         this.isBehaviorEnabled = false;
         enemy.combatBehavior.isBehaviorEnabled = true;
+    }
+
+    public void TransitionToSentryBehavior()
+    {
+        this.isBehaviorEnabled = false;
+        enemy.sentry.isBehaviorEnabled = true;
     }
 }

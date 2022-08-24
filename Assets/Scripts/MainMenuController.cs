@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenuController : MonoBehaviour
 {
+    public TMP_InputField debugLevelInput;
+
     public void Start()
     {
         Cursor.visible = true;
@@ -29,6 +32,9 @@ public class MainMenuController : MonoBehaviour
 
     public void ContinueGame()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         bool isLastSceneKeyPresent = PlayerPrefs.HasKey("LastScene");
 
         if(isLastSceneKeyPresent == false)
@@ -38,6 +44,18 @@ public class MainMenuController : MonoBehaviour
         }
         
         GameManager.instance.LoadProgress();
+    }
+
+    public void LoadLevel()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        GameManager.instance.ResetProgress();
+        PlayerInfo.instance.nextPlayerPositionOnLoad = Vector2.zero;
+
+        string level = debugLevelInput.text;
+        SceneManager.LoadScene(level);
     }
 
     public void ExitGame() => Application.Quit();

@@ -23,7 +23,7 @@ public class NecromancerCombatBehavior : EnemyCombatBehavior
     {
         for(int i = 0; i < 3; i++)
         {
-            GameObject skeletonGameObject = Instantiate(skeletonPrefab, transform.position, Quaternion.identity);
+            GameObject skeletonGameObject = Instantiate(skeletonPrefab, enemy.attackPoint.position, Quaternion.identity);
             skeletonGameObject.GetComponent<Enemy>().animator.SetTrigger("Rise");
         }
     }

@@ -27,7 +27,7 @@ public class Enemy : DamageableEnemy
     public bool isStaggered;
     public float staggerTime;
     public bool canBeStaggered;
-    public bool playerDetected;
+    public bool isPlayerDetected;
     public AudioSource audioSource;
     public int scoreValue;
     public Animator animator;
@@ -44,7 +44,7 @@ public class Enemy : DamageableEnemy
     public bool isArcher;
     
     protected bool isDying;
-    protected bool isCustomBeahviorRunning;
+    public bool isCustomBeahviorRunning;
 
     protected virtual void Start()
     {
