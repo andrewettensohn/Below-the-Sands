@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Traps\ArrowTrap.cs" />
      <Compile Include="Assets\Scripts\Traps\DangerZone.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogPrompt.cs" />
+     <Compile Include="Assets\Scripts\Dialog\ClickCutscene.cs" />
      <Compile Include="Assets\Scripts\Enemy\DamageableEnemy.cs" />
      <Compile Include="Assets\Scripts\Enemy\GhostCaptainCombatBehavior.cs" />
      <Compile Include="Assets\Scripts\PlayerUI\BlockIcon.cs" />

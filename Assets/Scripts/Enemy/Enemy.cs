@@ -110,17 +110,7 @@ public class Enemy : DamageableEnemy
 
     public void SetDestinationToPlayer()
     {
-        RaycastHit2D groundHit = Physics2D.Raycast(transform.position, Vector2.down, 0.735f, obstacleLayer);
-        bool isGrounded = groundHit.collider != null;
-
-        if(canFly || !isGrounded)
-        {
-            navMeshAgent.SetDestination(target.position);
-        }
-        else
-        {
-            navMeshAgent.SetDestination(new Vector2(target.position.x, transform.position.y));
-        }
+        navMeshAgent.SetDestination(target.position);
     }
 
     public void StopMovement()

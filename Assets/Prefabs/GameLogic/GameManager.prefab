@@ -74,7 +74,7 @@ MonoBehaviour:
   SurfaceLayerTrack: {fileID: 8300000, guid: 8c9e7873b3242944bbd4a78548dfa465, type: 3}
   FirstLayerTrack: {fileID: 8300000, guid: f8367f1efa8abc344bc27406ceedc30b, type: 3}
   SecondLayerTrack: {fileID: 8300000, guid: b56f7c36a0463f647a75736815536057, type: 3}
-  ThirdLayerTrack: {fileID: 8300000, guid: f9e0bced520ddb04696256bf9bdad11b, type: 3}
+  ThirdLayerTrack: {fileID: 8300000, guid: 3ac03c0514a0ffd4881df7ef406a7b86, type: 3}
   FourthLayerTrack: {fileID: 8300000, guid: b14b2bb1b6ca4b141be13a7dd7299a9b, type: 3}
   BossFightTrack: {fileID: 8300000, guid: 9feed1193886e3a45bb0fbba265b90b3, type: 3}
   EndingTrack: {fileID: 8300000, guid: 4885c1a9cc8304d47bda93253bf600a9, type: 3}

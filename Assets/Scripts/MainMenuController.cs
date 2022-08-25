@@ -16,9 +16,6 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
         GameManager.instance.milestones = new Milestones();
         GameManager.instance.milestones.IsFistVisitToCatacomb = true;
 
@@ -27,7 +24,7 @@ public class MainMenuController : MonoBehaviour
         GameManager.instance.healthPotionAvailbility = CollectableDictionaryHelper.GetCollectableDictionaryForEnum<HealthPotionName>();
 
         GameManager.instance.isIntroCutscenePlaying = true;
-        GameManager.instance.LoadScene("SurfaceStage");
+        GameManager.instance.LoadScene("IntroCutscene");
     }
 
     public void ContinueGame()

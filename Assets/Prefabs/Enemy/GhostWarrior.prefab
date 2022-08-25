@@ -166,7 +166,7 @@ MonoBehaviour:
   isStaggered: 0
   staggerTime: 0.5
   canBeStaggered: 1
-  playerDetected: 0
+  isPlayerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 10
   animator: {fileID: 0}
@@ -174,10 +174,11 @@ MonoBehaviour:
   focusPointReward: 0
   debugAttackRange: 1.2
   debugStoppingDistance: 0
-  detectionSizeModifier: 2
+  detectionSizeModifier: 3
   shootingRange: 0
   canFly: 1
   isArcher: 0
+  isCustomBeahviorRunning: 0
 --- !u!114 &7723177479954712466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +271,7 @@ NavMeshAgent:
   m_Height: 0.5
   m_BaseOffset: 0.3
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 1
 --- !u!82 &4438909404566857228
 AudioSource:
   m_ObjectHideFlags: 0

@@ -10,13 +10,18 @@ public class Necromancer : Enemy
     public GameObject teleportOrbPrefab;
     private int teleportsDone = 0;
     private bool isTeleporting;
+    private float damageTakenForTeleport = 0;
+    private bool isEndingMusicPlaying;
 
     public override void OnDeltDamage(float damage, Player player = null)
     {
-        if(isTeleporting || isStaggered) return;
+        if(isTeleporting || isDying || isStaggered) return;
 
         damage = Math.Abs(damage);
         health -= damage;
+        damageTakenForTeleport += damage;
+
+        Debug.Log($"Necromancer health = {health}");
 
         if (health <= 0 && !isDying)
         {
@@ -28,8 +33,17 @@ public class Necromancer : Enemy
             isStaggered = canBeStaggered;
         }
 
-        if(health % 10 == 0)
+        if(health <= 10 && isEndingMusicPlaying)
         {
+            isEndingMusicPlaying = true;
+            GameManager.instance.SwitchMusicTrack(GameManager.instance.musicTracks.EndingTrack);
+        }
+
+        // If the player does 2 damage then this step might be skipped
+        if(damageTakenForTeleport >= 10)
+        {
+            damageTakenForTeleport = 0;
+            Debug.Log("Teleport");
             Teleport();
         }
     }
@@ -42,6 +56,14 @@ public class Necromancer : Enemy
         DisableAllBehaviors();
 
         Invoke(nameof(OnDisable), 1.3f);
+
+        GameObject demonObject = GameObject.Find("Demon");
+
+        if(demonObject != null)
+        {
+            Enemy demon = demonObject.GetComponent<Enemy>();
+            demon.OnDeltDamage(demon.health);
+        }
 
         GameManager.instance.PlayEndGameCutscene();
     }

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public int score { get; private set; }
 
     private AudioSource audioSource;
-    private MusicTracks musicTracks;
+    public MusicTracks musicTracks;
 
     private void Awake()
     {
@@ -62,6 +62,10 @@ public class GameManager : MonoBehaviour
         {
             audioSource.clip = musicTracks.MainMenuTheme;
         }
+        else if(sceneName == "VillageKost")
+        {
+            audioSource.clip = musicTracks.VillageKostTrack;
+        }
         else if(sceneName == "SurfaceStage")
         {
             audioSource.clip = musicTracks.SurfaceLayerTrack;
@@ -82,6 +86,10 @@ public class GameManager : MonoBehaviour
         {
             audioSource.clip = musicTracks.FourthLayerTrack;
         }
+        else if(sceneName == "FinalStage")
+        {
+            audioSource.clip = musicTracks.BossFightTrack;
+        }
         else
         {
             return;
@@ -90,32 +98,46 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
     }
 
-    private IEnumerator HandleSwitchMusicTrackDelay()
+    public void SwitchMusicTrack(AudioClip track)
+    {
+        audioSource.Stop();
+        StartCoroutine(HandleSwitchMusicTrackDelay(false, track));
+    }
+
+    private IEnumerator HandleSwitchMusicTrackDelay(bool isLevelTrack, AudioClip track = null)
     {
 
         yield return new WaitForSeconds(1.0f);
 
-        HandleMusic();
+        if(isLevelTrack)
+        {
+            HandleMusic();
+        }
+        else
+        {
+            audioSource.clip = musicTracks.BossFightTrack;
+        }
     }
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
-        StartCoroutine(HandleSwitchMusicTrackDelay());
+        StartCoroutine(HandleSwitchMusicTrackDelay(true));
     }
 
     public void LoadScene(string sceneName, Vector2 positionAfterLoad)
     {
+        PlayerInfo.instance.healthPotionCount = 0;
         PlayerInfo.instance.nextPlayerPositionOnLoad = positionAfterLoad;
         SceneManager.LoadScene(sceneName);
-        StartCoroutine(HandleSwitchMusicTrackDelay());
+        StartCoroutine(HandleSwitchMusicTrackDelay(true));
     }
 
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-        StartCoroutine(HandleSwitchMusicTrackDelay());
+        StartCoroutine(HandleSwitchMusicTrackDelay(true));
     }
 
     public void PlayEndGameCutscene()

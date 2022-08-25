@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
   canSeeThroughWalls: 1
-  isNodeFilterOff: 0
+  isNodeFilterOff: 1
 --- !u!95 &8174815576950221981
 Animator:
   serializedVersion: 4
