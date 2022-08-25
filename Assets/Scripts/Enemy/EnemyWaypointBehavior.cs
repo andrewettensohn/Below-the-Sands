@@ -15,6 +15,8 @@ public class EnemyWaypointBehavior : EnemyBehavior
     {
         if (isBehaviorEnabled == false) return;
 
+        enemy.AllowMovement();
+
         if(singleWaypointLocation != null)
         {
             isWaypointFound = true;
@@ -38,7 +40,9 @@ public class EnemyWaypointBehavior : EnemyBehavior
         enemy.enemyWaypointBehavior.isBehaviorEnabled = false;
         enemy.enemyWaypointBehavior.isWaypointFound = false;
         enemy.navMeshAgent.stoppingDistance = enemy.combatBehavior.attackRange;
-        enemy.navMeshAgent.SetDestination(enemy.target.position);
+        enemy.SetDestinationToPlayer();
+
+        enemy.sentry.isBehaviorEnabled = true;
     }
 
     private void FindWaypoint()
@@ -50,6 +54,10 @@ public class EnemyWaypointBehavior : EnemyBehavior
         {
             waypointPos = waypointHit.collider.GetComponent<Transform>().position;
             isWaypointFound = true;
+        }
+        else
+        {
+            BehaviorStop();
         }
     }
 }

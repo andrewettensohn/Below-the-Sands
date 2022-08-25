@@ -64,6 +64,12 @@ public class MenuController : MonoBehaviour
         canvas.enabled = false;
     }
 
+    public void LoadCampfire()
+    {
+        GameManager.instance.LoadProgress();
+        ResumeGame();
+    }
+
     // Will set game over mode if disabled
     public void IsPauseMode(bool isEnabled)
     {

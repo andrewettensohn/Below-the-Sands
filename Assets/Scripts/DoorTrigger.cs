@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DoorTrigger : MonoBehaviour
 {
@@ -9,21 +10,35 @@ public class DoorTrigger : MonoBehaviour
     public float verticalPositionAfterLoad;
     public bool isLocked;
     public GameObject bossLockObject;
+    public List<EnemySpawner> bossLockSpawners;
     public Sprite UnlockedSprite;
     private SpriteRenderer spriteRenderer;
+    private bool isLockedBySpawners;
+    private bool isLockedByBoss;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        isLockedBySpawners = bossLockSpawners.Any();
+        isLockedByBoss = bossLockObject != null;
     }
 
     private void FixedUpdate()
     {
-        if(!bossLockObject.activeSelf)
+        if(isLockedBySpawners && bossLockSpawners.All(x => x.areSpawnedEnemiesDefeated))
         {
-            isLocked = false;
-            spriteRenderer.sprite = UnlockedSprite;
+            UnlockDoor();
         }
+        else if(isLockedByBoss && !bossLockObject.activeSelf)
+        {
+            UnlockDoor();
+        }
+    }
+
+    private void UnlockDoor()
+    {
+        isLocked = false;
+        spriteRenderer.sprite = UnlockedSprite;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

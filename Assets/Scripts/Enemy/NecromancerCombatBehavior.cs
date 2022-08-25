@@ -8,7 +8,7 @@ public class NecromancerCombatBehavior : EnemyCombatBehavior
 
     protected override IEnumerator HandlePostSecondaryAttackDelayTimer()
     {
-        yield return new WaitForSeconds(dealDamageDelay);
+        yield return new WaitForSeconds(secondaryAttackDealDamageDelay);
 
         if (enemy.health > 0)
         {
@@ -21,10 +21,11 @@ public class NecromancerCombatBehavior : EnemyCombatBehavior
 
     private void RaiseTheDead()
     {
-        for(int i = 0; i < 3; i++)
-        {
-            GameObject skeletonGameObject = Instantiate(skeletonPrefab, transform.position, Quaternion.identity);
-            skeletonGameObject.GetComponent<Enemy>().animator.SetTrigger("Rise");
-        }
+        GameObject skeletonGameObject = Instantiate(skeletonPrefab, enemy.attackPoint.position, Quaternion.identity);
+        // for(int i = 0; i < 3; i++)
+        // {
+        //     GameObject skeletonGameObject = Instantiate(skeletonPrefab, enemy.attackPoint.position, Quaternion.identity);
+        //     //skeletonGameObject.GetComponent<Enemy>().animator.SetTrigger("Rise");
+        // }
     }
 }

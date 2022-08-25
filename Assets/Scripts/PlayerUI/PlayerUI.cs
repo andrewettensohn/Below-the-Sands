@@ -10,11 +10,16 @@ public class PlayerUI : MonoBehaviour
     public GameObject healthPotCountObject;
     public GameObject focusPointCountObject;
     public GameObject healthPotIconObject;
-    public GameObject dashIconObject;
-    public GameObject deflectIconObject;
-    public GameObject rapidIconObject;
-    public GameObject spiritBlastIconObject;
-    public GameObject AbilityUseBackground;
+
+    public GameObject dashUseBackground;
+    public GameObject deflectUseBackground;
+
+    public GameObject spiritSuiteIconObject;
+    public GameObject spiritUseBackground;
+
+    public GameObject rapidSuiteObject;
+    public GameObject rapidUseBackground;
+
     public GameObject ProgressSavedGameObject;
     private TMP_Text healthPotCount;
     private TMP_Text focusPointCount;
@@ -32,57 +37,60 @@ public class PlayerUI : MonoBehaviour
     {
         SyncHealthPotCount();
 
-        SetAllAbilityIconsToInactive();
-        SetAbilityUseBackground(false);
-        dashIconObject.SetActive(true);
+        SetAllAbilityUseToInactive();
+        SwapToNormalAbilities();
 
-        SyncHearts();
+        //SyncHearts();
 
         ProgressSavedGameObject.SetActive(false);
     }
 
     public void SyncHealthPotCount() => healthPotCount.text = PlayerInfo.instance.healthPotionCount.ToString();
 
-    public void SyncHearts()
-    {
-        int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
+    // public void SyncHearts()
+    // {
+    //     int heartsNeededToChange = PlayerInfo.instance.fullHealth - PlayerInfo.instance.health;
 
-        ChangeHealthHearts(heartsNeededToChange, false);
+    //     ChangeHealthHearts(heartsNeededToChange, false);
+    // }
+
+    public void SetAllAbilityUseToInactive()
+    {
+        dashUseBackground.SetActive(false);
+        deflectUseBackground.SetActive(false);
+        rapidUseBackground.SetActive(false);
+        spiritUseBackground.SetActive(false);
     }
 
-    public void SwapAbilityIcon(PlayerAbility newAbility)
+    public void SetAbilityUseActive(PlayerAbility playerAbility, bool isActive)
     {
-        SetAllAbilityIconsToInactive();
-
-        if (newAbility == PlayerAbility.Dash)
+        switch (playerAbility)
         {
-            dashIconObject.SetActive(true);
-        }
-        else if (newAbility == PlayerAbility.Deflect)
-        {
-            deflectIconObject.SetActive(true);
-        }
-        else if (newAbility == PlayerAbility.RapidAttack)
-        {
-            rapidIconObject.SetActive(true);
-        }
-        else if(newAbility == PlayerAbility.SpiritBlast)
-        {
-            spiritBlastIconObject.SetActive(true);
+            case PlayerAbility.Dash:
+                dashUseBackground.SetActive(isActive);
+                break; 
+            case PlayerAbility.Deflect:
+                deflectUseBackground.SetActive(isActive);
+                break; 
+            case PlayerAbility.RapidAttack:
+                rapidUseBackground.SetActive(isActive);
+                break; 
+            case PlayerAbility.SpiritBlast:
+                spiritUseBackground.SetActive(isActive);
+                break;
         }
     }
 
-    public void SetAllAbilityIconsToInactive()
+    public void SwapToSpiritAbilities()
     {
-        dashIconObject.SetActive(false);
-        rapidIconObject.SetActive(false);
-        deflectIconObject.SetActive(false);
-        spiritBlastIconObject.SetActive(false);
+        rapidSuiteObject.SetActive(false);
+        spiritSuiteIconObject.SetActive(true);
     }
 
-    public void SetAbilityUseBackground(bool isActive)
+    public void SwapToNormalAbilities()
     {
-        AbilityUseBackground.SetActive(isActive);
+        rapidSuiteObject.SetActive(true);
+        spiritSuiteIconObject.SetActive(false);
     }
 
     public void ChangeHealthHearts(int heartsNeededToChange, bool isActive)

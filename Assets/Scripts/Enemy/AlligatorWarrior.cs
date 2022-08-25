@@ -7,6 +7,7 @@ public class AlligatorWarrior : Enemy
 
     public override void OnSuccessfulAttack()
     {
+        DisableAllBehaviors();
         enemyWaypointBehavior.isBehaviorEnabled = true;
     }
 }

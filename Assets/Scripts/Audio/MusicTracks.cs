@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class MusicTracks : MonoBehaviour
 {
-    public AudioClip MainMenuTrack;
+    public AudioClip MainMenuTheme;
+    public AudioClip VillageKostTrack;
+    public AudioClip SurfaceLayerTrack;
     public AudioClip FirstLayerTrack;
     public AudioClip SecondLayerTrack;
     public AudioClip ThirdLayerTrack;
+    public AudioClip FourthLayerTrack;
     public AudioClip BossFightTrack;
-    public AudioClip FinalTrack;
+    public AudioClip EndingTrack;
 
 }

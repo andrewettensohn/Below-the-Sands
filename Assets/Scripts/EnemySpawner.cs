@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnemySpawner : MonoBehaviour
 {
     public bool isActive = false;
+    public bool areSpawnedEnemiesDefeated;
     public int spawnLimit;
     public int numberSpawned;
     public float timeBetweenSpawns;
@@ -15,8 +17,10 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         if(!isActive) return;
-        
+
         SpawnEnemy();
+
+        areSpawnedEnemiesDefeated = (spawnedEnemies?.All(x => !x.activeSelf)).GetValueOrDefault() && numberSpawned >= spawnLimit;
     }
 
     private void SpawnEnemy()

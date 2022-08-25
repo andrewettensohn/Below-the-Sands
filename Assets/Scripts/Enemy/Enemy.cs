@@ -21,11 +21,13 @@ public class Enemy : DamageableEnemy
     public AudioClip HitAudioClip;
     public AudioClip BlockAudioClip;
     public LayerMask playerLayer;
-    public Transform target { get; private set; }
+    public LayerMask obstacleLayer;
+    public LayerMask nodeLayer;
+    public Transform target { get; protected set; }
     public bool isStaggered;
     public float staggerTime;
     public bool canBeStaggered;
-    public bool playerDetected;
+    public bool isPlayerDetected;
     public AudioSource audioSource;
     public int scoreValue;
     public Animator animator;
@@ -33,17 +35,24 @@ public class Enemy : DamageableEnemy
     public Vector2 lookDirection;
     public int focusPointReward;
     public float debugAttackRange;
+    public float debugStoppingDistance;
     public float detectionSizeModifier = 0.75f;
+    public float shootingRange;
+    public bool canFly;
 
-    private bool isStaggerTimerActive;
+    protected bool isStaggerTimerActive;
+    public bool isArcher;
     
     protected bool isDying;
+    public bool isCustomBeahviorRunning;
 
-    private void Start()
+    protected virtual void Start()
     {
         SetDefaultBehaviors();
 
-        navMeshAgent.stoppingDistance = combatBehavior.attackRange;
+        float stoppingDistance = isArcher ? shootingRange : combatBehavior.attackRange;
+
+        navMeshAgent.stoppingDistance = stoppingDistance;
         navMeshAgent.speed = speed;
         navMeshAgent.updateRotation = false;
         navMeshAgent.updateUpAxis = false;
@@ -55,7 +64,7 @@ public class Enemy : DamageableEnemy
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -66,7 +75,7 @@ public class Enemy : DamageableEnemy
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if(isStaggered && !isStaggerTimerActive)
         {
@@ -74,12 +83,16 @@ public class Enemy : DamageableEnemy
             StartCoroutine(HandleStaggerTimer());
         }
 
+        if(navMeshAgent.destination == target.position)
+        {
+            SetDestinationToPlayer();
+        }
+
         DetermineLookDirection();
-        HandleBehaviors();
         Animate();
     }
 
-    private void DetermineLookDirection()
+    protected virtual void DetermineLookDirection()
     {
         if (health <= 0) return;
 
@@ -93,6 +106,11 @@ public class Enemy : DamageableEnemy
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+    }
+
+    public void SetDestinationToPlayer()
+    {
+        navMeshAgent.SetDestination(target.position);
     }
 
     public void StopMovement()
@@ -113,37 +131,14 @@ public class Enemy : DamageableEnemy
         combatBehavior.isBehaviorEnabled = false;
     }
 
-    protected virtual void HandleBehaviors()
+    public void DisableAllBehaviors()
     {
-        if (health <= 0)
-        {
-            chase.isBehaviorEnabled = false;
-            combatBehavior.isBehaviorEnabled = false;
-            StopMovement();
-            return;
-        }
-
-        if (enemyWaypointBehavior?.isBehaviorEnabled == true)
-        {
-            chase.isBehaviorEnabled = false;
-            combatBehavior.isBehaviorEnabled = false;
-            sentry.isBehaviorEnabled = false;
-            AllowMovement();
-        }
-        else if (playerDetected)
-        {
-            combatBehavior.HandleCombat();
-            chase.isBehaviorEnabled = true;
-            AllowMovement();
-        }
-        else
-        {
-            chase.isBehaviorEnabled = false;
-            StopMovement();
-        }
+        chase.isBehaviorEnabled = false;
+        combatBehavior.isBehaviorEnabled = false;
+        sentry.isBehaviorEnabled = false;
     }
 
-    private IEnumerator HandleStaggerTimer()
+    protected virtual IEnumerator HandleStaggerTimer()
     {
         yield return new WaitForSeconds(staggerTime);
 
@@ -157,6 +152,7 @@ public class Enemy : DamageableEnemy
         animator.SetTrigger("Die");
         GivePlayerRewardForDeath();
         StopMovement();
+        DisableAllBehaviors();
 
         Invoke(nameof(OnDisable), 1.3f);
 
@@ -172,7 +168,7 @@ public class Enemy : DamageableEnemy
         GameManager.instance.UpdateScore(scoreValue);
     }
 
-    private void Animate()
+    protected void Animate()
     {
         animator.SetBool("Block", combatBehavior.isBlocking);
 
@@ -221,5 +217,6 @@ public class Enemy : DamageableEnemy
         if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, debugAttackRange);
         Gizmos.DrawWireSphere(transform.position, 7.0f * detectionSizeModifier);
+        Gizmos.DrawLine(new Vector2(transform.position.x, transform.position.y + 1f), new Vector2(transform.position.x + shootingRange, transform.position.y + 1f));
     }
 }

@@ -8,18 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: ccf7c785fade837468a74a490e3a4ee0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/IntroCutscene.unity
     guid: 771756dd418e82a429c2043875ff22b0
-  - enabled: 0
-    path: Assets/Scenes/FirstLevelEntrance.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/EndGameCutscene.unity
     guid: 5fb2675d5eef2394c869416d1925b71b
-  - enabled: 0
-    path: Assets/Scenes/Stage1.unity
-    guid: 259d2c3ef99337340914d884c8bdc12b
   - enabled: 1
     path: Assets/Scenes/SurfaceStage.unity
     guid: 6f500ae3a468fef45b9953332da65299
@@ -29,4 +23,37 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Layer2.unity
     guid: d6acca12ee6b3124bb3b70e32d537b47
+  - enabled: 1
+    path: Assets/Scenes/Layer3.unity
+    guid: b1c505b37b5c20a47b1c30ac6c756501
+  - enabled: 1
+    path: Assets/Scenes/Layer4.unity
+    guid: ff2763341db642d42995403138e39d00
+  - enabled: 1
+    path: Assets/Scenes/FinalStage.unity
+    guid: 86656864a1e4c1f479efb921f2b96aee
+  - enabled: 1
+    path: Assets/Scenes/VillageKost.unity
+    guid: 778e5a17548d74d4fbc6631ddb130ce3
+  - enabled: 1
+    path: Assets/Scenes/FinalStageCutscene.unity
+    guid: d1e7e7cbcced0684dbe508fd2381bee4
+  - enabled: 1
+    path: Assets/Scenes/Layer2Cutscene.unity
+    guid: ff6d95a0f5b842e408afeb22501da8c3
+  - enabled: 1
+    path: Assets/Scenes/Layer3Cutscene.unity
+    guid: d66316086e016f54db4acf6a83913145
+  - enabled: 1
+    path: Assets/Scenes/Layer4Cutscene.unity
+    guid: 307edbc4cfad4b240a7c8d51609bc5ac
+  - enabled: 1
+    path: Assets/Scenes/SurfaceStageCutscene.unity
+    guid: 7caf562031f7e334898266890982a2b4
+  - enabled: 1
+    path: Assets/Scenes/TestStage.unity
+    guid: 00cebbfae320a394b8e22d193bf282e6
+  - enabled: 1
+    path: Assets/Scenes/Layer1Cutscene.unity
+    guid: 7c82133b6ccf0c649b730dd0fa327784
   m_configObjects: {}

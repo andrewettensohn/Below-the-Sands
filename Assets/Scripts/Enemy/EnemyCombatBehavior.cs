@@ -6,7 +6,10 @@ public class EnemyCombatBehavior : EnemyBehavior
 {
 
     [Range(0.0f, 5.0f)]
-    public float dealDamageDelay;
+    public float primaryAttackDealDamageDelay;
+
+    [Range(0.0f, 5.0f)]
+    public float secondaryAttackDealDamageDelay;
 
     [Range(0.1f, 10f)]
     public float attackRange;
@@ -48,17 +51,27 @@ public class EnemyCombatBehavior : EnemyBehavior
         SecondaryAttack,
     }
 
-    public virtual void HandleCombat()
+    protected virtual void Update()
     {
+        if(isBehaviorEnabled == false) return;
+
         Collider2D[] players = GetPlayerHits(attackRange);
 
-        if (players.Length == 0 || enemy.isStaggered)
+        if (players.Length == 0)
         {
             isInCombat = false;
             isAttacking = false;
+            this.isBehaviorEnabled = false;
+            enemy.sentry.isBehaviorEnabled = true;
+
             return;
         }
 
+        HandleAttackCycle();
+    }
+
+    protected virtual void HandleAttackCycle()
+    {
         isInCombat = true;
         
         if(canLeaveInitalOpening)
@@ -94,7 +107,6 @@ public class EnemyCombatBehavior : EnemyBehavior
         {
             LeaveOpening(AttackStage.SecondaryAttack);
         }
-
     }
 
     protected virtual Collider2D[] GetPlayerHits(float distance)
@@ -162,7 +174,7 @@ public class EnemyCombatBehavior : EnemyBehavior
 
     protected virtual IEnumerator HandleContinuousAttackDelayTimer()
     {
-        yield return new WaitForSeconds(dealDamageDelay);
+        yield return new WaitForSeconds(primaryAttackDealDamageDelay);
 
         if (enemy.health > 0)
         {
@@ -184,7 +196,7 @@ public class EnemyCombatBehavior : EnemyBehavior
 
     protected virtual IEnumerator HandlePostAttackDelayTimer()
     {
-        yield return new WaitForSeconds(dealDamageDelay);
+        yield return new WaitForSeconds(primaryAttackDealDamageDelay);
 
         if (enemy.health > 0)
         {
@@ -256,7 +268,7 @@ public class EnemyCombatBehavior : EnemyBehavior
 
     protected virtual IEnumerator HandlePostSecondaryAttackDelayTimer()
     {
-        yield return new WaitForSeconds(dealDamageDelay);
+        yield return new WaitForSeconds(secondaryAttackDealDamageDelay);
 
         if (enemy.health > 0)
         {

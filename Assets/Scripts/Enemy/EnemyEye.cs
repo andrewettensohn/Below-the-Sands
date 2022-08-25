@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
+[Obsolete("Uses old framework. Use as reference only.")]
 public class EnemyEye : DamageableEnemy
 {
     [Range(1, 10)]
@@ -35,19 +37,19 @@ public class EnemyEye : DamageableEnemy
         aiPath.isStopped = true;
     }
 
-    private void Update()
-    {
-        if (!isPlayerDetected)
-        {
-            Sentry();
-        }
-        else
-        {
-            enemyEyeCombatBehavior.HandleCombat();
-        }
+    // private void Update()
+    // {
+    //     if (!isPlayerDetected)
+    //     {
+    //         Sentry();
+    //     }
+    //     else
+    //     {
+    //         enemyEyeCombatBehavior.HandleCombat();
+    //     }
 
-        Animate();
-    }
+    //     Animate();
+    // }
 
     private void Sentry()
     {

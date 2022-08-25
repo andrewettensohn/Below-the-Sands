@@ -25,16 +25,16 @@ public class Fireball : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        bool isEnemy = other.collider.TryGetComponent<DamageableEnemy>(out DamageableEnemy enemy);
+        bool isEnemy = collision.TryGetComponent<DamageableEnemy>(out DamageableEnemy enemy);
 
         if(isEnemy)
         {
             enemy.OnDeltDamage(-1);
             Destroy(gameObject);
         }
-        else if(other.collider.name != GameManager.instance.playerCharacterName)
+        else if(collision.name != GameManager.instance.playerCharacterName)
         {
             Destroy(gameObject);
         }

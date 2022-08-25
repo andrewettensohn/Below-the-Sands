@@ -25,7 +25,7 @@ public class FallbackNode : MonoBehaviour
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
-            if (enemy.enemyWaypointBehavior != null)
+            if (enemy.enemyWaypointBehavior != null && enemy.enemyWaypointBehavior.isBehaviorEnabled)
             {
                 enemy.enemyWaypointBehavior.BehaviorStop();
                 enemy.SetDefaultBehaviors();

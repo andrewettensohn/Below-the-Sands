@@ -31,11 +31,12 @@ public class Arrow : DamageableEnemy
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    //Arrows not getting destroyed due to trigger change?
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.collider.name == GameManager.instance.playerCharacterName)
+        if (collision.name == GameManager.instance.playerCharacterName)
         {
-            Player player = other.collider.GetComponent<Player>();
+            Player player = collision.GetComponent<Player>();
 
             if (player == null) return;
 

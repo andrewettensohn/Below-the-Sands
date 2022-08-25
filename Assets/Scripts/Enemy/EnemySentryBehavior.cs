@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class EnemySentryBehavior : EnemyBehavior
 {
-    public LayerMask obstacleLayer;
-    public LayerMask nodeLayer;
     public bool canSeeThroughWalls;
+    public bool isNodeFilterOff;
 
     public void FixedUpdate()
     {
         if (isBehaviorEnabled == false) return;
 
-        enemy.playerDetected = IsPlayerDetected(enemy.lookDirection) || IsPlayerDetected(-enemy.lookDirection);
+        enemy.StopMovement();
+        CheckIfPlayerIsDetected();
+
+        if(enemy.isPlayerDetected)
+        {
+            enemy.chase.isBehaviorEnabled = true;
+            this.isBehaviorEnabled = false;
+        }
+    }
+
+    public void CheckIfPlayerIsDetected()
+    {
+        enemy.isPlayerDetected = IsPlayerDetected(enemy.lookDirection) || IsPlayerDetected(-enemy.lookDirection);
     }
 
     private bool IsPlayerDetected(Vector2 direction)
@@ -26,13 +37,13 @@ public class EnemySentryBehavior : EnemyBehavior
         if (!isPlayerPresent) return false;
 
         Vector3 heading = (player.transform.position - enemy.transform.position);
-        RaycastHit2D wallDetectionHit = Physics2D.Raycast(enemy.transform.position, heading / heading.magnitude, heading.magnitude, obstacleLayer);
+        RaycastHit2D wallDetectionHit = Physics2D.Raycast(enemy.transform.position, heading / heading.magnitude, heading.magnitude, enemy.obstacleLayer);
 
         if (wallDetectionHit.collider != null && !canSeeThroughWalls) return false;
 
-        RaycastHit2D nodeDetectionHit = Physics2D.Raycast(enemy.transform.position, heading / heading.magnitude, heading.magnitude, nodeLayer);
+        RaycastHit2D nodeDetectionHit = Physics2D.Raycast(enemy.transform.position, heading / heading.magnitude, heading.magnitude, enemy.nodeLayer);
 
-        return nodeDetectionHit.collider == null;
+        return nodeDetectionHit.collider == null || isNodeFilterOff;
     }
 
     

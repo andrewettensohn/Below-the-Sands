@@ -28,10 +28,12 @@ public class GameManager : MonoBehaviour
     public List<LevelName> SecondLevelMusicTriggers;
     public List<LevelName> ThirdLevelMusicTriggers;
 
+    public bool canSaveGame = true;
+
     public int score { get; private set; }
 
     private AudioSource audioSource;
-    private MusicTracks musicTracks;
+    public MusicTracks musicTracks;
 
     private void Awake()
     {
@@ -58,11 +60,35 @@ public class GameManager : MonoBehaviour
 
         if(sceneName == "MainMenu")
         {
-            audioSource.clip = musicTracks.MainMenuTrack;
+            audioSource.clip = musicTracks.MainMenuTheme;
         }
-        else if(sceneName == "Stage1" || sceneName == "SurfaceStage")
+        else if(sceneName == "VillageKost")
+        {
+            audioSource.clip = musicTracks.VillageKostTrack;
+        }
+        else if(sceneName == "SurfaceStage")
+        {
+            audioSource.clip = musicTracks.SurfaceLayerTrack;
+        }
+        else if(sceneName == "Layer1")
         {
             audioSource.clip = musicTracks.FirstLayerTrack;
+        }
+        else if(sceneName == "Layer2")
+        {
+            audioSource.clip = musicTracks.SecondLayerTrack;
+        }
+        else if(sceneName == "Layer3")
+        {
+            audioSource.clip = musicTracks.ThirdLayerTrack;
+        }
+        else if(sceneName == "Layer4")
+        {
+            audioSource.clip = musicTracks.FourthLayerTrack;
+        }
+        else if(sceneName == "FinalStage")
+        {
+            audioSource.clip = musicTracks.BossFightTrack;
         }
         else
         {
@@ -72,32 +98,46 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
     }
 
-    private IEnumerator HandleSwitchMusicTrackDelay()
+    public void SwitchMusicTrack(AudioClip track)
+    {
+        audioSource.Stop();
+        StartCoroutine(HandleSwitchMusicTrackDelay(false, track));
+    }
+
+    private IEnumerator HandleSwitchMusicTrackDelay(bool isLevelTrack, AudioClip track = null)
     {
 
         yield return new WaitForSeconds(1.0f);
 
-        HandleMusic();
+        if(isLevelTrack)
+        {
+            HandleMusic();
+        }
+        else
+        {
+            audioSource.clip = musicTracks.BossFightTrack;
+        }
     }
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
-        StartCoroutine(HandleSwitchMusicTrackDelay());
+        StartCoroutine(HandleSwitchMusicTrackDelay(true));
     }
 
     public void LoadScene(string sceneName, Vector2 positionAfterLoad)
     {
+        PlayerInfo.instance.healthPotionCount = 0;
         PlayerInfo.instance.nextPlayerPositionOnLoad = positionAfterLoad;
         SceneManager.LoadScene(sceneName);
-        StartCoroutine(HandleSwitchMusicTrackDelay());
+        StartCoroutine(HandleSwitchMusicTrackDelay(true));
     }
 
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-        StartCoroutine(HandleSwitchMusicTrackDelay());
+        StartCoroutine(HandleSwitchMusicTrackDelay(true));
     }
 
     public void PlayEndGameCutscene()
@@ -120,13 +160,16 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
-    public void SaveProgress()
+    public void SaveProgress(Vector2 position)
     {
+        Debug.Log("Saving!");
+
         PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
-        PlayerPrefs.SetFloat("LastPositionX", PlayerInfo.instance.playerPosition.x);
-        PlayerPrefs.SetFloat("LastPositionY", PlayerInfo.instance.playerPosition.y);
-        //PlayerPrefs.SetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
+        PlayerPrefs.SetFloat("LastPositionX", position.x);
+        PlayerPrefs.SetFloat("LastPositionY", position.y);
         PlayerPrefs.Save();
+
+        Debug.Log($"X Pos Save: {PlayerInfo.instance.playerPosition.x}. Y Pos Save: {PlayerInfo.instance.playerPosition.y}");
 
         bool isUIPresent = GameObject.Find("PlayerUICanvas").TryGetComponent<PlayerUI>(out PlayerUI playerUI);
 
@@ -141,7 +184,8 @@ public class GameManager : MonoBehaviour
         string lastSceneName = PlayerPrefs.GetString("LastScene", SceneManager.GetActiveScene().name);
         float lastPositionX = PlayerPrefs.GetFloat("LastPositionX", PlayerInfo.instance.playerPosition.x);
         float lastPositionY = PlayerPrefs.GetFloat("LastPositionY", PlayerInfo.instance.playerPosition.y);
-        //int healthPotCount = PlayerPrefs.GetInt("HealthPotionCount", PlayerInfo.instance.healthPotionCount);
+
+        Debug.Log($"X Pos Load: {lastPositionX}. Y Pos Load: {lastPositionY}");
 
         PlayerInfo.instance.nextPlayerPositionOnLoad = new Vector2(lastPositionX, lastPositionY);
         PlayerInfo.instance.healthPotionCount = 0;

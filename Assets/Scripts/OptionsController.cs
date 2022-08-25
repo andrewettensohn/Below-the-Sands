@@ -31,6 +31,16 @@ public class OptionsController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void OnWindowMode()
+    {
+        Screen.fullScreenMode = FullScreenMode.Windowed;
+    }
+
+    public void OnBorderlessWindowMode()
+    {
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+    }
+
     public void OnAudioChanged()
     {
         AudioListener.volume = slider.value;
