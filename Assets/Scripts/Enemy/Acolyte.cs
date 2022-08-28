@@ -36,6 +36,7 @@ public class Acolyte : Enemy
         }
         else if(health <= 0)
         {
+            audioSource.PlayOneShot(HitAudioClip);
             animator.SetTrigger("Hit");
             isStaggered = canBeStaggered;
         }

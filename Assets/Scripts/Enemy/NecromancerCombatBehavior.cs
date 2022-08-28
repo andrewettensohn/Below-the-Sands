@@ -22,10 +22,5 @@ public class NecromancerCombatBehavior : EnemyCombatBehavior
     private void RaiseTheDead()
     {
         GameObject skeletonGameObject = Instantiate(skeletonPrefab, enemy.attackPoint.position, Quaternion.identity);
-        // for(int i = 0; i < 3; i++)
-        // {
-        //     GameObject skeletonGameObject = Instantiate(skeletonPrefab, enemy.attackPoint.position, Quaternion.identity);
-        //     //skeletonGameObject.GetComponent<Enemy>().animator.SetTrigger("Rise");
-        // }
     }
 }

@@ -168,6 +168,7 @@ public class EnemyCombatBehavior : EnemyBehavior
         canAttack = false;
         isAttacking = true;
         enemy.animator.SetTrigger("Attack");
+        enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
         
         StartCoroutine(HandleContinuousAttackDelayTimer());
     }
@@ -262,6 +263,7 @@ public class EnemyCombatBehavior : EnemyBehavior
     {
         canDoSecondaryAttack = false;
         enemy.animator.SetTrigger("Secondary Attack");
+        enemy.audioSource.PlayOneShot(enemy.SecondaryAttackAudioClip);
 
         StartCoroutine(HandlePostSecondaryAttackDelayTimer());
     }

@@ -435,6 +435,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 479332120606701242, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.5079346
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725742035256945015, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.399292
+      objectReference: {fileID: 0}
     - target: {fileID: 8388282823919716674, guid: 9cd774332d6cc064bba898b6509a7b7f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1.5000916
@@ -1236,7 +1244,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1534,14 +1542,14 @@ MonoBehaviour:
   m_Follow: {fileID: 8977707419922131454}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 10
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.2721968, y: 1}
+    m_SensorSize: {x: 1.7421204, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

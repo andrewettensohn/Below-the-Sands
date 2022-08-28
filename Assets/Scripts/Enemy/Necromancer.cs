@@ -33,7 +33,7 @@ public class Necromancer : Enemy
             isStaggered = canBeStaggered;
         }
 
-        if(health <= 10 && isEndingMusicPlaying)
+        if(health <= 10 && !isEndingMusicPlaying)
         {
             isEndingMusicPlaying = true;
             GameManager.instance.SwitchMusicTrack(GameManager.instance.musicTracks.EndingTrack);

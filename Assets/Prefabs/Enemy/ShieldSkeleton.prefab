@@ -153,22 +153,34 @@ MonoBehaviour:
   attackPoint: {fileID: 4453444908073562441}
   DeathAudioClip: {fileID: 8300000, guid: e585ce79ce6c44b40b1f4e595873ac79, type: 3}
   AttackingAudioClip: {fileID: 8300000, guid: 25ce79acfb72d014cb8816e9a37f3f04, type: 3}
+  SecondaryAttackAudioClip: {fileID: 0}
   HitAudioClip: {fileID: 8300000, guid: 331f73b5be04a7e43a8e7213cc23e6ca, type: 3}
   BlockAudioClip: {fileID: 8300000, guid: cb918c2eecbe5404c87593ff4ff9faaf, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  nodeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   isStaggered: 0
   staggerTime: 0.5
   canBeStaggered: 1
-  playerDetected: 0
+  isPlayerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 0
   animator: {fileID: 0}
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
   debugAttackRange: 0.6
+  debugStoppingDistance: 0
   detectionSizeModifier: 0.75
+  shootingRange: 0
+  canFly: 0
+  isArcher: 0
+  isCustomBeahviorRunning: 0
 --- !u!114 &4189297802800080596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,13 +244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  nodeLayer:
-    serializedVersion: 2
-    m_Bits: 0
   canSeeThroughWalls: 0
+  isNodeFilterOff: 0
 --- !u!114 &8205345886296940466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  canJump: 0
 --- !u!82 &7285481260976240473
 AudioSource:
   m_ObjectHideFlags: 0

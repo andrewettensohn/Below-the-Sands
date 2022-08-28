@@ -18,6 +18,7 @@ public class Enemy : DamageableEnemy
     public Transform attackPoint;
     public AudioClip DeathAudioClip;
     public AudioClip AttackingAudioClip;
+    public AudioClip SecondaryAttackAudioClip;
     public AudioClip HitAudioClip;
     public AudioClip BlockAudioClip;
     public LayerMask playerLayer;
@@ -150,6 +151,7 @@ public class Enemy : DamageableEnemy
     {
         isDying = true;
         animator.SetTrigger("Die");
+        audioSource.PlayOneShot(DeathAudioClip);
         GivePlayerRewardForDeath();
         StopMovement();
         DisableAllBehaviors();
@@ -196,6 +198,7 @@ public class Enemy : DamageableEnemy
         }
         else if(health > 0)
         {
+            audioSource.PlayOneShot(HitAudioClip);
             animator.SetTrigger("Hit");
             isStaggered = canBeStaggered;
             Debug.Log(isStaggered);

@@ -182,23 +182,24 @@ MonoBehaviour:
   health: 20
   speed: 2
   attackPoint: {fileID: 3189233392061767673}
-  DeathAudioClip: {fileID: 0}
-  AttackingAudioClip: {fileID: 0}
-  HitAudioClip: {fileID: 0}
+  DeathAudioClip: {fileID: 8300000, guid: 210592e478d80dc4c888311f6d8d208d, type: 3}
+  AttackingAudioClip: {fileID: 8300000, guid: b3e9db2f502cad7409018fd8c899544e, type: 3}
+  SecondaryAttackAudioClip: {fileID: 0}
+  HitAudioClip: {fileID: 8300000, guid: 5b94570b777c3974890d1ae622435d57, type: 3}
   BlockAudioClip: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   nodeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   isStaggered: 0
   staggerTime: 1
   canBeStaggered: 1
-  playerDetected: 0
+  isPlayerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 0
   animator: {fileID: 0}
@@ -206,7 +207,7 @@ MonoBehaviour:
   focusPointReward: 0
   debugAttackRange: 2
   debugStoppingDistance: 0
-  detectionSizeModifier: 0.75
+  detectionSizeModifier: 2
   shootingRange: 0
   canFly: 0
   isArcher: 0
@@ -302,7 +303,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.124
+  m_Volume: 0.295
   m_Pitch: 1
   Loop: 0
   Mute: 0

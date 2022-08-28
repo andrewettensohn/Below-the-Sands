@@ -303,7 +303,6 @@ public class Player : MonoBehaviour
 
         PlayerInfo.instance.health -= damage;
         playerUI.ChangeHealthHearts(damage, false);
-        audioSource.PlayOneShot(hitAudioClip);
 
         if (PlayerInfo.instance.health <= 0 && !PlayerInfo.instance.isSpirit)
         {
@@ -322,6 +321,7 @@ public class Player : MonoBehaviour
         else
         {
             animator.SetTrigger("Hit");
+            audioSource.PlayOneShot(hitAudioClip);
             isStaggered = true;
         }
     }
