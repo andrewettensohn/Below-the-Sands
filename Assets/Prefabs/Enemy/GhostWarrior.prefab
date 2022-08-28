@@ -165,7 +165,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   isStaggered: 0
-  staggerTime: 0.5
+  staggerTime: 1
   canBeStaggered: 1
   isPlayerDetected: 0
   audioSource: {fileID: 0}
@@ -173,7 +173,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   lookDirection: {x: 0, y: 0}
   focusPointReward: 0
-  debugAttackRange: 1.2
+  debugAttackRange: 0.9
   debugStoppingDistance: 0
   detectionSizeModifier: 3
   shootingRange: 0
@@ -193,9 +193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  primaryAttackDealDamageDelay: 0.6
+  primaryAttackDealDamageDelay: 0.8
   secondaryAttackDealDamageDelay: 0
-  attackRange: 1.2
+  attackRange: 0.9
   blockTime: 0
   primaryAttackHasKnockBack: 0
   secondaryAttackHasKnockBack: 0
@@ -248,8 +248,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02857193, y: -0.018141704}
-  m_Size: {x: 0.5777563, y: 0.9481535}
+  m_Offset: {x: 0.006777307, y: -0.056606013}
+  m_Size: {x: 0.7738678, y: 1.0250821}
   m_Direction: 0
 --- !u!195 &1930583645247303058
 NavMeshAgent:
@@ -393,7 +393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7004320489919234644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.44, y: 0.314, z: -0.008266509}
+  m_LocalPosition: {x: 0.448, y: -0.13, z: -0.008266509}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

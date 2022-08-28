@@ -307,8 +307,8 @@ public class Player : MonoBehaviour
         if (PlayerInfo.instance.health <= 0 && !PlayerInfo.instance.isSpirit)
         {
             animator.SetTrigger("Die");
-            Invoke(nameof(OnDisable), 1.3f);
-            GameManager.instance.GameOver();
+            GameManager.instance.isPlayerControlRestricted = true;
+            StartCoroutine(HandlePostDeath());
         }
         else if(PlayerInfo.instance.health <= 0 && PlayerInfo.instance.isSpirit)
         {
@@ -333,6 +333,15 @@ public class Player : MonoBehaviour
         animator.SetFloat("Look X", 1f);
         animator.SetBool("Is Grounded", movement.isGrounded);
         animator.SetBool("Is Spirit", PlayerInfo.instance.isSpirit);
+    }
+
+    private IEnumerator HandlePostDeath()
+    {
+        yield return new WaitForSeconds(1);
+
+        Invoke(nameof(OnDisable), 1.3f);
+        GameManager.instance.isPlayerControlRestricted = false;
+        GameManager.instance.GameOver();
     }
 
     public void OnHealthPotionPickedUp()

@@ -183,8 +183,8 @@ MonoBehaviour:
   speed: 4
   attackPoint: {fileID: 4089195343838948336}
   DeathAudioClip: {fileID: 8300000, guid: 1cb5aaac5a17106479f0a9a9e02561e9, type: 3}
-  AttackingAudioClip: {fileID: 8300000, guid: 3fa240da29ac9374f961189deba69375, type: 3}
-  SecondaryAttackAudioClip: {fileID: 8300000, guid: 7a108dbffe6fb524489455d4d3ba7454, type: 3}
+  AttackingAudioClip: {fileID: 8300000, guid: 7a108dbffe6fb524489455d4d3ba7454, type: 3}
+  SecondaryAttackAudioClip: {fileID: 8300000, guid: ee13953df82acef46a029ba221f32040, type: 3}
   HitAudioClip: {fileID: 8300000, guid: 5a3ddd0b4dda4a94ea48d5ab76445fa1, type: 3}
   BlockAudioClip: {fileID: 0}
   playerLayer:
@@ -197,7 +197,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   isStaggered: 0
-  staggerTime: 0.5
+  staggerTime: 1
   canBeStaggered: 1
   isPlayerDetected: 0
   audioSource: {fileID: 0}
@@ -212,8 +212,10 @@ MonoBehaviour:
   canFly: 1
   isArcher: 0
   isCustomBeahviorRunning: 0
-  magicRiftPrefab: {fileID: 618346327443430253, guid: 569cb118624dc434e91fd4b60f98836d, type: 3}
-  postMagicRiftTimer: 0
+  arcaneBoltPrefab: {fileID: 2680505620633282611, guid: 185c9e2760510b1478f0829e90592a5c, type: 3}
+  arcaneBoltLaunchForce: 100
+  arcaneLaunchesPerCycle: 3
+  timeBetweenArcaneBlasts: 1.5
 --- !u!114 &8027214981318542499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,24 +229,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  primaryAttackDealDamageDelay: 0
+  primaryAttackDealDamageDelay: 0.5
   secondaryAttackDealDamageDelay: 0
   attackRange: 1.3
   blockTime: 0
   primaryAttackHasKnockBack: 0
   secondaryAttackHasKnockBack: 0
   knockBackForce: 0
-  hasSecondaryAttack: 1
+  hasSecondaryAttack: 0
   hasBlock: 0
   hasContinuousAttack: 0
   initalLeaveOpeningTime: 0.2
   postAttackLeaveOpeningTime: 0.5
   postBlockLeaveOpeningTime: 0
   postSecondaryAttackLeaveOpeningTime: 0.3
-  arcaneBoltPrefab: {fileID: 2680505620633282611, guid: 185c9e2760510b1478f0829e90592a5c, type: 3}
-  arcaneBoltLaunchForce: 50
-  arcaneLaunchesPerCycle: 3
-  timeBetweenArcaneBlasts: 1.5
 --- !u!114 &9111370780334394701
 MonoBehaviour:
   m_ObjectHideFlags: 0

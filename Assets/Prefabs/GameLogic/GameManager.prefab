@@ -57,6 +57,7 @@ MonoBehaviour:
   SecondLevelMusicTriggers: 090000000c0000000b000000
   ThirdLevelMusicTriggers: 15000000
   canSaveGame: 1
+  musicTracks: {fileID: 0}
 --- !u!114 &4824659691480458942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,11 +71,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenuTheme: {fileID: 8300000, guid: 4885c1a9cc8304d47bda93253bf600a9, type: 3}
-  VillageKostTrack: {fileID: 8300000, guid: 1f2b4352a471b5c49930215407477695, type: 3}
-  SurfaceLayerTrack: {fileID: 8300000, guid: 8c9e7873b3242944bbd4a78548dfa465, type: 3}
+  VillageKostTrack: {fileID: 8300000, guid: c696a2e1ef317e5469f59898594639c3, type: 3}
+  SurfaceLayerTrack: {fileID: 8300000, guid: 6be926466c70a0f4cb5e563c36eed004, type: 3}
   FirstLayerTrack: {fileID: 8300000, guid: f8367f1efa8abc344bc27406ceedc30b, type: 3}
   SecondLayerTrack: {fileID: 8300000, guid: b56f7c36a0463f647a75736815536057, type: 3}
-  ThirdLayerTrack: {fileID: 8300000, guid: 3ac03c0514a0ffd4881df7ef406a7b86, type: 3}
+  ThirdLayerTrack: {fileID: 8300000, guid: 8daf4fc3faaecb4418326e945eb2f2a3, type: 3}
   FourthLayerTrack: {fileID: 8300000, guid: b14b2bb1b6ca4b141be13a7dd7299a9b, type: 3}
   BossFightTrack: {fileID: 8300000, guid: 9feed1193886e3a45bb0fbba265b90b3, type: 3}
   EndingTrack: {fileID: 8300000, guid: 4885c1a9cc8304d47bda93253bf600a9, type: 3}

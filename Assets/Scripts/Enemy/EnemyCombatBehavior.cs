@@ -53,7 +53,9 @@ public class EnemyCombatBehavior : EnemyBehavior
 
     protected virtual void Update()
     {
-        if(isBehaviorEnabled == false) return;
+        if(isBehaviorEnabled == false || enemy.isStaggered) return;
+
+        enemy.StopMovement();
 
         Collider2D[] players = GetPlayerHits(attackRange);
 

@@ -181,9 +181,7 @@ MonoBehaviour:
   canFly: 0
   isArcher: 0
   isCustomBeahviorRunning: 0
-  shieldGeneratorGameObjects:
-  - {fileID: 0}
-  - {fileID: 0}
+  shieldGeneratorGameObjects: []
   magicShieldGameObject: {fileID: 6677559449994175652}
 --- !u!114 &7107807255553383010
 MonoBehaviour:

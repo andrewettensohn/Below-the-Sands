@@ -51,7 +51,7 @@ public class Enemy : DamageableEnemy
     {
         SetDefaultBehaviors();
 
-        float stoppingDistance = isArcher ? shootingRange : combatBehavior.attackRange;
+        float stoppingDistance = isArcher ? shootingRange : navMeshAgent.stoppingDistance;
 
         navMeshAgent.stoppingDistance = stoppingDistance;
         navMeshAgent.speed = speed;

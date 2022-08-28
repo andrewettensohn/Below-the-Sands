@@ -152,6 +152,7 @@ MonoBehaviour:
   attackPoint: {fileID: 6912137220842514993}
   DeathAudioClip: {fileID: 8300000, guid: 56ec1bcf451872c43a7e485973345ec1, type: 3}
   AttackingAudioClip: {fileID: 8300000, guid: d94bef2de1ddb034e8097958477b17ba, type: 3}
+  SecondaryAttackAudioClip: {fileID: 0}
   HitAudioClip: {fileID: 8300000, guid: 3eafbbabdaaccfa4d87254e81603ab72, type: 3}
   BlockAudioClip: {fileID: 0}
   playerLayer:
@@ -360,7 +361,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
