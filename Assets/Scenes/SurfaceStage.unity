@@ -1843,7 +1843,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7421204, y: 1}
+    m_SensorSize: {x: 1.5357143, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3896,6 +3896,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5691969263110076599, guid: 7cc4384b1235fe04b8bfaa42669e3e42, type: 3}
+      propertyPath: shieldGeneratorGameObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -5691969263110076599, guid: 7cc4384b1235fe04b8bfaa42669e3e42, type: 3}
       propertyPath: shieldGeneratorGameObjects.Array.data[0]
       value: 

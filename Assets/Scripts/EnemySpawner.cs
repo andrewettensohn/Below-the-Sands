@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public int spawnLimit;
     public int numberSpawned;
     public float timeBetweenSpawns;
+    public bool shouldTrackedSpawnedEnemies = true;
     public GameObject enemyPrefab;
     public List<GameObject> spawnedEnemies { get; private set; } = new List<GameObject>();
     private bool canSpawn = true;
@@ -20,7 +21,10 @@ public class EnemySpawner : MonoBehaviour
 
         SpawnEnemy();
 
-        areSpawnedEnemiesDefeated = (spawnedEnemies?.All(x => !x.activeSelf)).GetValueOrDefault() && numberSpawned >= spawnLimit;
+        if(shouldTrackedSpawnedEnemies)
+        {
+            areSpawnedEnemiesDefeated = (spawnedEnemies?.All(x => !x.activeSelf)).GetValueOrDefault() && numberSpawned >= spawnLimit;
+        }
     }
 
     private void SpawnEnemy()

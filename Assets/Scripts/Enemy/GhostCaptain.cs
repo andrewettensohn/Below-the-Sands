@@ -43,7 +43,7 @@ public class GhostCaptain : Enemy
         {
             OnDeath();
         }
-        else if(damageTakeSinceLastArcaneBlast >= 3)
+        else if(damageTakeSinceLastArcaneBlast >= 5)
         {
             damageTakeSinceLastArcaneBlast = 0;
 
