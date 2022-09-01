@@ -153,8 +153,8 @@ MonoBehaviour:
   fireballPrefab: {fileID: 7058883388194537264, guid: be197b75c884d084bbe8df659bff090d, type: 3}
   fireballLaunchForce: 500
   PlayerUICanvas: {fileID: 0}
-  runningAudioClip: {fileID: 8300000, guid: fba95cafa5bba8649a7d269656e7317b, type: 3}
   attackAudioClip: {fileID: 8300000, guid: 1821578068554a2428ca731df790b688, type: 3}
+  rapidAttackAudioClip: {fileID: 8300000, guid: bc9d1e7a467b0b441bf746c163da9ee2, type: 3}
   hitAudioClip: {fileID: 8300000, guid: 14e838537e8b6c94aa6a05208b0c700c, type: 3}
   dashAbilityLength: 1.5
   deflectAbilityLength: 0.3

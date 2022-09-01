@@ -53,7 +53,7 @@ public class EnemyCombatBehavior : EnemyBehavior
 
     protected virtual void Update()
     {
-        if(isBehaviorEnabled == false || enemy.isStaggered) return;
+        if(isBehaviorEnabled == false || enemy.isStaggered || enemy.isDying) return;
 
         enemy.StopMovement();
 

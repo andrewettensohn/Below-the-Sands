@@ -179,6 +179,7 @@ MonoBehaviour:
   shootingRange: 0
   canFly: 0
   isArcher: 0
+  isDying: 0
   isCustomBeahviorRunning: 0
 --- !u!114 &8206952045015469774
 MonoBehaviour:
@@ -272,7 +273,7 @@ NavMeshAgent:
   m_Height: 0.7
   m_BaseOffset: 0.48
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 0
 --- !u!82 &2833013812460154704
 AudioSource:
   m_ObjectHideFlags: 0

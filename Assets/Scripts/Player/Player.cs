@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     public Movement movement { get; private set; }
     public PlayerUI playerUI { get; private set; }
 
-    public AudioClip runningAudioClip;
     public AudioClip attackAudioClip;
+    public AudioClip rapidAttackAudioClip;
     public AudioClip hitAudioClip;
 
     public float dashAbilityLength;
@@ -228,15 +228,15 @@ public class Player : MonoBehaviour
 
         if (isUsingAbility && PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
         {
+            audioSource.PlayOneShot(rapidAttackAudioClip);
             animator.SetTrigger("Rapid Attack");
             damageToDeal = 2;
         }
         else
         {
+            audioSource.PlayOneShot(attackAudioClip);
             animator.SetTrigger("Attack");
         }
-
-        audioSource.PlayOneShot(attackAudioClip);
 
         List<Collider2D> hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer).ToList();
 

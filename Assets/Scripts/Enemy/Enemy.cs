@@ -44,7 +44,7 @@ public class Enemy : DamageableEnemy
     protected bool isStaggerTimerActive;
     public bool isArcher;
     
-    protected bool isDying;
+    public bool isDying;
     public bool isCustomBeahviorRunning;
 
     protected virtual void Start()
@@ -111,7 +111,14 @@ public class Enemy : DamageableEnemy
 
     public void SetDestinationToPlayer()
     {
-        navMeshAgent.SetDestination(target.position);
+        if(!canFly && target.position.y > transform.position.y + 3f)
+        {
+            StopMovement();
+        }
+        else
+        {
+            navMeshAgent.SetDestination(target.position);
+        }
     }
 
     public void StopMovement()
@@ -156,7 +163,7 @@ public class Enemy : DamageableEnemy
         StopMovement();
         DisableAllBehaviors();
 
-        Invoke(nameof(OnDisable), 1.3f);
+        Invoke(nameof(OnDisable), 0.9f);
 
         if (gameObject.name == "Demon")
         {

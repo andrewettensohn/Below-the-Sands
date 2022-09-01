@@ -178,8 +178,9 @@ MonoBehaviour:
   debugStoppingDistance: 0
   detectionSizeModifier: 3
   shootingRange: 0
-  canFly: 0
+  canFly: 1
   isArcher: 0
+  isDying: 0
   isCustomBeahviorRunning: 0
   shieldGeneratorGameObjects: []
   magicShieldGameObject: {fileID: 6677559449994175652}
