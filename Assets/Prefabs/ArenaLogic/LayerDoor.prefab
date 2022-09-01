@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6c6270fdc8ea15347bcd0ac5adb9b9dc, type: 3}
+  m_Sprite: {fileID: 1424061870, guid: 227b682a0416aff458dd336d732e9b3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,18 +99,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.028008163, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.69, y: 5.63}
+    oldSize: {x: 3.4166667, y: 5.0833335}
     newSize: {x: 4.04, y: 4.94}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.04, y: 4.94}
+  m_Size: {x: 3.349186, y: 4.94}
   m_EdgeRadius: 0
 --- !u!114 &1327360421215254180
 MonoBehaviour:
@@ -129,4 +129,5 @@ MonoBehaviour:
   verticalPositionAfterLoad: 0
   isLocked: 1
   bossLockObject: {fileID: 0}
-  UnlockedSprite: {fileID: 21300000, guid: d0463918528f8ac4eb5d69d340ef2c52, type: 3}
+  bossLockSpawners: []
+  UnlockedSprite: {fileID: 1716946398, guid: 227b682a0416aff458dd336d732e9b3b, type: 3}

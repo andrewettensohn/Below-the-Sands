@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     public Movement movement { get; private set; }
     public PlayerUI playerUI { get; private set; }
 
-    public AudioClip runningAudioClip;
     public AudioClip attackAudioClip;
+    public AudioClip rapidAttackAudioClip;
     public AudioClip hitAudioClip;
 
     public float dashAbilityLength;
@@ -228,15 +228,15 @@ public class Player : MonoBehaviour
 
         if (isUsingAbility && PlayerInfo.instance.EquippedAbility == PlayerAbility.RapidAttack)
         {
+            audioSource.PlayOneShot(rapidAttackAudioClip);
             animator.SetTrigger("Rapid Attack");
             damageToDeal = 2;
         }
         else
         {
+            audioSource.PlayOneShot(attackAudioClip);
             animator.SetTrigger("Attack");
         }
-
-        audioSource.PlayOneShot(attackAudioClip);
 
         List<Collider2D> hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer).ToList();
 
@@ -303,13 +303,12 @@ public class Player : MonoBehaviour
 
         PlayerInfo.instance.health -= damage;
         playerUI.ChangeHealthHearts(damage, false);
-        audioSource.PlayOneShot(hitAudioClip);
 
         if (PlayerInfo.instance.health <= 0 && !PlayerInfo.instance.isSpirit)
         {
             animator.SetTrigger("Die");
-            Invoke(nameof(OnDisable), 1.3f);
-            GameManager.instance.GameOver();
+            GameManager.instance.isPlayerControlRestricted = true;
+            StartCoroutine(HandlePostDeath());
         }
         else if(PlayerInfo.instance.health <= 0 && PlayerInfo.instance.isSpirit)
         {
@@ -322,6 +321,7 @@ public class Player : MonoBehaviour
         else
         {
             animator.SetTrigger("Hit");
+            audioSource.PlayOneShot(hitAudioClip);
             isStaggered = true;
         }
     }
@@ -333,6 +333,15 @@ public class Player : MonoBehaviour
         animator.SetFloat("Look X", 1f);
         animator.SetBool("Is Grounded", movement.isGrounded);
         animator.SetBool("Is Spirit", PlayerInfo.instance.isSpirit);
+    }
+
+    private IEnumerator HandlePostDeath()
+    {
+        yield return new WaitForSeconds(1);
+
+        Invoke(nameof(OnDisable), 1.3f);
+        GameManager.instance.isPlayerControlRestricted = false;
+        GameManager.instance.GameOver();
     }
 
     public void OnHealthPotionPickedUp()

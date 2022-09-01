@@ -151,23 +151,24 @@ MonoBehaviour:
   health: 4
   speed: 5
   attackPoint: {fileID: 305419807877286112}
-  DeathAudioClip: {fileID: 8300000, guid: e585ce79ce6c44b40b1f4e595873ac79, type: 3}
-  AttackingAudioClip: {fileID: 0}
-  HitAudioClip: {fileID: 8300000, guid: 12ffe787549bf1844a6bf6d3d4de2099, type: 3}
+  DeathAudioClip: {fileID: 8300000, guid: a9fc112b35e5fd045ba0d9031daf7f8c, type: 3}
+  AttackingAudioClip: {fileID: 8300000, guid: 2163bdebe8837864fac466df97f65d34, type: 3}
+  SecondaryAttackAudioClip: {fileID: 0}
+  HitAudioClip: {fileID: 8300000, guid: c732791a2ef53cd42a4ae67201c21f0b, type: 3}
   BlockAudioClip: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   nodeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   isStaggered: 0
   staggerTime: 0.5
   canBeStaggered: 1
-  playerDetected: 0
+  isPlayerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 0
   animator: {fileID: 0}
@@ -175,10 +176,11 @@ MonoBehaviour:
   focusPointReward: 0
   debugAttackRange: 1.4
   debugStoppingDistance: 0
-  detectionSizeModifier: 2
+  detectionSizeModifier: 3
   shootingRange: 0
-  canFly: 0
+  canFly: 1
   isArcher: 0
+  isDying: 0
   isCustomBeahviorRunning: 0
   shieldGeneratorGameObjects: []
   magicShieldGameObject: {fileID: 6677559449994175652}
@@ -205,7 +207,7 @@ MonoBehaviour:
   hasSecondaryAttack: 0
   hasBlock: 0
   hasContinuousAttack: 1
-  initalLeaveOpeningTime: 0.3
+  initalLeaveOpeningTime: 0.2
   postAttackLeaveOpeningTime: 0
   postBlockLeaveOpeningTime: 0
   postSecondaryAttackLeaveOpeningTime: 0
@@ -271,7 +273,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.124
+  m_Volume: 0.249
   m_Pitch: 1
   Loop: 0
   Mute: 0

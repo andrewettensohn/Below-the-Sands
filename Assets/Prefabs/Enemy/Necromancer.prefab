@@ -150,16 +150,17 @@ MonoBehaviour:
   health: 50
   speed: 1
   attackPoint: {fileID: 5299318730831556430}
-  DeathAudioClip: {fileID: 0}
-  AttackingAudioClip: {fileID: 0}
-  HitAudioClip: {fileID: 0}
+  DeathAudioClip: {fileID: 8300000, guid: 74781ef5cf361e646bc56cf5794005b8, type: 3}
+  AttackingAudioClip: {fileID: 8300000, guid: 7114d46787f85a64ea603583be19d460, type: 3}
+  SecondaryAttackAudioClip: {fileID: 8300000, guid: b93d4255be14f1e4b9380e6a601b9fa4, type: 3}
+  HitAudioClip: {fileID: 8300000, guid: a9fc112b35e5fd045ba0d9031daf7f8c, type: 3}
   BlockAudioClip: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 256
   nodeLayer:
     serializedVersion: 2
     m_Bits: 1024

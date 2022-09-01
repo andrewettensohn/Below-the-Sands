@@ -88,6 +88,7 @@ public class SkeletonArcherCombatBehavior : EnemyCombatBehavior
     private void FireArrow()
     {
         enemy.animator.SetTrigger("Attack");
+        enemy.audioSource.PlayOneShot(enemy.AttackingAudioClip);
 
         GameObject arrowGameObject = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
 

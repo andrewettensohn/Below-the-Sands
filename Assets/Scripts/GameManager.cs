@@ -115,7 +115,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            audioSource.clip = musicTracks.BossFightTrack;
+            audioSource.clip = track;
+            audioSource.Play();
         }
     }
 

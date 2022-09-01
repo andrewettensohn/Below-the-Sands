@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class DemonFlameStrike : MonoBehaviour
 {
-    // if player detected, instatiate at the player's location a flame strike object that works like a vertical trap.
-    // have a colldown for 
-
     public GameObject flameStrikePrefab;
     public float flameStrikeCooldown;
     private bool canFlameStrike = true;

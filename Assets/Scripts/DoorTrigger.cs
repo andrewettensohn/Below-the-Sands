@@ -41,6 +41,11 @@ public class DoorTrigger : MonoBehaviour
         spriteRenderer.sprite = UnlockedSprite;
     }
 
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        TransportPlayer();
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         TransportPlayer();

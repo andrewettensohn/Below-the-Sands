@@ -18,6 +18,7 @@ public class Enemy : DamageableEnemy
     public Transform attackPoint;
     public AudioClip DeathAudioClip;
     public AudioClip AttackingAudioClip;
+    public AudioClip SecondaryAttackAudioClip;
     public AudioClip HitAudioClip;
     public AudioClip BlockAudioClip;
     public LayerMask playerLayer;
@@ -43,14 +44,14 @@ public class Enemy : DamageableEnemy
     protected bool isStaggerTimerActive;
     public bool isArcher;
     
-    protected bool isDying;
+    public bool isDying;
     public bool isCustomBeahviorRunning;
 
     protected virtual void Start()
     {
         SetDefaultBehaviors();
 
-        float stoppingDistance = isArcher ? shootingRange : combatBehavior.attackRange;
+        float stoppingDistance = isArcher ? shootingRange : navMeshAgent.stoppingDistance;
 
         navMeshAgent.stoppingDistance = stoppingDistance;
         navMeshAgent.speed = speed;
@@ -110,7 +111,14 @@ public class Enemy : DamageableEnemy
 
     public void SetDestinationToPlayer()
     {
-        navMeshAgent.SetDestination(target.position);
+        if(!canFly && target.position.y > transform.position.y + 3f)
+        {
+            StopMovement();
+        }
+        else
+        {
+            navMeshAgent.SetDestination(target.position);
+        }
     }
 
     public void StopMovement()
@@ -150,11 +158,12 @@ public class Enemy : DamageableEnemy
     {
         isDying = true;
         animator.SetTrigger("Die");
+        audioSource.PlayOneShot(DeathAudioClip);
         GivePlayerRewardForDeath();
         StopMovement();
         DisableAllBehaviors();
 
-        Invoke(nameof(OnDisable), 1.3f);
+        Invoke(nameof(OnDisable), 0.9f);
 
         if (gameObject.name == "Demon")
         {
@@ -196,6 +205,7 @@ public class Enemy : DamageableEnemy
         }
         else if(health > 0)
         {
+            audioSource.PlayOneShot(HitAudioClip);
             animator.SetTrigger("Hit");
             isStaggered = canBeStaggered;
             Debug.Log(isStaggered);

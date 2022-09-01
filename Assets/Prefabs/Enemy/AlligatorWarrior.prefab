@@ -48,8 +48,8 @@ GameObject:
   - component: {fileID: 5012841941974965540}
   - component: {fileID: 7333421067728267547}
   - component: {fileID: 3780141080621783373}
-  - component: {fileID: 728188370611165425}
   - component: {fileID: 3780141079278614308}
+  - component: {fileID: 2136530022833071059}
   - component: {fileID: 1379545443750296762}
   m_Layer: 7
   m_Name: AlligatorWarrior
@@ -182,17 +182,24 @@ MonoBehaviour:
   health: 10
   speed: 6
   attackPoint: {fileID: 2524304527159988134}
-  DeathAudioClip: {fileID: 0}
-  AttackingAudioClip: {fileID: 0}
-  HitAudioClip: {fileID: 0}
+  DeathAudioClip: {fileID: 8300000, guid: 130a37292c020ba4a9359e962176e95d, type: 3}
+  AttackingAudioClip: {fileID: 8300000, guid: dfbc3a4b40202e64e99e428d582db07e, type: 3}
+  SecondaryAttackAudioClip: {fileID: 0}
+  HitAudioClip: {fileID: 8300000, guid: 39d3f97e3aa6e7145a0fa9cc44b7cc45, type: 3}
   BlockAudioClip: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  nodeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   isStaggered: 0
   staggerTime: 1
   canBeStaggered: 1
-  playerDetected: 0
+  isPlayerDetected: 0
   audioSource: {fileID: 0}
   scoreValue: 0
   animator: {fileID: 0}
@@ -204,6 +211,8 @@ MonoBehaviour:
   shootingRange: 0
   canFly: 0
   isArcher: 0
+  isCustomBeahviorRunning: 0
+  laughAudioClip: {fileID: 8300000, guid: 6762d6d1004c5e7419d1fa3cbf4b1956, type: 3}
 --- !u!114 &9203032238455740136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,13 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  nodeLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  canSeeThroughWalls: 0
+  canSeeThroughWalls: 1
   isNodeFilterOff: 0
 --- !u!114 &3780141080621783373
 MonoBehaviour:
@@ -284,22 +287,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBehaviorEnabled: 0
---- !u!70 &728188370611165425
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8276496613490378071}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.111377716, y: 0.046787262}
-  m_Size: {x: 0.49866104, y: 0.65737915}
-  m_Direction: 0
 --- !u!195 &3780141079278614308
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -311,10 +298,10 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.25
   m_Speed: 1
-  m_Acceleration: 8
+  m_Acceleration: 6
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -322,6 +309,32 @@ NavMeshAgent:
   m_BaseOffset: 0.2
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
+--- !u!61 &2136530022833071059
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8276496613490378071}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0000019073486, y: 0.08227539}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 1.28, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8001747, y: 0.68323135}
+  m_EdgeRadius: 0
 --- !u!82 &1379545443750296762
 AudioSource:
   m_ObjectHideFlags: 0
@@ -334,7 +347,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.124
+  m_Volume: 0.256
   m_Pitch: 1
   Loop: 0
   Mute: 0
